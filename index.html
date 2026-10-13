@@ -226,40 +226,39 @@ or equivalently, using the definitions of \(\mathcal{E}_J\), \(y_{J,\varepsilon}
 	4^{d}\leq\sum\limits_{J\in \mathcal{J}}\sum\limits_{\varepsilon \in \{ -1,1 \}^{J}}|\det B_{J}|\cdot \operatorname{Vol}\left(\{x \in K\,\,\colon\,\,\left| \langle b_{k},y_{J,\varepsilon}(x) \rangle \right| \leq \lambda(\langle b_{k},x \rangle )\quad\forall k\not\in J\}\right).\tag{7}
 \]</span></p>
 <h3 id="from-to-the-cube-to-the-polycircle">From \(K\) to the cube to the polycircle</h3>
-<p>Fix \(J\in \mathcal{J}\). For \(q\in[-1,1]^J\) and \(\varepsilon\in\{-1,1\}^J\) write
+<p>Fix \(J\in \mathcal{J}\), \(q\in[-1,1]^J\) and \(\varepsilon\in\{-1,1\}^J\), and write
 <span class="math">\[
-	x_{J}(q):=B_J^{-1}q \qquad \text{and}\qquad z_J(q,\varepsilon):=x_J(q)+iy_{J,\varepsilon}(x_J(q)).
+	z_J(q,\varepsilon):=B_J^{-1}q+iy_{J,\varepsilon}(B_J^{-1}q).
 \]</span>
-Since \(\langle b_j,x_J(q)\rangle=q_j\) for \(j\in J\), by the definition of \(y_{J,\varepsilon}\) 
+Since \(\langle b_j,B_J^{-1}q\rangle=q_j\) for \(j\in J\), by the definition of \(y_{J,\varepsilon}\) 
 <span class="math">\[
 	\langle b_j,z_J(q,\varepsilon)\rangle=q_j+i\varepsilon_j\lambda(q_j)\in\partial D, \qquad j\in J.
 \]</span>
-Let \(x=x_J(q)\) and \(y=y_{J,\varepsilon}(x)\), so that \(z_J(q,\varepsilon)=x+iy\). 
+Let \(x=B_J^{-1}q\) and \(y=y_{J,\varepsilon}(x)\), so that \(z_J(q,\varepsilon)=x+iy\). 
 Since \(\overline\Omega=\{z\colon\langle b_l,z\rangle\in\overline D\ \forall l\}\) and \(\overline D=\{w\colon|\mathrm{Re}\,w|\le1,\ |\mathrm{Im}\,w|\le\lambda(\mathrm{Re}\,w)\}\),
 <span class="math">\[
 	x+iy\in\overline\Omega\iff|\langle b_l,x\rangle|\le1\ \text{ and }\ |\langle b_l,y\rangle|\le\lambda(\langle b_l,x\rangle)\qquad\text{for all }1\le l\le m.
 \]</span>
 The conditions \(|\langle b_l,x\rangle|\le1\), \(1\le l\le m\), are equivalent to \(x\in K\); and among the conditions \(|\langle b_l,y\rangle|\le\lambda(\langle b_l,x\rangle)\), those with \(l\in J\) hold with equality by the definition of \(y_{J,\varepsilon}\). Hence
 <span class="math">\[
-	z_J(q,\varepsilon)\in\overline\Omega\iff x_J(q)\in K\ \text{ and }\ |\langle b_k,y_{J,\varepsilon}(x_J(q))\rangle|\le\lambda(\langle b_k,x_J(q)\rangle)\quad\forall k\notin J.
+	z_J(q,\varepsilon)\in\overline\Omega\iff B_J^{-1}q\in K\ \text{ and }\ |\langle b_k,y_{J,\varepsilon}(B_J^{-1}q)\rangle|\le\lambda(\langle b_k,B_J^{-1}q\rangle)\quad\forall k\notin J.
 \]</span>
-Therefore, since 
+Since \(q\) and \(\varepsilon\) were arbitrary, and since
 <span class="math">\[
-K\subseteq\{x\colon|\langle b_j,x\rangle|\le1\ \forall j\in J\}=x_J([-1,1]^J),
+K\subseteq\{x\colon|\langle b_j,x\rangle|\le1\ \forall j\in J\}=B_J^{-1}([-1,1]^J),
 \]</span>the change of variables \(q=B_Jx\) gives
 <span class="math">\[
 	\begin{aligned}
 	&|\det B_J|\operatorname{Vol}\left(\{x \in K\,\,\colon\,\,\left| \langle b_{k},y_{J,\varepsilon}(x) \rangle \right| \leq \lambda(\langle b_{k},x \rangle )\quad\forall k\not\in J\}\right)\\
-	&\qquad=\operatorname{Vol}\left(\{q\in[-1,1]^J\,\,\colon\,\,z_{J}(q,\varepsilon)\in \overline\Omega\}\right)
+	&\qquad=\operatorname{Vol}\left(\{q\in[-1,1]^J\,\,\colon\,\,z_{J}(q,\varepsilon)\in \overline\Omega\}\right).
 	\end{aligned}
 	\tag{8}
-\]</span>
-for every \(\varepsilon\in\{-1,1\}^J\).</p>
+\]</span></p>
 <p>By Lemma 0, \(F\) is a homeomorphism of \(\overline{\mathbb D}\) onto \(\overline D\).  Define \(\Phi_J:[-1,1]^J\times\{-1,1\}^J\to(\partial\mathbb D)^J\) by
 <span class="math">\[
 	\Phi_J(q,\varepsilon)_j:=F^{-1}\big(q_{j}+i\varepsilon_{j}\lambda(q_{j})\big),\qquad j\in J.
 \]</span>
-Extend \(B_J\) (and its inverse) complex-linearly to a map from \(\mathbb{C}^d\) to \(\mathbb{C}^J\); then, by the formula for \(y_{J,\varepsilon}(x_J(q))\),
+Extend \(B_J\) (and its inverse) complex-linearly to a map from \(\mathbb{C}^d\) to \(\mathbb{C}^J\); then, by the formula for \(y_{J,\varepsilon}(B_J^{-1}q)\),
 <span class="math">\[
 	z_J(q,\varepsilon)=B_J^{-1}\,\mathrm{Re}\,F(\Phi_J(q,\varepsilon))+i\,B_J^{-1}\,\mathrm{Im}\,F(\Phi_J(q,\varepsilon))=B_J^{-1}F(\Phi_J(q,\varepsilon)).
 \]</span></p>
@@ -283,6 +282,8 @@ For \(\omega\in(\partial\mathbb D)^J\), \(\omega\in A_J\) if and only if \(B_J^{
 <span class="math">\[
 	\sum_{J\in\mathcal{J}}\mu_J(A_J)\geq 1.
 \]</span></p>
+<p><b>Figure 3: from \(K\) to the cube to the polycircle</b></p>
+<div class="figure" id="fig-3"></div>
 <h3 id="a-sequence-of-submanifolds-of-the-polydisc">A sequence of submanifolds of the polydisc</h3>
 <p>Recap:</p>
 <ul><li>\(b_1,\dots,b_m\) are nonzero vectors spanning \(\mathbb{R}^d\), extended complex-linearly to \(\mathbb{C}^d\).</li><li>\(\mathcal{J}\) is the set of \(J\in{[m]\choose d}\) for which the linear map \(B_{J}z=(\langle b_{j},z \rangle)_{j\in J}\) from \(\mathbb{C}^{d}\) to \(\mathbb{C}^{J}\) is invertible.</li><li>\(F:\mathbb D\to\mathbb{C}\) is an injective holomorphic map with a bounded convex image \(D\), which extends to a homeomorphism of \(\overline{\mathbb D}\) onto \(\overline D\) and satisfies \(F(0)=0\),</li><li>for all \(J\in \mathcal{J}\), we set \(A_J:=F^{-1}(B_J(\overline\Omega))\subseteq\overline{\mathbb D}^J\), where \(\Omega :=\{ z\in \mathbb{C}^{d}\,\,\colon\,\, \langle b_{j},z \rangle \in D \quad \forall\,1\leq j\leq m\}\),</li></ul>
@@ -564,15 +565,15 @@ Since \(\sum_ia_ih_i=v-u\), we have \(u-w=-\sum_ia_i\frac{1-s_i}2h_i\), and sinc
 	\|v-w\|+\|u-w\|\le\sum_ia_i\Big(\frac{1+s_i}2+\frac{1-s_i}2\Big)=\|v-u\|,
 \]</span>
 so \(w\in W\).</p>
-<p><b>Figure 3: proof of Lemma 7</b></p>
-<div class="figure med-fig" id="fig-3">
+<p><b>Figure 4: proof of Lemma 7</b></p>
+<div class="figure med-fig" id="fig-4">
 <svg viewBox="0 0 560 400" role="img" aria-label="The cone of the l-infinity norm over the plane, the lifted points u-hat and v-hat on it, the path through 0 and the geodesic whose lowest point lies above the median w. Drag to rotate."></svg>
 <div class="med-ctl"><button type="button" data-act="new">new <i>u</i>, <i>v</i></button><button type="button" data-act="reset">reset</button><span>drag to rotate</span></div>
 </div>
 <script>
 (function(){
   // l_inf norm on R^2, cone {(z,t): |z|_inf <= t}. Plain SVG, redrawn at most once per frame while dragging.
-  const box=document.getElementById('fig-3'), svg=box.querySelector('svg'), NS='http://www.w3.org/2000/svg';
+  const box=document.getElementById('fig-4'), svg=box.querySelector('svg'), NS='http://www.w3.org/2000/svg';
   const T=2.4, B=2.7, S=62, CX=280, CY=215;
   const U0=[2.2,0.4], V0=[1.6,1.8], AZ0=230, EL0=26;
   let u=U0.slice(), v=V0.slice(), az=AZ0, el=EL0, queued=false;
@@ -902,6 +903,233 @@ function lam(t){ t=Math.abs(t); if (t>=1) return 0; const x=t*(NT-1), i=Math.flo
   }
 drawLens();
 onTheme(drawLens);
+})();
+
+(function(){ const dv = { container: document.getElementById("fig-3") };
+// Figure 3. From K to the cube [-1,1]^J x {-1,1}^J to the polycircle (dD)^J, in dimension 2.
+// Left: K in the x-plane, shaded by the number |E_J(x)| of feasible sign patterns. Middle: the four copies of the
+// square [-1,1]^J, one per sign pattern, with B_J(K) and the feasible set. Right: the flat torus (dD)^J = [0,2pi)^2,
+// on which the four copies are glued by the affine maps theta_j = eps_j pi (1 - q_j)/2.
+// SIZE: the figure is at most DEFAULT_WIDTH pixels wide, and shrinks with the page.
+const DEFAULT_WIDTH = 1000;
+const root = dv.container;
+root.classList.add('mfig-root');
+const PI = Math.PI;
+
+// ---------- LaTeX: $…$ in labels goes through MathJax; plain text if unavailable ----------
+const OBS=(()=>{ try { return require('obsidian'); } catch(e){ return null; } })();
+let mathFlush=false;
+const texCache=new Map();
+function texNode(tex){
+  const hit=texCache.get(tex); if (hit) return hit.cloneNode(true);
+  if (OBS && OBS.renderMath){ try { const m=OBS.renderMath(tex,false);
+    if (!mathFlush){ mathFlush=true; Promise.resolve().then(()=>{ mathFlush=false; try { OBS.finishRenderMath(); } catch(e){} }); }
+    texCache.set(tex,m.cloneNode(true)); return m; } catch(e){} }
+  const s=document.createElement('span'); s.textContent=tex; return s; }
+function mathify(node){ const tw=document.createTreeWalker(node, NodeFilter.SHOW_TEXT); const hits=[]; while (tw.nextNode()) if (tw.currentNode.nodeValue.includes('$')) hits.push(tw.currentNode);
+  for (const t of hits){ const parts=t.nodeValue.split(/\$([^$]+)\$/); if (parts.length<2) continue; const frag=document.createDocumentFragment();
+    parts.forEach((p,i)=>{ if (i%2) frag.appendChild(texNode(p)); else if (p) frag.appendChild(document.createTextNode(p)); }); t.parentNode.replaceChild(frag,t); }
+  return node; }
+function setHTML(node, html){ node.innerHTML=html; return mathify(node); }
+
+// ---------- shared styles; colours follow the page theme ----------
+const style=document.createElement('style');
+style.textContent=`
+.mfig-root { --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100; --s5:#e87ba4; --s6:#4a3aa7; --lx:#c9d6e6; }
+.theme-dark .mfig-root { --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181; --s6:#9085e9; --lx:#3b4a5e; }
+.mfig-root .mfig-box { margin:0 auto; }
+.mfig-root .mfig-controls { display:flex; flex-wrap:wrap; gap:.4rem .6rem; align-items:center; font-size:.85em; margin:.25rem 0 .45rem; }
+.mfig-root .mfig-controls button { font-size:.9em; padding:.2rem .55rem; cursor:pointer; }
+.mfig-root .mfig-controls button[aria-pressed="true"] { outline:2px solid var(--interactive-accent); }
+.mfig-root .f3-three { display:grid; grid-template-columns:1fr 1fr 1fr; gap:.5rem; align-items:start; }
+.mfig-root .mfig-box.narrow .f3-three { grid-template-columns:1fr; }
+.mfig-root canvas.f3-cv { box-sizing:border-box; width:100%; height:auto; display:block; background:var(--background-primary); border:1px solid var(--background-modifier-border); border-radius:4px; user-select:none; -webkit-user-select:none; aspect-ratio:1/1; touch-action:none; cursor:crosshair; }
+.mfig-root .f3-view { position:relative; min-width:0; }
+.mfig-root .f3-vlabel { position:absolute; left:.5rem; top:.35rem; font-size:.95em; color:var(--text-muted); pointer-events:none; }
+.mfig-root .k { color:var(--text-muted); }
+.mfig-root .f3-read { display:grid; grid-template-columns:repeat(auto-fit, minmax(13rem, 1fr)); gap:.25rem .9rem; margin-top:.45rem; font-size:.85em; font-variant-numeric:tabular-nums; }
+.mfig-root .f3-read > div { min-width:0; overflow-wrap:anywhere; }
+.mfig-root .f3-legend { display:flex; flex-wrap:wrap; gap:.3rem .9rem; font-size:.92em; color:var(--text-muted); margin:.25rem 0; }
+.mfig-root .f3-legend .f3-sw { display:inline-block; width:.8rem; height:.8rem; vertical-align:-2px; margin-right:.3rem; border-radius:2px; }
+`;
+root.appendChild(style);
+const TOKENS={'--fg':'--text-normal','--muted':'--text-muted','--rule':'--background-modifier-border','--accent':'--interactive-accent','--card':'--background-secondary','--surface':'--background-primary'};
+const PALETTE={
+  light:{'--s1':'#2a78d6','--s2':'#eb6834','--s3':'#1baf7a','--s4':'#eda100','--fg':'#222222','--muted':'#777777','--rule':'#dddddd','--accent':'#5b6bd5','--card':'#f2f2f2','--surface':'#ffffff'},
+  dark:{'--s1':'#3987e5','--s2':'#d95926','--s3':'#199e70','--s4':'#c98500','--fg':'#dcddde','--muted':'#999999','--rule':'#3a3a3a','--accent':'#8a7cf0','--card':'#262626','--surface':'#1e1e1e'} };
+const isDark=()=>document.body.classList.contains('theme-dark');
+function css(name){
+  const pal=PALETTE[isDark()?'dark':'light'];
+  if (TOKENS[name]){ const v=getComputedStyle(document.body).getPropertyValue(TOKENS[name]).trim(); if (v) return v; }
+  return pal[name]||'#888888';
+}
+// any CSS colour -> [r,g,b]
+const pctx=document.createElement('canvas').getContext('2d');
+const rgb=(c)=>{ pctx.fillStyle='#000'; pctx.fillStyle=c; const v=pctx.fillStyle; return v[0]==='#'?[1,3,5].map(i=>parseInt(v.slice(i,i+2),16)):v.match(/[\d.]+/g).slice(0,3).map(Number); };
+const rgba=(c,a)=>'rgba('+c[0]+','+c[1]+','+c[2]+','+a+')';
+
+// ---------- the box that sets the figure's width ----------
+const box=document.createElement('div'); box.className='mfig-box'; root.appendChild(box);
+box.style.maxWidth=DEFAULT_WIDTH+'px';
+const q=(id)=>root.querySelector('[data-id="'+id+'"]');
+function setupBox(){
+  for (const ev of ['mousedown','pointerdown','touchstart']) root.addEventListener(ev,(e)=>e.stopPropagation());
+  new ResizeObserver(()=>box.classList.toggle('narrow', box.clientWidth<640)).observe(box);
+}
+function onTheme(fn){ let dark=isDark(), seen=false; const mo=new MutationObserver(()=>{ if (root.isConnected) seen=true; else if (seen){ mo.disconnect(); return; } const d=isDark(); if (d!==dark){ dark=d; fn(); } }); mo.observe(document.body,{attributes:true,attributeFilter:['class']}); }
+
+box.insertAdjacentHTML('beforeend',`<div class="mfig-controls"><span>Body:</span>
+  <button type="button" data-body="square">square</button>
+  <button type="button" data-body="parallelogram">random parallelogram</button>
+  <button type="button" data-body="hexagon">hexagon (paper's example)</button>
+  <button type="button" data-body="octagon">octagon</button>
+  <button type="button" data-body="random">random</button>
+</div>
+<div class="mfig-controls"><span>Basis $J$:</span><span data-id="jbtns" style="display:contents"></span><span class="k">Move the pointer over a panel to follow a point through the three pictures.</span></div>
+<div class="f3-legend" data-id="leg"></div>
+<div class="f3-three">
+  <div class="f3-view"><canvas class="fig f3-cv" data-id="cvX" aria-description="The body K in the x-plane, shaded by the number of feasible sign patterns at x"></canvas><div class="f3-vlabel">$\\mathbb{R}^2$</div></div>
+  <div class="f3-view"><canvas class="fig f3-cv" data-id="cvQ" aria-description="The four copies of the square, one per sign pattern, with the image of K and the feasible set"></canvas><div class="f3-vlabel">$[-1,1]^J\\times\\{-1,1\\}^J$</div></div>
+  <div class="f3-view"><canvas class="fig f3-cv" data-id="cvT" aria-description="The torus with the set A_J"></canvas><div class="f3-vlabel">$(\\partial\\mathbb D)^J$</div></div>
+</div>
+<div class="f3-read" data-id="read"></div>`);
+mathify(box); setupBox();
+
+// ---------- lambda(t), by its derivative lambda'(t) = -(2/pi) artanh(sin(pi t/2)), lambda(1) = 0 ----------
+const NT=801, lamTab=new Float64Array(NT), SUBS=48;
+const dl=(s)=>{ const x=Math.sin(PI*s/2); return (2/PI)*0.5*Math.log((1+x)/(1-x)); };
+lamTab[NT-1]=0;
+for (let n=NT-2;n>=0;n--){ const ns=n>NT-6?SUBS*400:SUBS; const a=n/(NT-1), h=1/((NT-1)*ns); let s=0; for (let k=0;k<ns;k++) s+=dl(a+(k+0.5)*h); lamTab[n]=lamTab[n+1]+s*h; }
+function lam(t){ t=Math.abs(t); if (t>=1) return 0; const x=t*(NT-1), i=Math.floor(x), f=x-i; return lamTab[i]*(1-f)+lamTab[Math.min(i+1,NT-1)]*f; }
+
+// ---------- bodies, as in Figure 2 ----------
+const r3=Math.sqrt(3)/2;
+const BODIES={
+  square:   [[1,0],[0,1]],
+  hexagon:  [[1,0],[0.5,r3],[-0.5,r3]],
+  octagon:  [[1,0],[Math.SQRT1_2,Math.SQRT1_2],[0,1],[-Math.SQRT1_2,Math.SQRT1_2]],
+};
+const dot=(a,b)=>a[0]*b[0]+a[1]*b[1];
+function hull(pts){ const P=pts.slice().sort((p,q)=>p[0]-q[0]||p[1]-q[1]); const cross=(o,a,b)=>(a[0]-o[0])*(b[1]-o[1])-(a[1]-o[1])*(b[0]-o[0]); const lo=[],up=[]; for(const p of P){ while(lo.length>=2&&cross(lo[lo.length-2],lo[lo.length-1],p)<=0) lo.pop(); lo.push(p);} for(let i=P.length-1;i>=0;i--){ const p=P[i]; while(up.length>=2&&cross(up[up.length-2],up[up.length-1],p)<=0) up.pop(); up.push(p);} lo.pop(); up.pop(); return lo.concat(up); }
+function area(poly){ let a=0; for(let i=0;i<poly.length;i++){ const p=poly[i], q=poly[(i+1)%poly.length]; a+=p[0]*q[1]-q[0]*p[1]; } return Math.abs(a)/2; }
+function randomBody(){ for (let tries=0; tries<200; tries++){ const rows=[]; const base=Math.random()*0.3; for(let j=0;j<4;j++){ const th=base+j*PI/4+(Math.random()-0.5)*0.5, r=0.7+0.6*Math.random(); rows.push([r*Math.cos(th), r*Math.sin(th)]); }
+    const pts=rows.concat(rows.map(b=>[-b[0],-b[1]])); if (hull(pts).length===8) return rows; } return BODIES.octagon; }
+function randomParallelogram(){ const t1=Math.random()*PI, t2=t1+PI/4+Math.random()*PI/2; const r1=0.7+0.6*Math.random(), r2=0.7+0.6*Math.random(); return [[r1*Math.cos(t1),r1*Math.sin(t1)],[r2*Math.cos(t2),r2*Math.sin(t2)]]; }
+function inv2(B,i,j){ const a=B[i][0],b=B[i][1],c=B[j][0],d=B[j][1], det=a*d-b*c; return {det, apply:(u,v)=>[(d*u-b*v)/det, (-c*u+a*v)/det]}; }
+// vertices of the strip body {x : |<b_l,x>| <= 1}
+function stripVerts(B){ const V=[]; for (let i=0;i<B.length;i++) for (let j=i+1;j<B.length;j++){ const M=inv2(B,i,j); if (Math.abs(M.det)<1e-12) continue; for (const ei of [1,-1]) for (const ej of [1,-1]){ const X=M.apply(ei,ej); if (B.every(b=>Math.abs(dot(b,X))<=1+1e-9)) V.push(X); } }
+  return hull(V); }
+
+// ---------- state ----------
+const EPS=[[1,1],[1,-1],[-1,1],[-1,-1]], ECOL=['--s1','--s2','--s3','--s4'];
+const sgn=(e)=>e>0?'+':'−';
+let B=BODIES.hexagon, J=[0,1], Kv=[], Kpol=[], M=null, others=[], hover=null, cols=null;
+function feasAt(q1,q2,e1,e2){ // is (J,eps) feasible at x = B_J^{-1} q ?
+  const x=M.apply(q1,q2); for (const k of others) if (Math.abs(dot(B[k],x))>1+1e-9) return false;
+  const y=M.apply(e1*lam(q1),e2*lam(q2)); for (const k of others) if (Math.abs(dot(B[k],y))>lam(dot(B[k],x))+1e-9) return false; return true; }
+const inK=(x)=>B.every(b=>Math.abs(dot(b,x))<=1+1e-9);
+// torus coordinates: theta = eps*pi*(1-q)/2 mod 2pi, and back
+const toTheta=(qv,e)=>e>0?PI*(1-qv)/2:PI*(3+qv)/2;
+const fromTheta=(th)=>th<PI?[1-2*th/PI,1]:[2*th/PI-3,-1];
+
+function setBody(rows){ B=rows; Kv=stripVerts(B); Kpol=hull(B.concat(B.map(b=>[-b[0],-b[1]]))); J=[0,1]; buildJButtons(); setJ([0,1]); }
+function pairs(){ const out=[]; for (let i=0;i<B.length;i++) for (let j=i+1;j<B.length;j++) if (Math.abs(inv2(B,i,j).det)>1e-12) out.push([i,j]); return out; }
+function buildJButtons(){ const host=q('jbtns'); host.innerHTML=''; for (const [i,j] of pairs()){ const b=document.createElement('button'); b.type='button'; b.textContent='J = {'+(i+1)+', '+(j+1)+'}'; b.dataset.j=i+','+j; b.addEventListener('click',()=>setJ([i,j])); host.appendChild(b); } }
+function setJ(JJ){ J=JJ; M=inv2(B,J[0],J[1]); others=B.map((r,k)=>k).filter(k=>k!==J[0]&&k!==J[1]);
+  root.querySelectorAll('[data-id="jbtns"] button').forEach(b=>b.setAttribute('aria-pressed', b.dataset.j===J.join(',')?'true':'false'));
+  hover=null; rasterize(); readout(); draw(); }
+
+// ---------- measures ----------
+function muJ(JJ){ const Mj=inv2(B,JJ[0],JJ[1]); const oth=B.map((r,k)=>k).filter(k=>k!==JJ[0]&&k!==JJ[1]); const N=160; let cnt=0;
+  for (const [e1,e2] of EPS) for (let a=0;a<N;a++) for (let b=0;b<N;b++){ const q1=-1+2*(a+0.5)/N, q2=-1+2*(b+0.5)/N; const x=Mj.apply(q1,q2);
+    let ok=oth.every(k=>Math.abs(dot(B[k],x))<=1); if (!ok) continue; const y=Mj.apply(e1*lam(q1),e2*lam(q2)); ok=oth.every(k=>Math.abs(dot(B[k],y))<=lam(dot(B[k],x))); if (ok) cnt++; }
+  return cnt*(4/(N*N))/16; }
+function readout(){ const mu=muJ(J); let sum=0; for (const JJ of pairs()) sum+=muJ(JJ); const bound=area(Kv)*area(Kpol)/8;
+  setHTML(q('read'),'<div>$\\mu_J(A_J)$ = '+mu.toFixed(3)+'</div><div>$\\sum_{J}\\mu_J(A_J)$ = '+sum.toFixed(3)+'</div><div>$\\tfrac{2!}{4^2}\\operatorname{Vol}(K)\\operatorname{Vol}(K^\\circ)$ = '+bound.toFixed(3)+'</div>');
+  setHTML(q('leg'), EPS.map(([e1,e2],n)=>'<span><i class="f3-sw" style="background:var('+ECOL[n]+')"></i>$\\varepsilon=('+sgn(e1)+','+sgn(e2)+')$</span>').join('')+'<span>$|\\mathcal{E}_J(x)|$: '+[0,2,4].map(n=>'<i class="f3-sw" style="background:'+rgba(rgb(css('--fg')),0.12*n)+';border:1px solid '+css('--rule')+'"></i>'+n+'&nbsp;&nbsp;').join('')+'</span><span>dashed: $B_J^{-1}([-1,1]^J)$ (left), $B_J(K)$ (middle), $\\Phi_J(B_J(K)\\times\\{\\varepsilon\\})$ (right)</span>'); }
+
+// ---------- panels: logical size 360 x 360; rasters cached per (body, J, theme) ----------
+const SZ=360;
+const canv={X:q('cvX'),Q:q('cvQ'),T:q('cvT')}, ras={};
+let SX=100, Pv=[]; // x-plane scale and the parallelogram B_J^{-1}([-1,1]^J)
+const PX=(x)=>[180+SX*x[0],180-SX*x[1]];
+const QSUB={side:140, origin:([e1,e2])=>[e1>0?30:190, e2>0?200:50]}; // sub-square of sign pattern eps: top-left corner
+const QP=(qv,eps)=>{ const [x0,y0]=QSUB.origin(eps); return [x0+(qv[0]+1)/2*QSUB.side, y0+(1-qv[1])/2*QSUB.side]; };
+const TP=(th)=>[45+th[0]/(2*PI)*290, 345-th[1]/(2*PI)*290];
+function rasterize(){
+  cols={fg:rgb(css('--fg')), eps:ECOL.map(c=>rgb(css(c)))};
+  Pv=[[1,1],[1,-1],[-1,-1],[-1,1]].map(([u,v])=>M.apply(u,v)); SX=150/Math.max(...Pv.map(p=>Math.hypot(p[0],p[1])));
+  const mk=()=>{ const c=document.createElement('canvas'); c.width=SZ; c.height=SZ; return c; };
+  // x-plane: alpha grows with the number of feasible sign patterns
+  { const c=mk(), ctx=c.getContext('2d'), im=ctx.createImageData(SZ,SZ), d=im.data;
+    for (let py=0;py<SZ;py++) for (let px=0;px<SZ;px++){ const x=[(px+0.5-180)/SX,(180-py-0.5)/SX]; if (!inK(x)) continue; const q1=dot(B[J[0]],x), q2=dot(B[J[1]],x); let n=0; for (const [e1,e2] of EPS) if (feasAt(q1,q2,e1,e2)) n++; if (!n) continue; const o=4*(py*SZ+px); d[o]=cols.fg[0]; d[o+1]=cols.fg[1]; d[o+2]=cols.fg[2]; d[o+3]=Math.round(255*0.12*n); }
+    ctx.putImageData(im,0,0); ras.X=c; }
+  // q-plane: four sub-squares
+  { const c=mk(), ctx=c.getContext('2d'), im=ctx.createImageData(SZ,SZ), d=im.data;
+    EPS.forEach((eps,n)=>{ const [x0,y0]=QSUB.origin(eps), col=cols.eps[n]; for (let py=0;py<QSUB.side;py++) for (let px=0;px<QSUB.side;px++){ const q1=-1+2*(px+0.5)/QSUB.side, q2=1-2*(py+0.5)/QSUB.side; if (!feasAt(q1,q2,eps[0],eps[1])) continue; const o=4*((y0+py)*SZ+x0+px); d[o]=col[0]; d[o+1]=col[1]; d[o+2]=col[2]; d[o+3]=115; } });
+    ctx.putImageData(im,0,0); ras.Q=c; }
+  // torus
+  { const c=mk(), ctx=c.getContext('2d'), im=ctx.createImageData(SZ,SZ), d=im.data; const cnt=[0,0,0,0], sx=[0,0,0,0], sy=[0,0,0,0];
+    for (let py=55;py<345;py++) for (let px=45;px<335;px++){ const th1=(px+0.5-45)/290*2*PI, th2=(345-py-0.5)/290*2*PI; const [q1,e1]=fromTheta(th1), [q2,e2]=fromTheta(th2); if (!feasAt(q1,q2,e1,e2)) continue; const n=EPS.findIndex(e=>e[0]===e1&&e[1]===e2), col=cols.eps[n]; cnt[n]++; sx[n]+=px; sy[n]+=py; const o=4*(py*SZ+px); d[o]=col[0]; d[o+1]=col[1]; d[o+2]=col[2]; d[o+3]=115; }
+    ctx.putImageData(im,0,0); ras.T=c; const best=cnt.indexOf(Math.max(...cnt)); ras.Tlab=cnt[best]?[sx[best]/cnt[best],sy[best]/cnt[best]]:null; }
+}
+function ctx2d(c){ const dpr=window.devicePixelRatio||1; if (c.width!==SZ*dpr){ c.width=SZ*dpr; c.height=SZ*dpr; } const ctx=c.getContext('2d'); ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,SZ,SZ); ctx.font='15px system-ui, sans-serif'; return ctx; }
+function poly(ctx,pts,stroke,fill,width,dash){ ctx.beginPath(); pts.forEach((p,i)=>i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1])); ctx.closePath(); if (fill){ ctx.fillStyle=fill; ctx.fill(); } if (stroke){ ctx.strokeStyle=stroke; ctx.lineWidth=width||1; ctx.setLineDash(dash||[]); ctx.stroke(); ctx.setLineDash([]); } }
+function mark(ctx,p,col,filled,r){ ctx.beginPath(); ctx.arc(p[0],p[1],r||5,0,2*PI); ctx.fillStyle=filled?col:css('--surface'); ctx.fill(); ctx.strokeStyle=col; ctx.lineWidth=2; ctx.stroke(); }
+const sub=(n)=>String(n).replace(/\d/g,d=>'₀₁₂₃₄₅₆₇₈₉'[d]);
+function draw(){
+  const fg=css('--fg'), muted=css('--muted'), rule=css('--rule');
+  const hq=hover&&hover.q, hx=hq&&M.apply(hq[0],hq[1]);
+  // ---- x-plane
+  { const ctx=ctx2d(canv.X);
+    ctx.strokeStyle=rule; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(0,180); ctx.lineTo(SZ,180); ctx.moveTo(180,0); ctx.lineTo(180,SZ); ctx.stroke();
+    ctx.drawImage(ras.X,0,0);
+    poly(ctx,Pv.map(PX),muted,null,1,[4,3]);
+    poly(ctx,Kv.map(PX),fg,null,1.5);
+    { const t=Kv.map(PX).reduce((a,p)=>p[1]>a[1]?p:a); ctx.fillStyle=fg; ctx.textAlign='left'; ctx.font='italic 19px "Times New Roman", serif'; ctx.fillText('K',t[0]+6,t[1]+17); ctx.font='15px system-ui, sans-serif'; }
+    // facet labels b_l, on the facets that exist
+    ctx.fillStyle=fg; ctx.textAlign='center';
+    B.forEach((b,l)=>{ const n2=dot(b,b); const foot=[b[0]/n2,b[1]/n2]; if (B.some(bb=>Math.abs(dot(bb,foot))>1+1e-9)) return; const u=[b[0]/Math.sqrt(n2),b[1]/Math.sqrt(n2)]; const p=PX([foot[0]+u[0]*14/SX, foot[1]+u[1]*14/SX]); ctx.fillStyle=(l===J[0]||l===J[1])?fg:muted; ctx.fillText('b'+sub(l+1),p[0],p[1]+4); });
+    if (hx){ mark(ctx,PX(hx),fg,true,5); ctx.fillStyle=fg; ctx.textAlign='left'; ctx.font='italic 19px "Times New Roman", serif'; const p=PX(hx); ctx.fillText('x',p[0]+9,p[1]-6); }
+  }
+  // ---- q-plane
+  { const ctx=ctx2d(canv.Q);
+    ctx.drawImage(ras.Q,0,0);
+    const BJ=(x)=>[dot(B[J[0]],x),dot(B[J[1]],x)]; const KQ=hull(Kv.map(BJ));
+    EPS.forEach((eps,n)=>{ const [x0,y0]=QSUB.origin(eps); const col=css(ECOL[n]);
+      ctx.strokeStyle=rule; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(x0,y0+QSUB.side/2); ctx.lineTo(x0+QSUB.side,y0+QSUB.side/2); ctx.moveTo(x0+QSUB.side/2,y0); ctx.lineTo(x0+QSUB.side/2,y0+QSUB.side); ctx.stroke();
+      poly(ctx,[[x0,y0],[x0+QSUB.side,y0],[x0+QSUB.side,y0+QSUB.side],[x0,y0+QSUB.side]],fg,null,1.2);
+      poly(ctx,KQ.map(p=>QP(p,eps)),muted,null,1,[4,3]);
+      ctx.fillStyle=col; ctx.textAlign='left'; ctx.font='15px system-ui, sans-serif'; ctx.fillText('ε = ('+sgn(eps[0])+', '+sgn(eps[1])+')',x0+4,y0+QSUB.side-5);
+      if (hq && Math.abs(hq[0])<=1 && Math.abs(hq[1])<=1){ const f=feasAt(hq[0],hq[1],eps[0],eps[1]); const big=hover.eps&&hover.eps[0]===eps[0]&&hover.eps[1]===eps[1]; mark(ctx,QP(hq,eps),col,f,big?6:4.5); }
+    });
+    ctx.fillStyle=muted; ctx.textAlign='center'; ctx.font='15px system-ui, sans-serif'; ctx.fillText('q'+sub(1),30+70,353); ctx.fillText('q'+sub(1),190+70,353);
+    ctx.save(); ctx.translate(12,50+70); ctx.rotate(-PI/2); ctx.fillText('q'+sub(2),0,4); ctx.restore(); ctx.save(); ctx.translate(12,200+70); ctx.rotate(-PI/2); ctx.fillText('q'+sub(2),0,4); ctx.restore();
+  }
+  // ---- torus
+  { const ctx=ctx2d(canv.T);
+    ctx.drawImage(ras.T,0,0);
+    ctx.strokeStyle=rule; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(190,55); ctx.lineTo(190,345); ctx.moveTo(45,200); ctx.lineTo(335,200); ctx.stroke();
+    poly(ctx,[[45,55],[335,55],[335,345],[45,345]],fg,null,1.2);
+    const BJ=(x)=>[dot(B[J[0]],x),dot(B[J[1]],x)]; const KQ=hull(Kv.map(BJ));
+    EPS.forEach((eps,n)=>{ poly(ctx,KQ.map(p=>TP([toTheta(p[0],eps[0]),toTheta(p[1],eps[1])])),muted,null,1,[4,3]);
+      if (hq && Math.abs(hq[0])<=1 && Math.abs(hq[1])<=1){ const f=feasAt(hq[0],hq[1],eps[0],eps[1]); const big=hover.eps&&hover.eps[0]===eps[0]&&hover.eps[1]===eps[1]; mark(ctx,TP([toTheta(hq[0],eps[0]),toTheta(hq[1],eps[1])]),css(ECOL[n]),f,big?6:4.5); } });
+    if (ras.Tlab){ ctx.fillStyle=fg; ctx.textAlign='center'; ctx.font='italic 19px "Times New Roman", serif'; ctx.fillText('A',ras.Tlab[0]-4,ras.Tlab[1]+6); ctx.font='italic 13px "Times New Roman", serif'; ctx.fillText('J',ras.Tlab[0]+8,ras.Tlab[1]+11); }
+    ctx.fillStyle=muted; ctx.textAlign='center'; ctx.font='15px system-ui, sans-serif';
+    ctx.fillText('0',45,357); ctx.fillText('π',190,357); ctx.fillText('2π',335,357); ctx.fillText('θ'+sub(1),262,357);
+    ctx.textAlign='right'; ctx.fillText('π',40,204); ctx.fillText('2π',40,59); ctx.save(); ctx.translate(12,200); ctx.rotate(-PI/2); ctx.textAlign='center'; ctx.fillText('θ'+sub(2),0,4); ctx.restore();
+  }
+}
+// ---------- pointer: follow a point through the three pictures ----------
+function logical(c,ev){ const r=c.getBoundingClientRect(); return [(ev.clientX-r.left)*SZ/r.width,(ev.clientY-r.top)*SZ/r.height]; }
+let queued=false; const schedule=()=>{ if (queued) return; queued=true; requestAnimationFrame(()=>{ queued=false; draw(); }); };
+canv.X.addEventListener('pointermove',(ev)=>{ const [px,py]=logical(canv.X,ev); const x=[(px-180)/SX,(180-py)/SX]; if (!inK(x)){ hover=null; } else hover={q:[dot(B[J[0]],x),dot(B[J[1]],x)]}; schedule(); });
+canv.Q.addEventListener('pointermove',(ev)=>{ const [px,py]=logical(canv.Q,ev); hover=null; for (const eps of EPS){ const [x0,y0]=QSUB.origin(eps); if (px>=x0&&px<=x0+QSUB.side&&py>=y0&&py<=y0+QSUB.side){ hover={q:[-1+2*(px-x0)/QSUB.side,1-2*(py-y0)/QSUB.side],eps}; } } schedule(); });
+canv.T.addEventListener('pointermove',(ev)=>{ const [px,py]=logical(canv.T,ev); hover=null; if (px>=45&&px<=335&&py>=55&&py<=345){ const [q1,e1]=fromTheta((px-45)/290*2*PI), [q2,e2]=fromTheta((345-py)/290*2*PI); hover={q:[q1,q2],eps:[e1,e2]}; } schedule(); });
+for (const c of Object.values(canv)) c.addEventListener('pointerleave',()=>{ hover=null; schedule(); });
+root.querySelectorAll('button[data-body]').forEach(b=>b.addEventListener('click',()=>{ const n=b.getAttribute('data-body'); setBody(n==='random'?randomBody():(n==='parallelogram'?randomParallelogram():BODIES[n])); root.querySelectorAll('button[data-body]').forEach(bb=>bb.setAttribute('aria-pressed',bb===b?'true':'false')); }));
+setBody(BODIES.hexagon); root.querySelector('button[data-body="hexagon"]').setAttribute('aria-pressed','true');
+onTheme(()=>{ rasterize(); readout(); draw(); });
 })();
 
 (function(){ const dv = { container: document.getElementById("fig-2") };
