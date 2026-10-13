@@ -1,0 +1,1433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Notes on OpenAI's proof of the symmetric Mahler conjecture</title>
+<style>
+:root { --text-normal:#1f2328; --text-muted:#6b7280; --background-primary:#ffffff; --background-secondary:#f5f5f7;
+        --background-modifier-border:#d9dde3; --interactive-accent:#5b6bd5; --callout:#2a78d6; }
+@media (prefers-color-scheme: dark) {
+  :root { --text-normal:#dcddde; --text-muted:#999; --background-primary:#1e1e1e; --background-secondary:#262626;
+          --background-modifier-border:#3a3a3a; --interactive-accent:#8a7cf0; --callout:#3987e5; }
+}
+html { background: var(--background-primary); color: var(--text-normal); }
+body { max-width: 52rem; margin: 2.5rem auto; padding: 0 1.25rem; font: 17px/1.55 Georgia, "Times New Roman", serif; }
+h1 { font-size: 1.8rem; line-height: 1.2; margin-bottom: .25rem; }
+h3 { margin-top: 2.4rem; font-size: 1.5rem; line-height: 1.25; }
+p { margin: .8rem 0; }
+.math { display: block; overflow-x: auto; overflow-y: hidden; margin: .6rem 0; }
+.callout { background: var(--background-secondary); padding: .6rem 1rem; margin: 1.2rem 0; border-radius: 4px; }
+.callout-title { font-weight: bold; margin-bottom: .3rem; }
+.callout-definition { --callout: #1baf7a; }
+.callout-theorem { --callout: #eb6834; }
+.figure { margin: 1.2rem 0; font-family: system-ui, sans-serif; }
+.figure button, .figure input, .figure select { font: inherit; color: inherit; }
+.footnotes { font-size: .9rem; color: var(--text-muted); }
+.footnotes li { margin: .4rem 0; }
+sup.fn a { text-decoration: none; }
+a { color: var(--interactive-accent); }
+.fnback { text-decoration: none; }
+.toc { font-family: system-ui, sans-serif; font-size: .9rem; margin: 1rem 0 2rem; }
+.toc a { text-decoration: none; }
+.toc li { margin: .15rem 0; }
+code { font-size: .9em; }
+.med-fig { max-width: 560px; margin: 0 auto; }
+.med-fig svg { width: 100%; height: auto; display: block; cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; }
+.med-fig .med-ctl { display: flex; gap: .6rem; align-items: center; justify-content: center; font-size: .85em; color: var(--text-muted); margin-top: .3rem; }
+.med-fig .med-ctl button { padding: .15rem .6rem; cursor: pointer; }
+.med-fig .plane { fill: var(--background-secondary); stroke: var(--background-modifier-border); }
+.med-fig .wset { fill: #eb6834; fill-opacity: .25; stroke: #eb6834; stroke-width: 1.5; }
+.med-fig .cone { stroke: var(--text-muted); stroke-width: 1; }
+.med-fig .conetop { fill: var(--text-muted); fill-opacity: .06; stroke: var(--text-muted); stroke-width: 1; }
+.med-fig .drop { stroke: var(--text-muted); stroke-width: 1; stroke-dasharray: 2 3; }
+.med-fig .trivial { fill: none; stroke: var(--text-muted); stroke-width: 1.5; stroke-dasharray: 6 4; }
+.med-fig .geo { fill: none; stroke: var(--callout); stroke-width: 2.5; }
+.med-fig .pt { fill: var(--callout); }
+.med-fig .pt.small { fill: var(--text-normal); }
+.med-fig .lbl { font: italic 17px Georgia, "Times New Roman", serif; fill: var(--text-normal); }
+.med-fig .lbl.small { font-size: 14px; }
+.med-fig .lbl.muted { fill: var(--text-muted); }
+.med-fig .lbl.up { font-style: normal; font-family: 'Times New Roman', serif; }
+.med-fig .lbl.hat { font-style: normal; font-size: 15px; }
+.med-fig .lbl.wl { fill: #eb6834; }
+</style>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']], tags: 'none', processEscapes: true,
+         packages: {'[+]': ['ams', 'boldsymbol']} },
+  options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], ignoreHtmlClass: 'figure' },
+  chtml: { scale: 1 }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<h1>Notes on OpenAI's proof of the symmetric Mahler conjecture</h1>
+<h4>Rotem Assouline</h4>
+<p><i>Last updated: October 13, 2026</i></p>
+<p>The following note is based on ongoing conversations between me and Claude about <a href="https://github.com/openai/math/tree/main/preprints/The-symmetric-Mahler-conjecture-and-its-equality-cases-September-22-2026">OpenAI's recent claimed proof of the symmetric Mahler conjecture</a>. While the main ideas are taken from the original proof, some of the details are being rewritten to facilitate my understanding, and some figures and interactive applets are being added for visualization. <b>This is a work in progress.</b> I do not claim to have verified the proof completely.</p>
+<p>Readers are welcome to contribute by</p>
+<ul>
+  <li>spotting errors,</li>
+  <li>suggesting simplifications to parts of the proof,</li>
+  <li>pointing out where ideas in the proof appeared earlier in the literature,</li>
+  <li>suggesting additional visualizations and figures, or</li>
+  <li>making editorial suggestions.</li>
+</ul>
+<p>To contribute, you may contact me, or open a pull request on <a href="https://github.com/RotemAssouline/symmetric-mahler-note">GitHub</a>.</p>
+<p>For background on the Mahler conjecture, see the survey of Fradelizi, Meyer and Zvavitch<sup class="fn"><a href="#fn-fmz" id="fnref-fmz">1</a></sup>.
+Complex-analytic methods were used earlier by Nazarov<sup class="fn"><a href="#fn-nazarov" id="fnref-nazarov">2</a></sup> and by Berndtsson<sup class="fn"><a href="#fn-berndtsson-pw" id="fnref-berndtsson-pw">3</a></sup><sup class="fn">,</sup><sup class="fn"><a href="#fn-berndtsson-kup" id="fnref-berndtsson-kup">4</a></sup> to prove the Bourgain&ndash;Milman inequality.</p>
+<h3>Table of contents</h3>
+<nav class="toc"><ul><li><a href="#statement">Statement</a></li><li><a href="#complexification">Complexification</a></li><li><a href="#a-collection-of-subsets-of">A collection of subsets of \(K^{\circ}\)</a></li><li><a href="#from-to-the-cube-to-the-polycircle">From \(K\) to the cube to the polycircle</a></li><li><a href="#a-sequence-of-submanifolds-of-the-polydisc">A sequence of submanifolds of the polydisc</a></li><li><a href="#a-lower-bound-on-the-volume-of-the-image-of-a-holomorphic-function">A lower bound on the volume of the image of a holomorphic function</a></li><li><a href="#the-equality-case">The equality case</a></li><li><a href="#appendix-properties-of-the-function">Appendix: Properties of the function \(F\)</a></li></ul></nav>
+<h3 id="statement">Statement</h3>
+<p>A <i>convex body</i> is a compact convex set \(K\subset\mathbb{R}^d\) with nonempty interior; it is <i>symmetric</i> if \(K=-K\). Recall that the polar body \(K^\circ\) of a convex body \(K\) containing the origin in its interior is defined by \[K^{\circ}:=\{y\in\mathbb{R}^d\colon\langle x,y\rangle\le1\ \ \forall\,x\in K\}.\]
+</p>
+<div class="callout callout-theorem" id="theorem"><div class="callout-title">Theorem</div><p>For every symmetric convex body \(K\subset \mathbb{R}^{d}\),</p>
+<span class="math">\[
+\operatorname{Vol}(K)\operatorname{Vol}(K^{\circ}) \ge \frac{4^{d}}{d!}.\tag{1}
+\]</span>
+<p>Equality holds if and only if \(K\) is a linear image of a Hanner polytope.</p></div>
+<p>For the definition of Hanner polytopes, see <a href="#the-equality-case">The equality case</a>.</p>
+<p>We first assume that \(K\) is a polytope; the general case of the inequality follows by a standard approximation argument, see Lemma 7.
+Let \(b_1,\dots, b_{m}\) be nonzero, pairwise nonproportional vectors such that 
+<span class="math">\[
+	K=\{ x \in \mathbb{R}^{d}\,\colon\,|\langle b_{j},x \rangle| \leq 1\quad\forall\, 1\leq j\leq m \}.
+\]</span>
+We will construct, for every \(x \in \operatorname{int} K\), a star-shaped set \(\Sigma_{x}\subset K^{\circ}\), and prove that
+<span class="math">\[
+	\int_{K}\operatorname{Vol}(\Sigma_{x})\,d\operatorname{Vol}(x) \geq \frac{4^{d}}{d!}.\tag{2}
+\]</span>
+Since \(\operatorname{Vol}(\Sigma_{x})\leq \operatorname{Vol}(K^{\circ})\), this will imply (1).</p>
+<h3 id="complexification">Complexification</h3>
+<p>Define an analytic function \(F\) on the unit disc \(\mathbb{D}\subset \mathbb{C}\) by
+<span class="math">\[
+	F(z):=\frac{8}{\pi^{2}}\sum\limits_{j=0}^{\infty} \frac{z^{2j+1}}{(2j+1)^{2}},\qquad z\in\mathbb{D}.
+\]</span></p>
+<div class="callout callout-lemma" id="lemma-0"><div class="callout-title">Lemma 0</div><p>The function \(F\) is a biholomorphism from \(\mathbb{D}\) onto the bounded convex domain
+<span class="math">\[
+D:=\{ w\in\mathbb{C}\,\,\colon\,\,|\mathrm{Re}(w)|\lt 1,\,\,|\mathrm{Im}(w)|<\lambda(\mathrm{Re}(w)) \},
+\]</span>
+where \(\lambda:[-1,1]\to[0,\infty)\) is the function
+<span class="math">
+\[
+\lambda(t):=\frac{2}{\pi}\int_{|t|}^{1}\operatorname{arctanh}\left(\sin\frac{\pi s}{2}\right)ds,
+\]
+</span>
+which is even, positive on \((-1,1)\), vanishes at \(\pm1\), and satisfies \(\lambda''(t)=-\sec\frac{\pi t}{2}<0\) on \((-1,1)\). 
+The function \(F\) extends to a homeomorphism of \(\overline{\mathbb D}\) onto \(\overline D\), and pushes forward the uniform probability measure on \(\partial\mathbb D\)  to the law of \(T+i\varepsilon\lambda(T)\), where \(T\) is uniform on \([-1,1]\) and \(\varepsilon\) is an independent uniform sign.</p></div>
+<p><b>Figure 1: the domain \(D\)</b></p>
+<div class="figure" id="fig-1"></div>
+<p>Lemma 0 will be proved below, see <a href="#appendix-properties-of-the-function">Appendix: Properties of the function \(F\)</a>.</p>
+<p>Let 
+<span class="math">\[
+	\Omega :=\{ z\in \mathbb{C}^{d}\,\,\colon\,\, \langle b_{j},z \rangle \in D \quad \forall\,1\leq j\leq m\}.
+\]</span>
+Since \(D\cap \mathbb{R}=(-1,1)\),  we have
+<span class="math">\[
+	\Omega \cap \mathbb{R}^{d}=\operatorname{int} K.
+\]</span>
+For every \(x \in \operatorname{int} K\), denote by \(L_x\) the fiber of \(\overline{\Omega}\) over \(x\):
+<span class="math">\[
+	L_{x}:=\{ y\in \mathbb{R}^{d}\,\,\colon\,\,x+iy\in \overline{\Omega}  \}, \qquad x \in \operatorname{int} K.
+\]</span>
+Since \(\overline{D}=\{ w\colon|\mathrm{Re}(w)|\le1,\,|\mathrm{Im}(w)|\le\lambda(\mathrm{Re}(w)) \}\), \(L_{x}\) is the symmetric polytope
+<span class="math">\[
+	L_{x}=\{ y\in \mathbb{R}^{d}\,\,\colon\,\, |\langle b_{j},y \rangle|\leq \lambda\left(\langle b_{j},x \rangle\right)\quad \forall\,1\leq j\leq m   \}, \qquad x \in \operatorname{int} K.
+\]</span>
+Note that
+<span class="math">\[
+	L_x=\{y\in\mathbb{R}^{d}\,\colon\,\langle h,y\rangle\le\lambda(\langle h,x\rangle)\quad\forall\,h\in K^{\circ}\}.\tag{3}
+\]</span>
+Indeed, for fixed \(y\in\mathbb{R}^d\), the function \(h\mapsto\lambda(\langle h,x\rangle)-\langle h,y\rangle\) is concave, since \(\lambda\) is. Its minimum over the polytope \(K^{\circ}=\operatorname{conv}\{\pm b_l\}\) is therefore attained at one of the vertices \(\pm b_l\). As \(\lambda\) is even, the inequalities \(\langle\pm b_l,y\rangle\le\lambda(\langle\pm b_l,x\rangle)\) are precisely the inequalities defining \(L_x\), and (3) follows.</p>
+<h3 id="a-collection-of-subsets-of">A collection of subsets of \(K^{\circ}\)</h3>
+<p>For \(J\subset[m]\), define a linear map \(B_J:\mathbb{R}^d\to \mathbb{R}^{J}\) by
+<span class="math">\[
+	(B_{J}x)_{j}=\langle b_{j},x \rangle ,\qquad j\in J, \qquad x \in \mathbb{R}^d,
+\]</span>
+and let
+<span class="math">\[
+	\mathcal{J}:=\left\{ J\in{[m]\choose d}\,\,\colon\,\,B_J\text{ is invertible} \right\}
+\]</span>
+(note that \(\mathbb{R}^d\) and \(\mathbb{R}^J\) have the same dimension).
+<p>Extend \(\lambda\) to all of \(\mathbb{R}\) by setting \(\lambda(t):=0\) for \(|t|>1\). 
+For \(J\in\mathcal{J}\), \(\varepsilon \in \{ -1,1 \}^{J}\) and \(x\in\mathbb{R}^d\), let \(y_{J,\varepsilon}(x)\) be the unique solution to
+<span class="math">\[
+	\langle b_j,y_{J,\varepsilon}(x)\rangle=\varepsilon_j\lambda(\langle b_j,x\rangle),\qquad j\in J.
+\]</span>
+For \(x\in\operatorname{int} K\), the point \(y_{J,\varepsilon}(x)\) satisfies \(d\) of the inequalities defining \(L_x\) with equality, and the vectors \(\{  \varepsilon_jb_j\}_{j\in J}\)  are linearly independent. Hence either \(y_{J,\varepsilon}(x)\notin L_x\), or \(y_{J,\varepsilon}(x)\) is a vertex of \(L_x\).</p>
+
+<p id="def-sigma">Define
+<span class="math">\[
+	\Sigma_x:=\bigcup_{y\in L_x}\operatorname{conv}\big(\{0\}\cup\{h\in K^{\circ}\,\colon\,\langle h,y\rangle=\lambda(\langle h,x\rangle)\}\big)\subseteq K^{\circ}.\tag{4}
+\]</span></p>
+<div class="callout callout-lemma" id="lemma-1"><div class="callout-title">Lemma 1</div><p>
+For \(J\in \mathcal{J}\) and \(\varepsilon \in \{ -1,1 \}^{J}\), write \(\Delta_{J,\varepsilon}\) for the simplex
+<span class="math">\[
+	\Delta_{J,\varepsilon}:=\operatorname{conv} \left(  \{0\}\cup \{\varepsilon_{j}b_{j}\}_{j\in J}\right)\subset K^{\circ}. 
+\]</span>  
+Then for every \(x\in\operatorname{int} K\),
+<span class="math">\[
+\Sigma_{x}=\bigcup\limits_{J\in \mathcal{J}}\bigcup\limits_{\varepsilon \in \mathcal{E}_{J}(x)}\Delta_{J,\varepsilon},
+\]</span>
+where
+<span class="math">\[
+	\mathcal{E}_{J}(x):=\left\{ \varepsilon \in \{ -1,1 \}^{J}\,\, \colon\,\, y_{J,\varepsilon}(x)\in L_{x} \right\}.
+\]</span>
+</p></div>
+<p><i>Proof.</i> 
+\(\supseteq\): If \(\varepsilon\in\mathcal{E}_J(x)\), then \(y=y_{J,\varepsilon}(x)\in L_x\) and so 
+<span class="math">\[
+\langle\varepsilon_jb_j,y\rangle=\lambda(\langle b_j,x\rangle)=\lambda(\langle\varepsilon_jb_{j},x\rangle)\qquad \text{for all $j\in J$,}
+\]</span>
+So \(\Delta_{J,\varepsilon}\subseteq\Sigma_x\).</p>
+<p>\(\subseteq\): Call \(h\in K^{\circ}\) <i>active</i> at \(z\in L_x\) if \(\langle h,z\rangle=\lambda(\langle h,x\rangle)\). Fix \(y\in L_x\) and let \[\xi\in\operatorname{conv}\big(\{0\}\cup\{h\in K^{\circ}\colon h\text{ is active at }y\}\big).\]</p>
+<p>Let \(h\in K^{\circ}\) be active at \(y\). Since \(K^{\circ}=\operatorname{conv}\{\pm b_l\}\), \(h\) is a convex combination, with positive weights, of some of the vectors \(\pm b_l\). The function \(\lambda(\langle \cdot,x\rangle)-\langle \cdot,y\rangle\) is concave, nonnegative on \(K^{\circ}\) by (3), and vanishes at \(h\), so it vanishes at each of these vectors, that is, they are active at \(y\).
+Consequently,
+<span class="math">\[
+	\xi=\sum_v\beta_v\,v,\qquad\beta_v\ge0,\quad\sum_v\beta_v\le1,
+\]</span>
+where \(v\) ranges over the vectors \(\pm b_l\) active at \(y\). Among all such representations of \(\xi\), choose one with the fewest nonzero coefficients. Then the vectors \(v\) with \(\beta_v>0\) are linearly independent.</p>
+<p>The points of \(L_x\) at which every \(v\) with \(\beta_v>0\) is active form a face of \(L_x\) containing \(y\); let \(y'\) be a vertex of this face. Then \(y'\) is a vertex of \(L_x\), so the vectors active at \(y'\) span \(\mathbb{R}^d\). Moreover, \(b_l\) and \(-b_l\) are never both active at \(y'\), since this would give \(\lambda(\langle b_l,x\rangle)=-\lambda(\langle b_l,x\rangle)\), whereas \(\lambda(\langle b_l,x\rangle)>0\) because \(|\langle b_l,x\rangle|\lt 1\). Hence the linearly independent vectors \(\{v\colon\beta_v>0\}\) can be completed, by vectors active at \(y'\), to a basis of \(\mathbb{R}^d\) of the form \(\{\varepsilon_jb_j\}_{j\in J}\) with \(J\in\mathcal{J}\) and \(\varepsilon\in\{-1,1\}^J\). Since every \(\varepsilon_jb_j\) is active at \(y'\) and \(\lambda\) is even,
+<span class="math">\[
+	\langle b_j,y'\rangle=\varepsilon_j\lambda(\langle b_j,x\rangle),\qquad j\in J,
+\]</span>
+that is, \(y'=y_{J,\varepsilon}(x)\). As \(y'\in L_x\), we get \(\varepsilon\in\mathcal{E}_J(x)\), and \(\xi=\sum_v\beta_vv\in\Delta_{J,\varepsilon}\). \(\square\)</p>
+<p><b>Figure 2: the set \(\Sigma_x\)</b></p>
+<div class="figure" id="fig-2"></div>
+<div class="callout callout-lemma" id="lemma-2"><div class="callout-title">Lemma 2</div><p>For almost every \(x \in \operatorname{int} K\), the simplices \(\{\Delta_{J,\varepsilon}\}_{J\in \mathcal{J},\,\varepsilon \in \mathcal{E}_J(x)}\) have disjoint interiors.</p></div>
+<p><i>Proof.</i> Let \(\varepsilon\in\mathcal{E}_J(x)\) and let \(\xi\in\operatorname{int}\Delta_{J,\varepsilon}\). Then there exist \(\alpha_{j}>0\) such that \(\sum\limits_{j\in J}\alpha_{j}\lt 1\) and
+<span class="math">\[
+	\xi=\sum_{j\in J}\alpha_j\varepsilon_jb_j.
+\]</span>
+For \(y\in L_x\),
+<span class="math">\[
+	\langle \xi,y\rangle\le\sum_{j\in J}\alpha_j\lambda(\langle b_j,x\rangle),
+\]</span>
+with equality if and only if \(y=y_{J,\varepsilon}(x)\). So \(y_{J,\varepsilon}(x)\) is the unique maximizer of the functional \(\xi\) on \(L_x\), and so it suffices to show that for almost every \(x\), the points \((y_{J,\varepsilon}(x))_{J\in\mathcal{J},\varepsilon\in\mathcal{E}_J(x)}\) are distinct.
+For fixed \(J\), since \(\lambda>0\) on \((-1,1)\), the defining equations of \(y_{J,\varepsilon}(x)\) have distinct solutions for different \(\varepsilon\) so the points \(y_{J,\varepsilon}(x)\) are distinct.</p>
+<p>A point shared by pairs with different \(J\) satisfies
+<span class="math">\[
+	\langle b_k,y_{J,\varepsilon}(x)\rangle=\varepsilon_k\lambda(\langle b_k,x\rangle)\tag{5}
+\]</span>
+for some \(k\notin J\) and \(\varepsilon_k\in\{-1,1\}\). Write \(b_k=\sum_{j\in J}c_jb_j\) and use the coordinates \(q_j=\langle b_j,x\rangle\), \(j\in J\), on \(\operatorname{int} K\). Since \(\langle b_j,y_{J,\varepsilon}(x)\rangle=\varepsilon_j\lambda(q_j)\), equation (5) reads
+<span class="math">\[
+	G(q):=\sum_{j\in J}c_j\varepsilon_j\lambda(q_j)-\varepsilon_k\lambda\Big(\sum_{j\in J}c_jq_j\Big)=0.
+\]</span>
+Since \(b_k\) is not proportional to \(b_j\) for any \(j\neq k\), at least two coefficients \(c_a,c_b\) are nonzero. Hence, by Lemma 0,
+<span class="math">\[
+	\frac{\partial^{2}G}{\partial q_a\,\partial q_b}=-\varepsilon_k c_ac_b\lambda''\Big(\sum_{j\in J}c_jq_j\Big)\neq0
+\]</span>
+everywhere. By the implicit function theorem, both \(\{G=0,\ \nabla G\neq0\}\) and \(\{\partial G/\partial q_a=0\}\supseteq\{\nabla G=0\}\) are locally \(C^1\) hypersurfaces, so the level set \(\{G=0\}\) has measure zero. Since there are finitely many choices of \(J,\varepsilon,k,\varepsilon_k\), this proves the lemma. \(\square\)</p>
+<p>As a corollary of Lemmas 1 and 2, we get</p>
+<span class="math">\[
+	\operatorname{Vol}(\Sigma_{x})=\frac{1}{d!}\sum\limits_{J\in \mathcal{J}}|\det B_{J}|\cdot|\mathcal{E}_J(x)| \qquad \text{for almost every \(x\in\operatorname{int} K\).}
+\]</span>
+<p>Thus, in order to prove (2), it suffices to prove that
+<span class="math">\[
+	\begin{aligned}
+	4^{d} & \leq \int_{K}\sum\limits_{J\in \mathcal{J}}|\det B_{J}|\cdot|\mathcal{E}_J(x)|\,d\operatorname{Vol}(x) \\
+	& = \sum\limits_{J\in \mathcal{J}}\sum\limits_{\varepsilon \in \{ -1,1 \}^{J}}|\det B_{J}|\cdot \operatorname{Vol}\left(\{x \in K\,\,\colon\,\,\varepsilon \in \mathcal{E}_{J}(x)\}\right) \\
+	& =\sum\limits_{J\in \mathcal{J}}\sum\limits_{\varepsilon \in \{ -1,1 \}^{J}}|\det B_{J}|\cdot \operatorname{Vol}\left(\{x \in K\,\,\colon\,\,y_{J,\varepsilon}(x)\in L_{x}\}\right) \\
+	& = \sum\limits_{J\in \mathcal{J}}\sum\limits_{\varepsilon \in \{ -1,1 \}^{J}}|\det B_{J}|\cdot \operatorname{Vol}\left(\{x \in K\,\,\colon\,\,\left| \langle b_{k},y_{J,\varepsilon}(x) \rangle \right| \leq \lambda(\langle b_{k},x \rangle )\quad\forall k\not\in J\}\right).
+	\end{aligned}\tag{6}
+\]</span></p>
+<h3 id="from-to-the-cube-to-the-polycircle">From \(K\) to the cube to the polycircle</h3>
+<p>Fix \(J\in \mathcal{J}\). For \(q\in[-1,1]^J\) and \(\varepsilon\in\{-1,1\}^J\) write
+<span class="math">\[
+	x_{J}(q):=B_J^{-1}q \qquad \text{and}\qquad z_J(q,\varepsilon):=x_J(q)+iy_{J,\varepsilon}(x_J(q)).
+\]</span>
+Since \(\langle b_j,x_J(q)\rangle=q_j\) for \(j\in J\), by the definition of \(y_{J,\varepsilon}\) 
+<span class="math">\[
+	\langle b_j,z_J(q,\varepsilon)\rangle=q_j+i\varepsilon_j\lambda(q_j)\in\partial D, \qquad j\in J.
+\]</span>
+Let \(x=x_J(q)\) and \(y=y_{J,\varepsilon}(x)\), so that \(z_J(q,\varepsilon)=x+iy\). 
+Since \(\overline\Omega=\{z\colon\langle b_l,z\rangle\in\overline D\ \forall l\}\) and \(\overline D=\{w\colon|\mathrm{Re}\,w|\le1,\ |\mathrm{Im}\,w|\le\lambda(\mathrm{Re}\,w)\}\),
+<span class="math">\[
+	x+iy\in\overline\Omega\iff|\langle b_l,x\rangle|\le1\ \text{ and }\ |\langle b_l,y\rangle|\le\lambda(\langle b_l,x\rangle)\qquad\text{for all }1\le l\le m.
+\]</span>
+The conditions \(|\langle b_l,x\rangle|\le1\), \(1\le l\le m\), are equivalent to \(x\in K\); and among the conditions \(|\langle b_l,y\rangle|\le\lambda(\langle b_l,x\rangle)\), those with \(l\in J\) hold with equality by the definition of \(y_{J,\varepsilon}\). Hence
+<span class="math">\[
+	z_J(q,\varepsilon)\in\overline\Omega\iff x_J(q)\in K\ \text{ and }\ |\langle b_k,y_{J,\varepsilon}(x_J(q))\rangle|\le\lambda(\langle b_k,x_J(q)\rangle)\quad\forall k\notin J.
+\]</span>
+Therefore, since 
+<span class="math">\[
+K\subseteq\{x\colon|\langle b_j,x\rangle|\le1\ \forall j\in J\}=x_J([-1,1]^J),
+\]</span>the change of variables \(q=B_Jx\) gives
+<span class="math">\[
+	\begin{aligned}
+	&|\det B_J|\operatorname{Vol}\left(\{x \in K\,\,\colon\,\,\left| \langle b_{k},y_{J,\varepsilon}(x) \rangle \right| \leq \lambda(\langle b_{k},x \rangle )\quad\forall k\not\in J\}\right)\\
+	&\qquad=\operatorname{Vol}\left(\{q\in[-1,1]^J\,\,\colon\,\,z_{J}(q,\varepsilon)\in \overline\Omega\}\right)
+	\end{aligned}
+	\tag{7}
+\]</span>
+for every \(\varepsilon\in\{-1,1\}^J\).</p>
+<p>By Lemma 0, \(F\) is a homeomorphism of \(\overline{\mathbb D}\) onto \(\overline D\).  Define \(\Phi_J:[-1,1]^J\times\{-1,1\}^J\to(\partial\mathbb D)^J\) by
+<span class="math">\[
+	\Phi_J(q,\varepsilon)_j:=F^{-1}\big(q_{j}+i\varepsilon_{j}\lambda(q_{j})\big),\qquad j\in J.
+\]</span>
+Extend \(B_J\) (and its inverse) complex-linearly to a map from \(\mathbb{C}^d\) to \(\mathbb{C}^J\); then, by the formula for \(y_{J,\varepsilon}(x_J(q))\),
+<span class="math">\[
+	z_J(q,\varepsilon)=B_J^{-1}\,\mathrm{Re}\,F(\Phi_J(q,\varepsilon))+i\,B_J^{-1}\,\mathrm{Im}\,F(\Phi_J(q,\varepsilon))=B_J^{-1}F(\Phi_J(q,\varepsilon)).
+\]</span></p>
+<p>Let \(\mu_J\) be the Haar probability measure on \((\partial\mathbb D)^J\). By our choice of \(F\), the function \(\Phi_J\) pushes the product of Lebesgue measure on \([-1,1]^J\) and counting measure on \(\{-1,1\}^J\) forward to \(4^d\mu_J\). Hence, summing (7) over \(\varepsilon\) gives
+<span class="math">\[
+	\begin{aligned}
+	&\sum_{\varepsilon\in\{-1,1\}^J}|\det B_J|\operatorname{Vol}\left(\{x \in K\,\,\colon\,\,\left| \langle b_{k},y_{J,\varepsilon}(x) \rangle \right| \leq \lambda(\langle b_{k},x \rangle )\quad\forall k\not\in J\}\right)\\
+	&\qquad=4^{d}\mu_J\left(\{\omega\in(\partial\mathbb D)^J\,\,\colon\,\,B_J^{-1}F(\omega)\in \overline\Omega\}\right).
+	\end{aligned}
+\]</span></p>
+<p>Since \(\overline D=F(\overline{\mathbb D})\) and \(\langle b_j,B_J^{-1}F(\omega)\rangle=F(\omega_j)\in F(\overline{\mathbb D})\) for \(j\in J\), (6) becomes
+<span class="math">\[
+	\sum_{J\in\mathcal{J}}\mu_J\left(\left\{\omega \in (\partial\mathbb D)^J\,\,\colon\,\,\langle b_k,B_J^{-1}F(\omega)\rangle\in F(\overline{\mathbb D})\quad\forall\, k\notin J\right\}\right)\geq 1.
+\]</span>
+For \(J\in\mathcal{J}\) let
+<span class="math">\[
+	A_J:=F^{-1}\big(B_J(\overline\Omega)\big)\subseteq\overline{\mathbb D}^J,
+\]</span>
+with \(F\) applied coordinatewise; then the set \(A_J\) is closed, since \(B_J(\overline\Omega)\) is closed and \(F\) is continuous. 
+For \(\omega\in(\partial\mathbb D)^J\), \(\omega\in A_J\) if and only if \(B_J^{-1}F(\omega)\in\overline\Omega\), so the inequality to prove is
+<span class="math">\[
+	\sum_{J\in\mathcal{J}}\mu_J(A_J)\geq 1.
+\]</span></p>
+<h3 id="a-sequence-of-submanifolds-of-the-polydisc">A sequence of submanifolds of the polydisc</h3>
+<p>Recap:</p>
+<ul><li>\(b_1,\dots,b_m\) are nonzero vectors spanning \(\mathbb{R}^d\), extended complex-linearly to \(\mathbb{C}^d\).</li><li>\(\mathcal{J}\) is the set of \(J\in{[m]\choose d}\) for which the linear map \(B_{J}z=(\langle b_{j},z \rangle)_{j\in J}\) from \(\mathbb{C}^{d}\) to \(\mathbb{C}^{J}\) is invertible.</li><li>\(F:\mathbb D\to\mathbb{C}\) is an injective holomorphic map with a bounded convex image \(D\), which extends to a homeomorphism of \(\overline{\mathbb D}\) onto \(\overline D\) and satisfies \(F(0)=0\),</li><li>for all \(J\in \mathcal{J}\), we set \(A_J:=F^{-1}(B_J(\overline\Omega))\subseteq\overline{\mathbb D}^J\), where \(\Omega :=\{ z\in \mathbb{C}^{d}\,\,\colon\,\, \langle b_{j},z \rangle \in D \quad \forall\,1\leq j\leq m\}\),</li></ul>
+<p>and our goal is to prove that
+<span class="math">\[
+	\sum_{J\in\mathcal{J}}\mu_J(A_J)\geq 1,
+\]</span>
+where \(\mu_{J}\) is the Haar probability measure on \((\partial\mathbb D)^{J}\).</p>
+<p>Let \(B:=B_{[m]}:\mathbb{C}^d\to\mathbb{C}^m\), so that \(B_J=\pi_J\circ B\) for the coordinate projection \(\pi_J:\mathbb{C}^m\to\mathbb{C}^J\). </p>
+<p>For \(k\ge1\) let \(p_k\) be the coordinatewise \(k\)-th power, \(p_k(v)=(v_j^k)_j\), on \(\mathbb{C}^m\) and on each \(\mathbb{C}^J\); then \(\pi_J\circ p_k=p_k\circ\pi_J\). 
+Let 
+<span class="math">\[
+dV_J:=\bigwedge_{j\in J}\frac{i}{2}\,dv_j\wedge d\bar v_j
+\]</span>
+denote the volume form of \(\mathbb{C}^J\), let \(dV:=dV_{[d]}\) denote the volume form of \(\mathbb{C}^d\), and let  \(M_{k}\) be the \(d\)-dimensional complex submanifold
+<span class="math">\[
+	M_k:=p_k^{-1}(\mathbb B_m)\cap F^{-1}\big(B(\mathbb{C}^d)\big)\subseteq\mathbb D^m,
+\]</span>
+where \(\mathbb B_m\) denotes the open Euclidean unit ball in \(\mathbb{C}^m\).</p>
+<p>The map 
+<span class="math">\[
+\phi:=F^{-1}\circ B
+\]</span>
+is a biholomorphism of \(\Omega\) onto \(F^{-1}(B(\mathbb{C}^d))\), so \(M_k=\phi(\Omega_k)\) where
+<span class="math">\[
+\Omega_k:=\{z\in\Omega\colon p_k(\phi(z))\in\mathbb B_m\}.
+\]</span>
+For \(u\in M_k\) and \(J\in\mathcal{J}\),
+<span class="math">\[
+	F(u)=B\,B_J^{-1}F(\pi_Ju),
+\]</span>
+so \(\pi_J\) is injective on \(M_k\) and \(\pi_J(M_k)\subseteq A_J\).</p>
+<p>Define a \(2d\)-form \(\sigma_{k}\) on \(M_{k}\) by
+<span class="math">\[
+	\sigma_k:=\sum_{J\in\mathcal{J}}(\pi_J|_{M_k})^*\,p_k^*\,dV_J.
+\]</span></p>
+<div class="callout callout-lemma" id="lemma-3"><div class="callout-title">Lemma 3</div><p>Each term of \(\sigma_k\) is a nonnegative \(2d\)-form on \(M_k\), and the integral
+<span class="math">\[
+\int_{M_k}\sigma_k
+\]</span>
+is the \(2d\)-dimensional volume of \(p_k(M_k)\), counted with multiplicity.</p></div>
+<p><i>Proof.</i> 
+Let \(f_{k}:=p_k\circ\phi\), let \(P:=Df_k(z)\), and for \(J \in {[m]\choose d}\) denote by \(P_J\) the corresponding minor of \(P\). Since \(f_k=(p_k\circ F^{-1})\circ B\) with \(p_k\circ F^{-1}\) acting coordinatewise, \(P_J\) is \(B_J\) multiplied on the left by a diagonal matrix, so \(\det P_J=0\) for \(J\notin\mathcal{J}\).
+Then
+<span class="math">\[
+	\phi^*\sigma_k=\sum_{J\in\mathcal{J}}(\pi_J\circ f_k)^*dV_J=\sum_{J\in\mathcal{J}}|\det P_J|^2\,dV=\sum_{J\in{[m]\choose d}}|\det P_J|^2\,dV,
+\]</span>
+where the first equality follows from \(\pi_J\circ p_k=p_k\circ\pi_J\), the second holds because a complex-linear map \(T\colon\mathbb{C}^d\to\mathbb{C}^J\) has real Jacobian \(|\det T|^2\), and the third holds since \(\det P_J=0\) for all \(J\notin\mathcal{J}\). By Cauchy–Binet, \(\sum_{J\in{[m]\choose d}}|\det P_J|^2\) is the \(2d\)-dimensional Jacobian of \(f_k\) at \(z\), and the lemma follows. \(\square\)</p>
+<div class="callout callout-lemma" id="lemma-4"><div class="callout-title">Lemma 4</div><p>For all \(J \in \mathcal{J}\),</p>
+<span class="math">\[
+\limsup_{k \to \infty} \frac{1}{k^{d}}\int_{M_{k}}(\pi_J|_{M_k})^*p_k^*dV_J\leq \frac{\pi^{d}}{d!}\mu_{J}(A_{J}). 
+\]</span></div>
+<p><i>Proof.</i>
+Write 
+<span class="math">\[
+R_{J}:=\{\rho\in\mathbb{R}^J\,\,\colon\,\,\sum_j\rho_j^2\lt 1,\,\,\rho_{j}>0\,\,\forall j\in J\}
+\]</span>
+and \(\rho^{1/k}\omega:=(\rho_j^{1/k}\omega_j)_{j\in J}\). Then
+<span class="math">\[
+\begin{align*}
+	\limsup_k\frac{1}{k^d}\int_{M_k}(\pi_J|_{M_k})^*p_k^*dV_J
+	&\le\limsup_k\frac{1}{k^d}\int_{A_J\cap p_k^{-1}(\mathbb B_J)}p_k^*dV_J\\
+	&=\limsup_k\,(2\pi)^d\int_{R_{J}\times(\partial\mathbb D)^J}\mathbf 1_{A_J}(\rho^{1/k}\omega)\prod_j\rho_j\,d\rho\,d\mu_J(\omega)\\
+	&\le(2\pi)^d\int_{R_{J}\times(\partial\mathbb D)^J}\mathbf 1_{A_J}(\omega)\prod_j\rho_j\,d\rho\,d\mu_J(\omega)\\
+	&=\frac{\pi^d}{d!}\,\mu_J(A_J).
+\end{align*}
+\]</span>
+The first inequality holds because \(\pi_J\) is injective on \(M_k\) and \(\pi_J(M_k)\subseteq A_J\cap p_k^{-1}(\mathbb B_J)\). In the second passage we applied the substitution \(v_j=\rho_j^{1/k}\omega_j\) and used \(p_k^*dV_J=k^d(2\pi)^d\prod_j\rho_j\,d\rho\otimes\mu_J\). The second inequality is Fatou's lemma, since \(A_J\) is closed and \(\rho^{1/k}\omega\to\omega\), so \(\limsup_k\mathbf 1_{A_J}(\rho^{1/k}\omega)\le\mathbf 1_{A_J}(\omega)\). \(\square\)</p>
+<h3 id="a-lower-bound-on-the-volume-of-the-image-of-a-holomorphic-function">A lower bound on the volume of the image of a holomorphic function</h3>
+<p>Summing Lemma 4 over \(J\in \mathcal{J}\) we get
+<span class="math">\[
+	\limsup_{k \to \infty} \frac{1}{(\pi k)^{d}}\int_{M_{k}}\sigma_{k}\leq \frac{1}{d!}\sum\limits_{J\in \mathcal{J}}\mu_{J}(A_{J}).
+\]</span>
+The proof will thus be finished once we prove that
+<span class="math">\[
+	\frac{1}{(\pi k)^{d}}\int_{M_{k}}\sigma_{k}\geq \frac{1}{d!}.
+\]</span></p>
+<p>Recall that 
+<span class="math">\[
+	M_k:=p_k^{-1}(\mathbb B_m)\cap F^{-1}\big(B(\mathbb{C}^d)\big),
+\]</span>
+and that, by Lemma 3, the integral \(\int_{M_k}\sigma_{k}\) is the \(2d\)-dimensional volume of the image \(p_{k}(M_{k})\), counted with multiplicity. Thus it suffices to apply the following key lemma:</p>
+<div class="callout callout-lemma" id="lemma-5"><div class="callout-title">Lemma 5</div><p>Let \(d\geq 1\) and \(m\geq d\). Let \(U\subset \mathbb{C}^{d}\) be an open set containing the origin, and let \(f:U\to \mathbb{C}^{m}\) be a holomorphic function satisfying</p>
+<ol><li>\(f^{-1}(0)=\{ 0 \}\)</li><li>\(|f(z)|\le C|z|^{k}\) on a neighbourhood of \(0\), for some integer \(k\geq 1\) and some \(C>0\),</li><li>for every \(s \lt 1\) the sublevel set \(U_{s}:=\{ |f|\lt s \}\) is relatively compact in \(U\).</li></ol>
+<p>Then the \(2d\)-dimensional volume of \(f(U_{1})\), counted with multiplicity, is at least \(\frac{(\pi k)^{d}}{d!}\).</p></div>
+<p>Let us verify that the hypotheses of Lemma 5 are satisfied with \(f=f_k=p_{k}\circ F^{-1}\circ B\). 
+The set \(\Omega\) is open and contains \(0\), and \(f_k\) is holomorphic on \(\Omega\) because \(B(\Omega)\subseteq D^m\) and \(F^{-1}\) acts coordinatewise. 
+In the notation of the lemma, we have \(U_1=\{ |f_{k}|\lt 1 \}=\Omega_k\), so \(f_k(U_1)=p_k(\phi(\Omega_k))=p_k(M_k)\).
+Since \(F(0)=0\) and \(F\) is injective, \(f_k(z)=0\) if and only if \(Bz=0\), that is, \(z=0\), because \(b_1,\dots,b_m\) span \(\mathbb{R}^d\).</p>
+<p>Since \((F^{-1})'(0)=\pi^{2}/8\neq0\), there are \(\delta>0\) and \(C>0\) with \(|F^{-1}(w)|\le C|w|\) for \(|w|<\delta\). 
+Since \(|f_k(z)|^{2}=\sum_{j}\big|F^{-1}(\langle b_j,z\rangle)\big|^{2k}\), for \(z\) near \(0\) we have
+<span class="math">\[
+	|f_k(z)|\le\sqrt m\,C^{k}\max_j|\langle b_j,z\rangle|^{k}.
+\]</span>
+Since \(B\) is injective, \(\max_j|\langle b_j,\cdot\rangle|\) is a norm on \(\mathbb{C}^d\), so \(|f_k(z)|\le C'|z|^{k}\) for some \(C'>0\) near the origin.</p>
+<p>Let \(0\lt s \lt1\). For \(z\in U_s\) and every \(j\), 
+<span class="math">\[|F^{-1}(\langle b_j,z\rangle)|^{k}\le|f_k(z)|\lt s,\]</span>
+so \(\langle b_j,z\rangle\in F(s^{1/k}\overline{\mathbb D})\). Hence
+<span class="math">\[
+	\overline{U_s}\subseteq\{z\in\mathbb{C}^d\colon\langle b_j,z\rangle\in F(s^{1/k}\overline{\mathbb D})\ \ \forall\,1\le j\le m\}=B^{-1}\big(F(s^{1/k}\overline{\mathbb D})^{m}\big).
+\]</span>
+The set \(F(s^{1/k}\overline{\mathbb D})\) is a compact subset of \(D\) and \(B\) is injective, so the right-hand side is a compact subset of \(\Omega\). Thus \(U_s\) is relatively compact in \(\Omega\).</p>
+<p>The hypotheses of Lemma 5 are satisfied; hence the theorem (modulo the equality cases) would follow once we prove Lemma 5.</p>
+<p><i>Proof of Lemma 5.</i>
+We use the normalization
+<span class="math">\[
+	d := \partial + \bar\partial, \qquad d^{c}:=\frac{i}{4}(\bar\partial-\partial),\qquad dd^{c}=\frac{i}{2}\partial\bar\partial,
+\]</span>
+so that \(dd^{c}|z|^{2}=\sum_{j}dx_{j}\wedge dy_{j}\) and \((dd^{c}|z|^{2})^{d}=d!\,dV\).</p>
+<p>On \(\mathbb{C}^m\), \((dd^{c}|w|^{2})^{d}=d!\sum_{J\in{[m]\choose d}}dV_J\), so the computation in the proof of Lemma 3, with \(Df\) in place of \(P\), gives \((dd^{c}|f|^{2})^{d}=d!\sqrt{\det(Df_\mathbb{R}^TDf_\mathbb{R})}\,dV\). </p>
+<p>Hence it suffices to prove that
+<span class="math">\[
+	\int_{U_{1}}(dd^{c}|f|^{2})^{d}\geq(\pi k)^{d}.
+\]</span>
+Let \(s \in(0,1)\) be a regular value of \(|f|\). By Stokes' theorem,
+<span class="math">\[
+	\int_{U_{s}}(dd^{c}|f|^{2})^{d}=\int_{\partial U_{s}}d^{c}|f|^{2}\wedge(dd^{c}|f|^{2})^{d-1}.
+\]</span>
+Write
+<span class="math">\[
+	\gamma:=d^{c}\log|f|^{2}=|f|^{-2}d^{c}|f|^{2},
+\]</span>
+and note that
+<span class="math">\[
+	d\gamma=dd^{c}\log|f|^{2}=|f|^{-2}dd^{c}|f|^{2}-|f|^{-4}d|f|^{2}\wedge d^{c}|f|^{2}.
+\]</span>
+Since \(|f|\equiv s\) on \(\partial U_{s}\), we have
+<span class="math">\[
+	\gamma=s^{-2}d^{c}|f|^{2}\qquad \text{and}\qquad d\gamma=s^{-2}dd^{c}|f|^{2}\qquad \text{on $\partial U_s$.}
+\]</span>
+Hence
+<span class="math">\[
+	\int_{U_{s}}(dd^{c}|f|^{2})^{d}=s^{2d}\int_{\partial U_{s}}\gamma \wedge(d\gamma)^{d-1}.
+\]</span>
+ The function \(\log|f|^{2}\) is smooth and plurisubharmonic on \(U_{s}\setminus\{0\}\) by the first assumption. </p>
+<p>For \(0 \lt \eta\lt 1\) set
+<span class="math">\[
+	g:=\log\frac{|f|^{2}}{s^{2}}\qquad \text{and}\qquad h:=(1-\eta)k\log\frac{|z|^{2}}{\max_{\overline{U_{s}}}|z|^{2}}-2 .
+\]</span>
+On \(\overline{U_s}\) we have \(h\le-2\), while \(g=0\) on \(\partial U_s\). Hence \(g>h+1\) near \(\partial U_s\).</p>
+<p>By the second assumption \(g\le k\log|z|^{2}+O(1)\) near the origin, so
+<span class="math">\[
+h-g\ge-\eta k\log|z|^{2}+O(1)\to\infty \qquad \text{as $z\to 0$.}
+\]</span>
+Let \(r>0\) be small enough that \(r\overline{\mathbb B}_d\subset U_{s}\) and \(h>g+1\) near \(\partial(r\mathbb B_d)\), where \(\mathbb B_d\) is the open unit ball of \(\mathbb{C}^d\).
+Let \(\widetilde{\max}:\mathbb{R}^{2}\to\mathbb{R}\) be smooth, convex and nondecreasing in each variable, with \(\widetilde{\max}(x,y)=\max(x,y)\) whenever \(|x-y|\geq 1\). Then the function \(\widetilde{\max}(g,h)\) is smooth and plurisubharmonic on \(U_{s}\setminus r\overline{\mathbb B}_d\), and equals \(g\) near \(\partial U_{s}\) and \(h\) near \(\partial(r\mathbb B_d)\).
+Hence, since \(d^{c}g=\gamma\) and \((dd^{c}\,\widetilde{\max}(g,h))^{d}\ge0\) on \(U_{s}\setminus r\overline{\mathbb B}_d\), Stokes' theorem on \(U_{s}\setminus r\overline{\mathbb B}_d\) gives
+<span class="math">\[
+	\int_{\partial U_{s}}\gamma\wedge(d\gamma)^{d-1}\geq\int_{\partial(r\mathbb B_d)}d^{c}h\wedge(dd^{c}h)^{d-1}=\frac{((1-\eta)k)^{d}}{r^{2d}}\int_{r\mathbb B_d}(dd^{c}|z|^{2})^{d}=((1-\eta)\pi k)^{d}.
+\]</span>
+Combining with the previous identity and letting \(\eta\to 0\), we get
+<span class="math">\[
+	\int_{U_{s}}(dd^{c}|f|^{2})^{d}\geq s^{2d}(\pi k)^{d}.
+\]</span>
+Letting \(s\uparrow 1\) along regular values and using monotone convergence gives the claim.<sup class="fn"><a href="#fn-demailly" id="fnref-demailly">5</a></sup> \(\square\)</p>
+<h3 id="the-equality-case">The equality case</h3>
+<p>For a symmetric convex body \(A\), write \(\|x\|_A:=\min\{t\ge0\colon x\in tA\}\) for the norm with unit ball \(A\). For symmetric convex bodies \(A\subset\mathbb{R}^{k}\) and \(A'\subset\mathbb{R}^{l}\), define the symmetric convex bodies
+<span class="math">\[
+	\begin{aligned}
+	A\oplus_\infty A'&:=A\times A'=\{(x,x')\in\mathbb{R}^{k+l}\colon\max\{\|x\|_A,\|x'\|_{A'}\}\le1\},\\
+	A\oplus_1A'&:=\operatorname{conv}\big((A\times\{0\})\cup(\{0\}\times A')\big)=\{(x,x')\in\mathbb{R}^{k+l}\colon\|x\|_A+\|x'\|_{A'}\le1\}.
+	\end{aligned}
+\]</span>
+Then \((A\oplus_1A')^{\circ}=A^{\circ}\oplus_\infty A'^{\circ}\) and \((A\oplus_\infty A')^{\circ}=A^{\circ}\oplus_1 A'^{\circ}\). <i>Hanner polytopes</i> form the smallest class of convex bodies that contains the segments \([-a,a]\subset\mathbb{R}\), \(a>0\), and is closed under \(\oplus_1\) and \(\oplus_\infty\).</p>
+<p><b>Plan.</b> The proof above gives \(\frac{4^{d}}{d!}\le\int_K\operatorname{Vol}(\Sigma_x)\,dx\le\operatorname{Vol}(K)\operatorname{Vol}(K^{\circ})\), where the first inequality follows from Lemma 7 and the second holds true since \(\Sigma_x\subseteq K^{\circ}\). Equality in the second inequality forces \(\Sigma_x=K^{\circ}\) for almost every \(x \in K\). Lemma 7 shows that this is then true for all \(x \in \operatorname{int} K\). Lemma 7 for \(\widehat K=K\oplus_1[-1,1]\) at points \((\delta u,1-\delta)\), \(\delta\downarrow0\), together with Lemma 10, gives that every triple of points of \((\mathbb{R}^d,\|\cdot\|_{K^{\circ}})\) has a metric median (Lemma 8), and Theorem 9, which is due to Hansen and Lima, identifies the norm.</p>
+<p>We extend the definitions of \(L_{x}\) and \(\Sigma_{x}\) to arbitrary convex bodies as follows: for \(x\in\operatorname{int} K\) define \(L_x\) by the right-hand side of (3), and \(\Sigma_x\) by (4).
+Thus \(\xi\in\Sigma_x\) iff \(\xi=\sum_i\alpha_ih_i\) for finitely many \(h_i\in K^{\circ}\) with \(\langle h_i,y\rangle=\lambda(\langle h_i,x\rangle)\) for one \(y\in L_x\) and all \(i\), where \(\alpha_i\ge0\) and \(\sum_i\alpha_i\le1\); by Carathéodory's theorem, \(d+1\) terms suffice. Since \(\lambda\le\lambda(0)\), every \(y\in L_x\) satisfies \(\langle h,y\rangle\le\lambda(0)\) for all \(h\in K^{\circ}\), that is,
+<span class="math">\[
+	L_x\subseteq\lambda(0)K .\tag{8}
+\]</span></p>
+<div class="callout callout-lemma" id="lemma-6"><div class="callout-title">Lemma 6</div><p>Let \(K^{(j)}\supseteq K\) be symmetric convex bodies with \(K^{(j)}\subseteq t_j^{-1}K\) and \(t_j\to1\), and let \(L^{(j)}_x\) and \(\Sigma^{(j)}_x\) be defined as \(L_x\) in (3) and \(\Sigma_x\) in <a href="#def-sigma">(4)</a>, with \(K\) replaced by \(K^{(j)}\). If \(x_j\to x\in\operatorname{int} K\), \(\xi_j\to\xi\) and \(\xi_j\in\Sigma^{(j)}_{x_j}\), then \(\xi\in\Sigma_x\).</p></div>
+<p><i>Proof.</i> Write \(\xi_j=\sum_{i=0}^{d}\alpha_{ij}h_{ij}\) with \(h_{ij}\in (K^{(j)})^{\circ}\), \(\langle h_{ij},y_j\rangle=\lambda(\langle h_{ij},x_j\rangle)\) for some \(y_j\in L^{(j)}_{x_j}\), \(\alpha_{ij}\ge0\), \(\sum_i\alpha_{ij}\le1\). By (8) for \(K^{(j)}\), \(y_j\in\lambda(0)K^{(j)}\subseteq\lambda(0)t_j^{-1}K\), so all data range in a compact set. Pass to a subsequence with \(y_j\to y\), \(h_{ij}\to h_i\in K^{\circ}\), \(\alpha_{ij}\to\alpha_i\). For \(h\in K^{\circ}\) we have \(t_jh\in (K^{(j)})^{\circ}\), so \(\langle t_jh,y_j\rangle\le\lambda(\langle t_jh,x_j\rangle)\); continuity of \(\lambda\) gives \(y\in L_x\). The same continuity turns \(\langle h_{ij},y_j\rangle=\lambda(\langle h_{ij},x_j\rangle)\) into \(\langle h_i,y\rangle=\lambda(\langle h_i,x\rangle)\). So \(\xi=\sum\alpha_ih_i\in\Sigma_x\). \(\square\)</p>
+<div class="callout callout-lemma" id="lemma-7"><div class="callout-title">Lemma 7</div><p>For every symmetric convex body \(K\),
+<span class="math">\[
+\int_K\operatorname{Vol}(\Sigma_x)\,dx\ge\frac{4^{d}}{d!}.
+\]</span>
+If \(\operatorname{Vol}(K)\operatorname{Vol}(K^{\circ})=4^{d}/d!\), then \(\Sigma_x=K^{\circ}\) for <b>every</b> \(x\in\operatorname{int} K\). 
+In particular, for every \(x\in\operatorname{int} K\) and every \(\xi\in\partial K^{\circ}\) there exist \(y\in L_x\) and \(h_i\in K^{\circ}\) such that \(\xi\in\operatorname{conv}\{h_i\}\) and \(\langle h_i,y\rangle=\lambda(\langle h_i,x\rangle)\) for all \(i\).</p></div>
+<p><i>Proof.</i> Put
+<span class="math">\[
+	E_K:=\{(x,\xi)\,\colon\,x\in\operatorname{int} K,\ \xi\in\Sigma_x\}\subseteq K\times K^{\circ}.
+\]</span>
+Take \(K^{(j)}=K\) and \(t_j=1\) in Lemma 6: if \((x_j,\xi_j)\in E_K\) and \((x_j,\xi_j)\to(x,\xi)\) with \(x\in\operatorname{int} K\), then \((x,\xi)\in E_K\). So \(E_K\) is relatively closed in \(\operatorname{int} K\times\mathbb{R}^{d}\), and each fiber \(\Sigma_x\) is closed; since \(\Sigma_x\subseteq K^{\circ}\), it is compact. By Fubini, \(\operatorname{Vol}_{2d}(E_K)=\int_K\operatorname{Vol}(\Sigma_x)\,dx\).</p>
+<p>Now choose \(t_j\in(0,1)\) with \(t_j\to1\), and symmetric polytopes \(K^{(j)}\) with
+<span class="math">\[
+	K\subseteq K^{(j)}\subseteq t_j^{-1}K\qquad\text{for all }j.
+\]</span>
+Since \(K^{(j)}\) is a polytope, (2) applies to it, so
+<span class="math">\[
+	\operatorname{Vol}_{2d}\big(E_{K^{(j)}}\big)=\int_{K^{(j)}}\operatorname{Vol}\big(\Sigma^{(j)}_x\big)\,dx\ge\frac{4^{d}}{d!}\qquad\text{for all }j.
+\]</span>
+Put
+<span class="math">\[
+	E_j:=E_{K^{(j)}}\cap\big(\operatorname{int} K\times\mathbb{R}^{d}\big)=\big\{(x,\xi)\,\colon\,x\in\operatorname{int}K,\ \xi\in\Sigma^{(j)}_x\big\}.
+\]</span>
+Since \(K\subseteq K^{(j)}\), we have \(\Sigma^{(j)}_x\subseteq(K^{(j)})^{\circ}\subseteq K^{\circ}\) for every \(x\). Hence \(E_j\subseteq K\times K^{\circ}\), and \(E_{K^{(j)}}\setminus E_j\subseteq(K^{(j)}\setminus\operatorname{int}K)\times K^{\circ}\), so
+<span class="math">\[
+	\operatorname{Vol}_{2d}(E_j)\ge\frac{4^{d}}{d!}-\operatorname{Vol}\big(K^{(j)}\setminus K\big)\operatorname{Vol}(K^{\circ})\ge\frac{4^{d}}{d!}-\big(t_j^{-d}-1\big)\operatorname{Vol}(K)\operatorname{Vol}(K^{\circ}).
+\]</span>
+The last term tends to \(0\) as \(j\to\infty\). The set \(E_j\) is contained in \(K\times K^{\circ}\) for all $j$, so by the reverse Fatou lemma
+<span class="math">\[
+	\operatorname{Vol}_{2d}\Big(\limsup_{j\to\infty}E_j\Big)\ge\limsup_{j\to\infty}\operatorname{Vol}_{2d}(E_j)\ge\frac{4^{d}}{d!}.
+\]</span>
+Finally, \(\limsup_jE_j\subseteq E_K\). Indeed, let \((x,\xi)\in E_j\) for infinitely many \(j\), say for \(j\) in an infinite set \(J_0\). Then \(x\in\operatorname{int}K\) and \(\xi\in\Sigma^{(j)}_x\) for all \(j\in J_0\), and Lemma 6, applied along \(J_0\) with the constant sequences \(x_j=x\) and \(\xi_j=\xi\), gives \(\xi\in\Sigma_x\), i.e., \((x,\xi)\in E_K\). Therefore
+<span class="math">\[
+	\int_K\operatorname{Vol}(\Sigma_x)\,dx=\operatorname{Vol}_{2d}(E_K)\ge\operatorname{Vol}_{2d}\Big(\limsup_{j\to\infty}E_j\Big)\ge\frac{4^{d}}{d!},
+\]</span>
+which proves the inequality.</p>
+<p>Finally, assume \(\operatorname{Vol}(K)\operatorname{Vol}(K^{\circ})=4^{d}/d!\). Then \(E_K\subseteq K\times K^{\circ}\) and \(\operatorname{Vol}(E_K)\ge\operatorname{Vol}(K\times K^{\circ})\), so \((\operatorname{int} K\times\operatorname{int} K^{\circ})\setminus E_K\) is null. It is open by Lemma 6, hence empty. So \(\Sigma_x\supseteq\operatorname{int} K^{\circ}\), and \(\Sigma_x\) is closed. For \(\xi\in\partial K^{\circ}\), write \(\xi=\sum\alpha_ih_i\) as in the definition of \(\Sigma_x\); the weights \(\alpha_i\) sum to \(1\) since \[1=\|\xi\|_{K^{\circ}}\le\sum\alpha_i\|h_i\|_{K^{\circ}}\le\sum\alpha_i\le1,\] so \(\xi\in\operatorname{conv}\{h_i\}\). \(\square\)</p>
+<div class="callout callout-definition" id="definition"><div class="callout-title">Definition</div><p>Let \((V,\|\cdot\|)\) be a normed space. A <i>median</i> of a triple  \(x_1,x_2,x_3\in V\) is a point \(m\) with \(\|x_i-m\|+\|m-x_j\|=\|x_i-x_j\|\) for all \(i\neq j\).</p></div>
+<div class="callout callout-lemma" id="lemma-8-medians"><div class="callout-title">Lemma 8</div><p>If \(\operatorname{Vol}(K)\operatorname{Vol}(K^{\circ})=4^{d}/d!\) then every triple of points has a median in \((\mathbb{R}^{d},\|\cdot\|_{K^{\circ}})\).</p></div>
+<p><i>Proof.</i> 
+Write \(\|\cdot\|=\|\cdot\|_{K^{\circ}}\). It suffices to consider triples of the form \(0,v,u\). We may also assume that the three points are distinct (otherwise any repeated point is a median). 
+The set
+<span class="math">\[
+	W:=\{w \in \mathbb{R}^{d}:\ \|v-w\|+\|u-w\|=\|v-u\|\}
+\]</span>
+is compact and convex; indeed by the triangle inequality, it is the set of minimizers of the convex function \(\|v-\cdot\|+\|u-\cdot\|\), which tends to \(\infty\) at \(\infty\).</p>
+<p>We claim that</p>
+<span class="math">\[
+	\min_{w\in W}\langle w,x\rangle\le\tfrac12\big(\|v\|+\|u\|-\|v-u\|\big)\qquad\text{for every }x\in K.\tag{9}
+\]</span>
+<p>First let us deduce the lemma from (9). Since \(\|w\|=\max_{x\in K}\langle w,x\rangle\), the minimax theorem for the bilinear pairing on the compact convex sets \(W\) and \(K\) gives
+<span class="math">\[
+	\min_{w\in W}\|w\|=\max_{x\in K}\min_{w\in W}\langle w,x\rangle\le\tfrac12\big(\|v\|+\|u\|-\|v-u\|\big).
+\]</span>
+Pick a minimizer \(w_{0}\); then by the triangle inequality
+<span class="math">\[
+	\begin{align*}
+	 & 2\big(\|w_{0}\|+\|v-w_{0}\|+\|u-w_{0}\|\big)\\
+&\qquad\qquad  \le\|v\|+\|u\|+\|v-u\|\\
+	&\qquad\qquad  \le\big(\|w_{0}\|+\|v-w_{0}\|\big)+\big(\|w_{0}\|+\|u-w_{0}\|\big)+\big(\|v-w_{0}\|+\|u-w_{0}\|\big),
+	\end{align*}
+\]</span>
+so the three triangle inequalities in the second step are equalities and \(w_{0}\) is a median. </p>
+<p>It remains to prove (9). By continuity, we may assume that \(x\in\operatorname{int} K\), so that \(\|x\|_K\lt 1\). Let
+<span class="math">\[
+	\widehat K:=K\oplus_1[-1,1]=\{(z,s):\ \|z\|_K+|s|\le1\},\qquad \widehat K^{\circ}=K^{\circ}\times[-1,1].
+\]</span>
+The section of \(\widehat K\) at height \(s\) is \((1-|s|)K\), so \(\operatorname{Vol}(\widehat K)=\frac2{d+1}\operatorname{Vol}(K)\), while \(\operatorname{Vol}(\widehat K^{\circ})=2\operatorname{Vol}(K^{\circ})\). Hence \(\widehat K\) is also an equality case, in dimension \(d+1\). For \(\hat x\in\operatorname{int}\widehat K\), we write \(\hat L_{\hat x}\) for the set \(L_{\hat x}\) with the body \(K\) replaced by \(\widehat K\). Fix \(\delta\in(0,1)\) and set
+<span class="math">\[\hat x:=(\delta x,1-\delta)\in\operatorname{int}\widehat K.
+\]</span>
+Let \(\hat v:=(v,\|v\|)\) and \(\hat u:=(u,\|u\|)\) be the lifts of \(v\) and \(u\) to the boundary of the cone \(\{(z,t)\colon\|z\|\le t\}\). Since \(\|(h,s)\|_{\widehat K^{\circ}}=\max\{\|h\|,|s|\}\), we have</p>
+<span class="math">\[
+	\|\hat v-\hat u\|_{\widehat K^{\circ}}=\max\big\{\|v-u\|,\,\big|\|v\|-\|u\|\big|\big\}=\|v-u\|,\qquad \|\hat v\|_{\widehat K^{\circ}}=\|v\|,\qquad \|\hat u\|_{\widehat K^{\circ}}=\|u\|.
+\]</span>
+<p>By Lemma 7 for \(\widehat K\) at \(\hat x\), applied to \((\hat v-\hat u)/\|v-u\|\in\partial\widehat K^{\circ}\), there exist \(\hat y\in \hat L_{\hat x}\), finitely many points \((h_i,s_i)\in\widehat K^{\circ}\) and weights \(a_i\ge0\) with \(\sum_ia_i=\|v-u\|\) and \(\langle(h_i,s_i),\hat y\rangle=\lambda\big(\langle(h_i,s_i),\hat x\rangle\big)\) for all \(i\), such that
+<span class="math">\[
+	\hat v-\hat u=\sum_ia_i(h_i,s_i).
+\]</span>
+For \((h,s)\in\widehat K^{\circ}\), concavity and evenness of \(\lambda\) give
+<span class="math">\[
+	\begin{aligned}
+	\lambda\big(\langle(h,s),\hat x\rangle\big)&=\lambda\Big(\frac{1+s}2\big(1-\delta(1-\langle h,x\rangle)\big)-\frac{1-s}2\big(1-\delta(1+\langle h,x\rangle)\big)\Big)\\
+	&\ge\frac{1+s}2\,\lambda\big(1-\delta(1-\langle h,x\rangle)\big)+\frac{1-s}2\,\lambda\big(1-\delta(1+\langle h,x\rangle)\big).
+	\end{aligned}\tag{10}
+\]</span>
+Apply (10) to each \((h_i,s_i)\), then pair with \(\hat y\), and finally use \(\hat y\in \hat L_{\hat x}\) for \(\hat v/\|v\|\) and \(-\hat u/\|u\|\), which lie in \(\widehat K^{\circ}\), together with evenness of \(\lambda\) and the definition of \(\hat x\):
+<span class="math">\[
+	\begin{aligned}
+	&\sum_ia_i\Big(\frac{1+s_i}2\,\lambda\big(1-\delta(1-\langle h_i,x\rangle)\big)+\frac{1-s_i}2\,\lambda\big(1-\delta(1+\langle h_i,x\rangle)\big)\Big)\\
+	&\qquad\le\sum_ia_i\lambda\big(\langle(h_i,s_i),\hat x\rangle\big)=\langle\hat v-\hat u,\hat y\rangle\\
+	&\qquad\le\|v\|\,\lambda\Big(1-\delta\Big(1-\frac{\langle v,x\rangle}{\|v\|}\Big)\Big)+\|u\|\,\lambda\Big(1-\delta\Big(1-\frac{\langle u,x\rangle}{\|u\|}\Big)\Big).
+	\end{aligned}\tag{11}
+\]</span>
+Now divide (11) by \(\lambda(1-\delta)\) and let \(\delta\searrow0\). Every argument of \(\lambda\) in (11) is of the form \(1-\delta c\) with \(c\in[1-\|x\|_K,1+\|x\|_K]\), so by Lemma 10 each ratio \(\lambda(1-\delta c)/\lambda(1-\delta)\) may be replaced by \(c\), with a total error of \(o(1)\):
+<span class="math">\[
+	\begin{aligned}
+	\sum_ia_i\big(1-s_i\langle h_i,x\rangle\big)&=\sum_ia_i\Big(\frac{1+s_i}2\big(1-\langle h_i,x\rangle\big)+\frac{1-s_i}2\big(1+\langle h_i,x\rangle\big)\Big)\\
+	&\le\|v\|\Big(1-\frac{\langle v,x\rangle}{\|v\|}\Big)+\|u\|\Big(1-\frac{\langle u,x\rangle}{\|u\|}\Big)+o(1)\\
+	&=\|v\|+\|u\|-\langle v+u,x\rangle+o(1).
+	\end{aligned}\tag{12}
+\]</span>
+Now put
+<span class="math">\[w:=v-\sum_ia_i\frac{1+s_i}2h_i.
+\]</span>
+Since \(\sum_ia_ih_i=v-u\), we have \(u-w=-\sum_ia_i\frac{1-s_i}2h_i\), and since \(\|h_i\|\le1\),
+<span class="math">\[
+	\|v-w\|+\|u-w\|\le\sum_ia_i\Big(\frac{1+s_i}2+\frac{1-s_i}2\Big)=\|v-u\|,
+\]</span>
+so \(w\in W\).</p>
+<p><b>Figure 3: proof of Lemma 8</b></p>
+<div class="figure med-fig" id="fig-3">
+<svg viewBox="0 0 560 400" role="img" aria-label="The cone of the l-infinity norm over the plane, the lifted points u-hat and v-hat on it, the path through 0 and the geodesic whose lowest point lies above the median w. Drag to rotate."></svg>
+<div class="med-ctl"><button type="button" data-act="new">new <i>u</i>, <i>v</i></button><button type="button" data-act="reset">reset</button><span>drag to rotate</span></div>
+</div>
+<script>
+(function(){
+  // l_inf norm on R^2, cone {(z,t): |z|_inf <= t}. Plain SVG, redrawn at most once per frame while dragging.
+  const box=document.getElementById('fig-3'), svg=box.querySelector('svg'), NS='http://www.w3.org/2000/svg';
+  const T=2.4, B=2.7, S=62, CX=280, CY=215;
+  const U0=[2.2,0.4], V0=[1.6,1.8], AZ0=230, EL0=26;
+  let u=U0.slice(), v=V0.slice(), az=AZ0, el=EL0, queued=false;
+  const nrm=(p)=>Math.max(Math.abs(p[0]),Math.abs(p[1]));
+  // (a,b) -> ((a+b)/2,(a-b)/2) is an isometry from l_inf onto l_1, where medians are coordinatewise medians
+  const toL1=(p)=>[(p[0]+p[1])/2,(p[0]-p[1])/2], fromL1=(p)=>[p[0]+p[1],p[0]-p[1]];
+  const med3=(a,b,c)=>Math.max(Math.min(a,b),Math.min(Math.max(a,b),c));
+  function proj(z1,z2,t){
+    const a=az*Math.PI/180, e=el*Math.PI/180;
+    const D=z1*Math.sin(a)+z2*Math.cos(a);
+    return [CX+S*(z1*Math.cos(a)-z2*Math.sin(a)), CY-S*(t-1.1)*Math.cos(e)+S*D*Math.sin(e)];
+  }
+  const pts=(arr)=>arr.map(p=>proj(p[0],p[1],p[2]).map(c=>c.toFixed(1)).join(',')).join(' ');
+  function add(tag,attrs,text){ const n=document.createElementNS(NS,tag); for(const k in attrs) n.setAttribute(k,attrs[k]); if(text!=null) n.textContent=text; svg.appendChild(n); return n; }
+  function line(p,q,cls){ const a=proj(...p), b=proj(...q); add('line',{x1:a[0],y1:a[1],x2:b[0],y2:b[1],'class':cls}); }
+  function dot(p,cls){ const a=proj(...p); add('circle',{cx:a[0],cy:a[1],r:4,'class':cls}); }
+  function lbl(p,s,dx,dy,cls){ const a=proj(...p); return add('text',{x:a[0]+dx,y:a[1]+dy,'class':cls||'lbl'},s); }
+  function draw(){
+    queued=false; svg.textContent='';
+    const u1=toL1(u), v1=toL1(v);
+    const w=fromL1([med3(0,u1[0],v1[0]),med3(0,u1[1],v1[1])]), r=nrm(w);
+    const Wc=[u1,[v1[0],u1[1]],v1,[u1[0],v1[1]]].map(fromL1);
+    add('polygon',{points:pts([[B,B,0],[B,-B,0],[-B,-B,0],[-B,B,0]]),'class':'plane'});
+    add('polygon',{points:pts(Wc.map(p=>[p[0],p[1],0])),'class':'wset'});
+    const C=[[T,T],[T,-T],[-T,-T],[-T,T]];
+    for(const c of C) line([0,0,0],[c[0],c[1],T],'cone');
+    add('polygon',{points:pts(C.map(c=>[c[0],c[1],T])),'class':'conetop'});
+    const uh=[u[0],u[1],nrm(u)], vh=[v[0],v[1],nrm(v)], wh=[w[0],w[1],r];
+    for(const p of [uh,vh,wh]) line(p,[p[0],p[1],0],'drop');
+    add('polyline',{points:pts([uh,[0,0,0],vh]),'class':'trivial'});
+    add('polyline',{points:pts([uh,wh,vh]),'class':'geo'});
+    for(const p of [[u[0],u[1],0],[v[0],v[1],0],[w[0],w[1],0],[0,0,0]]) dot(p,'pt small');
+    for(const p of [uh,vh,wh]) dot(p,'pt');
+    lbl(uh,'u',8,2); lbl(uh,'ˆ',9,-2,'lbl hat'); lbl(vh,'v',8,2); lbl(vh,'ˆ',9,-2,'lbl hat');
+    lbl(wh,'(w, ½(‖u‖+‖v‖−‖v−u‖))',12,5,'lbl small');
+    lbl([u[0],u[1],0],'u',8,4); lbl([v[0],v[1],0],'v',8,4); lbl([w[0],w[1],0],'w',7,15);
+    lbl([0,0,0],'0',-15,5,'lbl up'); lbl([Wc[1][0],Wc[1][1],0],'W',-8,-8,'lbl wl');
+    lbl([C[1][0],C[1][1],T],'t = ‖z‖',8,4,'lbl small muted');
+  }
+  const redraw=()=>{ if(!queued){ queued=true; requestAnimationFrame(draw); } };
+  let drag=null;
+  svg.addEventListener('pointerdown',(e)=>{ drag=[e.clientX,e.clientY,az,el]; svg.setPointerCapture(e.pointerId); });
+  svg.addEventListener('pointermove',(e)=>{ if(!drag) return;
+    az=drag[2]-(e.clientX-drag[0])*0.5; el=Math.max(5,Math.min(85,drag[3]+(e.clientY-drag[1])*0.4)); redraw(); });
+  const stop=()=>{ drag=null; }; svg.addEventListener('pointerup',stop); svg.addEventListener('pointercancel',stop);
+  box.querySelector('[data-act="new"]').addEventListener('click',()=>{
+    // random distinct u, v on the visible part of the cone, with a visibly positive Gromov product
+    for(let k=0;k<200;k++){
+      const p=[Math.random()*4.4-2.2,Math.random()*4.4-2.2], q=[Math.random()*4.4-2.2,Math.random()*4.4-2.2];
+      const g=(nrm(p)+nrm(q)-nrm([p[0]-q[0],p[1]-q[1]]))/2;
+      if(nrm(p)>0.8&&nrm(q)>0.8&&g>0.4&&nrm([p[0]-q[0],p[1]-q[1]])>0.8){ u=p; v=q; break; }
+    }
+    redraw(); });
+  box.querySelector('[data-act="reset"]').addEventListener('click',()=>{ u=U0.slice(); v=V0.slice(); az=AZ0; el=EL0; redraw(); });
+  draw();
+})();
+</script>
+<p>Adding the expressions for \(v-w\) and \(u-w\) gives \(v+u-2w=\sum_ia_is_ih_i\), so the left side of (12) is \(\|v-u\|-\langle v+u-2w,x\rangle\), and (12) reads
+<span class="math">\[
+	\langle w,x\rangle\le\tfrac12\big(\|v\|+\|u\|-\|v-u\|\big)+o(1)\qquad\text{as }\delta\searrow0.
+\]</span>
+This proves (9), since \(w\in W\). \(\square\)</p>
+<div class="callout callout-theorem" id="theorem-9-lima-lima-1978-hansen-lima-hansen-lima-1981"><div class="callout-title">Theorem 9 (Lima,<sup class="fn"><a href="#fn-lima-1978" id="fnref-lima-1978">6</a></sup> Hansen–Lima<sup class="fn"><a href="#fn-hansen-lima-1981" id="fnref-hansen-lima-1981">7</a></sup>)</div><p>Let \(\|\cdot\|\) be a norm on \(\mathbb{R}^{d}\). Suppose that every triple of points has a median in \((\mathbb{R}^{d},\|\cdot\|)\). Then the unit ball of \(\|\cdot\|\) is a linear image of a Hanner polytope.</p></div>
+<p><i>Proof.</i> A normed space has the <i>3.2 intersection property</i> if any three pairwise intersecting closed balls, of arbitrary radii, have a common point.<sup class="fn"><a href="#fn-hl-sec1" id="fnref-hl-sec1">8</a></sup> Let the closed balls of radii \(\rho_i\) centered at \(x_i\), \(i=1,2,3\), intersect pairwise. Let \(m\) be a median of the centers and \(r_i=\|m-x_i\|\), so \(r_i+r_j=\|x_i-x_j\|\le\rho_i+\rho_j\). If every \(r_i\le\rho_i\), then \(m\) is a common point. Otherwise say \(t:=r_1-\rho_1>0\), so \(r_j+t\le\rho_j\) for \(j=2,3\). The point \(z=m+\frac t{r_1}(x_1-m)\) has \(\|z-x_1\|=\rho_1\) and \(\|z-x_j\|\le t+r_j\le\rho_j\). Hence the space has the 3.2 intersection property, and the conclusion is Corollary 7.4 of Hansen–Lima.<sup class="fn"><a href="#fn-hl-cor74" id="fnref-hl-cor74">9</a></sup> \(\square\)</p>
+<p>Suppose \(\operatorname{Vol}(K)\operatorname{Vol}(K^{\circ})=4^{d}/d!\). By Lemma 8 and Theorem 9, the unit ball \(K^{\circ}\) of \(\|\cdot\|_{K^{\circ}}\) is a linear image of a Hanner polytope. Polarity swaps \(\oplus_1\) and \(\oplus_\infty\) and commutes with linear maps up to transpose-inverse, so \(K=(K^{\circ})^{\circ}\) is one too.</p>
+<p>Conversely, for symmetric bodies \(A\subset\mathbb{R}^{k}\), \(A'\subset\mathbb{R}^{l}\), the fiber of \(A\oplus_1A'\) over \(x\in A\) is \((1-\|x\|_A)A'\), so
+<span class="math">\[
+	\operatorname{Vol}(A\oplus_1A')=k\operatorname{Vol}(A)\operatorname{Vol}(A')\int_0^{1}t^{k-1}(1-t)^{l}\,dt=\frac{k!\,l!}{(k+l)!}\operatorname{Vol}(A)\operatorname{Vol}(A')
+\]</span>
+and
+<span class="math">\[
+	\operatorname{Vol}(A\oplus_\infty A')=\operatorname{Vol}(A)\operatorname{Vol}(A').
+\]</span>
+Since polarity swaps the two sums, both satisfy \(\operatorname{Vol}(A\oplus A')\operatorname{Vol}\big((A\oplus A')^{\circ}\big)=\operatorname{Vol}(A)\operatorname{Vol}(A^{\circ})\cdot\operatorname{Vol}(A')\operatorname{Vol}(A'^{\circ})\big/\binom{k+l}{k}\). A segment gives \(4\), so induction gives \(4^{d}/d!\) for every Hanner polytope, and linear maps do not change the volume product. \(\square\)</p>
+<h3 id="appendix-properties-of-the-function">Appendix: Properties of the function \(F\)</h3>
+<p><span id="proof-of-lemma-0"></span><i>Proof of Lemma 0.</i>
+The integrand \(\operatorname{arctanh}\big(\sin\frac{\pi s}{2}\big)\) is positive on \((0,1)\) and \(O\big(\log\frac{1}{1-s}\big)\) as \(s\uparrow1\), so \(\lambda\) is continuous on \([-1,1]\), \(\lambda(\pm1)=0\), and \(\lambda>0\) on \((-1,1)\). For \(0\lt |t| \lt 1\), since \(\lambda\) is even,
+<span class="math">\[
+	\lambda'(t)=-\frac{2}{\pi}\operatorname{arctanh}\Big(\sin\frac{\pi t}{2}\Big),
+\]</span>
+and this also holds at \(t=0\), because the right-hand side is continuous and vanishes there. Differentiating again,
+<span class="math">\[
+	\lambda''(t)=-\frac{2}{\pi}\cdot\frac{\frac{\pi}{2}\cos\frac{\pi t}{2}}{1-\sin^{2}\frac{\pi t}{2}}=-\sec\frac{\pi t}{2}<0,\qquad -1\lt t \lt 1,
+\]</span>
+so \(\lambda\) is strictly concave on \([-1,1]\).</p>
+<p>The series converges absolutely on \(\overline{\mathbb D}\), so \(F\) is continuous there, \(F(\pm1)=\pm\frac{8}{\pi^{2}}\sum_j(2j+1)^{-2}=\pm1\), and \(F(\bar z)=\overline{F(z)}\). 
+Differentiating the series and multiplying by \(z\), we get <span class="math">\[
+zF'(z)=\frac{8}{\pi^{2}}\operatorname{arctanh}z,
+\]</span> which extends analytically across \(\partial\mathbb D\setminus\{\pm1\}\). For \(0 \lt \theta<\pi\), \(\operatorname{arctanh}e^{i\theta}=\frac12\log\big(i\cot\frac\theta2\big)\), so
+<span class="math">\[
+	\frac{d}{d\theta}F(e^{i\theta})=\frac{8i}{\pi^{2}}\operatorname{arctanh}e^{i\theta}=-\frac{2}{\pi}+\frac{4i}{\pi^{2}}\log\cot\frac{\theta}{2}.
+\]</span>
+Hence \(\mathrm{Re}\,F(e^{i\theta})=1-2\theta/\pi=:t\), and, by \(\log\cot\frac{x}{2}=\operatorname{arctanh}(\cos x)\), \(\frac{d}{dt}\mathrm{Im}\,F=-\frac{2}{\pi}\operatorname{arctanh}\big(\sin\frac{\pi t}{2}\big)=\lambda'(t)\) with \(\mathrm{Im}\,F=0\) at \(t=\pm1\). </p>
+<p>So \(\mathrm{Im}\,F(e^{i\theta})=\lambda(t)\), and since \(F(\bar z)=\overline{F(z)}\),
+<span class="math">\[
+	F(e^{\pm i\theta})=t\pm i\lambda(t),\qquad t=1-\frac{2\theta}{\pi},\quad 0\le\theta\le\pi.
+\]</span>
+Thus \(F\) maps the upper and the lower semicircle bijectively onto the upper and the lower half of \(\partial D\), and \(F|_{\partial\mathbb D}\) is a homeomorphism onto the Jordan curve \(\partial D\), which it traverses counterclockwise. The domain \(D\) is convex because \(\lambda\) is concave.</p>
+<p>Let \(w\in\mathbb{C}\setminus\partial D\). As \(r\uparrow1\), the curves \(\theta\mapsto F(re^{i\theta})\) converge uniformly to \(\theta\mapsto F(e^{i\theta})\), so for \(r\) close to \(1\) their winding number around \(w\) is \(1\) if \(w\in D\) and \(0\) if \(w\notin\overline D\). By the argument principle, \(F\) takes every value in \(D\) exactly once in \(\mathbb D\) and no value outside \(\overline D\). Since \(F(\mathbb D)\) is open, it does not meet \(\partial D\). Hence \(F\) is a biholomorphism of \(\mathbb D\) onto \(D\), and, with the boundary correspondence, a continuous bijection of the compact set \(\overline{\mathbb D}\) onto \(\overline D\), hence a homeomorphism.</p>
+<p>Let \(\zeta\) be uniform on \(\partial\mathbb D\), and write \(\zeta=e^{i\varepsilon\theta}\) with \(\varepsilon\in\{-1,1\}\) and \(\theta\in(0,\pi)\), which is possible almost surely. Then \(\varepsilon\) is a uniform sign, and \(\theta\) is uniform on \((0,\pi)\) and independent of \(\varepsilon\). So \(T:=1-2\theta/\pi\) is uniform on \([-1,1]\) and independent of \(\varepsilon\), and \(F(\zeta)=T+i\varepsilon\lambda(T)\). \(\square\)</p>
+<div class="callout callout-lemma" id="lemma-10"><div class="callout-title">Lemma 10</div><p>For every \(0 \lt a\le b\), 
+<span class="math">\[
+\ \lim_{\delta \searrow0}\sup_{a\le c\le b}\Big|\frac{\lambda(1-\delta c)}{\lambda(1-\delta)}-c\Big|=0.
+\]</span></p></div>
+<p><i>Proof.</i> Substituting \(s=1-\tau\) in the definition of \(\lambda\) in Lemma 0 and using \(\operatorname{arctanh}(\cos u)=\log\cot\frac u2\),
+<span class="math">\[
+	\lambda(1-\eta)=\frac2\pi\int_0^{\eta}\log\cot\frac{\pi\tau}{4}\,d\tau=\frac2\pi\,\eta\Big(\log\frac1\eta+1+\log\frac4\pi\Big)+O(\eta^{3}).
+\]</span>
+The ratio at \(\eta=\delta c\) and \(\eta=\delta\) is \(c\,\big(1+O(1/\log\tfrac1\delta)\big)\), uniformly for \(c\in[a,b]\). \(\square\)</p>
+<hr><section class="footnotes"><ol><li id="fn-fmz">M. Fradelizi, M. Meyer and A. Zvavitch, <i>Volume product</i>, survey, 2023. <a href="https://arxiv.org/abs/2301.06131">arXiv:2301.06131</a>. <a href="#fnref-fmz" class="fnback">↩</a></li><li id="fn-nazarov">F. Nazarov, <i>The H&ouml;rmander proof of the Bourgain&ndash;Milman theorem</i>, in: Geometric Aspects of Functional Analysis, Lecture Notes in Math. <b>2050</b>, Springer, 2012, 335&ndash;343. <a href="https://doi.org/10.1007/978-3-642-29849-3_20">doi:10.1007/978-3-642-29849-3_20</a>. <a href="#fnref-nazarov" class="fnback">↩</a></li><li id="fn-berndtsson-pw">B. Berndtsson, <i>Bergman kernels for Paley&ndash;Wiener spaces and Nazarov&rsquo;s proof of the Bourgain&ndash;Milman theorem</i>, Pure Appl. Math. Q. <b>18</b> (2022), no. 2, 395&ndash;409. <a href="https://arxiv.org/abs/2008.00837">arXiv:2008.00837</a>. <a href="#fnref-berndtsson-pw" class="fnback">↩</a></li><li id="fn-berndtsson-kup">B. Berndtsson, <i>Complex integrals and Kuperberg&rsquo;s proof of the Bourgain&ndash;Milman theorem</i>, Adv. Math. <b>388</b> (2021), 107927. <a href="https://doi.org/10.1016/j.aim.2021.107927">doi:10.1016/j.aim.2021.107927</a>, <a href="https://arxiv.org/abs/2008.00838">arXiv:2008.00838</a>. <a href="#fnref-berndtsson-kup" class="fnback">↩</a></li><li id="fn-demailly">The gluing via \(\widetilde{\max}(g,h)\) followed by Stokes on \(U_{s}\setminus r\overline{\mathbb B}_d\) is the proof of the first comparison theorem for Lelong numbers (J.-P. Demailly, "Complex Analytic and Differential Geometry", book manuscript, version of June 21, 2012, Ch. III, Th. 7.1, p. 166), which uses \(\max(\psi-c,\varphi)\) in the same role. The regularized maximum \(\widetilde{\max}\) is Lemma 5.18 in Ch. I of the same manuscript, p. 43. <a href="https://www-fourier.ujf-grenoble.fr/~demailly/manuscripts/agbook.pdf">https://www-fourier.ujf-grenoble.fr/~demailly/manuscripts/agbook.pdf</a>. <a href="#fnref-demailly" class="fnback">↩</a></li><li id="fn-lima-1978">Å. Lima, <i>Intersection properties of balls in spaces of compact operators</i>, Ann. Inst. Fourier (Grenoble) <b>28</b> (1978), no. 3, 35–65, Theorem 1.2, (ii)\(\Leftrightarrow\)(iii): the 3.2 intersection property is equivalent to the \(R_{3,2}\)-property of p. 38, which is the existence of a median for every triple \(0,x,y\). <a href="https://doi.org/10.5802/aif.700">doi:10.5802/aif.700</a>. <a href="#fnref-lima-1978" class="fnback">↩</a></li><li id="fn-hansen-lima-1981">A. B. Hansen and Å. Lima, <i>The structure of finite dimensional Banach spaces with the 3.2. intersection property</i>, Acta Math. <b>146</b> (1981), 1–23. <a href="https://doi.org/10.1007/BF02392457">doi:10.1007/BF02392457</a>. <a href="#fnref-hansen-lima-1981" class="fnback">↩</a></li><li id="fn-hl-sec1">Hansen–Lima, Section 1, p. 1: the \(n.k.\) intersection property is defined with closed balls of arbitrary radii. The median form of the 3.2 property is their Theorem 3.6, (1)\(\Leftrightarrow\)(4), pp. 5–6, attributed there to Lima. <a href="#fnref-hl-sec1" class="fnback">↩</a></li><li id="fn-hl-cor74">Hansen–Lima, Corollary 7.4, p. 16: every finite dimensional Banach space with the 3.2.I.P. can be obtained by forming \(l_1\)- and \(l_\infty\)-sums of the real line. Deduced from the main Theorem 7.3 by Proposition 4.4 and induction. <a href="#fnref-hl-cor74" class="fnback">↩</a></li></ol></section>
+<hr>
+<p class="footnotes">The text of this note is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, and the code for the figures under the MIT license; see the <a href="https://github.com/RotemAssouline/symmetric-mahler-note/blob/main/LICENSE">LICENSE</a> file. The original preprint is distributed under the <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 license</a>.</p>
+<script>
+// shim for the figures' require('obsidian'): renderMath / finishRenderMath via MathJax
+window.require = function(name){
+  if (name !== 'obsidian') throw new Error('no module ' + name);
+  return {
+    renderMath: function(tex){ return MathJax.tex2chtml(tex, {display:false}); },
+    finishRenderMath: function(){ MathJax.startup.document.clear(); MathJax.startup.document.updateDocument(); }
+  };
+};
+function runFigures(){
+  if (runFigures.done) return; runFigures.done = true;
+(function(){ const dv = { container: document.getElementById("fig-1") };
+// Figure 1. The lens D = F(unit disk) and its boundary law
+// Mahler proof whiteboard. Convention: D = {t + iv : |t| <= 1, |v| <= lambda(t)} contains (-1,1); z = x + iy.
+// Needs the Dataview plugin with "Enable JavaScript Queries" switched on.
+// SIZE: the figure is at most DEFAULT_WIDTH pixels wide, and shrinks with the page.
+const DEFAULT_WIDTH = 680;
+const FIG_KEY = 'mahler-fig-1-lens';
+const root = dv.container;
+root.classList.add('mfig-root');
+const PI = Math.PI, NS = 'http://www.w3.org/2000/svg';
+function el(tag, attrs, parent){ const e=document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; }
+function txt(parent, x, y, s, cls, anchor){ const t=el('text',{x:x,y:y,'class':cls||'svgtext','text-anchor':anchor||'start'},parent); t.textContent=s; return t; }
+
+// ---------- shared styles; colours follow the Obsidian theme ----------
+const style=document.createElement('style');
+style.textContent=`
+.mfig-root { --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100; --s5:#e87ba4; --s6:#4a3aa7; --lx:#c9d6e6; --flush:#2a78d6; --sunk:#eb6834; --hullc:#8a3fb8; --ok:#1d8a5a; --warn:#b4521c; }
+.theme-dark .mfig-root { --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181; --s6:#9085e9; --lx:#3b4a5e; --flush:#3987e5; --sunk:#d95926; --hullc:#c38ae8; --ok:#4cc08a; --warn:#f08a4b; }
+.mfig-root .mfig-box { margin:0 auto; }
+.mfig-root .mfig-controls { display:flex; flex-wrap:wrap; gap:.4rem .6rem; align-items:center; font-size:.85em; margin:.25rem 0 .45rem; }
+.mfig-root .mfig-controls button { font-size:.9em; padding:.2rem .55rem; cursor:pointer; }
+.mfig-root .mfig-controls button[aria-pressed="true"] { outline:2px solid var(--interactive-accent); }
+.mfig-root .mfig-controls label { display:inline-flex; align-items:center; gap:.3rem; }
+.mfig-root .mfig-controls input[type=range] { width:7rem; }
+.mfig-root .mfig-two { display:grid; grid-template-columns:1fr 1fr; gap:.5rem; align-items:start; }
+.mfig-root .mfig-box.narrow .mfig-two { grid-template-columns:1fr; }
+.mfig-root svg.fig, .mfig-root canvas.fig { box-sizing:border-box; width:100%; height:auto; display:block; background:var(--background-primary); border:1px solid var(--background-modifier-border); border-radius:4px; user-select:none; -webkit-user-select:none; }
+.mfig-root canvas.fig { aspect-ratio:1/1; touch-action:none; cursor:grab; }
+.mfig-root .svgtext { font-family:var(--font-interface, sans-serif); font-size:12px; fill:var(--text-normal); }
+.mfig-root .svgmuted { font-family:var(--font-interface, sans-serif); font-size:11px; fill:var(--text-muted); }
+.mfig-root .readout { display:grid; grid-template-columns:repeat(auto-fit, minmax(9rem, 1fr)); gap:.25rem .9rem; margin-top:.35rem; font-size:.8em; font-variant-numeric:tabular-nums; }
+.mfig-root .readout > div { min-width:0; overflow-wrap:anywhere; }
+.mfig-root .k { color:var(--text-muted); }
+.mfig-root .legend { display:flex; flex-wrap:wrap; gap:.3rem .9rem; font-size:.78em; color:var(--text-muted); margin:.25rem 0; }
+.mfig-root .legend .sw { display:inline-block; width:14px; height:3px; vertical-align:middle; margin-right:.35rem; border-radius:2px; }
+`;
+root.appendChild(style);
+// Colours are read from the page body (always attached) and a fixed palette, never from this block's own
+// element: Dataview runs the code before the block is attached, when the block's styles do not resolve yet.
+const TOKENS={'--fg':'--text-normal','--muted':'--text-muted','--rule':'--background-modifier-border','--accent':'--interactive-accent','--card':'--background-secondary','--surface':'--background-primary','--bg':'--background-primary'};
+const PALETTE={
+  light:{'--s1':'#2a78d6','--s2':'#eb6834','--s3':'#1baf7a','--s4':'#eda100','--s5':'#e87ba4','--s6':'#4a3aa7','--lx':'#c9d6e6','--flush':'#2a78d6','--sunk':'#eb6834','--hullc':'#8a3fb8','--ok':'#1d8a5a','--warn':'#b4521c',
+          '--fg':'#222222','--muted':'#777777','--rule':'#dddddd','--accent':'#5b6bd5','--card':'#f2f2f2','--surface':'#ffffff','--bg':'#ffffff'},
+  dark:{'--s1':'#3987e5','--s2':'#d95926','--s3':'#199e70','--s4':'#c98500','--s5':'#d55181','--s6':'#9085e9','--lx':'#3b4a5e','--flush':'#3987e5','--sunk':'#d95926','--hullc':'#c38ae8','--ok':'#4cc08a','--warn':'#f08a4b',
+          '--fg':'#dcddde','--muted':'#999999','--rule':'#3a3a3a','--accent':'#8a7cf0','--card':'#262626','--surface':'#1e1e1e','--bg':'#1e1e1e'} };
+const isDark=()=>document.body.classList.contains('theme-dark');
+function css(name){
+  const pal=PALETTE[isDark()?'dark':'light'];
+  if (TOKENS[name]){ const v=getComputedStyle(document.body).getPropertyValue(TOKENS[name]).trim(); if (v) return v; }
+  return pal[name]||'#888888';
+}
+
+// ---------- the box that sets the figure's width ----------
+const box=document.createElement('div'); box.className='mfig-box'; root.appendChild(box);
+box.style.maxWidth=DEFAULT_WIDTH+'px';
+const q=(id)=>root.querySelector('[data-id="'+id+'"]');
+function setupBox(){
+  // keep clicks and drags inside the figure from reaching the Obsidian editor (Live Preview)
+  for (const ev of ['mousedown','pointerdown','touchstart']) root.addEventListener(ev,(e)=>e.stopPropagation());
+}
+// redraw only when Obsidian switches between light and dark; stop watching once this block is gone
+function onTheme(fn){ let dark=isDark(), seen=false; const mo=new MutationObserver(()=>{ if (root.isConnected) seen=true; else if (seen){ mo.disconnect(); return; } const d=isDark(); if (d!==dark){ dark=d; fn(); } }); mo.observe(document.body,{attributes:true,attributeFilter:['class']}); }
+
+box.insertAdjacentHTML('beforeend','<svg class="fig" data-id="svgA" viewBox="0 0 720 380" role="img" aria-description="Unit disk with marked angles, and the lens with the images of those angles at equally spaced abscissae"></svg>');
+setupBox();
+
+// ---------- the lens half-height lambda(t): lambda'(t) = -(2/pi) artanh(sin(pi t/2)), lambda(1) = 0 ----------
+const NT=801, lamTab=new Float64Array(NT), SUBS=48;
+const dl=(s)=>{ const x=Math.sin(PI*s/2); return (2/PI)*0.5*Math.log((1+x)/(1-x)); };
+lamTab[NT-1]=0;
+for (let n=NT-2;n>=0;n--){ const ns=n>NT-6?SUBS*400:SUBS; const a=n/(NT-1), h=1/((NT-1)*ns); let s=0; for (let k=0;k<ns;k++) s+=dl(a+(k+0.5)*h); lamTab[n]=lamTab[n+1]+s*h; }
+function lam(t){ t=Math.abs(t); if (t>=1) return 0; const x=t*(NT-1), i=Math.floor(x), f=x-i; return lamTab[i]*(1-f)+lamTab[Math.min(i+1,NT-1)]*f; }
+
+// ---------- F(z) = (8/pi^2) sum z^(2j+1)/(2j+1)^2 by its power series ----------
+  function F(re, im){ let sr=0, si=0, pr=re, pi_=im; // z^(2j+1)
+    const z2r = re*re-im*im, z2i = 2*re*im;
+    for (let j=0;j<400;j++){ const m=2*j+1, c=1/(m*m); sr+=c*pr; si+=c*pi_; const nr=pr*z2r-pi_*z2i, ni=pr*z2i+pi_*z2r; pr=nr; pi_=ni; }
+    return [8/(PI*PI)*sr, 8/(PI*PI)*si]; }
+
+// ---------- the figure ----------
+  function drawLens(){
+    const svg=q('svgA'); svg.innerHTML='';
+    const L={cx:170,cy:190,r:130}, R={cx:540,cy:190,s:130};
+    const muted=css('--muted'), fg=css('--fg'), rule=css('--rule'), s1=css('--s1'), s2=css('--s2');
+    // left: unit circle
+    el('circle',{cx:L.cx,cy:L.cy,r:L.r,fill:'none',stroke:fg,'stroke-width':1.5},svg);
+    el('line',{x1:L.cx-L.r-10,y1:L.cy,x2:L.cx+L.r+10,y2:L.cy,stroke:rule,'stroke-width':1},svg);
+    el('line',{x1:L.cx,y1:L.cy-L.r-10,x2:L.cx,y2:L.cy+L.r+10,stroke:rule,'stroke-width':1},svg);
+    // conformal grid: circles r=0.5,0.8 and rays
+    for (const r of [0.5,0.8]) el('circle',{cx:L.cx,cy:L.cy,r:L.r*r,fill:'none',stroke:rule,'stroke-width':1,'stroke-dasharray':'3 3'},svg);
+    for (let a=0;a<12;a++){ const th=a*PI/6; el('line',{x1:L.cx,y1:L.cy,x2:L.cx+L.r*Math.cos(th),y2:L.cy-L.r*Math.sin(th),stroke:rule,'stroke-width':1,'stroke-dasharray':'3 3'},svg); }
+    txt(svg,L.cx,L.cy-L.r-18,'unit disk  𝔻','svgtext','middle');
+    txt(svg,L.cx+L.r+6,L.cy+4,'1','svgmuted');
+    txt(svg,L.cx+4,L.cy-L.r-2,'i','svgmuted');
+    // right: lens (contains the interval (-1,1) of the real axis)
+    const X=(t)=>R.cx+R.s*t, Y=(v)=>R.cy-R.s*v;
+    el('line',{x1:X(-1.12),y1:R.cy,x2:X(1.12),y2:R.cy,stroke:rule,'stroke-width':1},svg);
+    el('line',{x1:R.cx,y1:Y(0.88),x2:R.cx,y2:Y(-0.88),stroke:rule,'stroke-width':1},svg);
+    // images of circles and rays
+    function path(points){ return points.map((p,i)=>(i?'L':'M')+X(p[0]).toFixed(2)+' '+Y(p[1]).toFixed(2)).join(' '); }
+    for (const r of [0.5,0.8]){ const pts=[]; for(let a=0;a<=240;a++){ const th=2*PI*a/240; pts.push(F(r*Math.cos(th), r*Math.sin(th))); } el('path',{d:path(pts)+' Z',fill:'none',stroke:rule,'stroke-width':1,'stroke-dasharray':'3 3'},svg); }
+    for (let a=0;a<12;a++){ const th=a*PI/6, pts=[]; for(let n=0;n<=60;n++){ const r=0.995*n/60; pts.push(F(r*Math.cos(th), r*Math.sin(th))); } el('path',{d:path(pts),fill:'none',stroke:rule,'stroke-width':1,'stroke-dasharray':'3 3'},svg); }
+    // boundary: upper branch v=+lambda(t) (sigma=+1), lower branch v=-lambda(t) (sigma=-1)
+    const upB=[], loB=[]; for(let n=0;n<=400;n++){ const t=-1+2*n/400; upB.push([t,lam(t)]); loB.push([t,-lam(t)]); }
+    el('path',{d:path(upB),fill:'none',stroke:s1,'stroke-width':2},svg);
+    el('path',{d:path(loB),fill:'none',stroke:s2,'stroke-width':2},svg);
+    // marked angles 15,45,...,165 degrees on the upper semicircle (blue) and mirrored on the lower one (orange)
+    for (const sd of [15,45,75,105,135,165]){ const th=sd*PI/180, t=1-2*th/PI, w=lam(t);
+      el('circle',{cx:L.cx+L.r*Math.cos(th),cy:L.cy-L.r*Math.sin(th),r:4.5,fill:s1,stroke:css('--surface'),'stroke-width':1.5},svg);
+      el('circle',{cx:X(t),cy:Y(w),r:4.5,fill:s1,stroke:css('--surface'),'stroke-width':1.5},svg);
+      el('circle',{cx:L.cx+L.r*Math.cos(th),cy:L.cy+L.r*Math.sin(th),r:4.5,fill:s2,stroke:css('--surface'),'stroke-width':1.5},svg);
+      el('circle',{cx:X(t),cy:Y(-w),r:4.5,fill:s2,stroke:css('--surface'),'stroke-width':1.5},svg);
+    }
+    // half-height annotation at t0 = 1/3
+    const t0=1/3, w0=lam(t0);
+    const defs=el('defs',{},svg); const mk=el('marker',{id:'mfigArrLens',viewBox:'0 0 10 10',refX:'9',refY:'5',markerWidth:'6',markerHeight:'6',orient:'auto'},defs); el('path',{d:'M0 0 L10 5 L0 10 z',fill:fg},mk);
+    el('line',{x1:X(t0),y1:Y(0),x2:X(t0),y2:Y(w0)+3,stroke:fg,'stroke-width':1.2,'marker-end':'url(#mfigArrLens)'},svg);
+    txt(svg,X(t0)+6,Y(w0/2)+4,'λ(t)','svgtext');
+    txt(svg,R.cx,42,'D = F(𝔻)','svgtext','middle');
+    txt(svg,X(1)+5,R.cy+14,'1','svgmuted','start'); txt(svg,X(-1)-5,R.cy+14,'−1','svgmuted','end');
+    // arrow between panels
+    el('line',{x1:L.cx+L.r+36,y1:L.cy,x2:X(-1)-22,y2:R.cy,stroke:fg,'stroke-width':1.2,'marker-end':'url(#mfigArrLens)'},svg);
+    txt(svg,(L.cx+L.r+36+X(-1)-22)/2,L.cy-8,'F','svgtext','middle');
+  }
+drawLens();
+onTheme(drawLens);
+})();
+
+(function(){ const dv = { container: document.getElementById("fig-2") };
+// Figure 2. The fiber L_x and the feasible simplices Sigma_x in K polar, in dimension 2 or 3 (switch at the top)
+// Mahler proof whiteboard. Convention: D = {t + iv : |t| <= 1, |v| <= lambda(t)} contains (-1,1); z = x + iy.
+// Needs the Dataview plugin with "Enable JavaScript Queries" switched on.
+// SIZE: the figure is at most DEFAULT_WIDTH pixels wide, and shrinks with the page.
+const DEFAULT_WIDTH = 840;
+const FIG_KEY = 'mahler-fig-2-simplices-2d-3d';
+const root = dv.container;
+root.classList.add('mfig-root');
+const PI = Math.PI, NS = 'http://www.w3.org/2000/svg';
+function el(tag, attrs, parent){ const e=document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; }
+function txt(parent, x, y, s, cls, anchor){ const t=el('text',{x:x,y:y,'class':cls||'svgtext','text-anchor':anchor||'start'},parent); t.textContent=s; return t; }
+
+// ---------- LaTeX: $…$ in labels goes through Obsidian's MathJax (so preamble.sty applies); plain text if unavailable ----------
+const OBS=(()=>{ try { return require('obsidian'); } catch(e){ return null; } })();
+let mathFlush=false;
+// typeset each TeX string once and hand out clones: the 2D figure redraws its labels on every pointer move
+const texCache=new Map();
+function texNode(tex){
+  const hit=texCache.get(tex); if (hit) return hit.cloneNode(true);
+  if (OBS && OBS.renderMath){ try { const m=OBS.renderMath(tex,false);
+    if (!mathFlush){ mathFlush=true; Promise.resolve().then(()=>{ mathFlush=false; try { OBS.finishRenderMath(); } catch(e){} }); }
+    texCache.set(tex,m.cloneNode(true)); return m; } catch(e){} }
+  const s=document.createElement('span'); s.textContent=tex; return s; }
+// replace every $…$ in the text under node by rendered math
+function mathify(node){ const tw=document.createTreeWalker(node, NodeFilter.SHOW_TEXT); const hits=[]; while (tw.nextNode()) if (tw.currentNode.nodeValue.includes('$')) hits.push(tw.currentNode);
+  for (const t of hits){ const parts=t.nodeValue.split(/\$([^$]+)\$/); if (parts.length<2) continue; const frag=document.createDocumentFragment();
+    parts.forEach((p,i)=>{ if (i%2) frag.appendChild(texNode(p)); else if (p) frag.appendChild(document.createTextNode(p)); }); t.parentNode.replaceChild(frag,t); }
+  return node; }
+function setHTML(node, html){ node.innerHTML=html; return mathify(node); }
+// an SVG label with math: (x,y) is the baseline point, anchor as for <text>
+function texLabel(parent, x, y, s, cls, anchor, color, bold){ const W=320, H=24; anchor=anchor||'start';
+  const fo=el('foreignObject',{x:anchor==='middle'?x-W/2:(anchor==='end'?x-W:x), y:y-17, width:W, height:H, 'class':'mfig-tex'},parent);
+  const d=document.createElement('div'); d.className='mfig-texbox '+(cls||'svgtext'); d.style.textAlign=anchor==='middle'?'center':(anchor==='end'?'right':'left');
+  if (color) d.style.color=color; if (bold) d.style.fontWeight='600'; d.textContent=s; fo.appendChild(mathify(d)); return fo; }
+
+// ---------- shared styles; colours follow the Obsidian theme ----------
+const style=document.createElement('style');
+style.textContent=`
+.mfig-root { --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100; --s5:#e87ba4; --s6:#4a3aa7; --lx:#c9d6e6; --flush:#2a78d6; --sunk:#eb6834; --hullc:#8a3fb8; --ok:#1d8a5a; --warn:#b4521c; }
+.theme-dark .mfig-root { --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181; --s6:#9085e9; --lx:#3b4a5e; --flush:#3987e5; --sunk:#d95926; --hullc:#c38ae8; --ok:#4cc08a; --warn:#f08a4b; }
+.mfig-root .mfig-box { margin:0 auto; }
+.mfig-root .mfig-controls { display:flex; flex-wrap:wrap; gap:.4rem .6rem; align-items:center; font-size:.85em; margin:.25rem 0 .45rem; }
+.mfig-root .mfig-controls button { font-size:.9em; padding:.2rem .55rem; cursor:pointer; }
+.mfig-root .mfig-controls button[aria-pressed="true"] { outline:2px solid var(--interactive-accent); }
+.mfig-root .mfig-controls label { display:inline-flex; align-items:center; gap:.3rem; }
+.mfig-root .mfig-controls input[type=range] { width:7rem; }
+.mfig-root .mfig-two { display:grid; grid-template-columns:1fr 1fr; gap:.5rem; align-items:start; }
+.mfig-root .mfig-box.narrow .mfig-two { grid-template-columns:1fr; }
+.mfig-root svg.fig, .mfig-root canvas.fig { box-sizing:border-box; width:100%; height:auto; display:block; background:var(--background-primary); border:1px solid var(--background-modifier-border); border-radius:4px; user-select:none; -webkit-user-select:none; }
+.mfig-root canvas.fig { aspect-ratio:1/1; touch-action:none; cursor:grab; }
+.mfig-root .svgtext { font-family:var(--font-interface, sans-serif); font-size:12px; fill:var(--text-normal); }
+.mfig-root .svgmuted { font-family:var(--font-interface, sans-serif); font-size:11px; fill:var(--text-muted); }
+.mfig-root .readout { display:grid; grid-template-columns:repeat(auto-fit, minmax(9rem, 1fr)); gap:.25rem .9rem; margin-top:.35rem; font-size:.8em; font-variant-numeric:tabular-nums; }
+.mfig-root .readout > div { min-width:0; overflow-wrap:anywhere; }
+.mfig-root .k { color:var(--text-muted); }
+.mfig-root .legend { display:flex; flex-wrap:wrap; gap:.3rem .9rem; font-size:.78em; color:var(--text-muted); margin:.25rem 0; }
+.mfig-root .legend .sw { display:inline-block; width:14px; height:3px; vertical-align:middle; margin-right:.35rem; border-radius:2px; }
+`;
+root.appendChild(style);
+// Colours are read from the page body (always attached) and a fixed palette, never from this block's own
+// element: Dataview runs the code before the block is attached, when the block's styles do not resolve yet.
+const TOKENS={'--fg':'--text-normal','--muted':'--text-muted','--rule':'--background-modifier-border','--accent':'--interactive-accent','--card':'--background-secondary','--surface':'--background-primary','--bg':'--background-primary'};
+const PALETTE={
+  light:{'--s1':'#2a78d6','--s2':'#eb6834','--s3':'#1baf7a','--s4':'#eda100','--s5':'#e87ba4','--s6':'#4a3aa7','--lx':'#c9d6e6','--flush':'#2a78d6','--sunk':'#eb6834','--hullc':'#8a3fb8','--ok':'#1d8a5a','--warn':'#b4521c',
+          '--fg':'#222222','--muted':'#777777','--rule':'#dddddd','--accent':'#5b6bd5','--card':'#f2f2f2','--surface':'#ffffff','--bg':'#ffffff'},
+  dark:{'--s1':'#3987e5','--s2':'#d95926','--s3':'#199e70','--s4':'#c98500','--s5':'#d55181','--s6':'#9085e9','--lx':'#3b4a5e','--flush':'#3987e5','--sunk':'#d95926','--hullc':'#c38ae8','--ok':'#4cc08a','--warn':'#f08a4b',
+          '--fg':'#dcddde','--muted':'#999999','--rule':'#3a3a3a','--accent':'#8a7cf0','--card':'#262626','--surface':'#1e1e1e','--bg':'#1e1e1e'} };
+const isDark=()=>document.body.classList.contains('theme-dark');
+function css(name){
+  const pal=PALETTE[isDark()?'dark':'light'];
+  if (TOKENS[name]){ const v=getComputedStyle(document.body).getPropertyValue(TOKENS[name]).trim(); if (v) return v; }
+  return pal[name]||'#888888';
+}
+
+// ---------- the box that sets the figure's width ----------
+const box=document.createElement('div'); box.className='mfig-box'; root.appendChild(box);
+box.style.maxWidth=DEFAULT_WIDTH+'px';
+const q=(id)=>root.querySelector('[data-id="'+id+'"]');
+function setupBox(){
+  // keep clicks and drags inside the figure from reaching the Obsidian editor (Live Preview)
+  for (const ev of ['mousedown','pointerdown','touchstart']) root.addEventListener(ev,(e)=>e.stopPropagation());
+  new ResizeObserver(()=>box.classList.toggle('narrow', box.clientWidth<440)).observe(box);
+}
+// redraw only when Obsidian switches between light and dark; stop watching once this block is gone
+function onTheme(fn){ let dark=isDark(), seen=false; const mo=new MutationObserver(()=>{ if (root.isConnected) seen=true; else if (seen){ mo.disconnect(); return; } const d=isDark(); if (d!==dark){ dark=d; fn(); } }); mo.observe(document.body,{attributes:true,attributeFilter:['class']}); }
+
+const style3=document.createElement('style');
+style3.textContent=`
+.mfig-root .t3-view { position:relative; min-width:0; }
+.mfig-root .t3-vlabel { position:absolute; left:.5rem; top:.35rem; font-size:.95em; color:var(--text-muted); pointer-events:none; }
+.mfig-root .t3-vlabel.r { left:auto; right:.5rem; }
+.mfig-root .val { font-variant-numeric:tabular-nums; min-width:2.6rem; display:inline-block; }
+.mfig-root .t3-msg { color:var(--text-muted); font-size:.8em; min-height:1.1em; }
+.mfig-root .t3-legend { display:flex; flex-wrap:wrap; gap:.25rem .9rem; font-size:.78em; color:var(--text-muted); margin-top:.4rem; }
+.mfig-root .t3-sw { display:inline-block; width:.75rem; height:.75rem; border-radius:2px; vertical-align:-1px; margin-right:.3rem; }
+.mfig-root .t3-status { display:flex; flex-wrap:wrap; gap:.35rem; margin-top:.45rem; }
+.mfig-root .t3-pill { display:inline-block; font-size:.75em; padding:.02rem .45rem; border-radius:999px; border:1px solid currentColor; }
+.mfig-root .t3-pill.ok { color:var(--ok); } .mfig-root .t3-pill.warn { color:var(--warn); }
+.mfig-root .t3-read { display:grid; grid-template-columns:repeat(auto-fit, minmax(11rem, 1fr)); gap:.25rem .9rem; font-size:.8em; margin-top:.5rem; font-variant-numeric:tabular-nums; }
+.mfig-root .t3-read > div { min-width:0; overflow-wrap:anywhere; }
+.mfig-root .t3-x { display:grid; grid-template-columns:auto auto minmax(6rem,1fr) 3rem auto; gap:.15rem .6rem; align-items:center; font-size:.85em; margin:.35rem 0 .5rem; }
+.mfig-root .t3-x .t3-xhead { grid-row:1/4; grid-column:1; font-size:1.2em; padding-right:.2rem; border-right:2px solid var(--background-modifier-border); align-self:stretch; display:flex; align-items:center; }
+.mfig-root .t3-x input[type=range] { width:100%; }
+.mfig-root .t3-x .t3-xbtns { grid-row:1/4; grid-column:5; display:flex; flex-direction:column; gap:.35rem; justify-content:center; }
+.mfig-root .t3-x .t3-xbtns button { font-size:.9em; padding:.2rem .7rem; cursor:pointer; }
+.mfig-root .t3-x .t3-xbtns button[aria-pressed="true"] { outline:2px solid var(--interactive-accent); }
+.mfig-root foreignObject.mfig-tex { overflow:visible; pointer-events:none; }
+.mfig-root .mfig-texbox { line-height:24px; white-space:nowrap; color:var(--text-normal); }
+.mfig-root .mfig-texbox.svgmuted { color:var(--text-muted); }
+.mfig-root .mfig-texbox.svgcap { font-family:var(--font-interface, sans-serif); font-size:15px; color:var(--text-muted); }
+`;
+root.appendChild(style3);
+
+const styleDim=document.createElement('style');
+styleDim.textContent=`
+.mfig-root .mfig-dim { display:flex; justify-content:center; margin:.2rem 0 .6rem; }
+.mfig-root .mfig-dim button { font-size:1.05em; padding:.4rem 1.2rem; cursor:pointer; border:1px solid var(--background-modifier-border); background:var(--background-primary); color:var(--text-normal); }
+.mfig-root .mfig-dim button:first-child { border-radius:6px 0 0 6px; }
+.mfig-root .mfig-dim button:last-child { border-radius:0 6px 6px 0; border-left:none; }
+.mfig-root .mfig-dim button[aria-pressed="true"] { background:var(--interactive-accent); color:var(--text-on-accent, #fff); border-color:var(--interactive-accent); }
+`;
+root.appendChild(styleDim);
+box.insertAdjacentHTML('beforeend',`<div class="mfig-dim" role="group" aria-description="dimension"><button type="button" data-id="dim2" aria-pressed="true">d = 2</button><button type="button" data-id="dim3" aria-pressed="false">d = 3</button></div>
+<div data-id="pane2"><div class="mfig-controls"><span>Body:</span>
+  <button type="button" data-body="square">square</button>
+  <button type="button" data-body="parallelogram">random parallelogram</button>
+  <button type="button" data-body="hexagon">hexagon (paper's example)</button>
+  <button type="button" data-body="octagon">octagon</button>
+  <button type="button" data-body="random">random</button>
+  <span class="k">Drag $x$ on the left.</span>
+</div>
+<div class="legend" data-id="legB"></div>
+<div class="mfig-two">
+  <svg class="fig" data-id="svgB1" viewBox="0 0 360 360" role="img" aria-description="Primal plane: the body K, the point x, the fiber L_x and its candidate vertices"></svg>
+  <svg class="fig" data-id="svgB2" viewBox="0 0 360 360" role="img" aria-description="Dual plane: K polar, with the feasible simplices filled and the uncovered part hatched"></svg>
+</div></div>
+<div data-id="pane3"><div class="mfig-controls"><span>Body:</span>
+  <button type="button" data-id="bt-cube" data-body3="cube">cube</button>
+  <button type="button" data-id="bt-octahedron" data-body3="octahedron">octahedron</button>
+  <button type="button" data-id="bt-rhombdodec" data-body3="rhombdodec">rhombic dodecahedron</button>
+  <button type="button" data-id="bt-cubocta" data-body3="cubocta">cuboctahedron</button>
+  <button type="button" data-id="bt-random" data-body3="random">random (5 rows)</button>
+</div>
+<div class="t3-x">
+  <span class="t3-xhead">$x$</span>
+  <span class="k">direction</span><input type="range" data-id="sAz" min="-180" max="180" step="1" value="92"><span class="val" data-id="vAz"></span>
+  <span class="k">tilt</span><input type="range" data-id="sEl" min="-90" max="90" step="1" value="30"><span class="val" data-id="vEl"></span>
+  <span class="k">way to $\\partial K$</span><input type="range" data-id="sFr" min="0" max="0.99" step="0.01" value="0.9"><span class="val" data-id="vFr"></span>
+  <div class="t3-xbtns"><button type="button" data-id="btRand">random&nbsp;$x$</button><button type="button" data-id="btTour" aria-pressed="false">tour</button><button type="button" data-id="btView">reset view</button></div>
+</div>
+<div class="mfig-controls">
+  <label >explode <input type="range" data-id="sEx" min="0" max="0.6" step="0.02" value="0"></label>
+  <label><input type="checkbox" data-id="chLink" checked> link cameras</label>
+</div>
+<div class="mfig-two t3-views">
+  <div class="t3-view"><canvas class="fig" data-id="cvL" aria-description="Primal view: the body K, the point x and the fiber L_x"></canvas><div class="t3-vlabel">$x$, $K$, $L_x$</div><div class="t3-vlabel r">primal</div></div>
+  <div class="t3-view"><canvas class="fig" data-id="cvR" aria-description="Dual view: K polar with the feasible tetrahedra"></canvas><div class="t3-vlabel">$K^\\circ$, $\\Sigma_x$</div><div class="t3-vlabel r">dual</div></div>
+</div>
+<div class="t3-legend" data-id="legend"></div></div>`);
+setupBox(); mathify(box);
+
+// ---------- the lens half-height lambda(t): lambda'(t) = -(2/pi) artanh(sin(pi t/2)), lambda(1) = 0 ----------
+const NT=801, lamTab=new Float64Array(NT), SUBS=48;
+const dl=(s)=>{ const x=Math.sin(PI*s/2); return (2/PI)*0.5*Math.log((1+x)/(1-x)); };
+lamTab[NT-1]=0;
+for (let n=NT-2;n>=0;n--){ const ns=n>NT-6?SUBS*400:SUBS; const a=n/(NT-1), h=1/((NT-1)*ns); let s=0; for (let k=0;k<ns;k++) s+=dl(a+(k+0.5)*h); lamTab[n]=lamTab[n+1]+s*h; }
+function lam(t){ t=Math.abs(t); if (t>=1) return 0; const x=t*(NT-1), i=Math.floor(x), f=x-i; return lamTab[i]*(1-f)+lamTab[Math.min(i+1,NT-1)]*f; }
+
+// ---------- d = 2: the figure ----------
+  (function(){
+    const s1=q('svgB1'), s2=q('svgB2'), leg=q('legB'); if(!s1||!s2) return;
+    const r3=Math.sqrt(3)/2;
+    const BODIES={
+      square:   [[1,0],[0,1]],
+      hexagon:  [[1,0],[0.5,r3],[-0.5,r3]],
+      octagon:  [[1,0],[Math.SQRT1_2,Math.SQRT1_2],[0,1],[-Math.SQRT1_2,Math.SQRT1_2]],
+      irregular:[[1,0],[0.35,0.95],[-0.55,0.8],[-0.9,0.25]],
+    };
+    function randomBody(){ // 4 rows, resampled until every ±b_j is a vertex of conv{±b_j} (no redundant strip), as in the paper's setting
+      for (let tries=0; tries<200; tries++){ const rows=[]; const base=Math.random()*0.3; for(let j=0;j<4;j++){ const th=base+j*PI/4+(Math.random()-0.5)*0.5, r=0.7+0.6*Math.random(); rows.push([r*Math.cos(th), r*Math.sin(th)]); }
+        const pts=rows.concat(rows.map(b=>[-b[0],-b[1]])); const H=hull(pts); if (H.length===8) return rows; }
+      return BODIES.octagon; }
+    function randomParallelogram(){ const t1=Math.random()*PI, t2=t1+PI/4+Math.random()*PI/2; const r1=0.7+0.6*Math.random(), r2=0.7+0.6*Math.random(); return [[r1*Math.cos(t1),r1*Math.sin(t1)],[r2*Math.cos(t2),r2*Math.sin(t2)]]; }
+    const palette=['--s1','--s2','--s3','--s4','--s5','--s6'];
+    const dot=(a,b)=>a[0]*b[0]+a[1]*b[1];
+    let B=BODIES.hexagon, bodyName='hexagon', Xp=[0.9,0.9/Math.sqrt(3)];
+    const C={cx:180,cy:180}; let S1=118, S2=118;
+    const PX1=(p)=>[C.cx+S1*p[0], C.cy-S1*p[1]], PX2=(p)=>[C.cx+S2*p[0], C.cy-S2*p[1]];
+    function pairs(){ const out=[]; for(let i=0;i<B.length;i++) for(let j=i+1;j<B.length;j++) out.push([i,j]); return out; }
+    function solve(i,j,ri,rj){ const a=B[i][0],b=B[i][1],c=B[j][0],d=B[j][1], det=a*d-b*c; return [( d*ri-b*rj)/det, (-c*ri+a*rj)/det]; }
+    function hull(pts){ const P=pts.slice().sort((p,q)=>p[0]-q[0]||p[1]-q[1]); const cross=(o,a,b)=>(a[0]-o[0])*(b[1]-o[1])-(a[1]-o[1])*(b[0]-o[0]); const lo=[],up=[]; for(const p of P){ while(lo.length>=2&&cross(lo[lo.length-2],lo[lo.length-1],p)<=0) lo.pop(); lo.push(p);} for(let i=P.length-1;i>=0;i--){ const p=P[i]; while(up.length>=2&&cross(up[up.length-2],up[up.length-1],p)<=0) up.pop(); up.push(p);} lo.pop(); up.pop(); return lo.concat(up); }
+    function area(poly){ let a=0; for(let i=0;i<poly.length;i++){ const p=poly[i], q=poly[(i+1)%poly.length]; a+=p[0]*q[1]-q[0]*p[1]; } return Math.abs(a)/2; }
+    function stripPoly(w){ const cands=[]; pairs().forEach(([i,j],bi)=>{ const D=Math.abs(B[i][0]*B[j][1]-B[i][1]*B[j][0]); for (const ei of [1,-1]) for (const ej of [1,-1]){ const Y=solve(i,j,ei*w[i],ej*w[j]); let feas=true; for(let k=0;k<B.length;k++){ if(k===i||k===j) continue; if(Math.abs(dot(B[k],Y))>w[k]+1e-9){ feas=false; break; } } cands.push({Y,bi,i,j,ei,ej,feas,D}); } });
+      const verts=cands.filter(c=>c.feas).map(c=>c.Y).sort((p,q)=>Math.atan2(p[1],p[0])-Math.atan2(q[1],q[0]));
+      return {cands, verts}; }
+    const polyD=(pts,PX)=>pts.map((p,i)=>{const q=PX(p); return (i?'L':'M')+q[0].toFixed(2)+' '+q[1].toFixed(2);}).join(' ')+' Z';
+    const sgn=(e)=>e>0?'+':'\u2212';
+    const sub=(n)=>String(n).replace(/\d/g,d=>'\u2080\u2081\u2082\u2083\u2084\u2085\u2086\u2087\u2088\u2089'[d]);
+    const tag=(c)=>sgn(c.ei)+'b'+sub(c.i+1)+', '+sgn(c.ej)+'b'+sub(c.j+1);
+    // labels that move with x are plain SVG text (italic serif letters, Unicode subscripts), not typeset math:
+    // a MathJax label is an HTML subtree in a foreignObject, too heavy to recreate on every frame of a drag
+    function svgLabel(parent, x, y, segs, cls, anchor, color, bold){ const t=el('text',{x:x,y:y,'class':cls||'svgtext','text-anchor':anchor||'start'},parent);
+      if (color) t.style.fill=color; if (bold) t.style.fontWeight='600';
+      for (const [s,it] of segs){ const sp=el('tspan',{},t); sp.textContent=s; if (it){ sp.style.fontStyle='italic'; sp.style.fontFamily='"Times New Roman", Times, serif'; sp.style.fontSize='1.2em'; } }
+      return t; }
+    const vtag=(c)=>[[sgn(c.ei),0],['b',1],[sub(c.i+1)+', '+sgn(c.ej),0],['b',1],[sub(c.j+1),0]];
+    let A, Apolar;
+    function setBody(rows,name){ B=rows; bodyName=name; A=stripPoly(B.map(()=>1)).verts; Apolar=hull(B.concat(B.map(b=>[-b[0],-b[1]])));
+      S1=150/Math.max(...A.map(p=>Math.hypot(p[0],p[1]))); S2=150/Math.max(...Apolar.map(p=>Math.hypot(p[0],p[1])));
+      setHTML(leg, pairs().map(([i,j],bi)=>'<span><i class="sw" style="background:var('+palette[bi%palette.length]+')"></i>basis $\\{'+(i+1)+','+(j+1)+'\\}$</span>').join(''));
+      Xp=clampIn(Xp); }
+    function firstVertex(){ return A.slice().sort((p,q)=>{ const ap=(Math.atan2(p[1],p[0])+2*PI)%(2*PI), aq=(Math.atan2(q[1],q[0])+2*PI)%(2*PI); return ap-aq; })[0]; }
+    // Layers: what depends only on the body and theme is drawn once (buildStatic); a drag redraws only the
+    // layers that depend on x (build), at most once per animation frame.
+    let g1, g2, g2top, cols;
+    function buildStatic(){
+      const fg=css('--fg'), muted=css('--muted'), rule=css('--rule'), surf=css('--surface'), card=css('--card');
+      // triangle fill = 35% of the basis colour over the background, precomputed so each triangle is one opaque path
+      const cx=document.createElement('canvas').getContext('2d'); const rgb=(c)=>{ cx.fillStyle='#000'; cx.fillStyle=c; const v=cx.fillStyle; return v[0]==='#'?[1,3,5].map(i=>parseInt(v.slice(i,i+2),16)):v.match(/[\d.]+/g).slice(0,3).map(Number); };
+      const mix=(c,a)=>{ const p=rgb(c), q=rgb(surf); return 'rgb('+p.map((x,i)=>Math.round(a*x+(1-a)*q[i])).join(',')+')'; };
+      const pal=palette.map(css);
+      cols={fg,muted,rule,surf,card,pal,tint:pal.map(c=>mix(c,0.35))};
+      s1.innerHTML=''; s2.innerHTML='';
+      el('line',{x1:0,y1:C.cy,x2:360,y2:C.cy,stroke:rule},s1); el('line',{x1:C.cx,y1:0,x2:C.cx,y2:360,stroke:rule},s1);
+      el('path',{d:polyD(A,PX1),fill:'none',stroke:fg,'stroke-width':1.5},s1);
+      const a0=PX1(A[0]); texLabel(s1,a0[0]+6,a0[1]-6,'$K$','svgtext');
+      { const d1=el('defs',{},s1); const mk=el('marker',{id:'mfigArrB1',viewBox:'0 0 10 10',refX:'9',refY:'5',markerWidth:'6',markerHeight:'6',orient:'auto'},d1); el('path',{d:'M0 0 L10 5 L0 10 z',fill:fg},mk); }
+      B.forEach((b,j)=>{ const n=Math.hypot(b[0],b[1]); const foot=[b[0]/n/n, b[1]/n/n]; if (B.some(bb=>Math.abs(dot(bb,foot))>1+1e-9)) return; /* strip j is redundant: no facet, no arrow */ const L=32/S1; const tip=[foot[0]+b[0]/n*L, foot[1]+b[1]/n*L]; const p0=PX1(foot), p1=PX1(tip);
+        el('line',{x1:p0[0],y1:p0[1],x2:p1[0],y2:p1[1],stroke:fg,'stroke-width':1.3,'marker-end':'url(#mfigArrB1)'},s1);
+        const lp=PX1([tip[0]+b[0]/n*(12/S1), tip[1]+b[1]/n*(12/S1)]); texLabel(s1,lp[0],lp[1]+4,'$b_{'+(j+1)+'}$','svgtext','middle'); });
+      texLabel(s1,10,22,'$x$, $K$, $L_x$','svgcap'); texLabel(s1,350,22,'primal','svgcap','end');
+      g1=el('g',{},s1);
+      const defs=el('defs',{},s2); const pat=el('pattern',{id:'mfigHatchB',width:'7',height:'7',patternUnits:'userSpaceOnUse',patternTransform:'rotate(45)'},defs); el('line',{x1:0,y1:0,x2:0,y2:7,stroke:muted,'stroke-width':1.2},pat);
+      el('line',{x1:0,y1:C.cy,x2:360,y2:C.cy,stroke:rule},s2); el('line',{x1:C.cx,y1:0,x2:C.cx,y2:360,stroke:rule},s2);
+      el('path',{d:polyD(Apolar,PX2),fill:'url(#mfigHatchB)',stroke:fg,'stroke-width':1.5},s2);
+      g2=el('g',{},s2); g2top=el('g',{},s2);
+      B.forEach((b,j)=>{ for (const e of [1,-1]){ const n=Math.hypot(b[0],b[1]); const q=PX2([e*b[0]*(1+0.13/n),e*b[1]*(1+0.13/n)]); texLabel(g2top,q[0],q[1]+4,'${'+(e>0?'+':'-')+'}b_{'+(j+1)+'}$','svgtext','middle'); } });
+      el('circle',{cx:C.cx,cy:C.cy,r:3,fill:fg},g2top);
+      texLabel(g2top,10,22,'$K^\\circ$, $\\Sigma_x$','svgcap'); texLabel(g2top,350,22,'dual','svgcap','end');
+    }
+    function build(){
+      const {fg,muted,surf,card,pal,tint}=cols, s1=g1, s2=g2;
+      g1.replaceChildren(); g2.replaceChildren();
+      const w=B.map(b=>lam(dot(b,Xp)));
+      const {cands,verts}=stripPoly(w);
+      if (verts.length>=3) el('path',{d:polyD(verts,PX1),fill:card,stroke:fg,'stroke-width':1.2},s1);
+      B.forEach((n,j)=>{ for (const e of [1,-1]){ const nn=Math.hypot(n[0],n[1]); const c=e*w[j]/nn/nn; const t=[-n[1],n[0]]; const p0=[n[0]*c,n[1]*c]; const p1=[p0[0]-t[0]*2,p0[1]-t[1]*2], p2=[p0[0]+t[0]*2,p0[1]+t[1]*2]; const a=PX1(p1), b=PX1(p2); el('line',{x1:a[0],y1:a[1],x2:b[0],y2:b[1],stroke:muted,'stroke-width':1,'stroke-dasharray':'2 4',opacity:0.7},s1); } });
+      for (const c of cands){ const q=PX1(c.Y); if (Math.abs(q[0]-180)>175||Math.abs(q[1]-180)>175) continue; const col=pal[c.bi%pal.length]; if (c.feas) el('circle',{cx:q[0],cy:q[1],r:5,fill:col,stroke:surf,'stroke-width':1.5},s1); else el('circle',{cx:q[0],cy:q[1],r:5,fill:surf,stroke:col,'stroke-width':2},s1);
+        const dir=Math.hypot(c.Y[0],c.Y[1])>1e-9?[c.Y[0]/Math.hypot(c.Y[0],c.Y[1]),c.Y[1]/Math.hypot(c.Y[0],c.Y[1])]:[1,0]; svgLabel(s1,q[0]+12*dir[0],q[1]-12*dir[1]+4,[[sgn(c.ei)+sgn(c.ej),0]],'svgmuted',dir[0]<-0.3?'end':(dir[0]>0.3?'start':'middle'),col); }
+      const xq=PX1(Xp); el('circle',{cx:xq[0],cy:xq[1],r:7,fill:fg,stroke:surf,'stroke-width':2},s1); svgLabel(s1,xq[0]+10,xq[1]-8,[['x',1]]);
+      if (verts.length>=3){ const c=verts.reduce((a,p)=>[a[0]+p[0]/verts.length,a[1]+p[1]/verts.length],[0,0]); const cq=PX1(c); svgLabel(s1,cq[0],cq[1]+4,[['L',1],['ₓ',0]],'svgtext','middle'); }
+      for (const c of cands){ if(!c.feas) continue; const tri=[[0,0],[c.ei*B[c.i][0],c.ei*B[c.i][1]],[c.ej*B[c.j][0],c.ej*B[c.j][1]]]; const col=pal[c.bi%pal.length];
+        el('path',{d:polyD(tri,PX2),fill:tint[c.bi%pal.length],stroke:col,'stroke-width':1.2},s2);
+        const cen=PX2([(tri[1][0]+tri[2][0])/3,(tri[1][1]+tri[2][1])/3]); svgLabel(s2,cen[0],cen[1]+4,vtag(c),'svgmuted','middle',col); }
+    }
+    function clampIn(p){ let m=0; for (const b of B) m=Math.max(m,Math.abs(dot(b,p))); return m>=0.995 ? [p[0]*0.995/m, p[1]*0.995/m] : p; }
+    function fromEvent(ev){ const r=s1.getBoundingClientRect(); const x=(ev.clientX-r.left)*360/r.width, y=(ev.clientY-r.top)*360/r.height; return clampIn([(x-C.cx)/S1, (C.cy-y)/S1]); }
+    let dragging=false, queued=false;
+    const schedule=()=>{ if (queued) return; queued=true; requestAnimationFrame(()=>{ queued=false; build(); }); };
+    const rebuild=()=>{ buildStatic(); build(); };
+    s1.addEventListener('pointerdown',(ev)=>{ ev.preventDefault(); dragging=true; s1.setPointerCapture(ev.pointerId); Xp=fromEvent(ev); schedule(); });
+    s1.addEventListener('pointermove',(ev)=>{ if(!dragging) return; ev.preventDefault(); Xp=fromEvent(ev); schedule(); });
+    s1.addEventListener('pointerup',()=>{ dragging=false; }); s1.addEventListener('pointercancel',()=>{ dragging=false; });
+    s1.style.touchAction='none'; s1.style.cursor='crosshair';
+    root.querySelectorAll('button[data-body]').forEach(b=>b.addEventListener('click',()=>{ const n=b.getAttribute('data-body'); setBody(n==='random'?randomBody():(n==='parallelogram'?randomParallelogram():BODIES[n]), n); rebuild(); }));
+    setBody(BODIES.hexagon,'hexagon'); rebuild();
+    onTheme(rebuild);
+  })();
+
+// ---------- d = 3: geometry core ----------
+/* ---------- Figure 2b: geometry core ---------- */
+/* ---------- geometry core: lens half-height, strip polytopes, feasible tetrahedra, hulls, volumes ---------- */
+const G = (function(){
+  const PI = Math.PI;
+  // lambda(t) = Im F(e^{i theta}) where Re F(e^{i theta}) = t; same series as the planar whiteboard
+  // closed form of the derivative: lambda'(t) = -(2/pi) artanh(sin(pi t/2)), and lambda(1) = 0;
+  // integrate backward from t = 1 with a fine midpoint rule (the log singularity at t = 1 is integrable)
+  const NT = 801, lamTab = new Float64Array(NT), SUBS = 48;
+  const dl = (s)=>{ const x=Math.sin(PI*s/2); return (2/PI)*0.5*Math.log((1+x)/(1-x)); };
+  lamTab[NT-1]=0;
+  for (let n=NT-2;n>=0;n--){ const ns=n>NT-6?SUBS*400:SUBS; const a=n/(NT-1), h=1/((NT-1)*ns); let s=0; for (let q=0;q<ns;q++) s+=dl(a+(q+0.5)*h); lamTab[n]=lamTab[n+1]+s*h; }
+  function lam(t){ t=Math.abs(t); if (t>=1) return 0; const x=t*(NT-1), i=Math.floor(x), f=x-i; return lamTab[i]*(1-f)+lamTab[Math.min(i+1,NT-1)]*f; }
+
+  const dot=(a,b)=>a[0]*b[0]+a[1]*b[1]+a[2]*b[2];
+  const cross=(a,b)=>[a[1]*b[2]-a[2]*b[1], a[2]*b[0]-a[0]*b[2], a[0]*b[1]-a[1]*b[0]];
+  const sub=(a,b)=>[a[0]-b[0],a[1]-b[1],a[2]-b[2]];
+  const add=(a,b)=>[a[0]+b[0],a[1]+b[1],a[2]+b[2]];
+  const scl=(a,s)=>[a[0]*s,a[1]*s,a[2]*s];
+  const nrm=(a)=>Math.hypot(a[0],a[1],a[2]);
+  const det3=(a,b,c)=>dot(a,cross(b,c));
+  function solve3(a,b,c,r){ const D=det3(a,b,c), bc=cross(b,c), ca=cross(c,a), ab=cross(a,b);
+    return [(r[0]*bc[0]+r[1]*ca[0]+r[2]*ab[0])/D, (r[0]*bc[1]+r[1]*ca[1]+r[2]*ab[1])/D, (r[0]*bc[2]+r[1]*ca[2]+r[2]*ab[2])/D]; }
+
+  // fixed generic perturbation of the right-hand sides: decides ties at vertices where more than 3 facets meet
+  const PERT=[0.4142,0.7320,0.2360,0.6457,0.3166,0.6055,0.1231,0.8730,0.4721,0.3589,0.5826,0.2915].map(x=>1+1e-7*x);
+
+  // for each basis I = {i,j,k}: Y = r_i c0 + r_j c1 + r_k c2, and b_l . Y = sum_q r_q K[l][q] for every other row l
+  function triples(B){ const out=[]; const m=B.length;
+    for (let i=0;i<m;i++) for (let j=i+1;j<m;j++) for (let k=j+1;k<m;k++){ const Ds=det3(B[i],B[j],B[k]); if (Math.abs(Ds)<=1e-10) continue;
+      const c0=scl(cross(B[j],B[k]),1/Ds), c1=scl(cross(B[k],B[i]),1/Ds), c2=scl(cross(B[i],B[j]),1/Ds);
+      const others=[], K=[]; for (let l=0;l<m;l++){ if (l===i||l===j||l===k) continue; others.push(l); K.push(dot(B[l],c0),dot(B[l],c1),dot(B[l],c2)); }
+      out.push({i,j,k,D:Math.abs(Ds),c0,c1,c2,others,K:Float64Array.from(K)}); }
+    return out; }
+
+  // feasible (I, eps): the three hyperplanes eps_i b_i . Y = w_i meet at a vertex of {|b_l . Y| <= w_l}
+  // L_x is symmetric, so (I, eps) is feasible iff (I, -eps) is: test 4 sign patterns and record both
+  function feasible(B, w, TR, countOnly){ TR = TR || triples(B); const wp=w.map((x,l)=>x*PERT[l%PERT.length]); const out=[]; let covered=0;
+    for (const T of TR){ const {i,j,k,K,others}=T; const n=others.length;
+      for (let s=0;s<4;s++){ const r0=wp[i], r1=(s&1)?-wp[j]:wp[j], r2=(s&2)?-wp[k]:wp[k]; let ok=true;
+        for (let q=0;q<n;q++){ const v=r0*K[3*q]+r1*K[3*q+1]+r2*K[3*q+2]; if (v>=wp[others[q]]||-v>=wp[others[q]]){ ok=false; break; } }
+        if (!ok) continue; covered+=T.D/3;
+        if (countOnly) continue;
+        const e1=(s&1)?-1:1, e2=(s&2)?-1:1; const a=w[i], b=e1*w[j], c=e2*w[k];
+        const Y=[a*T.c0[0]+b*T.c1[0]+c*T.c2[0], a*T.c0[1]+b*T.c1[1]+c*T.c2[1], a*T.c0[2]+b*T.c1[2]+c*T.c2[2]];
+        out.push({I:[i,j,k], e:[1,e1,e2], Y, D:T.D}, {I:[i,j,k], e:[-1,-e1,-e2], Y:[-Y[0],-Y[1],-Y[2]], D:T.D}); } }
+    out.covered=covered; return countOnly?covered:out; }
+
+  function dedupe(pts, tol){ const out=[]; for (const p of pts){ if (!out.some(q=>Math.abs(q[0]-p[0])<tol&&Math.abs(q[1]-p[1])<tol&&Math.abs(q[2]-p[2])<tol)) out.push(p); } return out; }
+
+  // convex hull of a small point set (brute force over triples); faces as ordered polygons with outward unit normal n and offset h
+  function hull(ptsIn){ const P=dedupe(ptsIn, 1e-9); const N=P.length; let sc=0; for (const p of P) sc=Math.max(sc,nrm(p)); const eps=1e-8*Math.max(sc,1e-6);
+    const faces=[]; const seen=[];
+    for (let i=0;i<N;i++) for (let j=i+1;j<N;j++) for (let k=j+1;k<N;k++){
+      let n=cross(sub(P[j],P[i]),sub(P[k],P[i])); const L=nrm(n); if (L<1e-12*sc*sc) continue; n=scl(n,1/L); let h=dot(n,P[i]);
+      let pos=false, neg=false; for (let l=0;l<N;l++){ const d=dot(n,P[l])-h; if (d>eps) pos=true; else if (d<-eps) neg=true; if (pos&&neg) break; }
+      if (pos&&neg) continue; if (pos){ n=scl(n,-1); h=-h; }
+      if (seen.some(f=>Math.abs(f.h-h)<eps && nrm(sub(f.n,n))<1e-7)) continue;
+      const on=[]; for (let l=0;l<N;l++) if (Math.abs(dot(n,P[l])-h)<=eps) on.push(l);
+      const c=on.reduce((a,l)=>add(a,scl(P[l],1/on.length)),[0,0,0]);
+      const u0=sub(P[on[0]],c); const u=scl(u0,1/nrm(u0)); const v=cross(n,u);
+      on.sort((a,b)=>{ const pa=sub(P[a],c), pb=sub(P[b],c); return Math.atan2(dot(pa,v),dot(pa,u))-Math.atan2(dot(pb,v),dot(pb,u)); });
+      let area=0; for (let q=0;q<on.length;q++){ const a=sub(P[on[q]],c), b=sub(P[on[(q+1)%on.length]],c); area+=dot(cross(a,b),n)/2; }
+      const f={idx:on, n, h, c, area}; faces.push(f); seen.push(f); }
+    let vol=0; for (const f of faces) vol+=f.h*f.area/3;
+    const edges=[]; const ek=new Set(); for (const f of faces) for (let q=0;q<f.idx.length;q++){ const a=f.idx[q], b=f.idx[(q+1)%f.idx.length]; const key=Math.min(a,b)+'_'+Math.max(a,b); if (!ek.has(key)){ ek.add(key); edges.push([a,b]); } }
+    return {pts:P, faces, edges, vol, eps}; }
+
+  // A = {|b_j . x| <= 1}; radial function along a unit direction
+  const radial=(B,u)=>1/Math.max(...B.map(b=>Math.abs(dot(b,u))));
+
+  // everything at one X
+  function atX(B, X, TR, Ahull){ const w=B.map(b=>lam(dot(b,X))); const F=feasible(B,w,TR);
+    const covered=F.covered;
+    const Lpts=dedupe(F.map(f=>f.Y),1e-9);
+    const V=dedupe(F.flatMap(f=>f.I.map((i,q)=>scl(B[i],f.e[q]))),1e-9);
+    const VH=hull(V);
+    // outer triangle of each tetrahedron: flush with a facet of K polar, or sunken inside it
+    for (const f of F){ f.P=f.I.map((i,q)=>scl(B[i],f.e[q])); f.flush=Ahull.faces.some(fc=>f.P.every(p=>Math.abs(dot(fc.n,p)-fc.h)<=Ahull.eps*10)); }
+    return {w, F, covered, Lpts, V, VH}; }
+
+  function setup(B){ const TR=triples(B); const Apol=hull(B.concat(B.map(b=>scl(b,-1))));
+    const Avert=dedupe(feasible(B,B.map(()=>1),TR).map(f=>f.Y),1e-9); const A=hull(Avert);
+    let R=0; for (const p of Avert) R=Math.max(R,nrm(p));
+    return {B, TR, Apol, A, R}; }
+
+  // Monte Carlo over x uniform in K: estimate S = (3!/4^3) \Vol(K) E|Sigma_x|
+  function monteCarlo(S, N, rng){ rng=rng||Math.random; const {B,TR,R}=S; let n=0, s1=0, s2=0, tries=0;
+    while (n<N && tries<N*40){ tries++; const X=[(2*rng()-1)*R,(2*rng()-1)*R,(2*rng()-1)*R]; if (B.some(b=>Math.abs(dot(b,X))>=1)) continue;
+      const w=B.map(b=>lam(dot(b,X))); const c=feasible(B,w,TR,true); n++; s1+=c; s2+=c*c; }
+    const mean=s1/n, sd=Math.sqrt(Math.max(0,s2/n-mean*mean)); const k=6/64*S.A.vol;
+    return {n, meanFrac:mean/S.Apol.vol, Sest:k*mean, Serr:k*sd/Math.sqrt(n)}; }
+
+  return {lam, dot, cross, sub, add, scl, nrm, hull, feasible, triples, radial, atX, setup, monteCarlo, dedupe};
+})();
+
+// ---------- d = 3: views and controls ----------
+(function(){
+  const PI=Math.PI, $=(id)=>q(id), figRoot=box;
+  const {dot,scl,nrm,add}=G;
+  const hh=0.5;
+  const BODIES={
+    cube:{name:'cube', B:[[1,0,0],[0,1,0],[0,0,1]]},
+    octahedron:{name:'octahedron', B:[[1,1,1],[1,1,-1],[1,-1,1],[-1,1,1]]},
+    rhombdodec:{name:'rhombic dodecahedron', B:[[1,1,0],[1,-1,0],[1,0,1],[1,0,-1],[0,1,1],[0,1,-1]]},
+    cubocta:{name:'cuboctahedron', B:[[1,0,0],[0,1,0],[0,0,1],[hh,hh,hh],[hh,hh,-hh],[hh,-hh,hh],[-hh,hh,hh]]},
+  };
+  function randomRows(){
+    for (let t=0;t<500;t++){ const rows=[];
+      while (rows.length<5){ const z=2*Math.random()-1, a=2*PI*Math.random(), r=Math.sqrt(1-z*z); const v=[r*Math.cos(a),r*Math.sin(a),z];
+        if (rows.every(b=>Math.abs(dot(b,v))<Math.cos(20*PI/180))) rows.push(v); }
+      const S=G.setup(rows); if (S.R<2.6 && S.A.faces.length>=8) return rows; }
+    return BODIES.rhombdodec.B; }
+
+  // ---------- state ----------
+  let bodyKey='cubocta', S=null, X=[0,0,0], res=null;
+  let explode=0, link=true, touring=false;
+
+  // ---------- canvas 3D views ----------
+  // World-space primitives are built once per change (draw); each frame only projects them (paint).
+  // Convex bodies show front faces only (back-face culling), so they need no depth sorting among themselves.
+  // Layers are drawn in order; inside a layer, items are depth-sorted. Convex cages (A, K polar, conv V_x)
+  // draw hidden edges in the bottom layer and visible edges on top: everything else lies inside them.
+  // any CSS colour (hex, rgb, hsl, named) -> [r,g,b], via a 1x1 canvas
+  const pctx=document.createElement('canvas').getContext('2d', {willReadFrequently:true}); pctx.canvas.width=pctx.canvas.height=1;
+  const hex2rgb=(c)=>{ pctx.clearRect(0,0,1,1); pctx.fillStyle='#000'; pctx.fillStyle=c; pctx.fillRect(0,0,1,1); const d=pctx.getImageData(0,0,1,1).data; return [d[0],d[1],d[2]]; };
+  const col=(name)=>hex2rgb(css(name));
+  function hsl(hh,s,l){ const a=s*Math.min(l,1-l); const f=(n)=>{ const k=(n+hh*12)%12; return l-a*Math.max(-1,Math.min(k-3,9-k,1)); }; return [255*f(0),255*f(8),255*f(4)]; }
+  const rgba=(c,a)=>'rgba('+(c[0]|0)+','+(c[1]|0)+','+(c[2]|0)+','+a+')';
+  function makeView(canvas){ const ctx=canvas.getContext('2d'); if (!ctx) return null; return {canvas, ctx, theta:0.75, phi:1.12, dist:4, R:1, prims:[]}; }
+  const VL=makeView($('cvL')), VR=makeView($('cvR')); const ok3=!!(VL&&VR);
+  const FOV=32*PI/180, TANF=Math.tan(FOV/2);
+
+  function paint(v){ const c=v.canvas, ctx=v.ctx; const dpr=Math.min(window.devicePixelRatio||1,2); const W=c.clientWidth||300; const PW=Math.round(W*dpr);
+    if (c.width!==PW){ c.width=PW; c.height=PW; }
+    ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,W,W); ctx.lineCap='round'; ctx.lineJoin='round';
+    const sp=Math.sin(v.phi); const C=[v.dist*sp*Math.cos(v.theta), v.dist*sp*Math.sin(v.theta), v.dist*Math.cos(v.phi)];
+    const fx=-C[0]/v.dist, fy=-C[1]/v.dist, fz=-C[2]/v.dist;
+    let rx=fy, ry=-fx, rl=Math.hypot(rx,ry); if (rl<1e-9){ rx=1; ry=0; rl=1; } rx/=rl; ry/=rl;           // r = f x (0,0,1)
+    const ux2=ry*fz, uy2=-rx*fz, uz=rx*fy-ry*fx;                                                       // u = r x f  (r has no z part)
+    const foc=(W/2)/TANF, h2=W/2;
+    const proj=(p)=>{ const qx=p[0]-C[0], qy=p[1]-C[1], qz=p[2]-C[2]; const z=qx*fx+qy*fy+qz*fz; return [h2+foc*(qx*rx+qy*ry)/z, h2-foc*(qx*ux2+qy*uy2+qz*uz)/z, z]; };
+    // light from upper-left-front, in world coordinates
+    let Lx=0.45*rx+0.75*ux2-0.55*fx, Ly=0.45*ry+0.75*uy2-0.55*fy, Lz=0.75*uz-0.55*fz; const Ll=Math.hypot(Lx,Ly,Lz); Lx/=Ll; Ly/=Ll; Lz/=Ll;
+    const shade=(n)=>Math.min(1.1, 0.74+0.36*Math.max(0,n[0]*Lx+n[1]*Ly+n[2]*Lz));
+    const frontCache=new Map(); const front=(H)=>{ let fr=frontCache.get(H); if (!fr){ fr=H.faces.map(fc=>dot(fc.n,C)-fc.h>1e-9); frontCache.set(H,fr); } return fr; };
+    const hitsBody=(X,H)=>{ let t0=0,t1=1; const d=[C[0]-X[0],C[1]-X[1],C[2]-X[2]]; for (const fc of H.faces){ const num=fc.h-dot(fc.n,X), den=dot(fc.n,d); if (Math.abs(den)<1e-12){ if (num<0) return false; continue; } const t=num/den; if (den<0){ if (t>t0) t0=t; } else { if (t<t1) t1=t; } if (t0>t1) return false; } return true; };
+    const items=[];
+    for (const pr of v.prims){ const layer=pr.layer||0;
+      if (pr.t==='seg'){ const A=proj(pr.p0), B=proj(pr.p1); if (A[2]>0.01&&B[2]>0.01) items.push({k:0,layer,z:(A[2]+B[2])/2,A,B,st:pr.st,w:pr.w,dash:pr.dash}); }
+      else if (pr.t==='faint'){ for (const P of pr.polys){ const Q=P.map(proj); if (Q.every(q=>q[2]>0.01)) items.push({k:1,layer,z:0,Q,fill:pr.fill}); } }
+      else if (pr.t==='body'){ const fr=front(pr.H); pr.H.faces.forEach((fc,fi)=>{ if (!fr[fi]) return; const Q=fc.idx.map(i=>proj(pr.H.pts[i])); if (Q.some(q=>q[2]<=0.01)) return; let z=0; for (const q of Q) z+=q[2];
+          items.push({k:1,layer,z:z/Q.length,Q,fill:rgba(pr.c.map(x=>x*shade(fc.n)),1),stroke:pr.est,w:pr.ew}); }); }
+      else if (pr.t==='cage'){ const fr=front(pr.H); for (const [i1,i2,fa,fb] of pr.H.adj){ const vis=fr[fa]||fr[fb]; if (vis!==pr.front) continue; const A=proj(pr.H.pts[i1]), B=proj(pr.H.pts[i2]); if (A[2]>0.01&&B[2]>0.01) items.push({k:0,layer,z:(A[2]+B[2])/2,A,B,st:pr.st,w:pr.w,dash:pr.front?null:pr.dash}); } }
+      else if (pr.t==='tri'){ // faces of the tetrahedra: outward normal precomputed; culled when facing away
+        if ((C[0]-pr.p[0][0])*pr.n[0]+(C[1]-pr.p[0][1])*pr.n[1]+(C[2]-pr.p[0][2])*pr.n[2]<=0) continue;
+        const fill=rgba(pr.c.map(x=>x*shade(pr.n)),1);
+        for (const T of pr.pieces){ const Q=[proj(T[0]),proj(T[1]),proj(T[2])]; if (Q[0][2]<=0.01||Q[1][2]<=0.01||Q[2][2]<=0.01) continue;
+          items.push({k:2,layer,z:(Q[0][2]+Q[1][2]+Q[2][2])/3,Q,fill,sides:T.sides,seams:T.seams,est:pr.est,w:pr.ew,grp:pr.grp}); } }
+      else if (pr.t==='ball'){ let lay=layer;
+        if (pr.on){ const fr=front(pr.on.H); if (!pr.on.faces.some(fi=>fr[fi])) continue; }
+        if (pr.behind && hitsBody(pr.p,pr.behind.H)) lay=pr.behind.layer;
+        const P=proj(pr.p); if (P[2]<=0.01) continue; items.push({k:3,layer:lay,z:P[2],P,rad:Math.max(2.5,foc*pr.r/P[2]),fill:pr.fill,st:pr.st}); } }
+    // exploded tetrahedra are disjoint convex solids: order them whole, by separating planes, and give their faces that depth
+    const groups=[...new Set(items.filter(it=>it.grp).map(it=>it.grp))];
+    if (groups.length>1){ const rank=depthOrder(groups,C); for (const it of items) if (it.grp) it.z=groups.length-rank.get(it.grp); }
+    items.sort((a,b)=>(a.layer-b.layer)||(b.z-a.z));
+    for (const it of items){
+      if (it.k===0){ ctx.beginPath(); ctx.moveTo(it.A[0],it.A[1]); ctx.lineTo(it.B[0],it.B[1]); ctx.strokeStyle=it.st; ctx.lineWidth=it.w; if (it.dash) ctx.setLineDash(it.dash); ctx.stroke(); if (it.dash) ctx.setLineDash([]); }
+      else if (it.k===1){ const Q=it.Q; ctx.beginPath(); ctx.moveTo(Q[0][0],Q[0][1]); for (let i=1;i<Q.length;i++) ctx.lineTo(Q[i][0],Q[i][1]); ctx.closePath(); ctx.fillStyle=it.fill; ctx.fill(); if (it.stroke){ ctx.strokeStyle=it.stroke; ctx.lineWidth=it.w; ctx.stroke(); } }
+      else if (it.k===2){ const Q=it.Q; ctx.beginPath(); ctx.moveTo(Q[0][0],Q[0][1]); ctx.lineTo(Q[1][0],Q[1][1]); ctx.lineTo(Q[2][0],Q[2][1]); ctx.closePath(); ctx.fillStyle=it.fill; ctx.fill();
+        if (it.seams.length){ ctx.strokeStyle=it.fill; ctx.lineWidth=0.8; ctx.beginPath(); for (const [x,y] of it.seams){ ctx.moveTo(Q[x][0],Q[x][1]); ctx.lineTo(Q[y][0],Q[y][1]); } ctx.stroke(); }
+        if (it.sides.length){ ctx.strokeStyle=it.est; ctx.lineWidth=it.w; ctx.beginPath(); for (const [x,y] of it.sides){ ctx.moveTo(Q[x][0],Q[x][1]); ctx.lineTo(Q[y][0],Q[y][1]); } ctx.stroke(); } }
+      else { ctx.beginPath(); ctx.arc(it.P[0],it.P[1],it.rad,0,2*PI); ctx.fillStyle=it.fill; ctx.fill(); ctx.lineWidth=1.3; ctx.strokeStyle=it.st; ctx.stroke(); } } }
+
+  // two disjoint tetrahedra (4 vertices each) have a separating axis among the face normals and the edge-edge crosses;
+  // returns 1 if B is on the camera's side of the separating plane, -1 if A is, 0 if none was found
+  const TF=[[0,1,2],[0,1,3],[0,2,3],[1,2,3]], TE=[[0,1],[0,2],[0,3],[1,2],[1,3],[2,3]];
+  function sepOrder(A,B,C){ const ax=[];
+    for (const V of [A,B]) for (const [i,j,k] of TF) ax.push(G.cross(G.sub(V[j],V[i]),G.sub(V[k],V[i])));
+    for (const [i,j] of TE) for (const [k,l] of TE) ax.push(G.cross(G.sub(A[j],A[i]),G.sub(B[l],B[k])));
+    let best=null;
+    for (const n of ax){ const L=nrm(n); if (L<1e-12) continue; let a0=Infinity,a1=-Infinity,b0=Infinity,b1=-Infinity;
+      for (const p of A){ const t=dot(n,p); if (t<a0) a0=t; if (t>a1) a1=t; } for (const p of B){ const t=dot(n,p); if (t<b0) b0=t; if (t>b1) b1=t; }
+      const g1=b0-a1, g2=a0-b1, gap=Math.max(g1,g2)/L; if (gap<=1e-9 || (best&&gap<=best.gap)) continue;
+      const c=dot(n,C); best={gap, r: g1>=g2 ? (c>(a1+b0)/2?1:-1) : (c>(b1+a0)/2?-1:1)}; }
+    return best?best.r:0; }
+  // painter's order (Map group -> rank, 0 drawn first): topological sort of "is behind", farthest first among the free ones
+  function depthOrder(gs,C){ const n=gs.length, after=gs.map(()=>[]), indeg=new Array(n).fill(0);
+    const dist=gs.map(g=>{ const c=scl(add(add(g.V[0],g.V[1]),add(g.V[2],g.V[3])),0.25); return nrm(G.sub(c,C)); });
+    for (let i=0;i<n;i++) for (let j=i+1;j<n;j++){ const r=sepOrder(gs[i].V,gs[j].V,C); if (r>0){ after[i].push(j); indeg[j]++; } else if (r<0){ after[j].push(i); indeg[i]++; } }
+    const done=new Array(n).fill(false), rank=new Map();
+    for (let k=0;k<n;k++){ let pick=-1;
+      for (let i=0;i<n;i++) if (!done[i]&&indeg[i]===0&&(pick<0||dist[i]>dist[pick])) pick=i;
+      if (pick<0) for (let i=0;i<n;i++) if (!done[i]&&(pick<0||dist[i]>dist[pick])) pick=i;   // a cycle: fall back to distance
+      done[pick]=true; rank.set(gs[pick],k); for (const j of after[pick]) indeg[j]--; }
+    return rank; }
+
+  let pending=false;
+  function render(now){ if (!ok3) return; if (now){ paint(VL); paint(VR); return; } if (pending) return; pending=true; requestAnimationFrame(()=>{ pending=false; paint(VL); paint(VR); }); }
+  function attachOrbit(v, other){
+    let drag=null;
+    v.canvas.addEventListener('pointerdown',(e)=>{ drag={x:e.clientX,y:e.clientY}; try { v.canvas.setPointerCapture(e.pointerId); } catch(err){} stopTour(); });
+    v.canvas.addEventListener('pointermove',(e)=>{ if(!drag) return; const dx=e.clientX-drag.x, dy=e.clientY-drag.y; drag={x:e.clientX,y:e.clientY};
+      v.theta-=dx*0.009; v.phi=Math.min(PI-0.05,Math.max(0.05,v.phi-dy*0.009)); if (link){ other.theta=v.theta; other.phi=v.phi; } render(); });
+    const end=()=>{ drag=null; }; v.canvas.addEventListener('pointerup',end); v.canvas.addEventListener('pointercancel',end);
+    v.canvas.addEventListener('wheel',(e)=>{ e.preventDefault(); const k=Math.exp(e.deltaY*0.0012); v.dist=Math.min(v.R*9,Math.max(v.R*1.6,v.dist*k)); if (link){ other.dist=other.R*v.dist/v.R; } render(); },{passive:false});
+  }
+  if (ok3){ attachOrbit(VL,VR); attachOrbit(VR,VL); }
+
+  // edge -> its two faces, for cages
+  function withAdj(H){ if (H.adj) return H; const m=new Map(); H.faces.forEach((fc,fi)=>{ for (let q=0;q<fc.idx.length;q++){ const a=fc.idx[q], b=fc.idx[(q+1)%fc.idx.length]; const key=a<b?a+'_'+b:b+'_'+a; const e=m.get(key); if (e) e.push(fi); else m.set(key,[Math.min(a,b),Math.max(a,b),fi]); } });
+    H.adj=[...m.values()].map(e=>[e[0],e[1],e[2],e.length>3?e[3]:e[2]]); return H; }
+  // a tetrahedron face: outward normal (away from the tetrahedron's centroid) and its pieces;
+  // pieces only matter where front faces of different tetrahedra overlap (dents, explode)
+  function tetFace(p, ref, c, m, est, ew, edges){ let n=G.cross(G.sub(p[1],p[0]),G.sub(p[2],p[0])); const L=nrm(n); n=scl(n,1/L); if (dot(n,G.sub(p[0],ref))<0) n=scl(n,-1);
+    const d1=G.sub(p[1],p[0]), d2=G.sub(p[2],p[0]); const at=(i,j)=>add(p[0],add(scl(d1,i/m),scl(d2,j/m)));
+    const onSide=(A,B)=>{ if (A[1]===0&&B[1]===0) return edges[0]; if (A[0]+A[1]===m&&B[0]+B[1]===m) return edges[1]; if (A[0]===0&&B[0]===0) return edges[2]; return false; };
+    const pieces=[]; const add1=(T)=>{ const pts=T.map(([i,j])=>at(i,j)); pts.sides=[]; pts.seams=[]; for (const [x,y] of [[0,1],[1,2],[2,0]]) (onSide(T[x],T[y])?pts.sides:pts.seams).push([x,y]); pieces.push(pts); };
+    for (let i=0;i<m;i++) for (let j=0;j<m-i;j++){ add1([[i,j],[i+1,j],[i,j+1]]); if (i+j<m-1) add1([[i+1,j],[i+1,j+1],[i,j+1]]); }
+    return {t:'tri', p, n, c, pieces, est, ew, layer:1}; }
+  const hullPolys=(H)=>H.faces.map(fc=>fc.idx.map(i=>H.pts[i]));
+  const seg=(p0,p1,c,al,w)=>({t:'seg',p0,p1,st:rgba(c,al),w,layer:0});
+  function axes(R){ const L=R*1.25; return [[[-L,0,0],[L,0,0]],[[0,-L,0],[0,L,0]],[[0,0,-L],[0,0,L]]]; }
+
+  function pairColor(f){
+    let n=[0,0,0]; for (const p of f.P) n=add(n,p); const L=nrm(n)||1; n=scl(n,1/L);
+    const hue=(Math.atan2(n[1],n[0])/(2*PI)+1)%1; return hsl(hue,0.62,0.5+0.14*n[2]); }
+
+  function draw(){
+    if (!ok3) return;
+    const fg=col('--fg'), rule=col('--rule'), surf=col('--surface'), muted=col('--muted');
+    // ---- left: A (cage), X, L_x
+    const R=S.R, L=[]; VL.R=R;
+    for (const [a,b] of axes(R)) L.push(seg(a,b,rule,1,1));
+    L.push({t:'faint',polys:hullPolys(S.A),fill:rgba(fg,0.03),layer:0});
+    L.push({t:'cage',H:withAdj(S.A),front:false,st:rgba(muted,0.55),w:0.9,dash:[3,3],layer:0});
+    const LH=G.hull(res.Lpts);
+    if (LH.faces.length){
+      L.push({t:'body',H:LH,c:col('--lx'),est:rgba(fg,0.85),ew:1,layer:1});
+      const tol=1e-7*Math.max(R,1e-6);
+      for (const f of res.F){ const faces=[]; LH.faces.forEach((fc,fi)=>{ if (Math.abs(dot(fc.n,f.Y)-fc.h)<=tol) faces.push(fi); });
+        L.push({t:'ball',p:f.Y,r:0.028*R,fill:rgba(pairColor(f),1),st:rgba(surf,0.95),layer:2,on:{H:LH,faces}}); }
+      L.push({t:'ball',p:X,r:0.045*R,fill:rgba(fg,1),st:rgba(surf,0.95),layer:2,behind:{H:LH,layer:0}});
+    } else L.push({t:'ball',p:X,r:0.045*R,fill:rgba(fg,1),st:rgba(surf,0.95),layer:2});
+    L.push({t:'cage',H:S.A,front:true,st:rgba(fg,0.75),w:1.1,layer:3});
+    VL.prims=L;
+    // ---- right: K polar (cage), Sigma_x, conv V_x
+    const Rp=Math.max(...S.B.map(nrm)), Rt=[]; VR.R=Rp;
+    for (const [a,b] of axes(Rp)) Rt.push(seg(a,b,rule,1,1));
+    Rt.push({t:'faint',polys:hullPolys(S.Apol),fill:rgba(fg,0.025),layer:0});
+    Rt.push({t:'cage',H:withAdj(S.Apol),front:false,st:rgba(muted,0.55),w:0.9,dash:[3,3],layer:0});
+    Rt.push({t:'ball',p:[0,0,0],r:0.022*Rp,fill:rgba(fg,1),st:rgba(surf,0.95),layer:0});
+    const m=explode>0?2:3, est=rgba(surf,0.75);
+    for (const fa of res.F){ const c=pairColor(fa); const cen=scl(add(add(fa.P[0],fa.P[1]),fa.P[2]),1/3); const off=scl(cen,explode); const P=fa.P.map(q=>add(q,off));
+      const ref=scl(add(add(add(P[0],P[1]),P[2]),off),0.25);
+      const grp=explode>0?{V:[off,P[0],P[1],P[2]]}:null;
+      const tf=tetFace(P,ref,c,m,est,1,[true,true,true]); tf.grp=grp; Rt.push(tf);
+      if (explode>0){ const dc=c.map(x=>x*0.72); for (const [x,y] of [[0,1],[1,2],[2,0]]){ const sf=tetFace([off,P[x],P[y]],ref,dc,2,rgba(surf,0.5),0.8,[true,true,true]); sf.grp=grp; Rt.push(sf); } } }
+    // exploded pieces leave K polar, so its cage goes behind them and the hull outline is hidden
+    Rt.push({t:'cage',H:S.Apol,front:true,st:rgba(fg,0.8),w:1.1,layer:explode>0?0:3});
+    VR.prims=Rt;
+    render(true);
+  }
+
+  function aimAtDent(){ if (!ok3||!res) return false; const key=(q)=>q.map(x=>x.toFixed(6)).join(',');
+    const tris=new Set(res.F.map(fa=>fa.P.map(key).sort().join('|')));
+    let best=null; for (const fc of res.VH.faces){ const pts=fc.idx.map(i=>res.VH.pts[i]);
+      const covered = pts.length===3 ? tris.has(pts.map(key).sort().join('|')) : false;
+      if (!covered){ const gap=fc.area; if (!best||gap>best.gap) best={gap, c:fc.c, n:fc.n}; } }
+    if (!best) return false; const d=add(scl(best.n,0.8),scl(best.c,0.6/(nrm(best.c)||1))); const L=nrm(d);
+    const th=Math.atan2(d[1],d[0]), ph=Math.acos(Math.max(-1,Math.min(1,d[2]/L)));
+    VR.theta=th; VR.phi=Math.min(PI-0.2,Math.max(0.2,ph)); if (link){ VL.theta=VR.theta; VL.phi=VR.phi; } render(); return true; }
+
+  // ---------- X parametrization ----------
+  function readX(){ const az=+$('sAz').value*PI/180, el=+$('sEl').value*PI/180, fr=+$('sFr').value;
+    const u=[Math.cos(el)*Math.cos(az), Math.cos(el)*Math.sin(az), Math.sin(el)]; return scl(u, fr*G.radial(S.B,u)); }
+  function writeX(v){ const L=nrm(v); if (L<1e-12){ $('sFr').value=0; } else { const u=scl(v,1/L); $('sAz').value=Math.round(Math.atan2(u[1],u[0])*180/PI); $('sEl').value=Math.round(Math.asin(Math.max(-1,Math.min(1,u[2])))*180/PI); $('sFr').value=Math.min(0.99,L/G.radial(S.B,u)).toFixed(2); } }
+  function labels(){ $('vAz').textContent=$('sAz').value+'°'; $('vEl').textContent=$('sEl').value+'°'; $('vFr').textContent=(+$('sFr').value).toFixed(2); }
+
+  let upPending=false; function scheduleUpdate(){ if (upPending) return; upPending=true; requestAnimationFrame(()=>{ upPending=false; update(); }); }
+
+  // ---------- readouts ----------
+  const f3=(x)=>(x<0?'−':'')+Math.abs(x).toFixed(3);
+  function update(){
+    labels(); X=readX(); res=G.atX(S.B,X,S.TR,S.Apol);
+    draw(); }
+
+  function setLegend(){ setHTML($('legend'),'<span><i class="t3-sw" style="background:var(--lx)"></i>$L_x$</span>'); }
+
+  function setBody(key){ bodyKey=key; const B = key==='random'?randomRows():BODIES[key].B; S=G.setup(B);
+    figRoot.querySelectorAll('button[data-body3]').forEach(b=>b.setAttribute('aria-pressed', b.dataset.body3===key?'true':'false'));
+    if (ok3){ VL.R=S.R; VR.R=Math.max(...S.B.map(nrm)); VL.dist=VL.R*4.1; VR.dist=VR.R*4.1; } }
+
+  // ---------- tour ----------
+  let tourT=0, raf=0;
+  function stepTour(){ if(!touring) return; tourT+=1; let az=+$('sAz').value+0.6; if (az>180) az-=360; $('sAz').value=az.toFixed(1); $('sEl').value=(35*Math.sin(tourT/140)).toFixed(1); update(); raf=requestAnimationFrame(stepTour); }
+  function stopTour(){ if(!touring) return; touring=false; cancelAnimationFrame(raf); $('btTour').setAttribute('aria-pressed','false'); }
+
+  // ---------- wiring ----------
+  figRoot.querySelectorAll('button[data-body3]').forEach(b=>b.addEventListener('click',()=>{ stopTour(); const keep=[+$('sAz').value,+$('sEl').value,+$('sFr').value]; setBody(b.dataset.body3); update(); }));
+  for (const id of ['sAz','sEl','sFr']) $(id).addEventListener('input',()=>{ stopTour(); scheduleUpdate(); });
+  $('btRand').addEventListener('click',()=>{ stopTour(); let v; do { v=[(2*Math.random()-1)*S.R,(2*Math.random()-1)*S.R,(2*Math.random()-1)*S.R]; } while (S.B.some(b=>Math.abs(dot(b,v))>=0.99)); writeX(v); update(); });
+  $('btView').addEventListener('click',()=>{ stopTour(); if (!ok3) return; for (const v of [VL,VR]){ v.theta=0.75; v.phi=1.12; v.dist=v.R*4.1; } render(); });
+  $('btTour').addEventListener('click',()=>{ if (touring){ stopTour(); return; } touring=true; $('btTour').setAttribute('aria-pressed','true'); if (+$('sFr').value<0.3) $('sFr').value=0.85; stepTour(); });
+  $('sEx').addEventListener('input',()=>{ explode=+$('sEx').value; if (!upPending){ upPending=true; requestAnimationFrame(()=>{ upPending=false; draw(); }); } });
+  $('chLink').addEventListener('change',(e)=>{ link=e.target.checked; if (link && ok3){ VR.theta=VL.theta; VR.phi=VL.phi; VR.dist=VR.R*VL.dist/VL.R; render(); } });
+  if (window.ResizeObserver && ok3){ const ro=new ResizeObserver(()=>render()); ro.observe($('cvL')); ro.observe($('cvR')); }
+  window.addEventListener('resize',render);
+  onTheme(()=>{ setLegend(); draw(); });
+
+  // ---------- start: cuboctahedron at a point where Sigma_x is not convex ----------
+  setBody('cubocta'); $('sAz').value=92; $('sEl').value=30; $('sFr').value=0.9; setLegend(); update(); aimAtDent();
+})();
+
+// ---------- the dimension switch: both figures stay alive, only one is shown ----------
+(function(){
+  const DIM_KEY=FIG_KEY+'-dim'; const p2=q('pane2'), p3=q('pane3'), b2=q('dim2'), b3=q('dim3');
+  function show(d){ p2.style.display=d===2?'':'none'; p3.style.display=d===3?'':'none'; b2.setAttribute('aria-pressed',d===2?'true':'false'); b3.setAttribute('aria-pressed',d===3?'true':'false'); try { localStorage.setItem(DIM_KEY,String(d)); } catch(e) {} }
+  b2.addEventListener('click',()=>show(2)); b3.addEventListener('click',()=>show(3));
+  let d=2; try { if (localStorage.getItem(DIM_KEY)==='3') d=3; } catch(e) {}
+  show(d);
+})();
+})();
+}
+window.MathJax.startup = { pageReady: function(){ return MathJax.startup.defaultPageReady().then(runFigures); } };
+setTimeout(runFigures, 6000); // offline fallback: figures without typeset labels
+</script>
+</body>
+</html>
