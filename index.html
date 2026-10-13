@@ -950,6 +950,7 @@ style.textContent=`
 .mfig-root .f3-read { display:grid; grid-template-columns:repeat(auto-fit, minmax(13rem, 1fr)); gap:.25rem .9rem; margin-top:.45rem; font-size:.85em; font-variant-numeric:tabular-nums; }
 .mfig-root .f3-read > div { min-width:0; overflow-wrap:anywhere; }
 .mfig-root .f3-legend { display:flex; flex-wrap:wrap; gap:.3rem .9rem; font-size:.92em; color:var(--text-muted); margin:.25rem 0; }
+.mfig-root .f3-legend .f3-row { flex-basis:100%; }
 .mfig-root .f3-legend .f3-sw { display:inline-block; width:.8rem; height:.8rem; vertical-align:-2px; margin-right:.3rem; border-radius:2px; }
 `;
 root.appendChild(style);
@@ -1046,7 +1047,7 @@ function muJ(JJ){ const Mj=inv2(B,JJ[0],JJ[1]); const oth=B.map((r,k)=>k).filter
   return cnt*(4/(N*N))/16; }
 function readout(){ const mu=muJ(J); let sum=0; for (const JJ of pairs()) sum+=muJ(JJ); const bound=area(Kv)*area(Kpol)/8;
   setHTML(q('read'),'<div>$\\mu_J(A_J)$ = '+mu.toFixed(3)+'</div><div>$\\sum_{J}\\mu_J(A_J)$ = '+sum.toFixed(3)+'</div><div>$\\tfrac{2!}{4^2}\\operatorname{Vol}(K)\\operatorname{Vol}(K^\\circ)$ = '+bound.toFixed(3)+'</div>');
-  setHTML(q('leg'), EPS.map(([e1,e2],n)=>'<span><i class="f3-sw" style="background:var('+ECOL[n]+')"></i>$\\varepsilon=('+sgn(e1)+','+sgn(e2)+')$</span>').join('')+'<span>$|\\mathcal{E}_J(x)|$: '+[0,2,4].map(n=>'<i class="f3-sw" style="background:'+rgba(rgb(css('--fg')),0.12*n)+';border:1px solid '+css('--rule')+'"></i>'+n+'&nbsp;&nbsp;').join('')+'</span><span>dashed: $B_J^{-1}([-1,1]^J)$ (left), $B_J(K)$ (middle), $\\Phi_J(B_J(K)\\times\\{\\varepsilon\\})$ (right)</span>'); }
+  setHTML(q('leg'), EPS.map(([e1,e2],n)=>'<span><i class="f3-sw" style="background:var('+ECOL[n]+')"></i>$\\varepsilon=('+sgn(e1)+','+sgn(e2)+')$</span>').join('')+'<span class="f3-row">grey (left): $|\\mathcal{E}_J(x)|$ = '+[0,2,4].map(n=>'<i class="f3-sw" style="background:'+rgba(rgb(css('--fg')),0.12*n)+';border:1px solid '+css('--rule')+'"></i>'+n+'&nbsp;&nbsp;').join('')+'</span><span class="f3-row">coloured: $\\{q\\colon z_J(q,\\varepsilon)\\in\\overline\\Omega\\}$ (middle), $A_J\\cap(\\partial\\mathbb D)^J$ (right)</span><span class="f3-row">dashed: $B_J^{-1}([-1,1]^J)$ (left), $B_J(K)$ (middle), $\\Phi_J(B_J(K)\\times\\{\\varepsilon\\})$ (right)</span>'); }
 
 // ---------- panels: logical size 360 x 360; rasters cached per (body, J, theme) ----------
 const SZ=360;
@@ -1089,7 +1090,12 @@ function draw(){
     { const t=Kv.map(PX).reduce((a,p)=>p[1]>a[1]?p:a); ctx.fillStyle=fg; ctx.textAlign='left'; ctx.font='italic 19px "Times New Roman", serif'; ctx.fillText('K',t[0]+6,t[1]+17); ctx.font='15px system-ui, sans-serif'; }
     // facet labels b_l, on the facets that exist
     ctx.fillStyle=fg; ctx.textAlign='center';
-    B.forEach((b,l)=>{ const n2=dot(b,b); const foot=[b[0]/n2,b[1]/n2]; if (B.some(bb=>Math.abs(dot(bb,foot))>1+1e-9)) return; const u=[b[0]/Math.sqrt(n2),b[1]/Math.sqrt(n2)]; const p=PX([foot[0]+u[0]*14/SX, foot[1]+u[1]*14/SX]); ctx.fillStyle=(l===J[0]||l===J[1])?fg:muted; ctx.fillText('b'+sub(l+1),p[0],p[1]+4); });
+    // each b_l as an arrow normal to its facet, from the facet's midpoint; label at the tip
+    B.forEach((b,l)=>{ let mid=null; for (let i=0;i<Kv.length;i++){ const P=Kv[i], Q=Kv[(i+1)%Kv.length]; if (Math.abs(dot(b,P)-1)<1e-7&&Math.abs(dot(b,Q)-1)<1e-7) mid=[(P[0]+Q[0])/2,(P[1]+Q[1])/2]; } if (!mid) return;
+      const n=Math.hypot(b[0],b[1]), u=[b[0]/n,-b[1]/n], p0=PX(mid), p1=[p0[0]+28*u[0],p0[1]+28*u[1]], col=(l===J[0]||l===J[1])?fg:muted;
+      ctx.strokeStyle=col; ctx.fillStyle=col; ctx.lineWidth=1.3; ctx.beginPath(); ctx.moveTo(p0[0],p0[1]); ctx.lineTo(p1[0],p1[1]); ctx.stroke();
+      const w=[-u[1],u[0]]; ctx.beginPath(); ctx.moveTo(p1[0]+3*u[0],p1[1]+3*u[1]); ctx.lineTo(p1[0]-5*u[0]+4*w[0],p1[1]-5*u[1]+4*w[1]); ctx.lineTo(p1[0]-5*u[0]-4*w[0],p1[1]-5*u[1]-4*w[1]); ctx.closePath(); ctx.fill();
+      ctx.textAlign='center'; ctx.fillText('b'+sub(l+1),p1[0]+14*u[0],p1[1]+14*u[1]+5); });
     if (hx){ mark(ctx,PX(hx),fg,true,5); ctx.fillStyle=fg; ctx.textAlign='left'; ctx.font='italic 19px "Times New Roman", serif'; const p=PX(hx); ctx.fillText('x',p[0]+9,p[1]-6); }
   }
   // ---- q-plane
@@ -1114,7 +1120,6 @@ function draw(){
     const BJ=(x)=>[dot(B[J[0]],x),dot(B[J[1]],x)]; const KQ=hull(Kv.map(BJ));
     EPS.forEach((eps,n)=>{ poly(ctx,KQ.map(p=>TP([toTheta(p[0],eps[0]),toTheta(p[1],eps[1])])),muted,null,1,[4,3]);
       if (hq && Math.abs(hq[0])<=1 && Math.abs(hq[1])<=1){ const f=feasAt(hq[0],hq[1],eps[0],eps[1]); const big=hover.eps&&hover.eps[0]===eps[0]&&hover.eps[1]===eps[1]; mark(ctx,TP([toTheta(hq[0],eps[0]),toTheta(hq[1],eps[1])]),css(ECOL[n]),f,big?6:4.5); } });
-    if (ras.Tlab){ ctx.fillStyle=fg; ctx.textAlign='center'; ctx.font='italic 19px "Times New Roman", serif'; ctx.fillText('A',ras.Tlab[0]-4,ras.Tlab[1]+6); ctx.font='italic 13px "Times New Roman", serif'; ctx.fillText('J',ras.Tlab[0]+8,ras.Tlab[1]+11); }
     ctx.fillStyle=muted; ctx.textAlign='center'; ctx.font='15px system-ui, sans-serif';
     ctx.fillText('0',45,357); ctx.fillText('π',190,357); ctx.fillText('2π',335,357); ctx.fillText('θ'+sub(1),262,357);
     ctx.textAlign='right'; ctx.fillText('π',40,204); ctx.fillText('2π',40,59); ctx.save(); ctx.translate(12,200); ctx.rotate(-PI/2); ctx.textAlign='center'; ctx.fillText('θ'+sub(2),0,4); ctx.restore();
