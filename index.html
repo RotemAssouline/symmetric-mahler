@@ -80,7 +80,7 @@ window.MathJax = {
 <p>For background on the Mahler conjecture, see the survey of Fradelizi, Meyer and Zvavitch<sup class="fn"><a href="#fn-fmz" id="fnref-fmz">1</a></sup>.
 Complex-analytic methods were used earlier by Nazarov<sup class="fn"><a href="#fn-nazarov" id="fnref-nazarov">2</a></sup> and by Berndtsson<sup class="fn"><a href="#fn-berndtsson-pw" id="fnref-berndtsson-pw">3</a></sup><sup class="fn">,</sup><sup class="fn"><a href="#fn-berndtsson-kup" id="fnref-berndtsson-kup">4</a></sup> to prove the Bourgain&ndash;Milman inequality.</p>
 <h3>Table of contents</h3>
-<nav class="toc"><ul><li><a href="#statement">Statement</a></li><li><a href="#complexification">Complexification</a></li><li><a href="#a-collection-of-subsets-of">A collection of subsets of \(K^{\circ}\)</a></li><li><a href="#from-to-the-cube-to-the-polycircle">From \(K\) to the cube to the polycircle</a></li><li><a href="#a-sequence-of-submanifolds-of-the-polydisc">A sequence of submanifolds of the polydisc</a></li><li><a href="#a-lower-bound-on-the-volume-of-the-image-of-a-holomorphic-function">A lower bound on the volume of the image of a holomorphic function</a></li><li><a href="#the-equality-case">The equality case</a></li><li><a href="#appendix-properties-of-the-function">Appendix: Properties of the function \(F\)</a></li><li><a href="#appendix-correspondence">Appendix: Correspondence with the original preprint</a></li></ul></nav>
+<nav class="toc"><ul><li><a href="#statement">Statement</a></li><li><a href="#complexification">Complexification</a></li><li><a href="#a-collection-of-subsets-of">A collection of subsets of \(K^{\circ}\)</a></li><li><a href="#from-to-the-cube-to-the-polycircle">From \(K\) to the cube to the polycircle</a></li><li><a href="#a-sequence-of-submanifolds-of-the-polydisc">A sequence of submanifolds of the polydisc</a></li><li><a href="#a-lower-bound-on-the-volume-of-the-image-of-a-holomorphic-function">A lower bound on the volume of the image of a holomorphic function</a></li><li><a href="#the-equality-case">The equality case</a></li><li><a href="#appendix-properties-of-the-function">Appendix: Properties of the function \(F\)</a></li><li><a href="#appendix-simplex-decomposition">Appendix: \(\Sigma_x\) as a union of simplices</a></li><li><a href="#appendix-correspondence">Appendix: Correspondence with the original preprint</a></li></ul></nav>
 <h3 id="statement">Statement</h3>
 <p>A <i>convex body</i> is a compact convex set \(K\subset\mathbb{R}^d\) with nonempty interior; it is <i>symmetric</i> if \(K=-K\). Recall that the polar body \(K^\circ\) of a convex body \(K\) containing the origin in its interior is defined by \[K^{\circ}:=\{y\in\mathbb{R}^d\colon\langle x,y\rangle\le1\ \ \forall\,x\in K\}.\]
 </p>
@@ -158,50 +158,30 @@ For \(J\in\mathcal{J}\), \(\varepsilon \in \{ -1,1 \}^{J}\) and \(x\in\mathbb{R}
 \]</span>
 For \(x\in\operatorname{int} K\), the point \(y_{J,\varepsilon}(x)\) satisfies \(d\) of the inequalities defining \(L_x\) with equality, and the vectors \(\{  \varepsilon_jb_j\}_{j\in J}\)  are linearly independent. Hence either \(y_{J,\varepsilon}(x)\notin L_x\), or \(y_{J,\varepsilon}(x)\) is a vertex of \(L_x\).</p>
 
-<p id="def-sigma">Call \(h\in K^{\circ}\) <i>active</i> at \(y\in L_x\) if \(\langle h,y\rangle=\lambda(\langle h,x\rangle)\). Define
+<p id="def-sigma">Define
 <span class="math">\[
-	\begin{aligned}
-	\Sigma_x:&=\bigcup_{y\in \partial L_x}\operatorname{conv}\big(\{0\}\cup\{h\in K^{\circ}\,\colon\,\langle h,y\rangle=\lambda(\langle h,x\rangle)\}\big)\\
-	&=\bigcup_{y\in \partial L_x}\operatorname{conv}\big(\{0\}\cup\{h\in K^{\circ}\,\colon\,h\text{ is active at }y\}\big)\\
-	&\subseteq K^{\circ}.
-	\end{aligned}\tag{4}
+	\Sigma_x:=\bigcup_{y\in \partial L_x}\operatorname{conv}\big(\{0\}\cup\{h\in K^{\circ}\,\colon\,\langle h,y\rangle=\lambda(\langle h,x\rangle)\}\big)\subseteq K^{\circ}.\tag{4}
+\]</span></p>
+<p id="simplex-decomposition">For \(J\in \mathcal{J}\) and \(\varepsilon \in \{ -1,1 \}^{J}\), write \(\Delta_{J,\varepsilon}\) for the simplex
+<span class="math">\[
+	\Delta_{J,\varepsilon}:=\operatorname{conv} \left(  \{0\}\cup \{\varepsilon_{j}b_{j}\}_{j\in J}\right)\subset K^{\circ},
 \]</span>
-In Figure 2 below, each vertex \(y\) of \(L_x\) (left) and the set \(\operatorname{conv}(\{0\}\cup\{h\in K^{\circ}\colon h\text{ is active at }y\})\subseteq\Sigma_x\) (right) are drawn in the same colour.</p>
-<div class="callout callout-lemma" id="lemma-1"><div class="callout-title">Lemma 1</div><p>
-For \(J\in \mathcal{J}\) and \(\varepsilon \in \{ -1,1 \}^{J}\), write \(\Delta_{J,\varepsilon}\) for the simplex
-<span class="math">\[
-	\Delta_{J,\varepsilon}:=\operatorname{conv} \left(  \{0\}\cup \{\varepsilon_{j}b_{j}\}_{j\in J}\right)\subset K^{\circ}. 
-\]</span>  
-Then for every \(x\in\operatorname{int} K\),
-<span class="math">\[
-\Sigma_{x}=\bigcup\limits_{J\in \mathcal{J}}\bigcup\limits_{\varepsilon \in \mathcal{E}_{J}(x)}\Delta_{J,\varepsilon},
-\]</span>
-where
+and let
 <span class="math">\[
 	\mathcal{E}_{J}(x):=\left\{ \varepsilon \in \{ -1,1 \}^{J}\,\, \colon\,\, y_{J,\varepsilon}(x)\in L_{x} \right\}.
 \]</span>
-</p></div>
-<p><i>Proof.</i> 
-\(\supseteq\): If \(\varepsilon\in\mathcal{E}_J(x)\), then \(y=y_{J,\varepsilon}(x)\in L_x\) and so 
+Then for every \(x\in\operatorname{int} K\),
+<span class="math">\[
+\Sigma_{x}=\bigcup\limits_{J\in \mathcal{J}}\bigcup\limits_{\varepsilon \in \mathcal{E}_{J}(x)}\Delta_{J,\varepsilon}.
+\]</span>
+We shall only need the inclusion \(\supseteq\), which is immediate: if \(\varepsilon\in\mathcal{E}_J(x)\), then \(y=y_{J,\varepsilon}(x)\) is a vertex of \(L_x\) and
 <span class="math">\[
 \langle\varepsilon_jb_j,y\rangle=\lambda(\langle b_j,x\rangle)=\lambda(\langle\varepsilon_jb_{j},x\rangle)\qquad \text{for all $j\in J$,}
 \]</span>
-So \(\Delta_{J,\varepsilon}\subseteq\Sigma_x\).</p>
-<p>\(\subseteq\): Fix \(y\in\partial L_x\) and let \[\xi\in\operatorname{conv}\big(\{0\}\cup\{h\in K^{\circ}\colon h\text{ is active at }y\}\big).\]</p>
-<p>Let \(h\in K^{\circ}\) be active at \(y\). Since \(K^{\circ}=\operatorname{conv}\{\pm b_l\}\), \(h\) is a convex combination, with positive weights, of some of the vectors \(\pm b_l\). The function \(\lambda(\langle \cdot,x\rangle)-\langle \cdot,y\rangle\) is concave, nonnegative on \(K^{\circ}\) by (3), and vanishes at \(h\), so it vanishes at each of these vectors, that is, they are active at \(y\).
-Consequently,
-<span class="math">\[
-	\xi=\sum_v\beta_v\,v,\qquad\beta_v\ge0,\quad\sum_v\beta_v\le1,
-\]</span>
-where \(v\) ranges over the vectors \(\pm b_l\) active at \(y\). Among all such representations of \(\xi\), choose one with the fewest nonzero coefficients. Then the vectors \(v\) with \(\beta_v>0\) are linearly independent.</p>
-<p>The points of \(L_x\) at which every \(v\) with \(\beta_v>0\) is active form a face of \(L_x\) containing \(y\); let \(y'\) be a vertex of this face. Then \(y'\) is a vertex of \(L_x\), so the vectors active at \(y'\) span \(\mathbb{R}^d\). Moreover, \(b_l\) and \(-b_l\) are never both active at \(y'\), since this would give \(\lambda(\langle b_l,x\rangle)=-\lambda(\langle b_l,x\rangle)\), whereas \(\lambda(\langle b_l,x\rangle)>0\) because \(|\langle b_l,x\rangle|\lt 1\). Hence the linearly independent vectors \(\{v\colon\beta_v>0\}\) can be completed, by vectors active at \(y'\), to a basis of \(\mathbb{R}^d\) of the form \(\{\varepsilon_jb_j\}_{j\in J}\) with \(J\in\mathcal{J}\) and \(\varepsilon\in\{-1,1\}^J\). Since every \(\varepsilon_jb_j\) is active at \(y'\) and \(\lambda\) is even,
-<span class="math">\[
-	\langle b_j,y'\rangle=\varepsilon_j\lambda(\langle b_j,x\rangle),\qquad j\in J,
-\]</span>
-that is, \(y'=y_{J,\varepsilon}(x)\). As \(y'\in L_x\), we get \(\varepsilon\in\mathcal{E}_J(x)\), and \(\xi=\sum_v\beta_vv\in\Delta_{J,\varepsilon}\). \(\square\)</p>
+so \(\Delta_{J,\varepsilon}\subseteq\Sigma_x\). The inclusion \(\subseteq\) is proved in <a href="#appendix-simplex-decomposition">Appendix: \(\Sigma_x\) as a union of simplices</a>. In Figure 2 below, each vertex \(y_{J,\varepsilon}(x)\) of \(L_x\) with \(\varepsilon\in\mathcal{E}_J(x)\) (left) and the simplex \(\Delta_{J,\varepsilon}\) (right) are drawn in the same colour.</p>
 <p><b>Figure 2: the set \(\Sigma_x\)</b></p>
 <div class="figure" id="fig-2"></div>
-<div class="callout callout-lemma" id="lemma-2"><div class="callout-title">Lemma 2</div><p>For almost every \(x \in \operatorname{int} K\), the simplices \(\{\Delta_{J,\varepsilon}\}_{J\in \mathcal{J},\,\varepsilon \in \mathcal{E}_J(x)}\) have disjoint interiors.</p></div>
+<div class="callout callout-lemma" id="lemma-1"><div class="callout-title">Lemma 1</div><p>For almost every \(x \in \operatorname{int} K\), the simplices \(\{\Delta_{J,\varepsilon}\}_{J\in \mathcal{J},\,\varepsilon \in \mathcal{E}_J(x)}\) have disjoint interiors.</p></div>
 <p><i>Proof.</i> Let \(\varepsilon\in\mathcal{E}_J(x)\) and let \(\xi\in\operatorname{int}\Delta_{J,\varepsilon}\). Then there exist \(\alpha_{j}>0\) such that \(\sum\limits_{j\in J}\alpha_{j}\lt 1\) and
 <span class="math">\[
 	\xi=\sum_{j\in J}\alpha_j\varepsilon_jb_j.
@@ -225,9 +205,9 @@ Since \(b_k\) is not proportional to \(b_j\) for any \(j\neq k\), at least two c
 	\frac{\partial^{2}G}{\partial q_a\,\partial q_b}=-\varepsilon_k c_ac_b\lambda''\Big(\sum_{j\in J}c_jq_j\Big)\neq0
 \]</span>
 everywhere. By the implicit function theorem, both \(\{G=0,\ \nabla G\neq0\}\) and \(\{\partial G/\partial q_a=0\}\supseteq\{\nabla G=0\}\) are locally \(C^1\) hypersurfaces, so the level set \(\{G=0\}\) has measure zero. Since there are finitely many choices of \(J,\varepsilon,k,\varepsilon_k\), this proves the lemma. \(\square\)</p>
-<p>As a corollary of Lemmas 1 and 2, we get</p>
+<p>By Lemma 1 and the inclusion \(\Delta_{J,\varepsilon}\subseteq\Sigma_x\) for \(\varepsilon\in\mathcal{E}_J(x)\), we get</p>
 <span class="math">\[
-	\operatorname{Vol}(\Sigma_{x})=\frac{1}{d!}\sum\limits_{J\in \mathcal{J}}|\det B_{J}|\cdot|\mathcal{E}_J(x)| \qquad \text{for almost every \(x\in\operatorname{int} K\).}
+	\operatorname{Vol}(\Sigma_{x})\ge\frac{1}{d!}\sum\limits_{J\in \mathcal{J}}|\det B_{J}|\cdot|\mathcal{E}_J(x)| \qquad \text{for almost every \(x\in\operatorname{int} K\).}
 \]</span>
 <p>Thus, in order to prove (2), it suffices to prove that
 <span class="math">\[
@@ -332,7 +312,7 @@ so \(\pi_J\) is injective on \(M_k\) and \(\pi_J(M_k)\subseteq A_J\).</p>
 <span class="math">\[
 	\sigma_k:=\sum_{J\in\mathcal{J}}(\pi_J|_{M_k})^*\,p_k^*\,dV_J.
 \]</span></p>
-<div class="callout callout-lemma" id="lemma-3"><div class="callout-title">Lemma 3</div><p>Each term of \(\sigma_k\) is a nonnegative \(2d\)-form on \(M_k\), and the integral
+<div class="callout callout-lemma" id="lemma-2"><div class="callout-title">Lemma 2</div><p>Each term of \(\sigma_k\) is a nonnegative \(2d\)-form on \(M_k\), and the integral
 <span class="math">\[
 \int_{M_k}\sigma_k
 \]</span>
@@ -344,7 +324,7 @@ Then
 	\phi^*\sigma_k=\sum_{J\in\mathcal{J}}(\pi_J\circ f_k)^*dV_J=\sum_{J\in\mathcal{J}}|\det P_J|^2\,dV=\sum_{J\in{[m]\choose d}}|\det P_J|^2\,dV,
 \]</span>
 where the first equality follows from \(\pi_J\circ p_k=p_k\circ\pi_J\), the second holds because a complex-linear map \(T\colon\mathbb{C}^d\to\mathbb{C}^J\) has real Jacobian \(|\det T|^2\), and the third holds since \(\det P_J=0\) for all \(J\notin\mathcal{J}\). By Cauchy–Binet, \(\sum_{J\in{[m]\choose d}}|\det P_J|^2\) is the \(2d\)-dimensional Jacobian of \(f_k\) at \(z\), and the lemma follows. \(\square\)</p>
-<div class="callout callout-lemma" id="lemma-4"><div class="callout-title">Lemma 4</div><p>For all \(J \in \mathcal{J}\),</p>
+<div class="callout callout-lemma" id="lemma-3"><div class="callout-title">Lemma 3</div><p>For all \(J \in \mathcal{J}\),</p>
 <span class="math">\[
 \limsup_{k \to \infty} \frac{1}{k^{d}}\int_{M_{k}}(\pi_J|_{M_k})^*p_k^*dV_J\leq \frac{\pi^{d}}{d!}\mu_{J}(A_{J}). 
 \]</span></div>
@@ -365,7 +345,7 @@ and \(\rho^{1/k}\omega:=(\rho_j^{1/k}\omega_j)_{j\in J}\). Then
 \]</span>
 The first inequality holds because \(\pi_J\) is injective on \(M_k\) and \(\pi_J(M_k)\subseteq A_J\cap p_k^{-1}(\mathbb B_J)\). In the second passage we applied the substitution \(v_j=\rho_j^{1/k}\omega_j\) and used \(p_k^*dV_J=k^d(2\pi)^d\prod_j\rho_j\,d\rho\otimes\mu_J\). The second inequality is Fatou's lemma, since \(A_J\) is closed and \(\rho^{1/k}\omega\to\omega\), so \(\limsup_k\mathbf 1_{A_J}(\rho^{1/k}\omega)\le\mathbf 1_{A_J}(\omega)\). \(\square\)</p>
 <h3 id="a-lower-bound-on-the-volume-of-the-image-of-a-holomorphic-function">A lower bound on the volume of the image of a holomorphic function</h3>
-<p>Summing Lemma 4 over \(J\in \mathcal{J}\) we get
+<p>Summing Lemma 3 over \(J\in \mathcal{J}\) we get
 <span class="math">\[
 	\limsup_{k \to \infty} \frac{1}{(\pi k)^{d}}\int_{M_{k}}\sigma_{k}\leq \frac{1}{d!}\sum\limits_{J\in \mathcal{J}}\mu_{J}(A_{J}).
 \]</span>
@@ -377,11 +357,11 @@ The proof will thus be finished once we prove that
 <span class="math">\[
 	M_k:=p_k^{-1}(\mathbb B_m)\cap F^{-1}\big(B(\mathbb{C}^d)\big),
 \]</span>
-and that, by Lemma 3, the integral \(\int_{M_k}\sigma_{k}\) is the \(2d\)-dimensional volume of the image \(p_{k}(M_{k})\), counted with multiplicity. Thus it suffices to apply the following key lemma:</p>
-<div class="callout callout-lemma" id="lemma-5"><div class="callout-title">Lemma 5</div><p>Let \(d\geq 1\) and \(m\geq d\). Let \(U\subset \mathbb{C}^{d}\) be an open set containing the origin, and let \(f:U\to \mathbb{C}^{m}\) be a holomorphic function satisfying</p>
+and that, by Lemma 2, the integral \(\int_{M_k}\sigma_{k}\) is the \(2d\)-dimensional volume of the image \(p_{k}(M_{k})\), counted with multiplicity. Thus it suffices to apply the following key lemma:</p>
+<div class="callout callout-lemma" id="lemma-4"><div class="callout-title">Lemma 4</div><p>Let \(d\geq 1\) and \(m\geq d\). Let \(U\subset \mathbb{C}^{d}\) be an open set containing the origin, and let \(f:U\to \mathbb{C}^{m}\) be a holomorphic function satisfying</p>
 <ol><li>\(f^{-1}(0)=\{ 0 \}\)</li><li>\(|f(z)|\le C|z|^{k}\) on a neighbourhood of \(0\), for some integer \(k\geq 1\) and some \(C>0\),</li><li>for every \(s \lt 1\) the sublevel set \(U_{s}:=\{ |f|\lt s \}\) is relatively compact in \(U\).</li></ol>
 <p>Then the \(2d\)-dimensional volume of \(f(U_{1})\), counted with multiplicity, is at least \(\frac{(\pi k)^{d}}{d!}\).</p></div>
-<p>Let us verify that the hypotheses of Lemma 5 are satisfied with \(f=f_k=p_{k}\circ F^{-1}\circ B\). 
+<p>Let us verify that the hypotheses of Lemma 4 are satisfied with \(f=f_k=p_{k}\circ F^{-1}\circ B\). 
 The set \(\Omega\) is open and contains \(0\), and \(f_k\) is holomorphic on \(\Omega\) because \(B(\Omega)\subseteq D^m\) and \(F^{-1}\) acts coordinatewise. 
 In the notation of the lemma, we have \(U_1=\{ |f_{k}|\lt 1 \}=\Omega_k\), so \(f_k(U_1)=p_k(\phi(\Omega_k))=p_k(M_k)\).
 Since \(F(0)=0\) and \(F\) is injective, \(f_k(z)=0\) if and only if \(Bz=0\), that is, \(z=0\), because \(b_1,\dots,b_m\) span \(\mathbb{R}^d\).</p>
@@ -398,14 +378,14 @@ so \(\langle b_j,z\rangle\in F(s^{1/k}\overline{\mathbb D})\). Hence
 	\overline{U_s}\subseteq\{z\in\mathbb{C}^d\colon\langle b_j,z\rangle\in F(s^{1/k}\overline{\mathbb D})\ \ \forall\,1\le j\le m\}=B^{-1}\big(F(s^{1/k}\overline{\mathbb D})^{m}\big).
 \]</span>
 The set \(F(s^{1/k}\overline{\mathbb D})\) is a compact subset of \(D\) and \(B\) is injective, so the right-hand side is a compact subset of \(\Omega\). Thus \(U_s\) is relatively compact in \(\Omega\).</p>
-<p>The hypotheses of Lemma 5 are satisfied; hence the theorem (modulo the equality cases) would follow once we prove Lemma 5.</p>
+<p>The hypotheses of Lemma 4 are satisfied; hence the theorem (modulo the equality cases) would follow once we prove Lemma 5.</p>
 <p><i>Proof of Lemma 5.</i>
 We use the normalization
 <span class="math">\[
 	d := \partial + \bar\partial, \qquad d^{c}:=\frac{i}{4}(\bar\partial-\partial),\qquad dd^{c}=\frac{i}{2}\partial\bar\partial,
 \]</span>
 so that \(dd^{c}|z|^{2}=\sum_{j}dx_{j}\wedge dy_{j}\) and \((dd^{c}|z|^{2})^{d}=d!\,dV\).</p>
-<p>On \(\mathbb{C}^m\), \((dd^{c}|w|^{2})^{d}=d!\sum_{J\in{[m]\choose d}}dV_J\), so the computation in the proof of Lemma 3, with \(Df\) in place of \(P\), gives \((dd^{c}|f|^{2})^{d}=d!\sqrt{\det(Df_\mathbb{R}^TDf_\mathbb{R})}\,dV\). </p>
+<p>On \(\mathbb{C}^m\), \((dd^{c}|w|^{2})^{d}=d!\sum_{J\in{[m]\choose d}}dV_J\), so the computation in the proof of Lemma 2, with \(Df\) in place of \(P\), gives \((dd^{c}|f|^{2})^{d}=d!\sqrt{\det(Df_\mathbb{R}^TDf_\mathbb{R})}\,dV\). </p>
 <p>Hence it suffices to prove that
 <span class="math">\[
 	\int_{U_{1}}(dd^{c}|f|^{2})^{d}\geq(\pi k)^{d}.
@@ -460,15 +440,15 @@ Letting \(s\uparrow 1\) along regular values and using monotone convergence give
 	\end{aligned}
 \]</span>
 Then \((A\oplus_1A')^{\circ}=A^{\circ}\oplus_\infty A'^{\circ}\) and \((A\oplus_\infty A')^{\circ}=A^{\circ}\oplus_1 A'^{\circ}\). <i>Hanner polytopes</i> form the smallest class of convex bodies that contains the segments \([-a,a]\subset\mathbb{R}\), \(a>0\), and is closed under \(\oplus_1\) and \(\oplus_\infty\).</p>
-<p><b>Plan.</b> The proof above gives \(\frac{4^{d}}{d!}\le\int_K\operatorname{Vol}(\Sigma_x)\,dx\le\operatorname{Vol}(K)\operatorname{Vol}(K^{\circ})\), where the first inequality follows from Lemma 7 and the second holds true since \(\Sigma_x\subseteq K^{\circ}\). Equality in the second inequality forces \(\Sigma_x=K^{\circ}\) for almost every \(x \in K\). Lemma 7 shows that this is then true for all \(x \in \operatorname{int} K\). Lemma 7 for \(\widehat K=K\oplus_1[-1,1]\) at points \((\delta u,1-\delta)\), \(\delta\downarrow0\), together with Lemma 10, gives that every triple of points of \((\mathbb{R}^d,\|\cdot\|_{K^{\circ}})\) has a metric median (Lemma 8), and Theorem 9, which is due to Hansen and Lima, identifies the norm.</p>
+<p><b>Plan.</b> The proof above gives \(\frac{4^{d}}{d!}\le\int_K\operatorname{Vol}(\Sigma_x)\,dx\le\operatorname{Vol}(K)\operatorname{Vol}(K^{\circ})\), where the first inequality follows from Lemma 6 and the second holds true since \(\Sigma_x\subseteq K^{\circ}\). Equality in the second inequality forces \(\Sigma_x=K^{\circ}\) for almost every \(x \in K\). Lemma 6 shows that this is then true for all \(x \in \operatorname{int} K\). Lemma 6 for \(\widehat K=K\oplus_1[-1,1]\) at points \((\delta u,1-\delta)\), \(\delta\downarrow0\), together with Lemma 9, gives that every triple of points of \((\mathbb{R}^d,\|\cdot\|_{K^{\circ}})\) has a metric median (Lemma 7), and Theorem 8, which is due to Hansen and Lima, identifies the norm.</p>
 <p>We extend the definitions of \(L_{x}\) and \(\Sigma_{x}\) to arbitrary convex bodies as follows: for \(x\in\operatorname{int} K\) define \(L_x\) by the right-hand side of (3), and \(\Sigma_x\) by (4).
 Thus \(\xi\in\Sigma_x\) iff \(\xi=\sum_i\alpha_ih_i\) for finitely many \(h_i\in K^{\circ}\) with \(\langle h_i,y\rangle=\lambda(\langle h_i,x\rangle)\) for one \(y\in \partial L_x\) and all \(i\), where \(\alpha_i\ge0\) and \(\sum_i\alpha_i\le1\); by Carathéodory's theorem, \(d+1\) terms suffice. Since \(\lambda\le\lambda(0)\), every \(y\in L_x\) satisfies \(\langle h,y\rangle\le\lambda(0)\) for all \(h\in K^{\circ}\), that is,
 <span class="math">\[
 	L_x\subseteq\lambda(0)K .\tag{8}
 \]</span></p>
-<div class="callout callout-lemma" id="lemma-6"><div class="callout-title">Lemma 6</div><p>Let \(K^{(j)}\supseteq K\) be symmetric convex bodies with \(K^{(j)}\subseteq t_j^{-1}K\) and \(t_j\to1\), and let \(L^{(j)}_x\) and \(\Sigma^{(j)}_x\) be defined as \(L_x\) in (3) and \(\Sigma_x\) in <a href="#def-sigma">(4)</a>, with \(K\) replaced by \(K^{(j)}\). If \(x_j\to x\in\operatorname{int} K\), \(\xi_j\to\xi\) and \(\xi_j\in\Sigma^{(j)}_{x_j}\), then \(\xi\in\Sigma_x\).</p></div>
-<p><i>Proof.</i> Write \(\xi_j=\sum_{i=0}^{d}\alpha_{ij}h_{ij}\) with \(h_{ij}\in (K^{(j)})^{\circ}\), \(\langle h_{ij},y_j\rangle=\lambda(\langle h_{ij},x_j\rangle)\) for some \(y_j\in L^{(j)}_{x_j}\), \(\alpha_{ij}\ge0\), \(\sum_i\alpha_{ij}\le1\). By (8) for \(K^{(j)}\), \(y_j\in\lambda(0)K^{(j)}\subseteq\lambda(0)t_j^{-1}K\), so all data range in a compact set. Pass to a subsequence with \(y_j\to y\), \(h_{ij}\to h_i\in K^{\circ}\), \(\alpha_{ij}\to\alpha_i\). For \(h\in K^{\circ}\) we have \(t_jh\in (K^{(j)})^{\circ}\), so \(\langle t_jh,y_j\rangle\le\lambda(\langle t_jh,x_j\rangle)\); continuity of \(\lambda\) gives \(y\in L_x\). The same continuity turns \(\langle h_{ij},y_j\rangle=\lambda(\langle h_{ij},x_j\rangle)\) into \(\langle h_i,y\rangle=\lambda(\langle h_i,x\rangle)\). If all \(\alpha_i\) vanish then \(\xi=0\in\Sigma_x\). Otherwise some \(h_i\) is active at \(y\), and \(h_i\neq0\) since \(\lambda(0)>0\); as \(y+\varepsilon h_i\) violates (3) for every \(\varepsilon>0\), \(y\in\partial L_x\). So \(\xi=\sum\alpha_ih_i\in\Sigma_x\). \(\square\)</p>
-<div class="callout callout-lemma" id="lemma-7"><div class="callout-title">Lemma 7</div><p>For every symmetric convex body \(K\),
+<div class="callout callout-lemma" id="lemma-5"><div class="callout-title">Lemma 5</div><p>Let \(K^{(j)}\supseteq K\) be symmetric convex bodies with \(K^{(j)}\subseteq t_j^{-1}K\) and \(t_j\to1\), and let \(L^{(j)}_x\) and \(\Sigma^{(j)}_x\) be defined as \(L_x\) in (3) and \(\Sigma_x\) in <a href="#def-sigma">(4)</a>, with \(K\) replaced by \(K^{(j)}\). If \(x_j\to x\in\operatorname{int} K\), \(\xi_j\to\xi\) and \(\xi_j\in\Sigma^{(j)}_{x_j}\), then \(\xi\in\Sigma_x\).</p></div>
+<p><i>Proof.</i> Write \(\xi_j=\sum_{i=0}^{d}\alpha_{ij}h_{ij}\) with \(h_{ij}\in (K^{(j)})^{\circ}\), \(\langle h_{ij},y_j\rangle=\lambda(\langle h_{ij},x_j\rangle)\) for some \(y_j\in L^{(j)}_{x_j}\), \(\alpha_{ij}\ge0\), \(\sum_i\alpha_{ij}\le1\). By (8) for \(K^{(j)}\), \(y_j\in\lambda(0)K^{(j)}\subseteq\lambda(0)t_j^{-1}K\), so all data range in a compact set. Pass to a subsequence with \(y_j\to y\), \(h_{ij}\to h_i\in K^{\circ}\), \(\alpha_{ij}\to\alpha_i\). For \(h\in K^{\circ}\) we have \(t_jh\in (K^{(j)})^{\circ}\), so \(\langle t_jh,y_j\rangle\le\lambda(\langle t_jh,x_j\rangle)\); continuity of \(\lambda\) gives \(y\in L_x\). The same continuity turns \(\langle h_{ij},y_j\rangle=\lambda(\langle h_{ij},x_j\rangle)\) into \(\langle h_i,y\rangle=\lambda(\langle h_i,x\rangle)\). If all \(\alpha_i\) vanish then \(\xi=0\in\Sigma_x\). Otherwise some \(h_i\) has \(\alpha_i>0\), and then \(h_i\neq0\) since \(\lambda(0)>0\); as \(y+\varepsilon h_i\) violates (3) for every \(\varepsilon>0\), \(y\in\partial L_x\). So \(\xi=\sum\alpha_ih_i\in\Sigma_x\). \(\square\)</p>
+<div class="callout callout-lemma" id="lemma-6"><div class="callout-title">Lemma 6</div><p>For every symmetric convex body \(K\),
 <span class="math">\[
 \int_K\operatorname{Vol}(\Sigma_x)\,dx\ge\frac{4^{d}}{d!}.
 \]</span>
@@ -478,7 +458,7 @@ In particular, for every \(x\in\operatorname{int} K\) and every \(\xi\in\partial
 <span class="math">\[
 	E_K:=\{(x,\xi)\,\colon\,x\in\operatorname{int} K,\ \xi\in\Sigma_x\}\subseteq K\times K^{\circ}.
 \]</span>
-Take \(K^{(j)}=K\) and \(t_j=1\) in Lemma 6: if \((x_j,\xi_j)\in E_K\) and \((x_j,\xi_j)\to(x,\xi)\) with \(x\in\operatorname{int} K\), then \((x,\xi)\in E_K\). So \(E_K\) is relatively closed in \(\operatorname{int} K\times\mathbb{R}^{d}\), and each fiber \(\Sigma_x\) is closed; since \(\Sigma_x\subseteq K^{\circ}\), it is compact. By Fubini, \(\operatorname{Vol}_{2d}(E_K)=\int_K\operatorname{Vol}(\Sigma_x)\,dx\).</p>
+Take \(K^{(j)}=K\) and \(t_j=1\) in Lemma 5: if \((x_j,\xi_j)\in E_K\) and \((x_j,\xi_j)\to(x,\xi)\) with \(x\in\operatorname{int} K\), then \((x,\xi)\in E_K\). So \(E_K\) is relatively closed in \(\operatorname{int} K\times\mathbb{R}^{d}\), and each fiber \(\Sigma_x\) is closed; since \(\Sigma_x\subseteq K^{\circ}\), it is compact. By Fubini, \(\operatorname{Vol}_{2d}(E_K)=\int_K\operatorname{Vol}(\Sigma_x)\,dx\).</p>
 <p>Now choose \(t_j\in(0,1)\) with \(t_j\to1\), and symmetric polytopes \(K^{(j)}\) with
 <span class="math">\[
 	K\subseteq K^{(j)}\subseteq t_j^{-1}K\qquad\text{for all }j.
@@ -499,14 +479,14 @@ The last term tends to \(0\) as \(j\to\infty\). The set \(E_j\) is contained in 
 <span class="math">\[
 	\operatorname{Vol}_{2d}\Big(\limsup_{j\to\infty}E_j\Big)\ge\limsup_{j\to\infty}\operatorname{Vol}_{2d}(E_j)\ge\frac{4^{d}}{d!}.
 \]</span>
-Finally, \(\limsup_jE_j\subseteq E_K\). Indeed, let \((x,\xi)\in E_j\) for infinitely many \(j\), say for \(j\) in an infinite set \(J_0\). Then \(x\in\operatorname{int}K\) and \(\xi\in\Sigma^{(j)}_x\) for all \(j\in J_0\), and Lemma 6, applied along \(J_0\) with the constant sequences \(x_j=x\) and \(\xi_j=\xi\), gives \(\xi\in\Sigma_x\), i.e., \((x,\xi)\in E_K\). Therefore
+Finally, \(\limsup_jE_j\subseteq E_K\). Indeed, let \((x,\xi)\in E_j\) for infinitely many \(j\), say for \(j\) in an infinite set \(J_0\). Then \(x\in\operatorname{int}K\) and \(\xi\in\Sigma^{(j)}_x\) for all \(j\in J_0\), and Lemma 5, applied along \(J_0\) with the constant sequences \(x_j=x\) and \(\xi_j=\xi\), gives \(\xi\in\Sigma_x\), i.e., \((x,\xi)\in E_K\). Therefore
 <span class="math">\[
 	\int_K\operatorname{Vol}(\Sigma_x)\,dx=\operatorname{Vol}_{2d}(E_K)\ge\operatorname{Vol}_{2d}\Big(\limsup_{j\to\infty}E_j\Big)\ge\frac{4^{d}}{d!},
 \]</span>
 which proves the inequality.</p>
-<p>Finally, assume \(\operatorname{Vol}(K)\operatorname{Vol}(K^{\circ})=4^{d}/d!\). Then \(E_K\subseteq K\times K^{\circ}\) and \(\operatorname{Vol}(E_K)\ge\operatorname{Vol}(K\times K^{\circ})\), so \((\operatorname{int} K\times\operatorname{int} K^{\circ})\setminus E_K\) is null. It is open by Lemma 6, hence empty. So \(\Sigma_x\supseteq\operatorname{int} K^{\circ}\), and \(\Sigma_x\) is closed. For \(\xi\in\partial K^{\circ}\), write \(\xi=\sum\alpha_ih_i\) as in the definition of \(\Sigma_x\); the weights \(\alpha_i\) sum to \(1\) since \[1=\|\xi\|_{K^{\circ}}\le\sum\alpha_i\|h_i\|_{K^{\circ}}\le\sum\alpha_i\le1,\] so \(\xi\in\operatorname{conv}\{h_i\}\). \(\square\)</p>
+<p>Finally, assume \(\operatorname{Vol}(K)\operatorname{Vol}(K^{\circ})=4^{d}/d!\). Then \(E_K\subseteq K\times K^{\circ}\) and \(\operatorname{Vol}(E_K)\ge\operatorname{Vol}(K\times K^{\circ})\), so \((\operatorname{int} K\times\operatorname{int} K^{\circ})\setminus E_K\) is null. It is open by Lemma 5, hence empty. So \(\Sigma_x\supseteq\operatorname{int} K^{\circ}\), and \(\Sigma_x\) is closed. For \(\xi\in\partial K^{\circ}\), write \(\xi=\sum\alpha_ih_i\) as in the definition of \(\Sigma_x\); the weights \(\alpha_i\) sum to \(1\) since \[1=\|\xi\|_{K^{\circ}}\le\sum\alpha_i\|h_i\|_{K^{\circ}}\le\sum\alpha_i\le1,\] so \(\xi\in\operatorname{conv}\{h_i\}\). \(\square\)</p>
 <div class="callout callout-definition" id="definition"><div class="callout-title">Definition</div><p>Let \((V,\|\cdot\|)\) be a normed space. A <i>median</i> of a triple  \(x_1,x_2,x_3\in V\) is a point \(m\) with \(\|x_i-m\|+\|m-x_j\|=\|x_i-x_j\|\) for all \(i\neq j\).</p></div>
-<div class="callout callout-lemma" id="lemma-8-medians"><div class="callout-title">Lemma 8</div><p>If \(\operatorname{Vol}(K)\operatorname{Vol}(K^{\circ})=4^{d}/d!\) then every triple of points has a median in \((\mathbb{R}^{d},\|\cdot\|_{K^{\circ}})\).</p></div>
+<div class="callout callout-lemma" id="lemma-7-medians"><div class="callout-title">Lemma 7</div><p>If \(\operatorname{Vol}(K)\operatorname{Vol}(K^{\circ})=4^{d}/d!\) then every triple of points has a median in \((\mathbb{R}^{d},\|\cdot\|_{K^{\circ}})\).</p></div>
 <p><i>Proof.</i> 
 Write \(\|\cdot\|=\|\cdot\|_{K^{\circ}}\). It suffices to consider triples of the form \(0,v,u\). We may also assume that the three points are distinct (otherwise any repeated point is a median). 
 The set
@@ -542,7 +522,7 @@ Let \(\hat v:=(v,\|v\|)\) and \(\hat u:=(u,\|u\|)\) be the lifts of \(v\) and \(
 <span class="math">\[
 	\|\hat v-\hat u\|_{\widehat K^{\circ}}=\max\big\{\|v-u\|,\,\big|\|v\|-\|u\|\big|\big\}=\|v-u\|,\qquad \|\hat v\|_{\widehat K^{\circ}}=\|v\|,\qquad \|\hat u\|_{\widehat K^{\circ}}=\|u\|.
 \]</span>
-<p>By Lemma 7 for \(\widehat K\) at \(\hat x\), applied to \((\hat v-\hat u)/\|v-u\|\in\partial\widehat K^{\circ}\), there exist \(\hat y\in \hat L_{\hat x}\), finitely many points \((h_i,s_i)\in\widehat K^{\circ}\) and weights \(a_i\ge0\) with \(\sum_ia_i=\|v-u\|\) and \(\langle(h_i,s_i),\hat y\rangle=\lambda\big(\langle(h_i,s_i),\hat x\rangle\big)\) for all \(i\), such that
+<p>By Lemma 6 for \(\widehat K\) at \(\hat x\), applied to \((\hat v-\hat u)/\|v-u\|\in\partial\widehat K^{\circ}\), there exist \(\hat y\in \hat L_{\hat x}\), finitely many points \((h_i,s_i)\in\widehat K^{\circ}\) and weights \(a_i\ge0\) with \(\sum_ia_i=\|v-u\|\) and \(\langle(h_i,s_i),\hat y\rangle=\lambda\big(\langle(h_i,s_i),\hat x\rangle\big)\) for all \(i\), such that
 <span class="math">\[
 	\hat v-\hat u=\sum_ia_i(h_i,s_i).
 \]</span>
@@ -561,7 +541,7 @@ Apply (10) to each \((h_i,s_i)\), then pair with \(\hat y\), and finally use \(\
 	&\qquad\le\|v\|\,\lambda\Big(1-\delta\Big(1-\frac{\langle v,x\rangle}{\|v\|}\Big)\Big)+\|u\|\,\lambda\Big(1-\delta\Big(1-\frac{\langle u,x\rangle}{\|u\|}\Big)\Big).
 	\end{aligned}\tag{11}
 \]</span>
-Now divide (11) by \(\lambda(1-\delta)\) and let \(\delta\searrow0\). Every argument of \(\lambda\) in (11) is of the form \(1-\delta c\) with \(c\in[1-\|x\|_K,1+\|x\|_K]\), so by Lemma 10 each ratio \(\lambda(1-\delta c)/\lambda(1-\delta)\) may be replaced by \(c\), with a total error of \(o(1)\):
+Now divide (11) by \(\lambda(1-\delta)\) and let \(\delta\searrow0\). Every argument of \(\lambda\) in (11) is of the form \(1-\delta c\) with \(c\in[1-\|x\|_K,1+\|x\|_K]\), so by Lemma 9 each ratio \(\lambda(1-\delta c)/\lambda(1-\delta)\) may be replaced by \(c\), with a total error of \(o(1)\):
 <span class="math">\[
 	\begin{aligned}
 	\sum_ia_i\big(1-s_i\langle h_i,x\rangle\big)&=\sum_ia_i\Big(\frac{1+s_i}2\big(1-\langle h_i,x\rangle\big)+\frac{1-s_i}2\big(1+\langle h_i,x\rangle\big)\Big)\\
@@ -577,7 +557,7 @@ Since \(\sum_ia_ih_i=v-u\), we have \(u-w=-\sum_ia_i\frac{1-s_i}2h_i\), and sinc
 	\|v-w\|+\|u-w\|\le\sum_ia_i\Big(\frac{1+s_i}2+\frac{1-s_i}2\Big)=\|v-u\|,
 \]</span>
 so \(w\in W\).</p>
-<p><b>Figure 3: proof of Lemma 8</b></p>
+<p><b>Figure 3: proof of Lemma 7</b></p>
 <div class="figure med-fig" id="fig-3">
 <svg viewBox="0 0 560 400" role="img" aria-label="The cone of the l-infinity norm over the plane, the lifted points u-hat and v-hat on it, the path through 0 and the geodesic whose lowest point lies above the median w. Drag to rotate."></svg>
 <div class="med-ctl"><button type="button" data-act="new">new <i>u</i>, <i>v</i></button><button type="button" data-act="reset">reset</button><span>drag to rotate</span></div>
@@ -648,9 +628,9 @@ so \(w\in W\).</p>
 	\langle w,x\rangle\le\tfrac12\big(\|v\|+\|u\|-\|v-u\|\big)+o(1)\qquad\text{as }\delta\searrow0.
 \]</span>
 This proves (9), since \(w\in W\). \(\square\)</p>
-<div class="callout callout-theorem" id="theorem-9-lima-lima-1978-hansen-lima-hansen-lima-1981"><div class="callout-title">Theorem 9 (Lima,<sup class="fn"><a href="#fn-lima-1978" id="fnref-lima-1978">6</a></sup> Hansen–Lima<sup class="fn"><a href="#fn-hansen-lima-1981" id="fnref-hansen-lima-1981">7</a></sup>)</div><p>Let \(\|\cdot\|\) be a norm on \(\mathbb{R}^{d}\). Suppose that every triple of points has a median in \((\mathbb{R}^{d},\|\cdot\|)\). Then the unit ball of \(\|\cdot\|\) is a linear image of a Hanner polytope.</p></div>
+<div class="callout callout-theorem" id="theorem-8-lima-lima-1978-hansen-lima-hansen-lima-1981"><div class="callout-title">Theorem 8 (Lima,<sup class="fn"><a href="#fn-lima-1978" id="fnref-lima-1978">6</a></sup> Hansen–Lima<sup class="fn"><a href="#fn-hansen-lima-1981" id="fnref-hansen-lima-1981">7</a></sup>)</div><p>Let \(\|\cdot\|\) be a norm on \(\mathbb{R}^{d}\). Suppose that every triple of points has a median in \((\mathbb{R}^{d},\|\cdot\|)\). Then the unit ball of \(\|\cdot\|\) is a linear image of a Hanner polytope.</p></div>
 <p><i>Proof.</i> A normed space has the <i>3.2 intersection property</i> if any three pairwise intersecting closed balls, of arbitrary radii, have a common point.<sup class="fn"><a href="#fn-hl-sec1" id="fnref-hl-sec1">8</a></sup> Let the closed balls of radii \(\rho_i\) centered at \(x_i\), \(i=1,2,3\), intersect pairwise. Let \(m\) be a median of the centers and \(r_i=\|m-x_i\|\), so \(r_i+r_j=\|x_i-x_j\|\le\rho_i+\rho_j\). If every \(r_i\le\rho_i\), then \(m\) is a common point. Otherwise say \(t:=r_1-\rho_1>0\), so \(r_j+t\le\rho_j\) for \(j=2,3\). The point \(z=m+\frac t{r_1}(x_1-m)\) has \(\|z-x_1\|=\rho_1\) and \(\|z-x_j\|\le t+r_j\le\rho_j\). Hence the space has the 3.2 intersection property, and the conclusion is Corollary 7.4 of Hansen–Lima.<sup class="fn"><a href="#fn-hl-cor74" id="fnref-hl-cor74">9</a></sup> \(\square\)</p>
-<p>Suppose \(\operatorname{Vol}(K)\operatorname{Vol}(K^{\circ})=4^{d}/d!\). By Lemma 8 and Theorem 9, the unit ball \(K^{\circ}\) of \(\|\cdot\|_{K^{\circ}}\) is a linear image of a Hanner polytope. Polarity swaps \(\oplus_1\) and \(\oplus_\infty\) and commutes with linear maps up to transpose-inverse, so \(K=(K^{\circ})^{\circ}\) is one too.</p>
+<p>Suppose \(\operatorname{Vol}(K)\operatorname{Vol}(K^{\circ})=4^{d}/d!\). By Lemma 7 and Theorem 8, the unit ball \(K^{\circ}\) of \(\|\cdot\|_{K^{\circ}}\) is a linear image of a Hanner polytope. Polarity swaps \(\oplus_1\) and \(\oplus_\infty\) and commutes with linear maps up to transpose-inverse, so \(K=(K^{\circ})^{\circ}\) is one too.</p>
 <p>Conversely, for symmetric bodies \(A\subset\mathbb{R}^{k}\), \(A'\subset\mathbb{R}^{l}\), the fiber of \(A\oplus_1A'\) over \(x\in A\) is \((1-\|x\|_A)A'\), so
 <span class="math">\[
 	\operatorname{Vol}(A\oplus_1A')=k\operatorname{Vol}(A)\operatorname{Vol}(A')\int_0^{1}t^{k-1}(1-t)^{l}\,dt=\frac{k!\,l!}{(k+l)!}\operatorname{Vol}(A)\operatorname{Vol}(A')
@@ -686,7 +666,7 @@ Hence \(\mathrm{Re}\,F(e^{i\theta})=1-2\theta/\pi=:t\), and, by \(\log\cot\frac{
 Thus \(F\) maps the upper and the lower semicircle bijectively onto the upper and the lower half of \(\partial D\), and \(F|_{\partial\mathbb D}\) is a homeomorphism onto the Jordan curve \(\partial D\), which it traverses counterclockwise. The domain \(D\) is convex because \(\lambda\) is concave.</p>
 <p>Let \(w\in\mathbb{C}\setminus\partial D\). As \(r\uparrow1\), the curves \(\theta\mapsto F(re^{i\theta})\) converge uniformly to \(\theta\mapsto F(e^{i\theta})\), so for \(r\) close to \(1\) their winding number around \(w\) is \(1\) if \(w\in D\) and \(0\) if \(w\notin\overline D\). By the argument principle, \(F\) takes every value in \(D\) exactly once in \(\mathbb D\) and no value outside \(\overline D\). Since \(F(\mathbb D)\) is open, it does not meet \(\partial D\). Hence \(F\) is a biholomorphism of \(\mathbb D\) onto \(D\), and, with the boundary correspondence, a continuous bijection of the compact set \(\overline{\mathbb D}\) onto \(\overline D\), hence a homeomorphism.</p>
 <p>Let \(\zeta\) be uniform on \(\partial\mathbb D\), and write \(\zeta=e^{i\varepsilon\theta}\) with \(\varepsilon\in\{-1,1\}\) and \(\theta\in(0,\pi)\), which is possible almost surely. Then \(\varepsilon\) is a uniform sign, and \(\theta\) is uniform on \((0,\pi)\) and independent of \(\varepsilon\). So \(T:=1-2\theta/\pi\) is uniform on \([-1,1]\) and independent of \(\varepsilon\), and \(F(\zeta)=T+i\varepsilon\lambda(T)\). \(\square\)</p>
-<div class="callout callout-lemma" id="lemma-10"><div class="callout-title">Lemma 10</div><p>For every \(0 \lt a\le b\), 
+<div class="callout callout-lemma" id="lemma-9"><div class="callout-title">Lemma 9</div><p>For every \(0 \lt a\le b\), 
 <span class="math">\[
 \ \lim_{\delta \searrow0}\sup_{a\le c\le b}\Big|\frac{\lambda(1-\delta c)}{\lambda(1-\delta)}-c\Big|=0.
 \]</span></p></div>
@@ -695,6 +675,23 @@ Thus \(F\) maps the upper and the lower semicircle bijectively onto the upper an
 	\lambda(1-\eta)=\frac2\pi\int_0^{\eta}\log\cot\frac{\pi\tau}{4}\,d\tau=\frac2\pi\,\eta\Big(\log\frac1\eta+1+\log\frac4\pi\Big)+O(\eta^{3}).
 \]</span>
 The ratio at \(\eta=\delta c\) and \(\eta=\delta\) is \(c\,\big(1+O(1/\log\tfrac1\delta)\big)\), uniformly for \(c\in[a,b]\). \(\square\)</p>
+<h3 id="appendix-simplex-decomposition">Appendix: \(\Sigma_x\) as a union of simplices</h3>
+<p>We prove the inclusion \(\subseteq\) in the equality \(\Sigma_{x}=\bigcup_{J\in \mathcal{J}}\bigcup_{\varepsilon \in \mathcal{E}_{J}(x)}\Delta_{J,\varepsilon}\) <a href="#simplex-decomposition">stated after (4)</a>; it is not used elsewhere in this note. Call \(h\in K^{\circ}\) <i>active</i> at \(y\in L_x\) if \(\langle h,y\rangle=\lambda(\langle h,x\rangle)\), so that (4) reads
+<span class="math">\[
+	\Sigma_x=\bigcup_{y\in \partial L_x}\operatorname{conv}\big(\{0\}\cup\{h\in K^{\circ}\,\colon\,h\text{ is active at }y\}\big).
+\]</span></p>
+<p>Fix \(y\in\partial L_x\) and let \[\xi\in\operatorname{conv}\big(\{0\}\cup\{h\in K^{\circ}\colon h\text{ is active at }y\}\big).\]</p>
+<p>Let \(h\in K^{\circ}\) be active at \(y\). Since \(K^{\circ}=\operatorname{conv}\{\pm b_l\}\), \(h\) is a convex combination, with positive weights, of some of the vectors \(\pm b_l\). The function \(\lambda(\langle \cdot,x\rangle)-\langle \cdot,y\rangle\) is concave, nonnegative on \(K^{\circ}\) by (3), and vanishes at \(h\), so it vanishes at each of these vectors, that is, they are active at \(y\).
+Consequently,
+<span class="math">\[
+	\xi=\sum_v\beta_v\,v,\qquad\beta_v\ge0,\quad\sum_v\beta_v\le1,
+\]</span>
+where \(v\) ranges over the vectors \(\pm b_l\) active at \(y\). Among all such representations of \(\xi\), choose one with the fewest nonzero coefficients. Then the vectors \(v\) with \(\beta_v>0\) are linearly independent.</p>
+<p>The points of \(L_x\) at which every \(v\) with \(\beta_v>0\) is active form a face of \(L_x\) containing \(y\); let \(y'\) be a vertex of this face. Then \(y'\) is a vertex of \(L_x\), so the vectors active at \(y'\) span \(\mathbb{R}^d\). Moreover, \(b_l\) and \(-b_l\) are never both active at \(y'\), since this would give \(\lambda(\langle b_l,x\rangle)=-\lambda(\langle b_l,x\rangle)\), whereas \(\lambda(\langle b_l,x\rangle)>0\) because \(|\langle b_l,x\rangle|\lt 1\). Hence the linearly independent vectors \(\{v\colon\beta_v>0\}\) can be completed, by vectors active at \(y'\), to a basis of \(\mathbb{R}^d\) of the form \(\{\varepsilon_jb_j\}_{j\in J}\) with \(J\in\mathcal{J}\) and \(\varepsilon\in\{-1,1\}^J\). Since every \(\varepsilon_jb_j\) is active at \(y'\) and \(\lambda\) is even,
+<span class="math">\[
+	\langle b_j,y'\rangle=\varepsilon_j\lambda(\langle b_j,x\rangle),\qquad j\in J,
+\]</span>
+that is, \(y'=y_{J,\varepsilon}(x)\). As \(y'\in L_x\), we get \(\varepsilon\in\mathcal{E}_J(x)\), and \(\xi=\sum_v\beta_vv\in\Delta_{J,\varepsilon}\). \(\square\)</p>
 <h3 id="appendix-correspondence">Appendix: Correspondence with the original preprint</h3>
 <p>The tables below match the notation and numbered statements of this note with those of the <a href="https://github.com/openai/math/blob/main/preprints/The-symmetric-Mahler-conjecture-and-its-equality-cases-September-22-2026/paper.pdf">original preprint</a> (version of September 22, 2026). Equation numbers of the preprint are written as [8], [26], etc., to distinguish them from equation numbers (1)&ndash;(12) of this note.</p>
 <p>The main difference in conventions is that the preprint's lens is the domain \(D\) of this note rotated by a quarter turn: the preprint uses \(F_{\mathrm{pre}}(z)=\frac{8}{\pi^2}\sum_j\frac{(-1)^jz^{2j+1}}{(2j+1)^2}\), so that \(F(z)=-iF_{\mathrm{pre}}(iz)\) and \(D=-iD_{\mathrm{pre}}\). Accordingly, the preprint's lens is \(\{v+it\colon|t|\le1,\ |v|\le\lambda(t)\}\), and a point of \(\mathbb{C}^d\) is written there as \(Y+iX\) rather than \(x+iy\).</p>
@@ -718,7 +715,7 @@ The ratio at \(\eta=\delta c\) and \(\eta=\delta\) is \(c\,\big(1+O(1/\log\tfrac
 <tr><td>\(y_{J,\varepsilon}(x)\)</td><td>\(Y_{I,\epsilon}(X)\)</td><td></td></tr>
 <tr><td>\(\varepsilon\in\mathcal{E}_J(x)\)</td><td>\((I,\epsilon)\) feasible at \(X\)</td><td></td></tr>
 <tr><td>\(\Delta_{J,\varepsilon}\)</td><td>\(T_{I,\epsilon}\)</td><td>[26].</td></tr>
-<tr><td>\(\Sigma_x\)</td><td>\(\Sigma_X\)</td><td>The preprint defines \(\Sigma_X\) as the union of feasible simplices [26]; the intrinsic definition (4) and Lemma 1 are not in the preprint.</td></tr>
+<tr><td>\(\Sigma_x\)</td><td>\(\Sigma_X\)</td><td>The preprint defines \(\Sigma_X\) as the union of feasible simplices [26]; the intrinsic definition (4) is not in the preprint.</td></tr>
 <tr><td>\(\mu_J(A_J)\)</td><td>\(P_I\)</td><td>[22]; \(\sum_J\mu_J(A_J)\) is \(S\).</td></tr>
 <tr><td>\(f_k=p_k\circ\phi\)</td><td>\(f_k=(h_1^k,\dots,h_m^k)\)</td><td>\(|f_k|^2=\tau_k\), and \(\Omega_k=\{\tau_k<1\}\).</td></tr>
 <tr><td>\(\int_{M_k}(\pi_J|_{M_k})^*p_k^*dV_J\)</td><td>\(M_{I,k}\)</td><td>[23]. The submanifolds \(M_k\) and the form \(\sigma_k\) are not used in the preprint.</td></tr>
@@ -726,8 +723,8 @@ The ratio at \(\eta=\delta c\) and \(\eta=\delta\) is \(c\,\big(1+O(1/\log\tfrac
 <tr><td>\(\|\cdot\|_A\)</td><td>\(p_A\)</td><td>Gauge; \(h_A\) is the support function.</td></tr>
 <tr><td>\(K^\circ\)</td><td>\(Q\)</td><td>In Sections 6.1, 7 and 8.</td></tr>
 <tr><td>\(\widehat K,\ \widehat K^\circ\)</td><td>\(B,\ C\)</td><td>[32].</td></tr>
-<tr><td>\(\hat x=(\delta x,1-\delta)\)</td><td>\(X_\delta=(\delta u,1-\delta)\)</td><td>The point \(x\in\operatorname{int}K\) of Lemma 8 is \(u\) in the preprint.</td></tr>
-<tr><td>\(v,\ u\)</td><td>\(x,\ y\)</td><td>The triple \(0,v,u\) in Lemma 8 is \(0,x,y\) in Proposition 8.1.</td></tr>
+<tr><td>\(\hat x=(\delta x,1-\delta)\)</td><td>\(X_\delta=(\delta u,1-\delta)\)</td><td>The point \(x\in\operatorname{int}K\) of Lemma 7 is \(u\) in the preprint.</td></tr>
+<tr><td>\(v,\ u\)</td><td>\(x,\ y\)</td><td>The triple \(0,v,u\) in Lemma 7 is \(0,x,y\) in Proposition 8.1.</td></tr>
 <tr><td>\((h_i,s_i),\ a_i\)</td><td>\((b_i,\sigma_i),\ \alpha_i\)</td><td>In the preprint \(\sigma_i\in\{-1,1\}\), while here \(s_i\in[-1,1]\).</td></tr>
 <tr><td>\(W\)</td><td>\(D_0\)</td><td>[43]. Not the same set: the median is sought as \(w\in W\) here, and as \(m=\frac12(x+y-e)\) with \(e\in D_0\) and \(x+y-e\in(s-p)Q\) there.</td></tr>
 <tr><td>median</td><td>metric median</td><td></td></tr>
@@ -740,21 +737,21 @@ The ratio at \(\eta=\delta c\) and \(\eta=\delta\) is \(c\,\big(1+O(1/\log\tfrac
 <tbody>
 <tr><td><a href="#theorem">Theorem</a>, (1)</td><td>Theorem 1.1, [1]</td><td>The equality case is Proposition 8.4 with Lemma 2.2.</td></tr>
 <tr><td><a href="#lemma-0">Lemma 0</a></td><td>Lemma 3.1</td><td>Up to the rotation above. The proofs differ: here via \(zF'(z)=\frac{8}{\pi^2}\operatorname{arctanh}z\) and the argument principle, there via convexity of the curves \(F(re^{i\theta})\).</td></tr>
-<tr><td>(3), <a href="#lemma-1">Lemma 1</a></td><td>&mdash;</td><td>The preprint takes the union of feasible simplices as the definition of \(\Sigma_X\).</td></tr>
-<tr><td><a href="#lemma-2">Lemma 2</a></td><td>Proof of Proposition 6.1, Lemma 5.2</td><td>The preprint shows that extra tight constraints have probability zero on the complex side (Lemma 5.2); here this is done directly in \(x\), using \(\lambda''\neq0\).</td></tr>
+<tr><td>(3), <a href="#appendix-simplex-decomposition">Appendix: \(\Sigma_x\) as a union of simplices</a></td><td>&mdash;</td><td>The preprint takes the union of feasible simplices as the definition of \(\Sigma_X\).</td></tr>
+<tr><td><a href="#lemma-1">Lemma 1</a></td><td>Proof of Proposition 6.1, Lemma 5.2</td><td>The preprint shows that extra tight constraints have probability zero on the complex side (Lemma 5.2); here this is done directly in \(x\), using \(\lambda''\neq0\).</td></tr>
 <tr><td>Formula for \(\operatorname{Vol}(\Sigma_x)\)</td><td>[30]</td><td></td></tr>
 <tr><td>(6), (7) and the reduction to \(\sum_J\mu_J(A_J)\ge1\)</td><td>[27], [29]</td><td>Proposition 6.1: \(S=\frac{d!}{4^d}\int_A|\Sigma_X|\,dX\).</td></tr>
-<tr><td><a href="#lemma-3">Lemma 3</a></td><td>Proofs of Lemmas 4.1 and 5.1</td><td>Cauchy&ndash;Binet, and vanishing of the minors of dependent rows.</td></tr>
-<tr><td><a href="#lemma-4">Lemma 4</a></td><td>[24] and the end of the proof of Lemma 5.1</td><td>Radial substitution and Fatou's lemma.</td></tr>
-<tr><td><a href="#lemma-5">Lemma 5</a></td><td>Lemma 4.1, [17]</td><td>The preprint assumes a nondegenerate homogeneous leading term of degree \(k\), where this note assumes \(|f|\le C|z|^k\). The proofs differ: here by gluing with a regularized maximum (as in Demailly), there by computing the flux through a small sphere.</td></tr>
-<tr><td>Verification of the hypotheses of Lemma 5</td><td>Proof of Lemma 5.1</td><td>Lemma 5.1 holds for any biholomorphism \(F\) of \(\mathbb D\) onto a bounded domain with \(F(0)=0\).</td></tr>
-<tr><td><a href="#lemma-7">Lemma 7</a>, inequality</td><td>Corollary 6.2</td><td>The preprint approximates \(K^\circ\) from inside by polytopes and applies Proposition 6.1.</td></tr>
-<tr><td><a href="#lemma-6">Lemma 6</a>, <a href="#lemma-7">Lemma 7</a>, equality</td><td>Proposition 7.1, [33]&ndash;[35]</td><td>The preprint works only with the lifted body \(B\), and obtains a common witness \(Y\) as a limit of feasible pairs [39]&ndash;[41], using the vanishing deficit [38].</td></tr>
+<tr><td><a href="#lemma-2">Lemma 2</a></td><td>Proofs of Lemmas 4.1 and 5.1</td><td>Cauchy&ndash;Binet, and vanishing of the minors of dependent rows.</td></tr>
+<tr><td><a href="#lemma-3">Lemma 3</a></td><td>[24] and the end of the proof of Lemma 5.1</td><td>Radial substitution and Fatou's lemma.</td></tr>
+<tr><td><a href="#lemma-4">Lemma 4</a></td><td>Lemma 4.1, [17]</td><td>The preprint assumes a nondegenerate homogeneous leading term of degree \(k\), where this note assumes \(|f|\le C|z|^k\). The proofs differ: here by gluing with a regularized maximum (as in Demailly), there by computing the flux through a small sphere.</td></tr>
+<tr><td>Verification of the hypotheses of Lemma 4</td><td>Proof of Lemma 5.1</td><td>Lemma 5.1 holds for any biholomorphism \(F\) of \(\mathbb D\) onto a bounded domain with \(F(0)=0\).</td></tr>
+<tr><td><a href="#lemma-6">Lemma 6</a>, inequality</td><td>Corollary 6.2</td><td>The preprint approximates \(K^\circ\) from inside by polytopes and applies Proposition 6.1.</td></tr>
+<tr><td><a href="#lemma-5">Lemma 5</a>, <a href="#lemma-6">Lemma 6</a>, equality</td><td>Proposition 7.1, [33]&ndash;[35]</td><td>The preprint works only with the lifted body \(B\), and obtains a common witness \(Y\) as a limit of feasible pairs [39]&ndash;[41], using the vanishing deficit [38].</td></tr>
 <tr><td><a href="#definition">Definition</a> (median)</td><td>Beginning of Section 8</td><td></td></tr>
-<tr><td><a href="#lemma-8-medians">Lemma 8</a></td><td>Proposition 8.1</td><td>(9) corresponds to [45], and (10)&ndash;(12) to [44] and the endpoint comparison.</td></tr>
-<tr><td><a href="#theorem-9-lima-lima-1978-hansen-lima-hansen-lima-1981">Theorem 9</a></td><td>Lemma 8.2, Theorem 8.3, Proposition 8.4</td><td>Medians imply the 3.2 intersection property (Lemma 8.2), then Hansen&ndash;Lima (Theorem 8.3).</td></tr>
+<tr><td><a href="#lemma-7-medians">Lemma 7</a></td><td>Proposition 8.1</td><td>(9) corresponds to [45], and (10)&ndash;(12) to [44] and the endpoint comparison.</td></tr>
+<tr><td><a href="#theorem-8-lima-lima-1978-hansen-lima-hansen-lima-1981">Theorem 8</a></td><td>Lemma 8.2, Theorem 8.3, Proposition 8.4</td><td>Medians imply the 3.2 intersection property (Lemma 8.2), then Hansen&ndash;Lima (Theorem 8.3).</td></tr>
 <tr><td>Volume product of Hanner polytopes</td><td>Lemmas 2.1, 2.2</td><td></td></tr>
-<tr><td><a href="#lemma-10">Lemma 10</a></td><td>Lemma 3.2, [14]</td><td></td></tr>
+<tr><td><a href="#lemma-9">Lemma 9</a></td><td>Lemma 3.2, [14]</td><td></td></tr>
 <tr><td>&mdash;</td><td>Corollaries 1.2, 1.3</td><td>Functional and entropy&ndash;transport consequences; not covered in this note.</td></tr>
 </tbody></table></div>
 <hr><section class="footnotes"><ol><li id="fn-fmz">M. Fradelizi, M. Meyer and A. Zvavitch, <i>Volume product</i>, survey, 2023. <a href="https://arxiv.org/abs/2301.06131">arXiv:2301.06131</a>. <a href="#fnref-fmz" class="fnback">↩</a></li><li id="fn-nazarov">F. Nazarov, <i>The H&ouml;rmander proof of the Bourgain&ndash;Milman theorem</i>, in: Geometric Aspects of Functional Analysis, Lecture Notes in Math. <b>2050</b>, Springer, 2012, 335&ndash;343. <a href="https://doi.org/10.1007/978-3-642-29849-3_20">doi:10.1007/978-3-642-29849-3_20</a>. <a href="#fnref-nazarov" class="fnback">↩</a></li><li id="fn-berndtsson-pw">B. Berndtsson, <i>Bergman kernels for Paley&ndash;Wiener spaces and Nazarov&rsquo;s proof of the Bourgain&ndash;Milman theorem</i>, Pure Appl. Math. Q. <b>18</b> (2022), no. 2, 395&ndash;409. <a href="https://arxiv.org/abs/2008.00837">arXiv:2008.00837</a>. <a href="#fnref-berndtsson-pw" class="fnback">↩</a></li><li id="fn-berndtsson-kup">B. Berndtsson, <i>Complex integrals and Kuperberg&rsquo;s proof of the Bourgain&ndash;Milman theorem</i>, Adv. Math. <b>388</b> (2021), 107927. <a href="https://doi.org/10.1016/j.aim.2021.107927">doi:10.1016/j.aim.2021.107927</a>, <a href="https://arxiv.org/abs/2008.00838">arXiv:2008.00838</a>. <a href="#fnref-berndtsson-kup" class="fnback">↩</a></li><li id="fn-demailly">The gluing via \(\widetilde{\max}(g,h)\) followed by Stokes on \(U_{s}\setminus r\overline{\mathbb B}_d\) is the proof of the first comparison theorem for Lelong numbers (J.-P. Demailly, "Complex Analytic and Differential Geometry", book manuscript, version of June 21, 2012, Ch. III, Th. 7.1, p. 166), which uses \(\max(\psi-c,\varphi)\) in the same role. The regularized maximum \(\widetilde{\max}\) is Lemma 5.18 in Ch. I of the same manuscript, p. 43. <a href="https://www-fourier.ujf-grenoble.fr/~demailly/manuscripts/agbook.pdf">https://www-fourier.ujf-grenoble.fr/~demailly/manuscripts/agbook.pdf</a>. <a href="#fnref-demailly" class="fnback">↩</a></li><li id="fn-lima-1978">Å. Lima, <i>Intersection properties of balls in spaces of compact operators</i>, Ann. Inst. Fourier (Grenoble) <b>28</b> (1978), no. 3, 35–65, Theorem 1.2, (ii)\(\Leftrightarrow\)(iii): the 3.2 intersection property is equivalent to the \(R_{3,2}\)-property of p. 38, which is the existence of a median for every triple \(0,x,y\). <a href="https://doi.org/10.5802/aif.700">doi:10.5802/aif.700</a>. <a href="#fnref-lima-1978" class="fnback">↩</a></li><li id="fn-hansen-lima-1981">A. B. Hansen and Å. Lima, <i>The structure of finite dimensional Banach spaces with the 3.2. intersection property</i>, Acta Math. <b>146</b> (1981), 1–23. <a href="https://doi.org/10.1007/BF02392457">doi:10.1007/BF02392457</a>. <a href="#fnref-hansen-lima-1981" class="fnback">↩</a></li><li id="fn-hl-sec1">Hansen–Lima, Section 1, p. 1: the \(n.k.\) intersection property is defined with closed balls of arbitrary radii. The median form of the 3.2 property is their Theorem 3.6, (1)\(\Leftrightarrow\)(4), pp. 5–6, attributed there to Lima. <a href="#fnref-hl-sec1" class="fnback">↩</a></li><li id="fn-hl-cor74">Hansen–Lima, Corollary 7.4, p. 16: every finite dimensional Banach space with the 3.2.I.P. can be obtained by forming \(l_1\)- and \(l_\infty\)-sums of the real line. Deduced from the main Theorem 7.3 by Proposition 4.4 and induction. <a href="#fnref-hl-cor74" class="fnback">↩</a></li></ol></section>
@@ -995,8 +992,8 @@ style3.textContent=`
 .mfig-root .t3-vlabel.r { left:auto; right:.5rem; }
 .mfig-root .val { font-variant-numeric:tabular-nums; min-width:2.6rem; display:inline-block; }
 .mfig-root .t3-msg { color:var(--text-muted); font-size:.8em; min-height:1.1em; }
-.mfig-root .t3-legend { display:flex; flex-wrap:wrap; gap:.25rem .9rem; font-size:.78em; color:var(--text-muted); margin-top:.4rem; }
-.mfig-root .t3-sw { display:inline-block; width:.75rem; height:.75rem; border-radius:2px; vertical-align:-1px; margin-right:.3rem; }
+.mfig-root .t3-legend { position:absolute; left:.5rem; bottom:.4rem; display:flex; flex-wrap:wrap; gap:.25rem .9rem; font-size:1em; color:var(--text-muted); pointer-events:none; }
+.mfig-root .t3-sw { display:inline-block; width:1rem; height:1rem; border-radius:2px; vertical-align:-2px; margin-right:.4rem; }
 .mfig-root .t3-status { display:flex; flex-wrap:wrap; gap:.35rem; margin-top:.45rem; }
 .mfig-root .t3-pill { display:inline-block; font-size:.75em; padding:.02rem .45rem; border-radius:999px; border:1px solid currentColor; }
 .mfig-root .t3-pill.ok { color:var(--ok); } .mfig-root .t3-pill.warn { color:var(--warn); }
@@ -1057,10 +1054,9 @@ box.insertAdjacentHTML('beforeend',`<div class="mfig-dim" role="group" aria-desc
   <label><input type="checkbox" data-id="chLink" checked> link cameras</label>
 </div>
 <div class="mfig-two t3-views">
-  <div class="t3-view"><canvas class="fig" data-id="cvL" aria-description="Primal view: the body K, the point x and the fiber L_x"></canvas><div class="t3-vlabel">$x$, $K$, $L_x$</div><div class="t3-vlabel r">primal</div></div>
+  <div class="t3-view"><canvas class="fig" data-id="cvL" aria-description="Primal view: the body K, the point x and the fiber L_x"></canvas><div class="t3-vlabel">$x$, $K$, $L_x$</div><div class="t3-vlabel r">primal</div><div class="t3-legend" data-id="legend"></div></div>
   <div class="t3-view"><canvas class="fig" data-id="cvR" aria-description="Dual view: K polar with the feasible tetrahedra"></canvas><div class="t3-vlabel">$K^\\circ$, $\\Sigma_x$</div><div class="t3-vlabel r">dual</div></div>
-</div>
-<div class="t3-legend" data-id="legend"></div></div>`);
+</div></div>`);
 setupBox(); mathify(box);
 
 // ---------- the lens half-height lambda(t): lambda'(t) = -(2/pi) artanh(sin(pi t/2)), lambda(1) = 0 ----------
