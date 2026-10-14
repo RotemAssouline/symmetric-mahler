@@ -145,6 +145,10 @@ Note that
 \]</span>
 Indeed, for fixed \(y\in\mathbb{R}^d\), the function \(h\mapsto\lambda(\langle h,x\rangle)-\langle h,y\rangle\) is concave, since \(\lambda\) is. Its minimum over the polytope \(K^{\circ}=\operatorname{conv}\{\pm b_l\}\) is therefore attained at one of the vertices \(\pm b_l\). As \(\lambda\) is even, the inequalities \(\langle\pm b_l,y\rangle\le\lambda(\langle\pm b_l,x\rangle)\) are precisely the inequalities defining \(L_x\), and (3) follows.</p>
 <h3 id="a-collection-of-subsets-of">A collection of subsets of \(K^{\circ}\)</h3>
+<p id="def-sigma">Define
+<span class="math">\[
+	\Sigma_x:=\bigcup_{y\in \partial L_x}\operatorname{conv}\big(\{0\}\cup\{h\in K^{\circ}\,\colon\,\langle h,y\rangle=\lambda(\langle h,x\rangle)\}\big)\subseteq K^{\circ}.\tag{4}
+\]</span></p>
 <p>For \(J\subset[m]\), define a linear map \(B_J:\mathbb{R}^d\to \mathbb{R}^{J}\) by
 <span class="math">\[
 	(B_{J}x)_{j}=\langle b_{j},x \rangle ,\qquad j\in J, \qquad x \in \mathbb{R}^d,
@@ -161,10 +165,6 @@ For \(J\in\mathcal{J}\), \(\varepsilon \in \{ -1,1 \}^{J}\) and \(x\in\mathbb{R}
 \]</span>
 For \(x\in\operatorname{int} K\), the point \(y_{J,\varepsilon}(x)\) satisfies \(d\) of the inequalities defining \(L_x\) with equality, and the vectors \(\{  \varepsilon_jb_j\}_{j\in J}\)  are linearly independent. Hence either \(y_{J,\varepsilon}(x)\notin L_x\), or \(y_{J,\varepsilon}(x)\) is a vertex of \(L_x\).</p>
 
-<p id="def-sigma">Define
-<span class="math">\[
-	\Sigma_x:=\bigcup_{y\in \partial L_x}\operatorname{conv}\big(\{0\}\cup\{h\in K^{\circ}\,\colon\,\langle h,y\rangle=\lambda(\langle h,x\rangle)\}\big)\subseteq K^{\circ}.\tag{4}
-\]</span></p>
 <p id="simplex-decomposition">For \(J\in \mathcal{J}\) and \(\varepsilon \in \{ -1,1 \}^{J}\), write \(\Delta_{J,\varepsilon}\) for the simplex
 <span class="math">\[
 	\Delta_{J,\varepsilon}:=\operatorname{conv} \left(  \{0\}\cup \{\varepsilon_{j}b_{j}\}_{j\in J}\right)\subset K^{\circ},
