@@ -80,7 +80,7 @@ window.MathJax = {
 <p>For background on the Mahler conjecture, see the survey of Fradelizi, Meyer and Zvavitch<sup class="fn"><a href="#fn-fmz" id="fnref-fmz">1</a></sup>.
 Complex-analytic methods were used earlier by Nazarov<sup class="fn"><a href="#fn-nazarov" id="fnref-nazarov">2</a></sup> and by Berndtsson<sup class="fn"><a href="#fn-berndtsson-pw" id="fnref-berndtsson-pw">3</a></sup><sup class="fn">,</sup><sup class="fn"><a href="#fn-berndtsson-kup" id="fnref-berndtsson-kup">4</a></sup> to prove the Bourgain&ndash;Milman inequality.</p>
 <h3>Table of contents</h3>
-<nav class="toc"><ul><li><a href="#statement">Statement</a></li><li><a href="#complexification">Complexification</a></li><li><a href="#a-collection-of-subsets-of">A collection of subsets of \(K^{\circ}\)</a></li><li><a href="#from-to-the-cube-to-the-polycircle">From \(K\) to the cube to the polycircle</a></li><li><a href="#a-sequence-of-submanifolds-of-the-polydisc">A sequence of submanifolds of the polydisc</a></li><li><a href="#a-lower-bound-on-the-volume-of-the-image-of-a-holomorphic-function">A lower bound on the volume of the image of a holomorphic function</a></li><li><a href="#the-equality-case">The equality case</a></li><li><a href="#appendix-properties-of-the-function">Appendix: Properties of the function \(F\)</a></li><li><a href="#appendix-simplex-decomposition">Appendix: \(\Sigma_x\) as a union of simplices</a></li><li><a href="#appendix-volume">Appendix: The integral in Lemma 3 and \(\int_{M_k}\sigma_k\) are volumes</a></li><li><a href="#appendix-complex-geometry">Appendix: Complex-geometric background for Lemma 3</a></li><li><a href="#appendix-correspondence">Appendix: Correspondence with the original preprint</a></li></ul></nav>
+<nav class="toc"><ul><li><a href="#statement">Statement</a></li><li><a href="#complexification">Complexification</a></li><li><a href="#a-collection-of-subsets-of">A collection of subsets of \(K^{\circ}\)</a></li><li><a href="#from-to-the-cube-to-the-torus">From \(K\) to the cube to the torus</a></li><li><a href="#a-sequence-of-submanifolds-of-the-polydisc">A sequence of submanifolds of the polydisc</a></li><li><a href="#a-lower-bound-on-the-volume-of-the-image-of-a-holomorphic-function">A lower bound on the volume of the image of a holomorphic function</a></li><li><a href="#the-equality-case">The equality case</a></li><li><a href="#appendix-properties-of-the-function">Appendix: Properties of the function \(F\)</a></li><li><a href="#appendix-simplex-decomposition">Appendix: \(\Sigma_x\) as a union of simplices</a></li><li><a href="#appendix-volume">Appendix: The integral in Lemma 3 and \(\int_{M_k}\sigma_k\) are volumes</a></li><li><a href="#appendix-complex-geometry">Appendix: Complex-geometric background for Lemma 3</a></li><li><a href="#appendix-correspondence">Appendix: Correspondence with the original preprint</a></li></ul></nav>
 <h3 id="statement">Statement</h3>
 <p>A <i>convex body</i> is a compact convex set \(K\subset\mathbb{R}^d\) with nonempty interior; it is <i>symmetric</i> if \(K=-K\). Recall that the polar body \(K^\circ\) of a convex body \(K\) containing the origin in its interior is defined by \[K^{\circ}:=\{y\in\mathbb{R}^d\colon\langle x,y\rangle\le1\ \ \forall\,x\in K\}.\]
 </p>
@@ -147,8 +147,9 @@ Indeed, for fixed \(y\in\mathbb{R}^d\), the function \(h\mapsto\lambda(\langle h
 <h3 id="a-collection-of-subsets-of">A collection of subsets of \(K^{\circ}\)</h3>
 <p id="def-sigma">For every \(x\in\operatorname{int} K\), define
 <span class="math">\[
-	\Sigma_x:=\bigcup_{y\in \partial L_x}\operatorname{conv}\big(\{0\}\cup\{h\in K^{\circ}\,\colon\,\langle h,y\rangle=\lambda(\langle h,x\rangle)\}\big)\subseteq K^{\circ}.\tag{4}
-\]</span></p>
+	\Sigma_x:=\bigcup_{y\in L_x}\operatorname{conv}\big(\{0\}\cup\{h\in K^{\circ}\,\colon\,\langle h,y\rangle=\lambda(\langle h,x\rangle)\}\big).\tag{4}
+\]</span>
+Note that it suffices to take the union in (4) only over the vertices of \(L_x\). Indeed, by (3), for each \(h\in K^{\circ}\) the set \(\{y'\in L_x\colon\langle h,y'\rangle=\lambda(\langle h,x\rangle)\}\) is a face of \(L_x\). Given \(y\in L_x\), the intersection of these faces over all \(h\) with \(\langle h,y\rangle=\lambda(\langle h,x\rangle)\) is a face of \(L_x\) containing \(y\), and every vertex \(y'\) of it satisfies \(\langle h,y'\rangle=\lambda(\langle h,x\rangle)\) for all these \(h\).</p>
 <p>For \(J\subset[m]\), define a linear map \(B_J:\mathbb{R}^d\to \mathbb{R}^{J}\) by
 <span class="math">\[
 	(B_{J}x)_{j}=\langle b_{j},x \rangle ,\qquad j\in J, \qquad x \in \mathbb{R}^d,
@@ -225,7 +226,7 @@ or equivalently, using the definitions of \(\mathcal{E}_J\), \(y_{J,\varepsilon}
 <span class="math">\[
 	4^{d}\leq\sum\limits_{J\in \mathcal{J}}\sum\limits_{\varepsilon \in \{ -1,1 \}^{J}}|\det B_{J}|\cdot \operatorname{Vol}\left(\{x \in K\,\,\colon\,\,\left| \langle b_{k},y_{J,\varepsilon}(x) \rangle \right| \leq \lambda(\langle b_{k},x \rangle )\quad\forall k\not\in J\}\right).\tag{7}
 \]</span></p>
-<h3 id="from-to-the-cube-to-the-polycircle">From \(K\) to the cube to the polycircle</h3>
+<h3 id="from-to-the-cube-to-the-torus">From \(K\) to the cube to the torus</h3>
 <p>Fix \(J\in \mathcal{J}\). Since \(|\langle b_j,x\rangle|\le1\) for all \(x\in K\) and \(j\in J\),
 <span class="math">\[
 	B_J(K)\subseteq[-1,1]^J.\tag{8}
@@ -279,7 +280,7 @@ For \(\omega\in(\partial\mathbb D)^J\), \(\omega\in A_J\) if and only if \(B_J^{
 <span class="math">\[
 	\sum_{J\in\mathcal{J}}\mu_J(A_J)\geq 1.
 \]</span></p>
-<p><b>Figure 3: from \(K\) to the cube to the polycircle</b></p>
+<p><b>Figure 3: from \(K\) to the cube to the torus</b></p>
 <div class="figure" id="fig-3"></div>
 <h3 id="a-sequence-of-submanifolds-of-the-polydisc">A sequence of submanifolds of the polydisc</h3>
 <p>Recap:</p>
@@ -443,12 +444,12 @@ Letting \(s\uparrow 1\) along regular values and using monotone convergence give
 Then \((A\oplus_1A')^{\circ}=A^{\circ}\oplus_\infty A'^{\circ}\) and \((A\oplus_\infty A')^{\circ}=A^{\circ}\oplus_1 A'^{\circ}\). <i>Hanner polytopes</i> form the smallest class of convex bodies that contains the segments \([-a,a]\subset\mathbb{R}\), \(a>0\), and is closed under \(\oplus_1\) and \(\oplus_\infty\).</p>
 <p><b>Plan.</b> The proof above gives \(\frac{4^{d}}{d!}\le\int_K\operatorname{Vol}(\Sigma_x)\,dx\le\operatorname{Vol}(K)\operatorname{Vol}(K^{\circ})\), where the first inequality follows from Lemma 5 and the second holds true since \(\Sigma_x\subseteq K^{\circ}\). Equality in the second inequality forces \(\Sigma_x=K^{\circ}\) for almost every \(x \in K\). Lemma 5 shows that this is then true for all \(x \in \operatorname{int} K\). Lemma 5 for \(\widehat K=K\oplus_1[-1,1]\) at points \((\delta u,1-\delta)\), \(\delta\downarrow0\), together with Lemma 0, gives that every triple of points of \((\mathbb{R}^d,\|\cdot\|_{K^{\circ}})\) has a metric median (Lemma 6), and Theorem 7, which is due to Hansen and Lima, identifies the norm.</p>
 <p>We extend the definitions of \(L_{x}\) and \(\Sigma_{x}\) to arbitrary convex bodies as follows: for \(x\in\operatorname{int} K\) define \(L_x\) by the right-hand side of (3), and \(\Sigma_x\) by (4).
-Thus \(\xi\in\Sigma_x\) iff \(\xi=\sum_i\alpha_ih_i\) for finitely many \(h_i\in K^{\circ}\) with \(\langle h_i,y\rangle=\lambda(\langle h_i,x\rangle)\) for one \(y\in \partial L_x\) and all \(i\), where \(\alpha_i\ge0\) and \(\sum_i\alpha_i\le1\); by Carathéodory's theorem, \(d+1\) terms suffice. Since \(\lambda\le\lambda(0)\), every \(y\in L_x\) satisfies \(\langle h,y\rangle\le\lambda(0)\) for all \(h\in K^{\circ}\), that is,
+Thus \(\xi\in\Sigma_x\) iff \(\xi=\sum_i\alpha_ih_i\) for finitely many \(h_i\in K^{\circ}\) with \(\langle h_i,y\rangle=\lambda(\langle h_i,x\rangle)\) for one \(y\in L_x\) and all \(i\), where \(\alpha_i\ge0\) and \(\sum_i\alpha_i\le1\); by Carathéodory's theorem, \(d+1\) terms suffice. Since \(\lambda\le\lambda(0)\), every \(y\in L_x\) satisfies \(\langle h,y\rangle\le\lambda(0)\) for all \(h\in K^{\circ}\), that is,
 <span class="math">\[
 	L_x\subseteq\lambda(0)K .\tag{12}
 \]</span></p>
 <div class="callout callout-lemma" id="lemma-4"><div class="callout-title">Lemma 4</div><p>Let \(K^{(j)}\supseteq K\) be symmetric convex bodies with \(K^{(j)}\subseteq t_j^{-1}K\) and \(t_j\to1\), and let \(L^{(j)}_x\) and \(\Sigma^{(j)}_x\) be defined as \(L_x\) in (3) and \(\Sigma_x\) in <a href="#def-sigma">(4)</a>, with \(K\) replaced by \(K^{(j)}\). If \(x_j\to x\in\operatorname{int} K\), \(\xi_j\to\xi\) and \(\xi_j\in\Sigma^{(j)}_{x_j}\), then \(\xi\in\Sigma_x\).</p></div>
-<p><i>Proof.</i> Write \(\xi_j=\sum_{i=0}^{d}\alpha_{ij}h_{ij}\) with \(h_{ij}\in (K^{(j)})^{\circ}\), \(\langle h_{ij},y_j\rangle=\lambda(\langle h_{ij},x_j\rangle)\) for some \(y_j\in L^{(j)}_{x_j}\), \(\alpha_{ij}\ge0\), \(\sum_i\alpha_{ij}\le1\). By (12) for \(K^{(j)}\), \(y_j\in\lambda(0)K^{(j)}\subseteq\lambda(0)t_j^{-1}K\), so all data range in a compact set. Pass to a subsequence with \(y_j\to y\), \(h_{ij}\to h_i\in K^{\circ}\), \(\alpha_{ij}\to\alpha_i\). For \(h\in K^{\circ}\) we have \(t_jh\in (K^{(j)})^{\circ}\), so \(\langle t_jh,y_j\rangle\le\lambda(\langle t_jh,x_j\rangle)\); continuity of \(\lambda\) gives \(y\in L_x\). The same continuity turns \(\langle h_{ij},y_j\rangle=\lambda(\langle h_{ij},x_j\rangle)\) into \(\langle h_i,y\rangle=\lambda(\langle h_i,x\rangle)\). If all \(\alpha_i\) vanish then \(\xi=0\in\Sigma_x\). Otherwise some \(h_i\) has \(\alpha_i>0\), and then \(h_i\neq0\) since \(\lambda(0)>0\); as \(y+\varepsilon h_i\) violates (3) for every \(\varepsilon>0\), \(y\in\partial L_x\). So \(\xi=\sum\alpha_ih_i\in\Sigma_x\). \(\square\)</p>
+<p><i>Proof.</i> Write \(\xi_j=\sum_{i=0}^{d}\alpha_{ij}h_{ij}\) with \(h_{ij}\in (K^{(j)})^{\circ}\), \(\langle h_{ij},y_j\rangle=\lambda(\langle h_{ij},x_j\rangle)\) for some \(y_j\in L^{(j)}_{x_j}\), \(\alpha_{ij}\ge0\), \(\sum_i\alpha_{ij}\le1\). By (12) for \(K^{(j)}\), \(y_j\in\lambda(0)K^{(j)}\subseteq\lambda(0)t_j^{-1}K\), so all data range in a compact set. Pass to a subsequence with \(y_j\to y\), \(h_{ij}\to h_i\in K^{\circ}\), \(\alpha_{ij}\to\alpha_i\). For \(h\in K^{\circ}\) we have \(t_jh\in (K^{(j)})^{\circ}\), so \(\langle t_jh,y_j\rangle\le\lambda(\langle t_jh,x_j\rangle)\); continuity of \(\lambda\) gives \(y\in L_x\). The same continuity turns \(\langle h_{ij},y_j\rangle=\lambda(\langle h_{ij},x_j\rangle)\) into \(\langle h_i,y\rangle=\lambda(\langle h_i,x\rangle)\). So \(\xi=\sum\alpha_ih_i\in\Sigma_x\). \(\square\)</p>
 <div class="callout callout-lemma" id="lemma-5"><div class="callout-title">Lemma 5</div><p>For every symmetric convex body \(K\),
 <span class="math">\[
 \int_K\operatorname{Vol}(\Sigma_x)\,dx\ge\frac{4^{d}}{d!}.
@@ -679,9 +680,9 @@ The ratio at \(\eta=\delta c\) and \(\eta=\delta\) is \(c\,\big(1+O(1/\log\tfrac
 <h3 id="appendix-simplex-decomposition">Appendix: \(\Sigma_x\) as a union of simplices</h3>
 <p>We prove the inclusion \(\subseteq\) in the equality \(\Sigma_{x}=\bigcup_{J\in \mathcal{J}}\bigcup_{\varepsilon \in \mathcal{E}_{J}(x)}\Delta_{J,\varepsilon}\) <a href="#simplex-decomposition">stated after (4)</a>; it is not used elsewhere in this note. Call \(h\in K^{\circ}\) <i>active</i> at \(y\in L_x\) if \(\langle h,y\rangle=\lambda(\langle h,x\rangle)\), so that (4) reads
 <span class="math">\[
-	\Sigma_x=\bigcup_{y\in \partial L_x}\operatorname{conv}\big(\{0\}\cup\{h\in K^{\circ}\,\colon\,h\text{ is active at }y\}\big).
+	\Sigma_x=\bigcup_{y\in L_x}\operatorname{conv}\big(\{0\}\cup\{h\in K^{\circ}\,\colon\,h\text{ is active at }y\}\big).
 \]</span></p>
-<p>Fix \(y\in\partial L_x\) and let \[\xi\in\operatorname{conv}\big(\{0\}\cup\{h\in K^{\circ}\colon h\text{ is active at }y\}\big).\]</p>
+<p>Fix \(y\in L_x\) and let \[\xi\in\operatorname{conv}\big(\{0\}\cup\{h\in K^{\circ}\colon h\text{ is active at }y\}\big).\]</p>
 <p>Let \(h\in K^{\circ}\) be active at \(y\). Since \(K^{\circ}=\operatorname{conv}\{\pm b_l\}\), \(h\) is a convex combination, with positive weights, of some of the vectors \(\pm b_l\). The function \(\lambda(\langle \cdot,x\rangle)-\langle \cdot,y\rangle\) is concave, nonnegative on \(K^{\circ}\) by (3), and vanishes at \(h\), so it vanishes at each of these vectors, that is, they are active at \(y\).
 Consequently,
 <span class="math">\[
@@ -964,7 +965,7 @@ onTheme(drawLens);
 })();
 
 (function(){ const dv = { container: document.getElementById("fig-3") };
-// Figure 3. From K to the cube [-1,1]^J x {-1,1}^J to the polycircle (dD)^J, in dimension 2.
+// Figure 3. From K to the cube [-1,1]^J x {-1,1}^J to the torus (dD)^J, in dimension 2.
 // Left: K in the x-plane, shaded by the number |E_J(x)| of feasible sign patterns. Middle: the four copies of the
 // square [-1,1]^J, one per sign pattern, with B_J(K) and the feasible set. Right: the flat torus (dD)^J = [0,2pi)^2,
 // on which the four copies are glued by the affine maps theta_j = eps_j pi (1 - q_j)/2.
@@ -1100,7 +1101,7 @@ function setJ(JJ){ J=JJ; M=inv2(B,J[0],J[1]); others=B.map((r,k)=>k).filter(k=>k
   rasterize(); readout(); draw(); }
 
 function readout(){
-  setHTML(q('leg'), EPS.map(([e1,e2],n)=>'<span><i class="f3-sw" style="background:var('+ECOL[n]+')"></i>$\\varepsilon=('+sgn(e1)+','+sgn(e2)+')$</span>').join('')+'<span class="f3-row">grey (top left): $|\\mathcal{E}_J(x)|$ = '+[0,2,4].map(n=>'<i class="f3-sw" style="background:'+rgba(rgb(css('--fg')),0.12*n)+';border:1px solid '+css('--rule')+'"></i>'+n+'&nbsp;&nbsp;').join('')+'</span><span class="f3-row">coloured: $\\{q\\colon B_J^{-1}F(\\Phi_J(q,\\varepsilon))\\in\\overline\\Omega\\}$ (bottom left), $A_J\\cap(\\partial\\mathbb D)^J$ (bottom right)</span><span class="f3-row">dashed: $B_J^{-1}([-1,1]^J)$ (top left), $B_J(K)$ (bottom left), $\\Phi_J(B_J(K)\\times\\{\\varepsilon\\})$ (bottom right)</span>'+'<span class="f3-row">top right: $L_x$ (shaded), the lines $\\langle b_j,y\\rangle=\\pm\\lambda(\\langle b_j,x\\rangle)$, $j\\in J$ (dashed), and the points $y_{J,\\varepsilon}(x)$, filled if $\\varepsilon\\in\\mathcal{E}_J(x)$</span>'); }
+  setHTML(q('leg'), EPS.map(([e1,e2],n)=>'<span><i class="f3-sw" style="background:var('+ECOL[n]+')"></i>$\\varepsilon=('+sgn(e1)+','+sgn(e2)+')$</span>').join('')+'<span class="f3-row">grey (top left): $|\\mathcal{E}_J(x)|$ = '+[0,2,4].map(n=>'<i class="f3-sw" style="background:'+rgba(rgb(css('--fg')),0.12*n)+';border:1px solid '+css('--rule')+'"></i>'+n+'&nbsp;&nbsp;').join('')+'</span><span class="f3-row">coloured: $\\Phi_J(\\cdot,\\varepsilon)^{-1}(A_J)$ (bottom left), $A_J\\cap(\\partial\\mathbb D)^J$ (bottom right)</span><span class="f3-row">dashed: $B_J^{-1}([-1,1]^J)$ (top left), $B_J(K)$ (bottom left), $\\Phi_J(B_J(K)\\times\\{\\varepsilon\\})$ (bottom right)</span>'+'<span class="f3-row">top right: $L_x$ (shaded), the lines $\\langle b_j,y\\rangle=\\pm\\lambda(\\langle b_j,x\\rangle)$, $j\\in J$ (dashed), and the points $y_{J,\\varepsilon}(x)$, filled if $\\varepsilon\\in\\mathcal{E}_J(x)$</span>'); }
 
 // ---------- panels: logical size 360 x 360; rasters cached per (body, J, theme) ----------
 const SZ=360;
