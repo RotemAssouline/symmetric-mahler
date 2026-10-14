@@ -80,7 +80,7 @@ window.MathJax = {
 <p>For background on the Mahler conjecture, see the survey of Fradelizi, Meyer and Zvavitch<sup class="fn"><a href="#fn-fmz" id="fnref-fmz">1</a></sup>.
 Complex-analytic methods were used earlier by Nazarov<sup class="fn"><a href="#fn-nazarov" id="fnref-nazarov">2</a></sup> and by Berndtsson<sup class="fn"><a href="#fn-berndtsson-pw" id="fnref-berndtsson-pw">3</a></sup><sup class="fn">,</sup><sup class="fn"><a href="#fn-berndtsson-kup" id="fnref-berndtsson-kup">4</a></sup> to prove the Bourgain&ndash;Milman inequality.</p>
 <h3>Table of contents</h3>
-<nav class="toc"><ul><li><a href="#statement">Statement</a></li><li><a href="#complexification">Complexification</a></li><li><a href="#a-collection-of-subsets-of">A collection of subsets of \(K^{\circ}\)</a></li><li><a href="#from-to-the-cube-to-the-polycircle">From \(K\) to the cube to the polycircle</a></li><li><a href="#a-sequence-of-submanifolds-of-the-polydisc">A sequence of submanifolds of the polydisc</a></li><li><a href="#a-lower-bound-on-the-volume-of-the-image-of-a-holomorphic-function">A lower bound on the volume of the image of a holomorphic function</a></li><li><a href="#the-equality-case">The equality case</a></li><li><a href="#appendix-properties-of-the-function">Appendix: Properties of the function \(F\)</a></li><li><a href="#appendix-simplex-decomposition">Appendix: \(\Sigma_x\) as a union of simplices</a></li><li><a href="#appendix-volume">Appendix: The integral in Lemma 3 and \(\int_{M_k}\sigma_k\) are volumes</a></li><li><a href="#appendix-correspondence">Appendix: Correspondence with the original preprint</a></li></ul></nav>
+<nav class="toc"><ul><li><a href="#statement">Statement</a></li><li><a href="#complexification">Complexification</a></li><li><a href="#a-collection-of-subsets-of">A collection of subsets of \(K^{\circ}\)</a></li><li><a href="#from-to-the-cube-to-the-polycircle">From \(K\) to the cube to the polycircle</a></li><li><a href="#a-sequence-of-submanifolds-of-the-polydisc">A sequence of submanifolds of the polydisc</a></li><li><a href="#a-lower-bound-on-the-volume-of-the-image-of-a-holomorphic-function">A lower bound on the volume of the image of a holomorphic function</a></li><li><a href="#the-equality-case">The equality case</a></li><li><a href="#appendix-complex-geometry">Appendix: Complex-geometric background for Lemma 3</a></li><li><a href="#appendix-properties-of-the-function">Appendix: Properties of the function \(F\)</a></li><li><a href="#appendix-simplex-decomposition">Appendix: \(\Sigma_x\) as a union of simplices</a></li><li><a href="#appendix-volume">Appendix: The integral in Lemma 3 and \(\int_{M_k}\sigma_k\) are volumes</a></li><li><a href="#appendix-correspondence">Appendix: Correspondence with the original preprint</a></li></ul></nav>
 <h3 id="statement">Statement</h3>
 <p>A <i>convex body</i> is a compact convex set \(K\subset\mathbb{R}^d\) with nonempty interior; it is <i>symmetric</i> if \(K=-K\). Recall that the polar body \(K^\circ\) of a convex body \(K\) containing the origin in its interior is defined by \[K^{\circ}:=\{y\in\mathbb{R}^d\colon\langle x,y\rangle\le1\ \ \forall\,x\in K\}.\]
 </p>
@@ -380,7 +380,7 @@ so \(\langle b_j,z\rangle\in F(s^{1/k}\overline{\mathbb D})\). Hence
 \]</span>
 The set \(F(s^{1/k}\overline{\mathbb D})\) is a compact subset of \(D\) and \(B\) is injective, so the right-hand side is a compact subset of \(\Omega\). Thus \(U_s\) is relatively compact in \(\Omega\).</p>
 <p>The hypotheses of Lemma 3 are satisfied; hence the theorem (modulo the equality cases) would follow once we prove Lemma 3.</p>
-<p><i>Proof of Lemma 3.</i>
+<p><i>Proof of Lemma 3.</i> (The notation and standard facts used here are recalled in <a href="#appendix-complex-geometry">Appendix: Complex-geometric background for Lemma 3</a>.)
 We use the normalization
 <span class="math">\[
 	d := \partial + \bar\partial, \qquad d^{c}:=\frac{i}{4}(\bar\partial-\partial),\qquad dd^{c}=\frac{i}{2}\partial\bar\partial,
@@ -644,6 +644,58 @@ and
 	\operatorname{Vol}(A\oplus_\infty A')=\operatorname{Vol}(A)\operatorname{Vol}(A').
 \]</span>
 Since polarity swaps the two sums, both satisfy \(\operatorname{Vol}(A\oplus A')\operatorname{Vol}\big((A\oplus A')^{\circ}\big)=\operatorname{Vol}(A)\operatorname{Vol}(A^{\circ})\cdot\operatorname{Vol}(A')\operatorname{Vol}(A'^{\circ})\big/\binom{k+l}{k}\). A segment gives \(4\), so induction gives \(4^{d}/d!\) for every Hanner polytope, and linear maps do not change the volume product. \(\square\)</p>
+<h3 id="appendix-complex-geometry">Appendix: Complex-geometric background for Lemma 3</h3>
+<p>This appendix collects the notation and the standard facts used in the proof of Lemma 3. Throughout, \(z_j=x_j+iy_j\) are the coordinates of \(\mathbb{C}^d\), and \(\mathbb{C}^d\) is oriented by \(dV=\prod_j dx_j\wedge dy_j\).</p>
+<p><b>Differential forms.</b> A smooth function \(u\) on an open set of \(\mathbb{C}^d\) has \(du=\partial u+\bar\partial u\), where
+<span class="math">\[
+\partial u=\sum_j\frac{\partial u}{\partial z_j}\,dz_j,\qquad \bar\partial u=\sum_j\frac{\partial u}{\partial\bar z_j}\,d\bar z_j,\qquad \frac{\partial}{\partial z_j}=\frac12\Big(\frac{\partial}{\partial x_j}-i\frac{\partial}{\partial y_j}\Big),\quad \frac{\partial}{\partial\bar z_j}=\frac12\Big(\frac{\partial}{\partial x_j}+i\frac{\partial}{\partial y_j}\Big).
+\]</span>
+The operators \(\partial,\bar\partial\) extend to forms, and \(\partial^2=\bar\partial^2=0\), \(\partial\bar\partial=-\bar\partial\partial\). A function is holomorphic if and only if \(\bar\partial u=0\). For the operator \(d^c=\frac i4(\bar\partial-\partial)\) of the proof, a one-line computation gives
+<span class="math">\[
+dd^c=\frac i4(\partial+\bar\partial)(\bar\partial-\partial)=\frac i2\,\partial\bar\partial,\qquad dd^cu=\frac i2\sum_{j,k}\frac{\partial^2u}{\partial z_j\partial\bar z_k}\,dz_j\wedge d\bar z_k.\tag{A1}
+\]</span>
+The matrix \(\big(\partial^2u/\partial z_j\partial\bar z_k\big)\) is the <i>complex Hessian</i> (Levi matrix) of \(u\). Since \(\frac i2\,dz_j\wedge d\bar z_j=dx_j\wedge dy_j\), (A1) gives \(dd^c|z|^2=\sum_jdx_j\wedge dy_j\), and since \(d^c\) and \(d\) are real operators, \(dd^cu\) is a real \((1,1)\)-form. Taking the \(d\)-th exterior power in (A1) gives, for smooth \(u\),
+<span class="math">\[
+(dd^cu)^d=d!\,\det\Big(\frac{\partial^2u}{\partial z_j\partial\bar z_k}\Big)\,dV.\tag{A2}
+\]</span>
+For \(u=|z|^2\) the matrix is the identity, which gives \((dd^c|z|^2)^d=d!\,dV\). In particular, if \(r\mathbb{B}_d\) is the ball of radius \(r\) in \(\mathbb{C}^d\), whose volume is \(\pi^dr^{2d}/d!\), then
+<span class="math">\[
+\int_{r\mathbb{B}_d}(dd^c|z|^2)^d=(\pi r^2)^d.\tag{A3}
+\]</span></p>
+<p><b>Pullbacks.</b> If \(\Phi\) is a holomorphic map between open subsets of complex Euclidean spaces, then pullback by \(\Phi\) commutes with \(\partial\) and \(\bar\partial\), hence with \(d\), \(d^c\) and \(dd^c\). In particular \(dd^c|f|^2=f^*(dd^c|w|^2)\) for holomorphic \(f\colon U\to\mathbb{C}^m\). Moreover, a holomorphic map \(\Phi\colon\mathbb{C}^d\supseteq U\to\mathbb{C}^d\) has real Jacobian determinant \(|\det D\Phi|^2\), where \(D\Phi\) is the complex Jacobian matrix, so
+<span class="math">\[
+\Phi^*dV=|\det D\Phi|^2\,dV.\tag{A4}
+\]</span>
+Finally, write \(dV_J=\bigwedge_{j\in J}\frac i2dw_j\wedge d\bar w_j\) for the volume form of \(\mathbb{C}^J\), where \(J\subseteq[m]\), \(|J|=d\). Expanding \((dd^c|w|^2)^d=\big(\sum_{j=1}^m\frac i2dw_j\wedge d\bar w_j\big)^d\), each of the \(2\)-forms \(\frac i2dw_j\wedge d\bar w_j\) commutes with the others and squares to zero, so only products of \(d\) distinct ones survive, and each such product occurs \(d!\) times:
+<span class="math">\[
+(dd^c|w|^2)^d=d!\sum_{J\in{[m]\choose d}}dV_J\qquad\text{on }\mathbb{C}^m.\tag{A5}
+\]</span>
+Combining (A4) and (A5) with \(\pi_J\circ f\) in place of \(\Phi\) gives the identity \((dd^c|f|^2)^d=d!\sum_J|\det(Df)_J|^2\,dV\) used in the proof.</p>
+<p><b>Plurisubharmonic functions.</b> A smooth real function \(u\) on an open set of \(\mathbb{C}^d\) is <i>plurisubharmonic</i> (psh) if its complex Hessian is positive semidefinite at every point; equivalently, \(\sum u_{j\bar k}\xi_j\bar\xi_k\ge0\) for all \(\xi\in\mathbb{C}^d\), that is, the restriction of \(u\) to every complex line is subharmonic. Facts used:</p>
+<ol>
+<li>(Positivity.) If \(u\) is smooth and psh, then \(\det(u_{j\bar k})\ge0\), so \((dd^cu)^d\ge0\) by (A2).</li>
+<li>(Holomorphic images.) If \(f\) is holomorphic and nonvanishing on an open set, then \(\log|f|^2\) is smooth and psh there: for a vector \(\xi\), writing \(a=Df\,\xi\), its Levi form is
+<span class="math">\[
+\frac{|f|^2|a|^2-|\langle a,f\rangle|^2}{|f|^4}\ \ge0
+\]</span>
+by the Cauchy&ndash;Schwarz inequality. Also \(|f|^2\) is psh (its Levi form is \(|a|^2\)), and \(c\log|z|^2+\text{const}\) is psh on \(\mathbb{C}^d\setminus\{0\}\) for \(c\ge0\), as the case \(f(z)=z\).</li>
+<li>(Convex functions of psh functions.) If \(u_1,u_2\) are smooth and psh and \(\chi\colon\mathbb{R}^2\to\mathbb{R}\) is smooth, convex, and nondecreasing in each variable, then \(\chi(u_1,u_2)\) is smooth and psh. Indeed, by the chain rule its complex Hessian is \(\sum_a\chi_a\,\mathrm{Hess}_{\mathbb{C}}u_a+\sum_{a,b}\chi_{ab}\,\partial u_a\otimes\bar\partial u_b\), where \(\chi_a\ge0\) by monotonicity and \((\chi_{ab})\ge0\) by convexity.</li>
+<li>(Regularized maximum.) The only property of \(\widetilde{\max}\) used in the proof is that \(\widetilde{\max}(x,y)=\max(x,y)\) when \(|x-y|\ge1\); so \(\widetilde{\max}(g,h)=g\) where \(g\ge h+1\), and \(=h\) where \(h\ge g+1\). Such a function exists (convolve \(\max\) with a smooth nonnegative bump of small radius, adding a suitable constant if needed to keep it nondecreasing and convex; see the footnote at the end of the proof of Lemma 3).</li>
+</ol>
+<p><b>Stokes' theorem and regular values.</b> Let \(f\colon U\to\mathbb{C}^m\) be smooth, and let \(s>0\). If \(s\) is a <i>regular value</i> of \(|f|\), meaning that \(d|f|\neq0\) at every point of \(\{|f|=s\}\), then \(\{|f|\le s\}\) is a manifold with boundary \(\partial U_s=\{|f|=s\}\), which is compact when \(U_s\) is relatively compact in \(U\) and \(\{|f|\le s\}\) is closed in \(U\). By Sard's theorem, almost every \(s\) is a regular value. Boundaries carry the orientation induced from \(\mathbb{C}^d\) (outward normal first), so for a smooth \((2d-1)\)-form \(\beta\) on a neighborhood of \(\overline{U_s}\),
+<span class="math">\[
+\int_{U_s}d\beta=\int_{\partial U_s}\beta.\tag{A6}
+\]</span>
+The same holds on the region \(U_s\setminus r\overline{\mathbb{B}}_d\) between two such boundaries, whose oriented boundary is \(\partial U_s\) minus \(\partial(r\mathbb{B}_d)\), where \(\partial(r\mathbb{B}_d)\) is oriented as the boundary of the ball. This is how (A6) is used to compare the two boundary integrals in the proof. Two further remarks about forms restricted to a hypersurface \(\{\varrho=\text{const}\}\): the restriction of \(d\varrho\) to the hypersurface vanishes, so
+<span class="math">\[
+\big(d\log\varrho\wedge d^c\log\varrho\big)\big|_{\{\varrho=\text{const}\}}=0,\tag{A7}
+\]</span>
+which is why \(dd^c\log|f|^2\) and \(|f|^{-2}dd^c|f|^2\) agree on \(\partial U_s\) (take \(\varrho=|f|^2\)) and likewise \(dd^c\log|z|^2=r^{-2}dd^c|z|^2\) on the sphere \(\partial(r\mathbb{B}_d)\); and, by (A6) applied to the ball and (A3),
+<span class="math">\[
+\int_{\partial(r\mathbb{B}_d)}d^c|z|^2\wedge(dd^c|z|^2)^{d-1}=\int_{r\mathbb{B}_d}(dd^c|z|^2)^d=(\pi r^2)^d.\tag{A8}
+\]</span>
+Here we used \(d\big(d^c|z|^2\wedge(dd^c|z|^2)^{d-1}\big)=(dd^c|z|^2)^d\), valid because \(dd^c\) of anything is closed.</p>
+<p><b>Other notation.</b> \(\mathbb{B}_m\) denotes the open Euclidean unit ball of \(\mathbb{C}^m\); \(|\cdot|\) is the Hermitian norm; \(\overline{U_s}\) is the closure; \(g=O(1)\) means that \(g\) is bounded near the point in question; and \(Df\) is the complex Jacobian of a holomorphic map \(f\), with \((Df)_J\) its \(d\times d\) minor with rows in \(J\).</p>
 <h3 id="appendix-properties-of-the-function">Appendix: Properties of the function \(F\)</h3>
 <p>Define an analytic function \(F\) on the unit disc \(\mathbb{D}\subset \mathbb{C}\) by
 <span class="math">\[
