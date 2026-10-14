@@ -80,7 +80,7 @@ window.MathJax = {
 <p>For background on the Mahler conjecture, see the survey of Fradelizi, Meyer and Zvavitch<sup class="fn"><a href="#fn-fmz" id="fnref-fmz">1</a></sup>.
 Complex-analytic methods were used earlier by Nazarov<sup class="fn"><a href="#fn-nazarov" id="fnref-nazarov">2</a></sup> and by Berndtsson<sup class="fn"><a href="#fn-berndtsson-pw" id="fnref-berndtsson-pw">3</a></sup><sup class="fn">,</sup><sup class="fn"><a href="#fn-berndtsson-kup" id="fnref-berndtsson-kup">4</a></sup> to prove the Bourgain&ndash;Milman inequality.</p>
 <h3>Table of contents</h3>
-<nav class="toc"><ul><li><a href="#statement">Statement</a></li><li><a href="#complexification">Complexification</a></li><li><a href="#a-collection-of-subsets-of">A collection of subsets of \(K^{\circ}\)</a></li><li><a href="#from-to-the-cube-to-the-polycircle">From \(K\) to the cube to the polycircle</a></li><li><a href="#a-sequence-of-submanifolds-of-the-polydisc">A sequence of submanifolds of the polydisc</a></li><li><a href="#a-lower-bound-on-the-volume-of-the-image-of-a-holomorphic-function">A lower bound on the volume of the image of a holomorphic function</a></li><li><a href="#the-equality-case">The equality case</a></li><li><a href="#appendix-properties-of-the-function">Appendix: Properties of the function \(F\)</a></li><li><a href="#appendix-simplex-decomposition">Appendix: \(\Sigma_x\) as a union of simplices</a></li><li><a href="#appendix-volume">Appendix: The integral in Lemma 3 and \(\int_{M_k}\sigma_k\) are volumes</a></li><li><a href="#appendix-correspondence">Appendix: Correspondence with the original preprint</a></li><li><a href="#appendix-complex-geometry">Appendix: Complex-geometric background for Lemma 3</a></li></ul></nav>
+<nav class="toc"><ul><li><a href="#statement">Statement</a></li><li><a href="#complexification">Complexification</a></li><li><a href="#a-collection-of-subsets-of">A collection of subsets of \(K^{\circ}\)</a></li><li><a href="#from-to-the-cube-to-the-polycircle">From \(K\) to the cube to the polycircle</a></li><li><a href="#a-sequence-of-submanifolds-of-the-polydisc">A sequence of submanifolds of the polydisc</a></li><li><a href="#a-lower-bound-on-the-volume-of-the-image-of-a-holomorphic-function">A lower bound on the volume of the image of a holomorphic function</a></li><li><a href="#the-equality-case">The equality case</a></li><li><a href="#appendix-properties-of-the-function">Appendix: Properties of the function \(F\)</a></li><li><a href="#appendix-simplex-decomposition">Appendix: \(\Sigma_x\) as a union of simplices</a></li><li><a href="#appendix-volume">Appendix: The integral in Lemma 3 and \(\int_{M_k}\sigma_k\) are volumes</a></li><li><a href="#appendix-complex-geometry">Appendix: Complex-geometric background for Lemma 3</a></li><li><a href="#appendix-correspondence">Appendix: Correspondence with the original preprint</a></li></ul></nav>
 <h3 id="statement">Statement</h3>
 <p>A <i>convex body</i> is a compact convex set \(K\subset\mathbb{R}^d\) with nonempty interior; it is <i>symmetric</i> if \(K=-K\). Recall that the polar body \(K^\circ\) of a convex body \(K\) containing the origin in its interior is defined by \[K^{\circ}:=\{y\in\mathbb{R}^d\colon\langle x,y\rangle\le1\ \ \forall\,x\in K\}.\]
 </p>
@@ -706,6 +706,58 @@ The left-hand side is the \(2d\)-dimensional Jacobian of \(f\) at \(z\). Hence, 
 	\int_U\sum_{J\in{[m]\choose d}}|\det (Df)_J|^2\,dV
 \]</span>
 is the \(2d\)-dimensional volume of \(f(U)\), counted with multiplicity. Thus, by (11), \(\int_{M_k}\sigma_k\) is the \(2d\)-dimensional volume of \(f_k(\Omega_k)=p_k(M_k)\), counted with multiplicity, and Lemma 3 says that the \(2d\)-dimensional volume of \(f(U_1)\), counted with multiplicity, is at least \(\frac{(\pi k)^d}{d!}\).</p>
+<h3 id="appendix-complex-geometry">Appendix: Complex-geometric background for Lemma 3</h3>
+<p>This appendix collects the notation and the standard facts used in the proof of Lemma 3. Throughout, \(z_j=x_j+iy_j\) are the coordinates of \(\mathbb{C}^d\), and \(\mathbb{C}^d\) is oriented by \(dV=\prod_j dx_j\wedge dy_j\).</p>
+<p><b>Differential forms.</b> A smooth function \(u\) on an open set of \(\mathbb{C}^d\) has \(du=\partial u+\bar\partial u\), where
+<span class="math">\[
+\partial u=\sum_j\frac{\partial u}{\partial z_j}\,dz_j,\qquad \bar\partial u=\sum_j\frac{\partial u}{\partial\bar z_j}\,d\bar z_j,\qquad \frac{\partial}{\partial z_j}=\frac12\Big(\frac{\partial}{\partial x_j}-i\frac{\partial}{\partial y_j}\Big),\quad \frac{\partial}{\partial\bar z_j}=\frac12\Big(\frac{\partial}{\partial x_j}+i\frac{\partial}{\partial y_j}\Big).
+\]</span>
+The operators \(\partial,\bar\partial\) extend to forms, and \(\partial^2=\bar\partial^2=0\), \(\partial\bar\partial=-\bar\partial\partial\). A function is holomorphic if and only if \(\bar\partial u=0\). For the operator \(d^c=\frac i4(\bar\partial-\partial)\) of the proof, a one-line computation gives
+<span class="math">\[
+dd^c=\frac i4(\partial+\bar\partial)(\bar\partial-\partial)=\frac i2\,\partial\bar\partial,\qquad dd^cu=\frac i2\sum_{j,k}\frac{\partial^2u}{\partial z_j\partial\bar z_k}\,dz_j\wedge d\bar z_k.\tag{A1}
+\]</span>
+The matrix \(\big(\partial^2u/\partial z_j\partial\bar z_k\big)\) is the <i>complex Hessian</i> (Levi matrix) of \(u\). Since \(\frac i2\,dz_j\wedge d\bar z_j=dx_j\wedge dy_j\), (A1) gives \(dd^c|z|^2=\sum_jdx_j\wedge dy_j\), and since \(d^c\) and \(d\) are real operators, \(dd^cu\) is a real \((1,1)\)-form. Taking the \(d\)-th exterior power in (A1) gives, for smooth \(u\),
+<span class="math">\[
+(dd^cu)^d=d!\,\det\Big(\frac{\partial^2u}{\partial z_j\partial\bar z_k}\Big)\,dV.\tag{A2}
+\]</span>
+For \(u=|z|^2\) the matrix is the identity, which gives \((dd^c|z|^2)^d=d!\,dV\). In particular, if \(r\mathbb{B}_d\) is the ball of radius \(r\) in \(\mathbb{C}^d\), whose volume is \(\pi^dr^{2d}/d!\), then
+<span class="math">\[
+\int_{r\mathbb{B}_d}(dd^c|z|^2)^d=(\pi r^2)^d.\tag{A3}
+\]</span></p>
+<p><b>Pullbacks.</b> If \(\Phi\) is a holomorphic map between open subsets of complex Euclidean spaces, then pullback by \(\Phi\) commutes with \(\partial\) and \(\bar\partial\), hence with \(d\), \(d^c\) and \(dd^c\). In particular \(dd^c|f|^2=f^*(dd^c|w|^2)\) for holomorphic \(f\colon U\to\mathbb{C}^m\). Moreover, a holomorphic map \(\Phi\colon\mathbb{C}^d\supseteq U\to\mathbb{C}^d\) has real Jacobian determinant \(|\det D\Phi|^2\), where \(D\Phi\) is the complex Jacobian matrix, so
+<span class="math">\[
+\Phi^*dV=|\det D\Phi|^2\,dV.\tag{A4}
+\]</span>
+Finally, write \(dV_J=\bigwedge_{j\in J}\frac i2dw_j\wedge d\bar w_j\) for the volume form of \(\mathbb{C}^J\), where \(J\subseteq[m]\), \(|J|=d\). Expanding \((dd^c|w|^2)^d=\big(\sum_{j=1}^m\frac i2dw_j\wedge d\bar w_j\big)^d\), each of the \(2\)-forms \(\frac i2dw_j\wedge d\bar w_j\) commutes with the others and squares to zero, so only products of \(d\) distinct ones survive, and each such product occurs \(d!\) times:
+<span class="math">\[
+(dd^c|w|^2)^d=d!\sum_{J\in{[m]\choose d}}dV_J\qquad\text{on }\mathbb{C}^m.\tag{A5}
+\]</span>
+Combining (A4) and (A5) with \(\pi_J\circ f\) in place of \(\Phi\) gives the identity \((dd^c|f|^2)^d=d!\sum_J|\det(Df)_J|^2\,dV\) used in the proof.</p>
+<p><b>Plurisubharmonic functions.</b> A smooth real function \(u\) on an open set of \(\mathbb{C}^d\) is <i>plurisubharmonic</i> (psh) if its complex Hessian is positive semidefinite at every point; equivalently, \(\sum u_{j\bar k}\xi_j\bar\xi_k\ge0\) for all \(\xi\in\mathbb{C}^d\), that is, the restriction of \(u\) to every complex line is subharmonic. Facts used:</p>
+<ol>
+<li>(Positivity.) If \(u\) is smooth and psh, then \(\det(u_{j\bar k})\ge0\), so \((dd^cu)^d\ge0\) by (A2).</li>
+<li>(Holomorphic images.) If \(f\) is holomorphic and nonvanishing on an open set, then \(\log|f|^2\) is smooth and psh there: for a vector \(\xi\), writing \(a=Df\,\xi\), its Levi form is
+<span class="math">\[
+\frac{|f|^2|a|^2-|\langle a,f\rangle|^2}{|f|^4}\ \ge0
+\]</span>
+by the Cauchy&ndash;Schwarz inequality. Also \(|f|^2\) is psh (its Levi form is \(|a|^2\)), and \(c\log|z|^2+\text{const}\) is psh on \(\mathbb{C}^d\setminus\{0\}\) for \(c\ge0\), as the case \(f(z)=z\).</li>
+<li>(Convex functions of psh functions.) If \(u_1,u_2\) are smooth and psh and \(\chi\colon\mathbb{R}^2\to\mathbb{R}\) is smooth, convex, and nondecreasing in each variable, then \(\chi(u_1,u_2)\) is smooth and psh. Indeed, by the chain rule its complex Hessian is \(\sum_a\chi_a\,\mathrm{Hess}_{\mathbb{C}}u_a+\sum_{a,b}\chi_{ab}\,\partial u_a\otimes\bar\partial u_b\), where \(\chi_a\ge0\) by monotonicity and \((\chi_{ab})\ge0\) by convexity.</li>
+<li>(Regularized maximum.) The only property of \(\widetilde{\max}\) used in the proof is that \(\widetilde{\max}(x,y)=\max(x,y)\) when \(|x-y|\ge1\); so \(\widetilde{\max}(g,h)=g\) where \(g\ge h+1\), and \(=h\) where \(h\ge g+1\). Such a function exists (convolve \(\max\) with a smooth nonnegative bump of small radius, adding a suitable constant if needed to keep it nondecreasing and convex; see the footnote at the end of the proof of Lemma 3).</li>
+</ol>
+<p><b>Stokes' theorem and regular values.</b> Let \(f\colon U\to\mathbb{C}^m\) be smooth, and let \(s>0\). If \(s\) is a <i>regular value</i> of \(|f|\), meaning that \(d|f|\neq0\) at every point of \(\{|f|=s\}\), then \(\{|f|\le s\}\) is a manifold with boundary \(\partial U_s=\{|f|=s\}\), which is compact when \(U_s\) is relatively compact in \(U\) and \(\{|f|\le s\}\) is closed in \(U\). By Sard's theorem, almost every \(s\) is a regular value. Boundaries carry the orientation induced from \(\mathbb{C}^d\) (outward normal first), so for a smooth \((2d-1)\)-form \(\beta\) on a neighborhood of \(\overline{U_s}\),
+<span class="math">\[
+\int_{U_s}d\beta=\int_{\partial U_s}\beta.\tag{A6}
+\]</span>
+The same holds on the region \(U_s\setminus r\overline{\mathbb{B}}_d\) between two such boundaries, whose oriented boundary is \(\partial U_s\) minus \(\partial(r\mathbb{B}_d)\), where \(\partial(r\mathbb{B}_d)\) is oriented as the boundary of the ball. This is how (A6) is used to compare the two boundary integrals in the proof. Two further remarks about forms restricted to a hypersurface \(\{\varrho=\text{const}\}\): the restriction of \(d\varrho\) to the hypersurface vanishes, so
+<span class="math">\[
+\big(d\log\varrho\wedge d^c\log\varrho\big)\big|_{\{\varrho=\text{const}\}}=0,\tag{A7}
+\]</span>
+which is why \(dd^c\log|f|^2\) and \(|f|^{-2}dd^c|f|^2\) agree on \(\partial U_s\) (take \(\varrho=|f|^2\)) and likewise \(dd^c\log|z|^2=r^{-2}dd^c|z|^2\) on the sphere \(\partial(r\mathbb{B}_d)\); and, by (A6) applied to the ball and (A3),
+<span class="math">\[
+\int_{\partial(r\mathbb{B}_d)}d^c|z|^2\wedge(dd^c|z|^2)^{d-1}=\int_{r\mathbb{B}_d}(dd^c|z|^2)^d=(\pi r^2)^d.\tag{A8}
+\]</span>
+Here we used \(d\big(d^c|z|^2\wedge(dd^c|z|^2)^{d-1}\big)=(dd^c|z|^2)^d\), valid because \(dd^c\) of anything is closed.</p>
+<p><b>Other notation.</b> \(\mathbb{B}_m\) denotes the open Euclidean unit ball of \(\mathbb{C}^m\); \(|\cdot|\) is the Hermitian norm; \(\overline{U_s}\) is the closure; \(g=O(1)\) means that \(g\) is bounded near the point in question; and \(Df\) is the complex Jacobian of a holomorphic map \(f\), with \((Df)_J\) its \(d\times d\) minor with rows in \(J\).</p>
 <h3 id="appendix-correspondence">Appendix: Correspondence with the original preprint</h3>
 <p>The tables below match the notation and numbered statements of this note with those of the <a href="https://github.com/openai/math/blob/main/preprints/The-symmetric-Mahler-conjecture-and-its-equality-cases-September-22-2026/paper.pdf">original preprint</a> (version of September 22, 2026). Equation numbers of the preprint are written as [8], [26], etc., to distinguish them from equation numbers (1)&ndash;(16) of this note.</p>
 <p>The main difference in conventions is that the preprint's lens is the domain \(D\) of this note rotated by a quarter turn: the preprint uses \(F_{\mathrm{pre}}(z)=\frac{8}{\pi^2}\sum_j\frac{(-1)^jz^{2j+1}}{(2j+1)^2}\), so that \(F(z)=-iF_{\mathrm{pre}}(iz)\) and \(D=-iD_{\mathrm{pre}}\). Accordingly, the preprint's lens is \(\{v+it\colon|t|\le1,\ |v|\le\lambda(t)\}\), and a point of \(\mathbb{C}^d\) is written there as \(Y+iX\) rather than \(x+iy\).</p>
@@ -767,58 +819,6 @@ is the \(2d\)-dimensional volume of \(f(U)\), counted with multiplicity. Thus, b
 <tr><td>Volume product of Hanner polytopes</td><td>Lemmas 2.1, 2.2</td><td></td></tr>
 <tr><td>&mdash;</td><td>Corollaries 1.2, 1.3</td><td>Functional and entropy&ndash;transport consequences; not covered in this note.</td></tr>
 </tbody></table></div>
-<h3 id="appendix-complex-geometry">Appendix: Complex-geometric background for Lemma 3</h3>
-<p>This appendix collects the notation and the standard facts used in the proof of Lemma 3. Throughout, \(z_j=x_j+iy_j\) are the coordinates of \(\mathbb{C}^d\), and \(\mathbb{C}^d\) is oriented by \(dV=\prod_j dx_j\wedge dy_j\).</p>
-<p><b>Differential forms.</b> A smooth function \(u\) on an open set of \(\mathbb{C}^d\) has \(du=\partial u+\bar\partial u\), where
-<span class="math">\[
-\partial u=\sum_j\frac{\partial u}{\partial z_j}\,dz_j,\qquad \bar\partial u=\sum_j\frac{\partial u}{\partial\bar z_j}\,d\bar z_j,\qquad \frac{\partial}{\partial z_j}=\frac12\Big(\frac{\partial}{\partial x_j}-i\frac{\partial}{\partial y_j}\Big),\quad \frac{\partial}{\partial\bar z_j}=\frac12\Big(\frac{\partial}{\partial x_j}+i\frac{\partial}{\partial y_j}\Big).
-\]</span>
-The operators \(\partial,\bar\partial\) extend to forms, and \(\partial^2=\bar\partial^2=0\), \(\partial\bar\partial=-\bar\partial\partial\). A function is holomorphic if and only if \(\bar\partial u=0\). For the operator \(d^c=\frac i4(\bar\partial-\partial)\) of the proof, a one-line computation gives
-<span class="math">\[
-dd^c=\frac i4(\partial+\bar\partial)(\bar\partial-\partial)=\frac i2\,\partial\bar\partial,\qquad dd^cu=\frac i2\sum_{j,k}\frac{\partial^2u}{\partial z_j\partial\bar z_k}\,dz_j\wedge d\bar z_k.\tag{A1}
-\]</span>
-The matrix \(\big(\partial^2u/\partial z_j\partial\bar z_k\big)\) is the <i>complex Hessian</i> (Levi matrix) of \(u\). Since \(\frac i2\,dz_j\wedge d\bar z_j=dx_j\wedge dy_j\), (A1) gives \(dd^c|z|^2=\sum_jdx_j\wedge dy_j\), and since \(d^c\) and \(d\) are real operators, \(dd^cu\) is a real \((1,1)\)-form. Taking the \(d\)-th exterior power in (A1) gives, for smooth \(u\),
-<span class="math">\[
-(dd^cu)^d=d!\,\det\Big(\frac{\partial^2u}{\partial z_j\partial\bar z_k}\Big)\,dV.\tag{A2}
-\]</span>
-For \(u=|z|^2\) the matrix is the identity, which gives \((dd^c|z|^2)^d=d!\,dV\). In particular, if \(r\mathbb{B}_d\) is the ball of radius \(r\) in \(\mathbb{C}^d\), whose volume is \(\pi^dr^{2d}/d!\), then
-<span class="math">\[
-\int_{r\mathbb{B}_d}(dd^c|z|^2)^d=(\pi r^2)^d.\tag{A3}
-\]</span></p>
-<p><b>Pullbacks.</b> If \(\Phi\) is a holomorphic map between open subsets of complex Euclidean spaces, then pullback by \(\Phi\) commutes with \(\partial\) and \(\bar\partial\), hence with \(d\), \(d^c\) and \(dd^c\). In particular \(dd^c|f|^2=f^*(dd^c|w|^2)\) for holomorphic \(f\colon U\to\mathbb{C}^m\). Moreover, a holomorphic map \(\Phi\colon\mathbb{C}^d\supseteq U\to\mathbb{C}^d\) has real Jacobian determinant \(|\det D\Phi|^2\), where \(D\Phi\) is the complex Jacobian matrix, so
-<span class="math">\[
-\Phi^*dV=|\det D\Phi|^2\,dV.\tag{A4}
-\]</span>
-Finally, write \(dV_J=\bigwedge_{j\in J}\frac i2dw_j\wedge d\bar w_j\) for the volume form of \(\mathbb{C}^J\), where \(J\subseteq[m]\), \(|J|=d\). Expanding \((dd^c|w|^2)^d=\big(\sum_{j=1}^m\frac i2dw_j\wedge d\bar w_j\big)^d\), each of the \(2\)-forms \(\frac i2dw_j\wedge d\bar w_j\) commutes with the others and squares to zero, so only products of \(d\) distinct ones survive, and each such product occurs \(d!\) times:
-<span class="math">\[
-(dd^c|w|^2)^d=d!\sum_{J\in{[m]\choose d}}dV_J\qquad\text{on }\mathbb{C}^m.\tag{A5}
-\]</span>
-Combining (A4) and (A5) with \(\pi_J\circ f\) in place of \(\Phi\) gives the identity \((dd^c|f|^2)^d=d!\sum_J|\det(Df)_J|^2\,dV\) used in the proof.</p>
-<p><b>Plurisubharmonic functions.</b> A smooth real function \(u\) on an open set of \(\mathbb{C}^d\) is <i>plurisubharmonic</i> (psh) if its complex Hessian is positive semidefinite at every point; equivalently, \(\sum u_{j\bar k}\xi_j\bar\xi_k\ge0\) for all \(\xi\in\mathbb{C}^d\), that is, the restriction of \(u\) to every complex line is subharmonic. Facts used:</p>
-<ol>
-<li>(Positivity.) If \(u\) is smooth and psh, then \(\det(u_{j\bar k})\ge0\), so \((dd^cu)^d\ge0\) by (A2).</li>
-<li>(Holomorphic images.) If \(f\) is holomorphic and nonvanishing on an open set, then \(\log|f|^2\) is smooth and psh there: for a vector \(\xi\), writing \(a=Df\,\xi\), its Levi form is
-<span class="math">\[
-\frac{|f|^2|a|^2-|\langle a,f\rangle|^2}{|f|^4}\ \ge0
-\]</span>
-by the Cauchy&ndash;Schwarz inequality. Also \(|f|^2\) is psh (its Levi form is \(|a|^2\)), and \(c\log|z|^2+\text{const}\) is psh on \(\mathbb{C}^d\setminus\{0\}\) for \(c\ge0\), as the case \(f(z)=z\).</li>
-<li>(Convex functions of psh functions.) If \(u_1,u_2\) are smooth and psh and \(\chi\colon\mathbb{R}^2\to\mathbb{R}\) is smooth, convex, and nondecreasing in each variable, then \(\chi(u_1,u_2)\) is smooth and psh. Indeed, by the chain rule its complex Hessian is \(\sum_a\chi_a\,\mathrm{Hess}_{\mathbb{C}}u_a+\sum_{a,b}\chi_{ab}\,\partial u_a\otimes\bar\partial u_b\), where \(\chi_a\ge0\) by monotonicity and \((\chi_{ab})\ge0\) by convexity.</li>
-<li>(Regularized maximum.) The only property of \(\widetilde{\max}\) used in the proof is that \(\widetilde{\max}(x,y)=\max(x,y)\) when \(|x-y|\ge1\); so \(\widetilde{\max}(g,h)=g\) where \(g\ge h+1\), and \(=h\) where \(h\ge g+1\). Such a function exists (convolve \(\max\) with a smooth nonnegative bump of small radius, adding a suitable constant if needed to keep it nondecreasing and convex; see the footnote at the end of the proof of Lemma 3).</li>
-</ol>
-<p><b>Stokes' theorem and regular values.</b> Let \(f\colon U\to\mathbb{C}^m\) be smooth, and let \(s>0\). If \(s\) is a <i>regular value</i> of \(|f|\), meaning that \(d|f|\neq0\) at every point of \(\{|f|=s\}\), then \(\{|f|\le s\}\) is a manifold with boundary \(\partial U_s=\{|f|=s\}\), which is compact when \(U_s\) is relatively compact in \(U\) and \(\{|f|\le s\}\) is closed in \(U\). By Sard's theorem, almost every \(s\) is a regular value. Boundaries carry the orientation induced from \(\mathbb{C}^d\) (outward normal first), so for a smooth \((2d-1)\)-form \(\beta\) on a neighborhood of \(\overline{U_s}\),
-<span class="math">\[
-\int_{U_s}d\beta=\int_{\partial U_s}\beta.\tag{A6}
-\]</span>
-The same holds on the region \(U_s\setminus r\overline{\mathbb{B}}_d\) between two such boundaries, whose oriented boundary is \(\partial U_s\) minus \(\partial(r\mathbb{B}_d)\), where \(\partial(r\mathbb{B}_d)\) is oriented as the boundary of the ball. This is how (A6) is used to compare the two boundary integrals in the proof. Two further remarks about forms restricted to a hypersurface \(\{\varrho=\text{const}\}\): the restriction of \(d\varrho\) to the hypersurface vanishes, so
-<span class="math">\[
-\big(d\log\varrho\wedge d^c\log\varrho\big)\big|_{\{\varrho=\text{const}\}}=0,\tag{A7}
-\]</span>
-which is why \(dd^c\log|f|^2\) and \(|f|^{-2}dd^c|f|^2\) agree on \(\partial U_s\) (take \(\varrho=|f|^2\)) and likewise \(dd^c\log|z|^2=r^{-2}dd^c|z|^2\) on the sphere \(\partial(r\mathbb{B}_d)\); and, by (A6) applied to the ball and (A3),
-<span class="math">\[
-\int_{\partial(r\mathbb{B}_d)}d^c|z|^2\wedge(dd^c|z|^2)^{d-1}=\int_{r\mathbb{B}_d}(dd^c|z|^2)^d=(\pi r^2)^d.\tag{A8}
-\]</span>
-Here we used \(d\big(d^c|z|^2\wedge(dd^c|z|^2)^{d-1}\big)=(dd^c|z|^2)^d\), valid because \(dd^c\) of anything is closed.</p>
-<p><b>Other notation.</b> \(\mathbb{B}_m\) denotes the open Euclidean unit ball of \(\mathbb{C}^m\); \(|\cdot|\) is the Hermitian norm; \(\overline{U_s}\) is the closure; \(g=O(1)\) means that \(g\) is bounded near the point in question; and \(Df\) is the complex Jacobian of a holomorphic map \(f\), with \((Df)_J\) its \(d\times d\) minor with rows in \(J\).</p>
 <hr><section class="footnotes"><ol><li id="fn-fmz">M. Fradelizi, M. Meyer and A. Zvavitch, <i>Volume product</i>, survey, 2023. <a href="https://arxiv.org/abs/2301.06131">arXiv:2301.06131</a>. <a href="#fnref-fmz" class="fnback">↩</a></li><li id="fn-nazarov">F. Nazarov, <i>The H&ouml;rmander proof of the Bourgain&ndash;Milman theorem</i>, in: Geometric Aspects of Functional Analysis, Lecture Notes in Math. <b>2050</b>, Springer, 2012, 335&ndash;343. <a href="https://doi.org/10.1007/978-3-642-29849-3_20">doi:10.1007/978-3-642-29849-3_20</a>. <a href="#fnref-nazarov" class="fnback">↩</a></li><li id="fn-berndtsson-pw">B. Berndtsson, <i>Bergman kernels for Paley&ndash;Wiener spaces and Nazarov&rsquo;s proof of the Bourgain&ndash;Milman theorem</i>, Pure Appl. Math. Q. <b>18</b> (2022), no. 2, 395&ndash;409. <a href="https://arxiv.org/abs/2008.00837">arXiv:2008.00837</a>. <a href="#fnref-berndtsson-pw" class="fnback">↩</a></li><li id="fn-berndtsson-kup">B. Berndtsson, <i>Complex integrals and Kuperberg&rsquo;s proof of the Bourgain&ndash;Milman theorem</i>, Adv. Math. <b>388</b> (2021), 107927. <a href="https://doi.org/10.1016/j.aim.2021.107927">doi:10.1016/j.aim.2021.107927</a>, <a href="https://arxiv.org/abs/2008.00838">arXiv:2008.00838</a>. <a href="#fnref-berndtsson-kup" class="fnback">↩</a></li><li id="fn-demailly">The gluing via \(\widetilde{\max}(g,h)\) followed by Stokes on \(U_{s}\setminus r\overline{\mathbb B}_d\) is the proof of the first comparison theorem for Lelong numbers (J.-P. Demailly, "Complex Analytic and Differential Geometry", book manuscript, version of June 21, 2012, Ch. III, Th. 7.1, p. 166), which uses \(\max(\psi-c,\varphi)\) in the same role. The regularized maximum \(\widetilde{\max}\) is Lemma 5.18 in Ch. I of the same manuscript, p. 43. <a href="https://www-fourier.ujf-grenoble.fr/~demailly/manuscripts/agbook.pdf">https://www-fourier.ujf-grenoble.fr/~demailly/manuscripts/agbook.pdf</a>. <a href="#fnref-demailly" class="fnback">↩</a></li><li id="fn-lima-1978">Å. Lima, <i>Intersection properties of balls in spaces of compact operators</i>, Ann. Inst. Fourier (Grenoble) <b>28</b> (1978), no. 3, 35–65, Theorem 1.2, (ii)\(\Leftrightarrow\)(iii): the 3.2 intersection property is equivalent to the \(R_{3,2}\)-property of p. 38, which is the existence of a median for every triple \(0,x,y\). <a href="https://doi.org/10.5802/aif.700">doi:10.5802/aif.700</a>. <a href="#fnref-lima-1978" class="fnback">↩</a></li><li id="fn-hansen-lima-1981">A. B. Hansen and Å. Lima, <i>The structure of finite dimensional Banach spaces with the 3.2. intersection property</i>, Acta Math. <b>146</b> (1981), 1–23. <a href="https://doi.org/10.1007/BF02392457">doi:10.1007/BF02392457</a>. <a href="#fnref-hansen-lima-1981" class="fnback">↩</a></li><li id="fn-hl-sec1">Hansen–Lima, Section 1, p. 1: the \(n.k.\) intersection property is defined with closed balls of arbitrary radii. The median form of the 3.2 property is their Theorem 3.6, (1)\(\Leftrightarrow\)(4), pp. 5–6, attributed there to Lima. <a href="#fnref-hl-sec1" class="fnback">↩</a></li><li id="fn-hl-cor74">Hansen–Lima, Corollary 7.4, p. 16: every finite dimensional Banach space with the 3.2.I.P. can be obtained by forming \(l_1\)- and \(l_\infty\)-sums of the real line. Deduced from the main Theorem 7.3 by Proposition 4.4 and induction. <a href="#fnref-hl-cor74" class="fnback">↩</a></li></ol></section>
 <hr>
 <section class="footnotes" id="license"><h4>License and attribution</h4>
