@@ -52,6 +52,15 @@ table.legend { border-collapse: collapse; width: 100%; font-size: .92rem; }
 table.legend th, table.legend td { border-bottom: 1px solid var(--background-modifier-border); padding: .35rem .6rem; text-align: left; vertical-align: top; }
 table.legend th { background: var(--background-secondary); font-family: system-ui, sans-serif; font-weight: 600; }
 table.legend td:first-child, table.legend td:nth-child(2) { white-space: nowrap; }
+.print-btn { font: .85rem system-ui, sans-serif; padding: .2rem .7rem; cursor: pointer; }
+@media print {
+  body { max-width: none; margin: 0; font-size: 11pt; }
+  .print-btn, .figure.interactive { display: none !important; }
+  p:has(+ .figure.interactive)::after { content: "(Interactive figure, omitted from the printed version.)"; display: block; font-style: italic; color: var(--text-muted); }
+  #fig-1 { break-inside: avoid; }
+  .math { overflow: visible; }
+  h3 { break-after: avoid; }
+}
 </style>
 <script>
 window.MathJax = {
@@ -67,6 +76,7 @@ window.MathJax = {
 <h1>Notes on OpenAI's proof of the symmetric Mahler conjecture</h1>
 <h4>Rotem Assouline</h4>
 <p><i>Last updated: October 14, 2026</i></p>
+<p><button type="button" class="print-btn" onclick="window.print()">Print</button></p>
 <p>The following note is based on ongoing conversations between me and Claude about <a href="https://github.com/openai/math/tree/main/preprints/The-symmetric-Mahler-conjecture-and-its-equality-cases-September-22-2026">OpenAI's recent claimed proof of the symmetric Mahler conjecture</a>. While the main ideas are taken from the original proof, some of the details are being rewritten to facilitate my understanding, and some figures and interactive applets are being added for visualization. <b>This is a work in progress.</b> I do not claim to have verified the proof completely.</p>
 <p>Readers are welcome to contribute by</p>
 <ul>
@@ -184,7 +194,7 @@ We shall only need the inclusion \(\supseteq\), which is immediate: if \(\vareps
 \]</span>
 so \(\Delta_{J,\varepsilon}\subseteq\Sigma_x\). The inclusion \(\subseteq\) is proved in <a href="#appendix-simplex-decomposition">Appendix: \(\Sigma_x\) as a union of simplices</a>. In Figure 2 below, each vertex \(y_{J,\varepsilon}(x)\) of \(L_x\) with \(\varepsilon\in\mathcal{E}_J(x)\) (left) and the simplex \(\Delta_{J,\varepsilon}\) (right) are drawn in the same colour.</p>
 <p><b>Figure 2: the set \(\Sigma_x\)</b></p>
-<div class="figure" id="fig-2"></div>
+<div class="figure interactive" id="fig-2"></div>
 <div class="callout callout-lemma" id="lemma-1"><div class="callout-title">Lemma 1</div><p>For almost every \(x \in \operatorname{int} K\), the simplices \(\{\Delta_{J,\varepsilon}\}_{J\in \mathcal{J},\,\varepsilon \in \mathcal{E}_J(x)}\) have disjoint interiors.</p></div>
 <p><i>Proof.</i> Let \(\varepsilon\in\mathcal{E}_J(x)\) and let \(\xi\in\operatorname{int}\Delta_{J,\varepsilon}\). Then there exist \(\alpha_{j}>0\) such that \(\sum\limits_{j\in J}\alpha_{j}\lt 1\) and
 <span class="math">\[
@@ -274,7 +284,7 @@ By <a href="#eq-10">(10)</a>, inequality <a href="#eq-7">(7)</a> can be rewritte
 	\sum_{J\in\mathcal{J}}\mu_J(A_J)\geq 1.
 \]</span></p>
 <p><b>Figure 3: from \(K\) to the cube to the torus</b></p>
-<div class="figure" id="fig-3"></div>
+<div class="figure interactive" id="fig-3"></div>
 <h3 id="a-sequence-of-submanifolds-of-the-polydisc">A sequence of submanifolds of the polydisc</h3>
 <p>Recap:</p>
 <ul><li>\(b_1,\dots,b_m\) are nonzero vectors spanning \(\mathbb{R}^d\), extended complex-linearly to \(\mathbb{C}^d\).</li><li>\(\mathcal{J}\) is the set of \(J\in{[m]\choose d}\) for which the linear map \(B_{J}z=(\langle b_{j},z \rangle)_{j\in J}\) from \(\mathbb{C}^{d}\) to \(\mathbb{C}^{J}\) is invertible.</li><li>\(F:\mathbb D\to\mathbb{C}\) is an injective holomorphic map with a bounded convex image \(D\), which extends to a homeomorphism of \(\overline{\mathbb D}\) onto \(\overline D\) and satisfies \(F(0)=0\),</li><li>for all \(J\in \mathcal{J}\), we set \(A_J:=F^{-1}(B_J(\overline\Omega))\subseteq\overline{\mathbb D}^J\), where \(\Omega :=\{ z\in \mathbb{C}^{d}\,\,\colon\,\, \langle b_{j},z \rangle \in D \quad \forall\,1\leq j\leq m\}\),</li></ul>
@@ -553,7 +563,7 @@ Since \(\sum_ia_ih_i=v-u\), we have \(u-w=-\sum_ia_i\frac{1-s_i}2h_i\), and sinc
 \]</span>
 so \(w\in W\).</p>
 <p><b>Figure 4: proof of <a href="#lemma-6-medians">Lemma 6</a></b></p>
-<div class="figure med-fig" id="fig-4">
+<div class="figure med-fig interactive" id="fig-4">
 <svg viewBox="0 0 560 400" role="img" aria-label="The cone of the l-infinity norm over the plane, the lifted points u-hat and v-hat on it, the path through 0 and the geodesic whose lowest point lies above the median w. Drag to rotate."></svg>
 <div class="med-ctl"><button type="button" data-act="new">new <i>u</i>, <i>v</i></button><button type="button" data-act="reset">reset</button><span>drag to rotate</span></div>
 </div>
@@ -689,7 +699,7 @@ where \(v\) ranges over the vectors \(\pm b_l\) active at \(y\). Among all such 
 that is, \(y'=y_{J,\varepsilon}(x)\). As \(y'\in L_x\), we get \(\varepsilon\in\mathcal{E}_J(x)\), and \(\xi=\sum_v\beta_vv\in\Delta_{J,\varepsilon}\). \(\square\)</p>
 <p>The decomposition <a href="#eq-5">(5)</a> can also be seen as the image of a piecewise linear map. The polar of \(L_x\) is \(L_x^{\circ}=\operatorname{conv}\{v/\lambda(\langle v,x\rangle)\colon v\in\{\pm b_l\}\}\). A vertex \(y\) of \(L_x\) corresponds to the facet of \(L_x^{\circ}\) whose vertices are the points \(v/\lambda(\langle v,x\rangle)\) with \(v\) active at \(y\). For almost every \(x\), by the argument in the proof of <a href="#lemma-1">Lemma 1</a>, exactly \(d\) vectors \(v\) are active at each vertex \(y\): for \(y=y_{J,\varepsilon}(x)\) these are \(v=\varepsilon_jb_j\), \(j\in J\). Then the map that is linear on the cone over this facet and sends \(v/\lambda(\langle v,x\rangle)\) to \(v\) stretches the cone onto \(\Delta_{J,\varepsilon}\), and these maps agree on common faces of the cones. Figure 5 shows the case \(d=2\).</p>
 <p><b>Figure 5: the stretching map from \(L_x^{\circ}\) to \(\Sigma_x\)</b></p>
-<div class="figure" id="fig-5"></div>
+<div class="figure interactive" id="fig-5"></div>
 <h3 id="appendix-volume">Appendix: The integral in <a href="#lemma-3">Lemma 3</a> and \(\int_{M_k}\sigma_k\) are volumes</h3>
 <p>The integrals in <a href="#eq-11">(11)</a> and in <a href="#lemma-3">Lemma 3</a> have a geometric meaning, which is not used in the proof. Let \(U\subseteq\mathbb{C}^d\) be open and \(f\colon U\to\mathbb{C}^m\) holomorphic, and let \(z\in U\). Write \(T:=Df(z)\), a complex \(m\times d\) matrix, and \(T_\mathbb{R}\) for the real \(2m\times 2d\) matrix of the same linear map. Then \(T_\mathbb{R}^{\mathsf T}T_\mathbb{R}\) is the real matrix of the Hermitian matrix \(T^*T\), so \(\det(T_\mathbb{R}^{\mathsf T}T_\mathbb{R})=\det(T^*T)^2\), and by the Cauchy&ndash;Binet formula
 <span class="math">\[
