@@ -305,9 +305,9 @@ on \(\mathbb{C}^m\) and \(\mathbb{C}^J\), respectively, so that \(\pi_J(\mathbb 
 <span id="eq-11"></span><span class="math">\[
 	\mathbb B^{2k}_m=p_k^{-1}(\mathbb B_m).\tag{11}
 \]</span></p>
-<p>For \(J\in\mathcal{J}\) and \(k\ge1\), the form \(p_k^*dV_J\) is a nonnegative multiple of \(dV_J\), so it defines a measure on \(\mathbb{C}^J\). Let \(\mu_{k,J}\) denote the measure on \(\overline{\mathbb D}^J\) given by
+<p>For \(J\in\mathcal{J}\) and \(k\ge1\), the form \(p_k^*dV_J\) is a nonnegative multiple of \(dV_J\). Let \(\mu_{k,J}\) denote the measure on \(\overline{\mathbb D}^J\) induced by the \(2d\)-form
 <span class="math">\[
-	\mu_{k,J}:=\frac{d!}{(\pi k)^d}\,\mathbf 1_{\mathbb B^{2k}_J}\,p_k^*dV_J.
+	\frac{d!}{(\pi k)^d}\,\mathbf 1_{\mathbb B^{2k}_J}\,p_k^*dV_J.
 \]</span>
 As the proof of the following lemma shows, \(\mu_{k,J}\) is the law of the point obtained from a uniformly distributed point of \(\mathbb B^2_J\) by replacing the modulus of each coordinate with its \(k\)-th root.</p>
 <div class="callout callout-lemma" id="lemma-2"><div class="callout-title">Lemma 2</div>
@@ -318,7 +318,7 @@ Pick a uniformly distributed point of \(\mathbb B^2_J\) and write it as \((\rho_
 <span class="math">\[
 	p_k^*dV_J(v)=k^d(2\pi)^d\prod_j\rho_j\,d\rho\otimes\mu_J=k^d\,dV_J.
 \]</span>
-Since the volume of \(\mathbb B^2_J\) is \(\pi^d/d!\), the law of \(\rho^{1/k}\omega\) is \(\frac{d!}{(\pi k)^d}\,\mathbf 1_{\mathbb B^{2k}_J}\,p_k^*dV_J=\mu_{k,J}\). \(\square\)</p>
+Since the volume of \(\mathbb B^2_J\) is \(\pi^d/d!\), the law of \(\rho^{1/k}\omega\) is the measure induced by \(\frac{d!}{(\pi k)^d}\,\mathbf 1_{\mathbb B^{2k}_J}\,p_k^*dV_J\), that is, \(\mu_{k,J}\). \(\square\)</p>
 <p>Since \(A_J\) is closed, <a href="#lemma-2">Lemma 2</a> and the portmanteau theorem give \(\limsup_k\mu_{k,J}(A_J)\le\mu_J(A_J)\), and hence
 <span class="math">\[
 	\sum_{J\in\mathcal{J}}\mu_J(A_J)\ge\sum_{J\in\mathcal{J}}\limsup_k\mu_{k,J}(A_J)\ge\limsup_k\sum_{J\in\mathcal{J}}\mu_{k,J}(A_J).
