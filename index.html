@@ -100,12 +100,7 @@ Complex-analytic methods were used earlier by Nazarov<sup class="fn"><a href="#f
 \]</span>
 <p>Equality holds if and only if \(K\) is a linear image of a Hanner polytope.</p></div>
 <p>For the definition of Hanner polytopes, see <a href="#the-equality-case">The equality case</a>.</p>
-<p>We first assume that \(K\) is a polytope; the general case of the inequality follows by a standard approximation argument, see <a href="#lemma-5">Lemma 5</a>.
-Let \(b_1,\dots, b_{m}\) be nonzero, pairwise nonproportional vectors such that 
-<span class="math">\[
-	K=\{ x \in \mathbb{R}^{d}\,\colon\,|\langle b_{j},x \rangle| \leq 1\quad\forall\, 1\leq j\leq m \}.
-\]</span>
-We will construct, for every \(x \in \operatorname{int} K\), a star-shaped set \(\Sigma_{x}\subset K^{\circ}\), and prove that
+<p>Fix a symmetric convex body \(K\subset\mathbb{R}^d\). We will construct, for every \(x \in \operatorname{int} K\), a star-shaped set \(\Sigma_{x}\subset K^{\circ}\), and prove that
 <span id="eq-2"></span><span class="math">\[
 	\int_{K}\operatorname{Vol}(\Sigma_{x})\,d\operatorname{Vol}(x) \geq \frac{4^{d}}{d!}.\tag{2}
 \]</span>
@@ -133,31 +128,48 @@ D:=\{ w\in\mathbb{C}\,\,\colon\,\,|\mathrm{Re}(w)|\lt 1,\,\,|\mathrm{Im}(w)|\lt\
 <p><b>Figure 1: the domain \(D\)</b></p>
 <div class="figure" id="fig-1"></div>
 <p>Since \(\lambda\) is concave and bounded, \(D\) is a bounded convex domain, so the map \(F\) in <a href="#lemma-0">Lemma 0</a> exists and is unique by the Riemann mapping theorem, and extends to \(\overline{\mathbb D}\) by Carathéodory&rsquo;s theorem. <a href="#lemma-0">Lemma 0</a> is proved in <a href="#appendix-properties-of-the-function">Appendix: Properties of the function \(F\)</a>.</p>
-<p>Let 
+<p>By the bipolar theorem, and since \(K\) is symmetric,
 <span class="math">\[
-	\Omega :=\{ z\in \mathbb{C}^{d}\,\,\colon\,\, \langle b_{j},z \rangle \in D \quad \forall\,1\leq j\leq m\}.
+	K=\{ x\in \mathbb{R}^{d}\,\,\colon\,\, \langle h,x \rangle \in [-1,1] \quad \forall\,h\in K^{\circ}\}.
 \]</span>
-Since \(D\cap \mathbb{R}=(-1,1)\),  we have
+Replacing the interval \([-1,1]\) by the domain \(D\), whose intersection with \(\mathbb{R}\) is \((-1,1)\), we define
 <span class="math">\[
-	\Omega \cap \mathbb{R}^{d}=\operatorname{int} K.
+	\Omega :=\{ z\in \mathbb{C}^{d}\,\,\colon\,\, \langle h,z \rangle \in D \quad \forall\,h\in K^{\circ}\},
 \]</span>
+where \(\langle h,z\rangle=\sum_jh_jz_j\). The set \(\Omega\) is convex, since \(D\) is. It is open: if \(z\in\Omega\), the compact set \(\{\langle h,z\rangle\colon h\in K^{\circ}\}\) lies at a positive distance from \(\mathbb{C}\setminus D\), and \(|\langle h,z'-z\rangle|\le\max_{K^{\circ}}|h|\,|z'-z|\). Since \(D\cap \mathbb{R}=(-1,1)\) and \(\max_{h\in K^{\circ}}\langle h,x\rangle\lt1\) exactly when \(x\in\operatorname{int}K\),
+<span class="math">\[
+	\Omega \cap \mathbb{R}^{d}=\operatorname{int} K,
+\]</span>
+so \(\Omega\) is a complexification of \(\operatorname{int}K\). Moreover,
+<span class="math">\[
+	\overline\Omega=\{ z\in \mathbb{C}^{d}\,\,\colon\,\, \langle h,z \rangle \in \overline D \quad \forall\,h\in K^{\circ}\}:
+\]</span>
+the inclusion \(\subseteq\) is clear, and if \(z\) belongs to the right-hand side, then \(tz\in\Omega\) for \(0\lt t\lt1\), since \(t\overline D\subseteq D\), as \(D\) is convex and contains \(0\).
 For every \(x \in \operatorname{int} K\), denote by \(L_x\) the fiber of \(\overline{\Omega}\) over \(x\):
 <span class="math">\[
 	L_{x}:=\{ y\in \mathbb{R}^{d}\,\,\colon\,\,x+iy\in \overline{\Omega}  \}, \qquad x \in \operatorname{int} K.
 \]</span>
-Since \(\overline{D}=\{ w\colon|\mathrm{Re}(w)|\le1,\,|\mathrm{Im}(w)|\le\lambda(\mathrm{Re}(w)) \}\), \(L_{x}\) is the symmetric polytope
-<span class="math">\[
-	L_{x}=\{ y\in \mathbb{R}^{d}\,\,\colon\,\, |\langle b_{j},y \rangle|\leq \lambda\left(\langle b_{j},x \rangle\right)\quad \forall\,1\leq j\leq m   \}, \qquad x \in \operatorname{int} K.
-\]</span>
-Note that
+Since \(\overline{D}=\{ w\colon|\mathrm{Re}(w)|\le1,\,|\mathrm{Im}(w)|\le\lambda(\mathrm{Re}(w)) \}\), \(K^{\circ}\) is symmetric and \(\lambda\) is even,
 <span id="eq-3"></span><span class="math">\[
 	L_x=\{y\in\mathbb{R}^{d}\,\colon\,\langle h,y\rangle\le\lambda(\langle h,x\rangle)\quad\forall\,h\in K^{\circ}\}.\tag{3}
-\]</span>
-Indeed, for fixed \(y\in\mathbb{R}^d\), the function \(h\mapsto\lambda(\langle h,x\rangle)-\langle h,y\rangle\) is concave, since \(\lambda\) is. Its minimum over the polytope \(K^{\circ}=\operatorname{conv}\{\pm b_l\}\) is therefore attained at one of the vertices \(\pm b_l\). As \(\lambda\) is even, the inequalities \(\langle\pm b_l,y\rangle\le\lambda(\langle\pm b_l,x\rangle)\) are precisely the inequalities defining \(L_x\), and <a href="#eq-3">(3)</a> follows.</p>
+\]</span></p>
 <h3 id="a-collection-of-subsets-of">A collection of subsets of \(K^{\circ}\)</h3>
 <p id="def-sigma">For every \(x\in\operatorname{int} K\), define
 <span id="eq-4"></span><span class="math">\[
 	\Sigma_x:=\bigcup_{y\in L_x}\operatorname{conv}\big(\{0\}\cup\{h\in K^{\circ}\,\colon\,\langle h,y\rangle=\lambda(\langle h,x\rangle)\}\big).\tag{4}
+\]</span></p>
+<p>From now on, until <a href="#the-equality-case">The equality case</a>, we assume that \(K\) is a polytope; the general case of <a href="#eq-2">(2)</a> follows by a standard approximation argument, see <a href="#lemma-5">Lemma 5</a>.
+Let \(b_1,\dots, b_{m}\) be nonzero, pairwise nonproportional vectors such that 
+<span class="math">\[
+	K=\{ x \in \mathbb{R}^{d}\,\colon\,|\langle b_{j},x \rangle| \leq 1\quad\forall\, 1\leq j\leq m \}.
+\]</span>
+Then \(K^{\circ}=\operatorname{conv}\{\pm b_l\}\). For each \(z\in\mathbb{C}^d\), the set \(\{h\in\mathbb{R}^d\colon\langle h,z\rangle\in D\}\) is convex and symmetric, since \(D\) is; hence it contains \(K^{\circ}\) if and only if it contains \(b_1,\dots,b_m\), and similarly with \(\overline D\) in place of \(D\). Therefore
+<span class="math">\[
+	\Omega=\{ z\in \mathbb{C}^{d}\,\,\colon\,\, \langle b_{j},z \rangle \in D \quad \forall\,1\leq j\leq m\},
+\]</span>
+and \(L_x\) is the symmetric polytope
+<span class="math">\[
+	L_{x}=\{ y\in \mathbb{R}^{d}\,\,\colon\,\, |\langle b_{j},y \rangle|\leq \lambda\left(\langle b_{j},x \rangle\right)\quad \forall\,1\leq j\leq m   \}, \qquad x \in \operatorname{int} K.
 \]</span>
 Note that it suffices to take the union in <a href="#eq-4">(4)</a> only over the vertices of \(L_x\). Indeed, by <a href="#eq-3">(3)</a>, for each \(h\in K^{\circ}\) the set \(\{y'\in L_x\colon\langle h,y'\rangle=\lambda(\langle h,x\rangle)\}\) is a face of \(L_x\). Given \(y\in L_x\), the intersection of these faces over all \(h\) with \(\langle h,y\rangle=\lambda(\langle h,x\rangle)\) is a face of \(L_x\) containing \(y\), and every vertex \(y'\) of it satisfies \(\langle h,y'\rangle=\lambda(\langle h,x\rangle)\) for all these \(h\).</p>
 <p>For \(J\subset[m]\), define a linear map \(B_J:\mathbb{R}^d\to \mathbb{R}^{J}\) by
@@ -431,8 +443,7 @@ Letting \(s\uparrow 1\) along regular values and using monotone convergence give
 \]</span>
 Then \((A\oplus_1A')^{\circ}=A^{\circ}\oplus_\infty A'^{\circ}\) and \((A\oplus_\infty A')^{\circ}=A^{\circ}\oplus_1 A'^{\circ}\). <i>Hanner polytopes</i> form the smallest class of convex bodies that contains the segments \([-a,a]\subset\mathbb{R}\), \(a>0\), and is closed under \(\oplus_1\) and \(\oplus_\infty\).</p>
 <p><b>Plan.</b> The proof above gives \(\frac{4^{d}}{d!}\le\int_K\operatorname{Vol}(\Sigma_x)\,dx\le\operatorname{Vol}(K)\operatorname{Vol}(K^{\circ})\), where the first inequality follows from <a href="#lemma-5">Lemma 5</a> and the second holds true since \(\Sigma_x\subseteq K^{\circ}\). Equality in the second inequality forces \(\Sigma_x=K^{\circ}\) for almost every \(x \in K\). <a href="#lemma-5">Lemma 5</a> shows that this is then true for all \(x \in \operatorname{int} K\). <a href="#lemma-5">Lemma 5</a> for \(\widehat K=K\oplus_1[-1,1]\) at points \((\delta u,1-\delta)\), \(\delta\downarrow0\), together with <a href="#lemma-0">Lemma 0</a>, gives that every triple of points of \((\mathbb{R}^d,\|\cdot\|_{K^{\circ}})\) has a metric median (<a href="#lemma-6-medians">Lemma 6</a>), and <a href="#theorem-7-lima-lima-1978-hansen-lima-hansen-lima-1981">Theorem 7</a>, which is due to Hansen and Lima, identifies the norm.</p>
-<p>We extend the definitions of \(L_{x}\) and \(\Sigma_{x}\) to arbitrary convex bodies as follows: for \(x\in\operatorname{int} K\) define \(L_x\) by the right-hand side of <a href="#eq-3">(3)</a>, and \(\Sigma_x\) by <a href="#eq-4">(4)</a>.
-Thus \(\xi\in\Sigma_x\) iff \(\xi=\sum_i\alpha_ih_i\) for finitely many \(h_i\in K^{\circ}\) with \(\langle h_i,y\rangle=\lambda(\langle h_i,x\rangle)\) for one \(y\in L_x\) and all \(i\), where \(\alpha_i\ge0\) and \(\sum_i\alpha_i\le1\); by Carathéodory's theorem, \(d+1\) terms suffice. Since \(\lambda\le\lambda(0)\), every \(y\in L_x\) satisfies \(\langle h,y\rangle\le\lambda(0)\) for all \(h\in K^{\circ}\), that is,
+<p>By <a href="#eq-4">(4)</a>, \(\xi\in\Sigma_x\) iff \(\xi=\sum_i\alpha_ih_i\) for finitely many \(h_i\in K^{\circ}\) with \(\langle h_i,y\rangle=\lambda(\langle h_i,x\rangle)\) for one \(y\in L_x\) and all \(i\), where \(\alpha_i\ge0\) and \(\sum_i\alpha_i\le1\); by Carathéodory's theorem, \(d+1\) terms suffice. Since \(\lambda\le\lambda(0)\), every \(y\in L_x\) satisfies \(\langle h,y\rangle\le\lambda(0)\) for all \(h\in K^{\circ}\), that is,
 <span id="eq-12"></span><span class="math">\[
 	L_x\subseteq\lambda(0)K .\tag{12}
 \]</span></p>
