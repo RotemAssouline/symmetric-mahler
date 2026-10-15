@@ -333,34 +333,38 @@ so \(\pi_J\) is injective on \(M_k\) and \(\pi_J(M_k)\subseteq A_J\).</p>
 \]</span>
 Here we used that a complex-linear map \(T\colon\mathbb{C}^d\to\mathbb{C}^J\) has real Jacobian \(|\det T|^2\), and that \(\det (Df_k)_J=0\) for \(J\notin\mathcal{J}\): 
 by <a href="#eq-12">(12)</a>, \(f_k=(p_k\circ F^{-1})\circ B\) with \(p_k\circ F^{-1}\) acting coordinatewise, so \((Df_k)_J\) is \(B_J\) multiplied on the left by a diagonal matrix.</p>
+<p>For \(J\in\mathcal{J}\) and \(k\ge1\), the form \(p_k^*dV_J\) is a nonnegative multiple of \(dV_J\), so it defines a measure on \(\mathbb{C}^J\). Let \(\mu_{k,J}\) denote the measure on \(\overline{\mathbb D}^J\) given by
+<span class="math">\[
+	\mu_{k,J}:=\frac{d!}{(\pi k)^d}\,\mathbf 1_{\mathbb B^{2k}_J}\,p_k^*dV_J.
+\]</span></p>
 <div class="callout callout-lemma" id="lemma-2"><div class="callout-title">Lemma 2</div>
-<span class="math">\[
-\limsup_{k \to \infty} \frac{1}{(\pi k)^{d}}\int_{M_{k}}\sigma_{k}\leq \frac{1}{d!}\sum\limits_{J\in \mathcal{J}}\mu_{J}(A_{J}).
-\]</span></div>
+For every \(J\in\mathcal{J}\) and \(k\ge1\), \(\mu_{k,J}\) is a probability measure, and \(\mu_{k,J}\to\mu_J\) weakly as \(k\to\infty\).</div>
 <p><i>Proof.</i>
-Fix \(J\in\mathcal{J}\), write 
+For \(w\in\mathbb B^2_J\) with nonzero coordinates, write \(w_j=\rho_j\omega_j\) with \(\rho_j>0\) and \(\omega\in(\partial\mathbb D)^J\), and \(\rho^{1/k}\omega:=(\rho_j^{1/k}\omega_j)_{j\in J}\). In these polar coordinates \(dV_J(w)=(2\pi)^d\prod_j\rho_j\,d\rho\otimes\mu_J\), and the substitution \(v_j=\rho_j^{1/k}\omega_j\), which maps \(\mathbb B^2_J\) onto \(\mathbb B^{2k}_J\) up to the coordinate hyperplanes, gives
 <span class="math">\[
-R_{J}:=\{\rho\in\mathbb{R}^J\,\,\colon\,\,\sum_j\rho_j^2\lt 1,\,\,\rho_{j}>0\,\,\forall j\in J\}
+	p_k^*dV_J(v)=k^d(2\pi)^d\prod_j\rho_j\,d\rho\otimes\mu_J=k^d\,dV_J(w).
 \]</span>
-and \(\rho^{1/k}\omega:=(\rho_j^{1/k}\omega_j)_{j\in J}\). Then
+Since the volume of \(\mathbb B^2_J\) is \(\pi^d/d!\), it follows that for every bounded Borel function \(g\) on \(\overline{\mathbb D}^J\),
 <span class="math">\[
-\begin{align*}
-	\limsup_k\frac{1}{k^d}\int_{M_k}(\pi_J|_{M_k})^*p_k^*dV_J
-	&\le\limsup_k\frac{1}{k^d}\int_{A_J\cap \mathbb B^{2k}_J}p_k^*dV_J\\
-	&=\limsup_k\,(2\pi)^d\int_{R_{J}\times(\partial\mathbb D)^J}\mathbf 1_{A_J}(\rho^{1/k}\omega)\prod_j\rho_j\,d\rho\,d\mu_J(\omega)\\
-	&\le(2\pi)^d\int_{R_{J}\times(\partial\mathbb D)^J}\mathbf 1_{A_J}(\omega)\prod_j\rho_j\,d\rho\,d\mu_J(\omega)\\
-	&=\frac{\pi^d}{d!}\,\mu_J(A_J).
-\end{align*}
+	\int g\,d\mu_{k,J}=\frac{d!}{\pi^d}\int_{\mathbb B^2_J}g(\rho^{1/k}\omega)\,dV_J(w).
 \]</span>
-The first passage holds because \(\pi_J\) is injective on \(M_k\) and \(\pi_J(M_k)\subseteq A_J\cap \mathbb B^{2k}_J\). In the second passage we applied the substitution \(v_j=\rho_j^{1/k}\omega_j\) and used
+Thus \(\mu_{k,J}\) is a probability measure: it is the law of the point obtained from a uniformly distributed point of \(\mathbb B^2_J\) by replacing the modulus of each coordinate with its \(k\)-th root. As \(k\to\infty\), these moduli tend to \(1\), so \(\mu_{k,J}\) concentrates on the torus \((\partial\mathbb D)^J\). Precisely, for continuous \(g\), dominated convergence gives
 <span class="math">\[
-	p_k^*dV_J=k^d(2\pi)^d\prod_j\rho_j\,d\rho\otimes\mu_J.
+	\lim_k\int g\,d\mu_{k,J}=\frac{d!}{\pi^d}\int_{\mathbb B^2_J}g(\omega)\,dV_J(w)=\int g\,d\mu_J,
 \]</span>
-The third passage is Fatou's lemma, since \(A_J\) is closed and \(\rho^{1/k}\omega\to\omega\), so \(\limsup_k\mathbf 1_{A_J}(\rho^{1/k}\omega)\le\mathbf 1_{A_J}(\omega)\). In the fourth passage we used that \((2\pi)^d\int_{R_J}\prod_j\rho_j\,d\rho\) is the volume \(\pi^d/d!\) of the unit ball of \(\mathbb{C}^J\), by the same substitution with \(k=1\). Summing over the finitely many \(J\in\mathcal{J}\), and using that the \(\limsup\) of a finite sum is at most the sum of the \(\limsup\)s, gives the lemma. \(\square\)</p>
+where the last equality holds because \(\mathbb B^2_J\) and \(dV_J\) are invariant under the rotations \(v\mapsto(\zeta_jv_j)_{j\in J}\), \(\zeta\in(\partial\mathbb D)^J\), so the law of \(\omega\) is a rotation-invariant probability measure on \((\partial\mathbb D)^J\), namely \(\mu_J\). \(\square\)</p>
 <h3 id="a-lower-bound-on-the-volume-of-the-image-of-a-holomorphic-function">A lower bound on the volume of the image of a holomorphic function</h3>
-<p>By <a href="#lemma-2">Lemma 2</a>, the proof will be finished once we prove that
+<p>The proof will be finished once we prove that
 <span class="math">\[
 	\frac{1}{(\pi k)^{d}}\int_{M_{k}}\sigma_{k}\geq \frac{1}{d!}, \qquad k \ge 1.
+\]</span>
+Indeed, since \(\pi_J\) is injective on \(M_k\) and \(\pi_J(M_k)\subseteq A_J\cap \mathbb B^{2k}_J\) for \(J\in\mathcal{J}\), and since \(p_k^*dV_J\) is a nonnegative multiple of \(dV_J\), this would give
+<span class="math">\[
+	\frac{1}{d!}\le\frac{1}{(\pi k)^{d}}\sum_{J\in\mathcal{J}}\int_{M_k}(\pi_J|_{M_k})^*p_k^*dV_J\le\frac{1}{(\pi k)^{d}}\sum_{J\in\mathcal{J}}\int_{A_J\cap \mathbb B^{2k}_J}p_k^*dV_J=\frac{1}{d!}\sum_{J\in\mathcal{J}}\mu_{k,J}(A_J)
+\]</span>
+for every \(k\ge1\). By <a href="#lemma-2">Lemma 2</a>, \(\mu_{k,J}\to\mu_J\) weakly, and \(A_J\) is closed, so the portmanteau theorem gives \(\limsup_k\mu_{k,J}(A_J)\le\mu_J(A_J)\), and hence
+<span class="math">\[
+	\sum_{J\in\mathcal{J}}\mu_J(A_J)\ge\sum_{J\in\mathcal{J}}\limsup_k\mu_{k,J}(A_J)\ge\limsup_k\sum_{J\in\mathcal{J}}\mu_{k,J}(A_J)\ge1.
 \]</span></p>
 <p>By <a href="#eq-13">(13)</a>, and since \(\Omega_k=\{z\in\Omega\colon|f_k(z)|\lt1\}\) by definition, it suffices to apply the following key lemma to \(f=f_k\) and \(U=\Omega\):</p>
 <div class="callout callout-lemma" id="lemma-3"><div class="callout-title">Lemma 3</div><p>Let \(d\geq 1\) and \(m\geq d\). Let \(U\subset \mathbb{C}^{d}\) be an open set containing the origin, and let \(f:U\to \mathbb{C}^{m}\) be a holomorphic function satisfying</p>
@@ -818,7 +822,7 @@ Here we used \(d\big(d^c|z|^2\wedge(dd^c|z|^2)^{d-1}\big)=(dd^c|z|^2)^d\), valid
 <tr><td>Formula for \(\operatorname{Vol}(\Sigma_x)\)</td><td>[30]</td><td></td></tr>
 <tr><td><a href="#eq-7">(7)</a>, <a href="#eq-9">(9)</a>, <a href="#eq-10">(10)</a> and the reduction to \(\sum_J\mu_J(A_J)\ge1\)</td><td>[27], [29]</td><td>Proposition 6.1: \(S=\frac{d!}{4^d}\int_A|\Sigma_X|\,dX\).</td></tr>
 <tr><td><a href="#eq-13">(13)</a></td><td>Proofs of Lemmas 4.1 and 5.1</td><td>Cauchy&ndash;Binet, and vanishing of the minors of dependent rows.</td></tr>
-<tr><td><a href="#lemma-2">Lemma 2</a></td><td>[24] and the end of the proof of Lemma 5.1</td><td>Radial substitution and Fatou's lemma.</td></tr>
+<tr><td><a href="#lemma-2">Lemma 2</a></td><td>[24] and the end of the proof of Lemma 5.1</td><td>Radial substitution; here phrased as the weak convergence \(\mu_{k,J}\to\mu_J\).</td></tr>
 <tr><td><a href="#lemma-3">Lemma 3</a></td><td>Lemma 4.1, [17]</td><td>The preprint assumes a nondegenerate homogeneous leading term of degree \(k\), where this note assumes \(|f|\le C|z|^k\). The proofs differ: here by gluing with a regularized maximum (as in Demailly), there by computing the flux through a small sphere.</td></tr>
 <tr><td>Verification of the hypotheses of <a href="#lemma-3">Lemma 3</a></td><td>Proof of Lemma 5.1</td><td>Lemma 5.1 holds for any biholomorphism \(F\) of \(\mathbb D\) onto a bounded domain with \(F(0)=0\).</td></tr>
 <tr><td><a href="#lemma-5">Lemma 5</a>, inequality</td><td>Corollary 6.2</td><td>The preprint approximates \(K^\circ\) from inside by polytopes and applies Proposition 6.1.</td></tr>
