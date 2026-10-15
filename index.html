@@ -243,29 +243,25 @@ Since \(\overline D=\{w\colon|\mathrm{Re}\,w|\le1,\ |\mathrm{Im}\,w|\le\lambda(\
 \]</span>
 By the definitions of \(\Phi_J\) and \(y_{J,\varepsilon}\), \(B_J^{-1}\Phi_J(q,\varepsilon)=B_J^{-1}q+i\,y_{J,\varepsilon}(B_J^{-1}q)\). Since the real part of every point of \(\overline\Omega\) lies in \(K\), the definitions of \(L_x\) and \(\mathcal{E}_J\) give, for \(q\in[-1,1]^J\setminus B_J(\partial K)\) and \(\varepsilon\in\{-1,1\}^J\),
 <span class="math">\[
-	B_J^{-1}\Phi_J(q,\varepsilon)\in\overline\Omega\iff B_J^{-1}q\in \operatorname{int}K\ \text{ and }\ \varepsilon\in\mathcal{E}_J(B_J^{-1}q).
+	\Phi_J(q,\varepsilon)\in B_J(\overline\Omega)\iff B_J^{-1}q\in \operatorname{int}K\ \text{ and }\ \varepsilon\in\mathcal{E}_J(B_J^{-1}q).
 \]</span>
 By <a href="#eq-8">(8)</a> and the change of variables \(q=B_Jx\),
 <span id="eq-9"></span><span class="math">\[
 	\begin{aligned}
 	&|\det B_J|\operatorname{Vol}\left(\{x \in K\,\,\colon\,\,\varepsilon \in \mathcal{E}_{J}(x)\}\right)\\
-	&\qquad=\operatorname{Vol}\left(\{q\in[-1,1]^J\,\,\colon\,\,B_J^{-1}\Phi_J(q,\varepsilon)\in \overline\Omega\}\right),\qquad\varepsilon\in\{-1,1\}^J.
+	&\qquad=\operatorname{Vol}\left(\{q\in[-1,1]^J\,\,\colon\,\,\Phi_J(q,\varepsilon)\in B_J(\overline\Omega)\}\right),\qquad\varepsilon\in\{-1,1\}^J.
 	\end{aligned}
 	\tag{9}
 \]</span></p>
-<p>Let \(\mu_J\) be the Haar probability measure on \((\partial\mathbb D)^J\), and view \(F\) as a map on \(\overline{\mathbb D}^J\) by applying it coordinatewise. By <a href="#lemma-0">Lemma 0</a>, the function \(\Phi_J\) pushes the product of Lebesgue measure on \([-1,1]^J\) and counting measure on \(\{-1,1\}^J\) forward to \(4^dF_*\mu_J\). Hence, summing <a href="#eq-9">(9)</a> over \(\varepsilon\) gives
+<p>Let \(\mu_J\) be the Haar probability measure on \((\partial\mathbb D)^J\), and view \(F\) as a map on \(\overline{\mathbb D}^J\) by applying it coordinatewise. Let \((q,\varepsilon)\) be uniformly distributed on \([-1,1]^J\times\{-1,1\}^J\). Given \(\varepsilon\), the right-hand side of <a href="#eq-9">(9)</a> is \(2^d\) times the conditional probability that \(\Phi_J(q,\varepsilon)\in B_J(\overline\Omega)\), so averaging <a href="#eq-9">(9)</a> over \(\varepsilon\) gives
 <span id="eq-10"></span><span class="math">\[
-	\begin{aligned}
-	&\sum_{\varepsilon\in\{-1,1\}^J}|\det B_J|\operatorname{Vol}\left(\{x \in K\,\,\colon\,\,\varepsilon \in \mathcal{E}_{J}(x)\}\right)\\
-	&\qquad=4^{d}\mu_J\left(\{\omega\in(\partial\mathbb D)^J\,\,\colon\,\,B_J^{-1}F(\omega)\in \overline\Omega\}\right).
-	\end{aligned}\tag{10}
-\]</span></p>
-<p>For \(J\in\mathcal{J}\) let
+	\frac{1}{4^d}\sum_{\varepsilon\in\{-1,1\}^J}|\det B_J|\operatorname{Vol}\left(\{x \in K\,\,\colon\,\,\varepsilon \in \mathcal{E}_{J}(x)\}\right)=\mathbb{P}\big(\Phi_J(q,\varepsilon)\in B_J(\overline\Omega)\big).\tag{10}
+\]</span>
+The coordinates \(\Phi_J(q,\varepsilon)_j=q_j+i\varepsilon_j\lambda(q_j)\), \(j\in J\), are independent, and each has the law of \(T+i\varepsilon\lambda(T)\) in <a href="#lemma-0">Lemma 0</a>. Hence \(\Phi_J(q,\varepsilon)\) has the same law as \(F(\omega)\), where \(\omega\) is distributed according to \(\mu_J\). For \(J\in\mathcal{J}\) let
 <span class="math">\[
 	A_J:=F^{-1}\big(B_J(\overline\Omega)\big)\subseteq\overline{\mathbb D}^J.
 \]</span>
-The set \(A_J\) is closed, since \(B_J(\overline\Omega)\) is closed and \(F\) is continuous. 
-By <a href="#eq-10">(10)</a>, inequality <a href="#eq-7">(7)</a> can be rewritten as
+The set \(A_J\) is closed, since \(B_J(\overline\Omega)\) is closed and \(F\) is continuous. The right-hand side of <a href="#eq-10">(10)</a> is \(\mu_J(A_J)\), so by <a href="#eq-10">(10)</a>, inequality <a href="#eq-7">(7)</a> can be rewritten as
 <span class="math">\[
 	\sum_{J\in\mathcal{J}}\mu_J(A_J)\geq 1.
 \]</span></p>
