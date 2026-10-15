@@ -312,19 +312,12 @@ on \(\mathbb{C}^m\) and \(\mathbb{C}^J\), respectively, so that \(\pi_J(\mathbb 
 <div class="callout callout-lemma" id="lemma-2"><div class="callout-title">Lemma 2</div>
 For every \(J\in\mathcal{J}\) and \(k\ge1\), \(\mu_{k,J}\) is a probability measure, and \(\mu_{k,J}\to\mu_J\) weakly as \(k\to\infty\).</div>
 <p><i>Proof.</i>
-For \(w\in\mathbb B^2_J\) with nonzero coordinates, write \(w_j=\rho_j\omega_j\) with \(\rho_j>0\) and \(\omega\in(\partial\mathbb D)^J\), and \(\rho^{1/k}\omega:=(\rho_j^{1/k}\omega_j)_{j\in J}\). In these polar coordinates \(dV_J(w)=(2\pi)^d\prod_j\rho_j\,d\rho\otimes\mu_J\), and the substitution \(v_j=\rho_j^{1/k}\omega_j\), which maps \(\mathbb B^2_J\) onto \(\mathbb B^{2k}_J\) up to the coordinate hyperplanes, gives
+Let \(w\) be uniformly distributed in \(\mathbb B^2_J\), and write \(w_j=\rho_j\omega_j\) with \(\rho_j=|w_j|\) and \(\omega_j\in\partial\mathbb D\); almost surely all \(\rho_j>0\). Since \(\mathbb B^2_J\) and \(dV_J\) are invariant under the rotations \(v\mapsto(\zeta_jv_j)_{j\in J}\), \(\zeta\in(\partial\mathbb D)^J\), the law of \(\omega\) is a rotation-invariant probability measure on \((\partial\mathbb D)^J\), namely \(\mu_J\). We claim that \(\mu_{k,J}\) is the law of \(\rho^{1/k}\omega:=(\rho_j^{1/k}\omega_j)_{j\in J}\). This gives the lemma: \(\mu_{k,J}\) is then a probability measure, and since \(\rho^{1/k}\omega\to\omega\) almost surely as \(k\to\infty\), the laws converge weakly.</p>
+<p>To prove the claim, note that \(w\mapsto\rho^{1/k}\omega\) maps \(\mathbb B^2_J\) onto \(\mathbb B^{2k}_J\) up to the coordinate hyperplanes. In polar coordinates \(dV_J(w)=(2\pi)^d\prod_j\rho_j\,d\rho\otimes\mu_J\), and the substitution \(v_j=\rho_j^{1/k}\omega_j\) gives
 <span class="math">\[
 	p_k^*dV_J(v)=k^d(2\pi)^d\prod_j\rho_j\,d\rho\otimes\mu_J=k^d\,dV_J(w).
 \]</span>
-Since the volume of \(\mathbb B^2_J\) is \(\pi^d/d!\), it follows that for every bounded Borel function \(g\) on \(\overline{\mathbb D}^J\),
-<span class="math">\[
-	\int g\,d\mu_{k,J}=\frac{d!}{\pi^d}\int_{\mathbb B^2_J}g(\rho^{1/k}\omega)\,dV_J(w).
-\]</span>
-Thus \(\mu_{k,J}\) is a probability measure: it is the law of the point obtained from a uniformly distributed point of \(\mathbb B^2_J\) by replacing the modulus of each coordinate with its \(k\)-th root. As \(k\to\infty\), these moduli tend to \(1\), so \(\mu_{k,J}\) concentrates on the torus \((\partial\mathbb D)^J\). Precisely, for continuous \(g\), dominated convergence gives
-<span class="math">\[
-	\lim_k\int g\,d\mu_{k,J}=\frac{d!}{\pi^d}\int_{\mathbb B^2_J}g(\omega)\,dV_J(w)=\int g\,d\mu_J,
-\]</span>
-where the last equality holds because \(\mathbb B^2_J\) and \(dV_J\) are invariant under the rotations \(v\mapsto(\zeta_jv_j)_{j\in J}\), \(\zeta\in(\partial\mathbb D)^J\), so the law of \(\omega\) is a rotation-invariant probability measure on \((\partial\mathbb D)^J\), namely \(\mu_J\). \(\square\)</p>
+Since the volume of \(\mathbb B^2_J\) is \(\pi^d/d!\), the law of \(\rho^{1/k}\omega\) is \(\frac{d!}{(\pi k)^d}\,\mathbf 1_{\mathbb B^{2k}_J}\,p_k^*dV_J=\mu_{k,J}\). \(\square\)</p>
 <p>Since \(A_J\) is closed, <a href="#lemma-2">Lemma 2</a> and the portmanteau theorem give \(\limsup_k\mu_{k,J}(A_J)\le\mu_J(A_J)\), and hence
 <span class="math">\[
 	\sum_{J\in\mathcal{J}}\mu_J(A_J)\ge\sum_{J\in\mathcal{J}}\limsup_k\mu_{k,J}(A_J)\ge\limsup_k\sum_{J\in\mathcal{J}}\mu_{k,J}(A_J).
