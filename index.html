@@ -237,37 +237,23 @@ Since there are finitely many pairs \((J,\varepsilon),(J',\varepsilon')\), this 
 <span id="eq-8"></span><span class="math">\[
 	B_J(K)\subseteq[-1,1]^J.\tag{8}
 \]</span>
-By <a href="#lemma-0">Lemma 0</a>, \(F\) is a homeomorphism of \(\overline{\mathbb D}\) onto \(\overline D\), and \(\overline D=\{w\colon|\mathrm{Re}\,w|\le1,\ |\mathrm{Im}\,w|\le\lambda(\mathrm{Re}\,w)\}\). 
-Hence
+Since \(\overline D=\{w\colon|\mathrm{Re}\,w|\le1,\ |\mathrm{Im}\,w|\le\lambda(\mathrm{Re}\,w)\}\), we have \(q_j+i\varepsilon_j\lambda(q_j)\in\partial D\) for all \(q\in[-1,1]^J\), \(\varepsilon\in\{-1,1\}^J\) and \(j\in J\), so we may define \(\Phi_J:[-1,1]^J\times\{-1,1\}^J\to(\partial D)^J\) by
 <span class="math">\[
-	q_j+i\varepsilon_j\lambda(q_j)\in\partial D\qquad\text{for all }q\in[-1,1]^J,\ \varepsilon\in\{-1,1\}^J\text{ and }j\in J,
+	\Phi_J(q,\varepsilon)_j:=q_{j}+i\varepsilon_{j}\lambda(q_{j}),\qquad j\in J.
 \]</span>
-and we may define \(\Phi_J:[-1,1]^J\times\{-1,1\}^J\to(\partial\mathbb D)^J\) by
+Extend \(B_J\) and \(B_J^{-1}\) complex-linearly to maps \(\mathbb{C}^d\to\mathbb{C}^J\) and \(\mathbb{C}^J\to\mathbb{C}^d\), respectively. By the definitions of \(\Phi_J\) and \(y_{J,\varepsilon}\), \(B_J^{-1}\Phi_J(q,\varepsilon)=B_J^{-1}q+i\,y_{J,\varepsilon}(B_J^{-1}q)\). Since the real part of every point of \(\overline\Omega\) lies in \(K\), the definitions of \(L_x\) and \(\mathcal{E}_J\) give, for \(q\in[-1,1]^J\setminus B_J(\partial K)\) and \(\varepsilon\in\{-1,1\}^J\),
 <span class="math">\[
-	\Phi_J(q,\varepsilon)_j:=F^{-1}\big(q_{j}+i\varepsilon_{j}\lambda(q_{j})\big),\qquad j\in J.
+	B_J^{-1}\Phi_J(q,\varepsilon)\in\overline\Omega\iff B_J^{-1}q\in \operatorname{int}K\ \text{ and }\ \varepsilon\in\mathcal{E}_J(B_J^{-1}q).
 \]</span>
-In what follows, we extend \(B_J\) and \(B_J^{-1}\) complex-linearly to maps \(\mathbb{C}^d\to\mathbb{C}^J\) and \(\mathbb{C}^J\to\mathbb{C}^d\), respectively, and view \(F\) as a map on \(\overline{\mathbb D}^J\) by applying it coordinatewise. Fix \(q\in[-1,1]^J\) and \(\varepsilon\in\{-1,1\}^J\). By the definitions of \(\Phi_J\) and \(y_{J,\varepsilon}\),
-<span class="math">\[
-	F(\Phi_J(q,\varepsilon))=\big(q_j+i\varepsilon_j\lambda(q_j)\big)_{j\in J}\qquad\text{and}\qquad B_J\,y_{J,\varepsilon}(B_J^{-1}q)=\big(\varepsilon_j\lambda(q_j)\big)_{j\in J},
-\]</span>
-whence
-<span class="math">\[
-	B_J^{-1}F(\Phi_J(q,\varepsilon))=B_J^{-1}q+i\,y_{J,\varepsilon}(B_J^{-1}q).
-\]</span>
-The real part of every point of \(\overline\Omega\) lies in \(K\), since \(|\mathrm{Re}\,w|\le1\) for \(w\in\overline D\). 
-Hence, by the definitions of \(L_x\) and \(\mathcal{E}_J\), for \(q\in[-1,1]^J\setminus B_J(\partial K)\),
-<span class="math">\[
-	B_J^{-1}F(\Phi_J(q,\varepsilon))\in\overline\Omega\iff B_J^{-1}q\in \operatorname{int}K\ \text{ and }\ \varepsilon\in\mathcal{E}_J(B_J^{-1}q).
-\]</span>
-Since \(\partial K\) has measure zero, <a href="#eq-8">(8)</a> and the change of variables \(q=B_Jx\) give
+By <a href="#eq-8">(8)</a> and the change of variables \(q=B_Jx\),
 <span id="eq-9"></span><span class="math">\[
 	\begin{aligned}
 	&|\det B_J|\operatorname{Vol}\left(\{x \in K\,\,\colon\,\,\varepsilon \in \mathcal{E}_{J}(x)\}\right)\\
-	&\qquad=\operatorname{Vol}\left(\{q\in[-1,1]^J\,\,\colon\,\,B_J^{-1}F(\Phi_J(q,\varepsilon))\in \overline\Omega\}\right).
+	&\qquad=\operatorname{Vol}\left(\{q\in[-1,1]^J\,\,\colon\,\,B_J^{-1}\Phi_J(q,\varepsilon)\in \overline\Omega\}\right).
 	\end{aligned}
 	\tag{9}
 \]</span></p>
-<p>Let \(\mu_J\) be the Haar probability measure on \((\partial\mathbb D)^J\). By <a href="#lemma-0">Lemma 0</a>, the function \(\Phi_J\) pushes the product of Lebesgue measure on \([-1,1]^J\) and counting measure on \(\{-1,1\}^J\) forward to \(4^d\mu_J\). Hence, summing <a href="#eq-9">(9)</a> over \(\varepsilon\) gives
+<p>Let \(\mu_J\) be the Haar probability measure on \((\partial\mathbb D)^J\), and view \(F\) as a map on \(\overline{\mathbb D}^J\) by applying it coordinatewise. By <a href="#lemma-0">Lemma 0</a>, the function \(\Phi_J\) pushes the product of Lebesgue measure on \([-1,1]^J\) and counting measure on \(\{-1,1\}^J\) forward to \(4^dF_*\mu_J\). Hence, summing <a href="#eq-9">(9)</a> over \(\varepsilon\) gives
 <span id="eq-10"></span><span class="math">\[
 	\begin{aligned}
 	&\sum_{\varepsilon\in\{-1,1\}^J}|\det B_J|\operatorname{Vol}\left(\{x \in K\,\,\colon\,\,\varepsilon \in \mathcal{E}_{J}(x)\}\right)\\
@@ -1104,7 +1090,7 @@ function setJ(JJ){ J=JJ; M=inv2(B,J[0],J[1]); others=B.map((r,k)=>k).filter(k=>k
   rasterize(); readout(); draw(); }
 
 function readout(){
-  setHTML(q('leg'), EPS.map(([e1,e2],n)=>'<span><i class="f3-sw" style="background:var('+ECOL[n]+')"></i>$\\varepsilon=('+sgn(e1)+','+sgn(e2)+')$</span>').join('')+'<span class="f3-row">grey (top left): $|\\mathcal{E}_J(x)|$ = '+[0,2,4].map(n=>'<i class="f3-sw" style="background:'+rgba(rgb(css('--fg')),0.12*n)+';border:1px solid '+css('--rule')+'"></i>'+n+'&nbsp;&nbsp;').join('')+'</span><span class="f3-row">coloured: $\\Phi_J(\\cdot,\\varepsilon)^{-1}(A_J)$ (bottom left), $A_J\\cap(\\partial\\mathbb D)^J$ (bottom right)</span><span class="f3-row">dashed: $B_J^{-1}([-1,1]^J)$ (top left), $B_J(K)$ (bottom left), $\\Phi_J(B_J(K)\\times\\{\\varepsilon\\})$ (bottom right)</span>'+'<span class="f3-row">top right: $L_x$ (shaded), the lines $\\langle b_j,y\\rangle=\\pm\\lambda(\\langle b_j,x\\rangle)$, $j\\in J$ (dashed), and the points $y_{J,\\varepsilon}(x)$, filled if $\\varepsilon\\in\\mathcal{E}_J(x)$</span>'); }
+  setHTML(q('leg'), EPS.map(([e1,e2],n)=>'<span><i class="f3-sw" style="background:var('+ECOL[n]+')"></i>$\\varepsilon=('+sgn(e1)+','+sgn(e2)+')$</span>').join('')+'<span class="f3-row">grey (top left): $|\\mathcal{E}_J(x)|$ = '+[0,2,4].map(n=>'<i class="f3-sw" style="background:'+rgba(rgb(css('--fg')),0.12*n)+';border:1px solid '+css('--rule')+'"></i>'+n+'&nbsp;&nbsp;').join('')+'</span><span class="f3-row">coloured: $\\Phi_J(\\cdot,\\varepsilon)^{-1}(B_J(\\overline\\Omega))$ (bottom left), $A_J\\cap(\\partial\\mathbb D)^J$ (bottom right)</span><span class="f3-row">dashed: $B_J^{-1}([-1,1]^J)$ (top left), $B_J(K)$ (bottom left), $F^{-1}(\\Phi_J(B_J(K)\\times\\{\\varepsilon\\}))$ (bottom right)</span>'+'<span class="f3-row">top right: $L_x$ (shaded), the lines $\\langle b_j,y\\rangle=\\pm\\lambda(\\langle b_j,x\\rangle)$, $j\\in J$ (dashed), and the points $y_{J,\\varepsilon}(x)$, filled if $\\varepsilon\\in\\mathcal{E}_J(x)$</span>'); }
 
 // ---------- panels: logical size 360 x 360; rasters cached per (body, J, theme) ----------
 const SZ=360;
