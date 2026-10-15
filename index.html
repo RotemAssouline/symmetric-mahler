@@ -269,30 +269,33 @@ The set \(A_J\) is closed, since \(B_J(\overline\Omega)\) is closed and \(F\) is
 <div class="figure interactive" id="fig-3"></div>
 <h3 id="a-sequence-of-submanifolds-of-the-polydisc">A sequence of submanifolds of the polydisc</h3>
 <p>Recap:</p>
-<ul><li>\(b_1,\dots,b_m\) are nonzero vectors spanning \(\mathbb{R}^d\), extended complex-linearly to \(\mathbb{C}^d\).</li><li>\(\mathcal{J}\) is the set of \(J\in{[m]\choose d}\) for which the linear map \(B_{J}z=(\langle b_{j},z \rangle)_{j\in J}\) from \(\mathbb{C}^{d}\) to \(\mathbb{C}^{J}\) is invertible.</li><li>\(F:\mathbb D\to\mathbb{C}\) is an injective holomorphic map with a bounded convex image \(D\), which extends to a homeomorphism of \(\overline{\mathbb D}\) onto \(\overline D\) and satisfies \(F(0)=0\),</li><li>for all \(J\in \mathcal{J}\), we set \(A_J:=F^{-1}(B_J(\overline\Omega))\subseteq\overline{\mathbb D}^J\), where \(\Omega :=\{ z\in \mathbb{C}^{d}\,\,\colon\,\, \langle b_{j},z \rangle \in D \quad \forall\,1\leq j\leq m\}\),</li></ul>
+<ul><li>\(b_1,\dots,b_m\) are nonzero vectors spanning \(\mathbb{R}^d\).</li><li>\(\mathcal{J}\) is the set of \(J\in{[m]\choose d}\) for which the linear map \(B_{J}z=(\langle b_{j},z \rangle)_{j\in J}\) from \(\mathbb{C}^{d}\) to \(\mathbb{C}^{J}\) is invertible.</li><li>\(F:\mathbb D\to\mathbb{C}\) is an injective holomorphic map with a bounded convex image \(D\), which extends to a homeomorphism of \(\overline{\mathbb D}\) onto \(\overline D\) and satisfies \(F(0)=0\),</li><li>for all \(J\in \mathcal{J}\), we set \(A_J:=F^{-1}(B_J(\overline\Omega))\subseteq\overline{\mathbb D}^J\), where \(\Omega :=\{ z\in \mathbb{C}^{d}\,\,\colon\,\, \langle b_{j},z \rangle \in D \quad \forall\,1\leq j\leq m\}\),</li></ul>
 <p>and our goal is to prove that
 <span class="math">\[
 	\sum_{J\in\mathcal{J}}\mu_J(A_J)\geq 1,
 \]</span>
 where \(\mu_{J}\) is the Haar probability measure on \((\partial\mathbb D)^{J}\).</p>
-<p>Let \(B:=B_{[m]}:\mathbb{C}^d\to\mathbb{C}^m\), so that \(B_J=\pi_J\circ B\) for the coordinate projection \(\pi_J:\mathbb{C}^m\to\mathbb{C}^J\). </p>
+<p>Define a linear map \(B:\mathbb{C}^d\to\mathbb{C}^m\) by
+<span class="math">\[
+	(Bz)_j=\langle b_j,z\rangle,\qquad 1\le j\le m,\qquad z\in\mathbb{C}^d,
+\]</span>
+so that \(B_J=\pi_J\circ B\) for the coordinate projection \(\pi_J:\mathbb{C}^m\to\mathbb{C}^J\).</p>
 <p>For \(k\ge1\) let \(p_k\) be the coordinatewise \(k\)-th power, \(p_k(v)=(v_j^k)_j\), on \(\mathbb{C}^m\) and on each \(\mathbb{C}^J\); then \(\pi_J\circ p_k=p_k\circ\pi_J\). 
 Let 
 <span class="math">\[
 dV_J:=\bigwedge_{j\in J}\frac{i}{2}\,dv_j\wedge d\bar v_j
 \]</span>
-denote the volume form of \(\mathbb{C}^J\), let \(dV:=dV_{[d]}\) denote the volume form of \(\mathbb{C}^d\), and let  \(M_{k}\) be the \(d\)-dimensional complex submanifold
+denote the volume form of \(\mathbb{C}^J\), and let \(dV\) denote the volume form of \(\mathbb{C}^d\). Let \(\mathbb B^{2k}_m\) and \(\mathbb B^{2k}_J\) denote the open unit balls of the \(\ell^{2k}\) norm \(\|v\|_{2k}=\big(\sum_j|v_j|^{2k}\big)^{1/2k}\) on \(\mathbb{C}^m\) and \(\mathbb{C}^J\), respectively, so that \(\pi_J(\mathbb B^{2k}_m)\subseteq\mathbb B^{2k}_J\). Let \(M_{k}\) be the \(d\)-dimensional complex submanifold
 <span class="math">\[
-	M_k:=p_k^{-1}(\mathbb B_m)\cap F^{-1}\big(B(\mathbb{C}^d)\big)\subseteq\mathbb D^m,
-\]</span>
-where \(\mathbb B_m\) denotes the open Euclidean unit ball in \(\mathbb{C}^m\).</p>
+	M_k:=\mathbb B^{2k}_m\cap F^{-1}\big(B(\mathbb{C}^d)\big)\subseteq\mathbb D^m.
+\]</span></p>
 <p>The map 
 <span class="math">\[
 \phi:=F^{-1}\circ B
 \]</span>
 is a biholomorphism of \(\Omega\) onto \(F^{-1}(B(\mathbb{C}^d))\), so \(M_k=\phi(\Omega_k)\) where
 <span class="math">\[
-\Omega_k:=\{z\in\Omega\colon p_k(\phi(z))\in\mathbb B_m\}.
+\Omega_k:=\{z\in\Omega\colon \phi(z)\in\mathbb B^{2k}_m\}.
 \]</span>
 For \(u\in M_k\) and \(J\in\mathcal{J}\),
 <span class="math">\[
@@ -321,13 +324,13 @@ and \(\rho^{1/k}\omega:=(\rho_j^{1/k}\omega_j)_{j\in J}\). Then
 <span class="math">\[
 \begin{align*}
 	\limsup_k\frac{1}{k^d}\int_{M_k}(\pi_J|_{M_k})^*p_k^*dV_J
-	&\le\limsup_k\frac{1}{k^d}\int_{A_J\cap p_k^{-1}(\mathbb B_J)}p_k^*dV_J\\
+	&\le\limsup_k\frac{1}{k^d}\int_{A_J\cap \mathbb B^{2k}_J}p_k^*dV_J\\
 	&=\limsup_k\,(2\pi)^d\int_{R_{J}\times(\partial\mathbb D)^J}\mathbf 1_{A_J}(\rho^{1/k}\omega)\prod_j\rho_j\,d\rho\,d\mu_J(\omega)\\
 	&\le(2\pi)^d\int_{R_{J}\times(\partial\mathbb D)^J}\mathbf 1_{A_J}(\omega)\prod_j\rho_j\,d\rho\,d\mu_J(\omega)\\
 	&=\frac{\pi^d}{d!}\,\mu_J(A_J).
 \end{align*}
 \]</span>
-The first passage holds because \(\pi_J\) is injective on \(M_k\) and \(\pi_J(M_k)\subseteq A_J\cap p_k^{-1}(\mathbb B_J)\). In the second passage we applied the substitution \(v_j=\rho_j^{1/k}\omega_j\) and used
+The first passage holds because \(\pi_J\) is injective on \(M_k\) and \(\pi_J(M_k)\subseteq A_J\cap \mathbb B^{2k}_J\). In the second passage we applied the substitution \(v_j=\rho_j^{1/k}\omega_j\) and used
 <span class="math">\[
 	p_k^*dV_J=k^d(2\pi)^d\prod_j\rho_j\,d\rho\otimes\mu_J.
 \]</span>
