@@ -67,10 +67,10 @@ window.MathJax = {
   tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']], tags: 'none', processEscapes: true,
          packages: {'[+]': ['ams', 'boldsymbol']} },
   options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], ignoreHtmlClass: 'figure' },
-  chtml: { scale: 1 }
+  svg: { scale: 1, fontCache: 'local' }
 };
 </script>
-<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 </head>
 <body>
 <h1>Notes on OpenAI's proof of the symmetric Mahler conjecture</h1>
@@ -833,7 +833,7 @@ Here we used \(d\big(d^c|z|^2\wedge(dd^c|z|^2)^{d-1}\big)=(dd^c|z|^2)^d\), valid
 window.require = function(name){
   if (name !== 'obsidian') throw new Error('no module ' + name);
   return {
-    renderMath: function(tex){ return MathJax.tex2chtml(tex, {display:false}); },
+    renderMath: function(tex){ return MathJax.tex2svg(tex, {display:false}); },
     finishRenderMath: function(){ MathJax.startup.document.clear(); MathJax.startup.document.updateDocument(); }
   };
 };
