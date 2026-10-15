@@ -304,35 +304,7 @@ denote the volume form of \(\mathbb{C}^J\), and let \(dV\) denote the volume for
 on \(\mathbb{C}^m\) and \(\mathbb{C}^J\), respectively, so that \(\pi_J(\mathbb B^{2k}_m)\subseteq\mathbb B^{2k}_J\). Denoting by \(\mathbb B_m\) the open Euclidean unit ball in \(\mathbb{C}^m\), we have
 <span id="eq-11"></span><span class="math">\[
 	\mathbb B^{2k}_m=p_k^{-1}(\mathbb B_m).\tag{11}
-\]</span>
-Let \(M_{k}\) denote the \(d\)-dimensional complex submanifold
-<span class="math">\[
-	M_k:=\mathbb B^{2k}_m\cap F^{-1}\big(B(\Omega)\big)\subseteq\mathbb D^m.
 \]</span></p>
-<p>The map \(F^{-1}\circ B\) is a biholomorphism of \(\Omega\) onto \(F^{-1}(B(\Omega))\). Let
-<span id="eq-12"></span><span class="math">\[
-	f_k:=p_k\circ F^{-1}\circ B\colon\Omega\to\mathbb{C}^m\tag{12}
-\]</span>
-and
-<span class="math">\[
-	\Omega_k:=f_k^{-1}(\mathbb B_m)\subseteq\Omega.
-\]</span>
-By <a href="#eq-11">(11)</a>, the map \(F^{-1}\circ B\) is a biholomorphism of \(\Omega_k\) onto \(M_k\).
-For \(u\in M_k\) and \(J\in\mathcal{J}\),
-<span class="math">\[
-	F(u)=B\,B_J^{-1}F(\pi_Ju),
-\]</span>
-so \(\pi_J\) is injective on \(M_k\) and \(\pi_J(M_k)\subseteq A_J\).</p>
-<p>Define a \(2d\)-form \(\sigma_{k}\) on \(M_{k}\) by
-<span class="math">\[
-	\sigma_k:=\sum_{J\in\mathcal{J}}(\pi_J|_{M_k})^*\,p_k^*\,dV_J.
-\]</span></p>
-<p id="eq-sigma-integral">For \(J\in{[m]\choose d}\) denote by \((Df_k)_J\) the \(d\times d\) minor of \(Df_k\) with rows in \(J\). Since \(F^{-1}\circ B\) is a biholomorphism of \(\Omega_k\) onto \(M_k\), the definition <a href="#eq-12">(12)</a> gives
-<span id="eq-13"></span><span class="math">\[
-	\int_{M_k}\sigma_k=\int_{\Omega_k}\sum_{J\in\mathcal{J}}(\pi_J\circ f_k)^*dV_J=\int_{\Omega_k}\sum_{J\in{[m]\choose d}}|\det (Df_k)_J|^2\,dV.\tag{13}
-\]</span>
-Here we used that a complex-linear map \(T\colon\mathbb{C}^d\to\mathbb{C}^J\) has real Jacobian \(|\det T|^2\), and that \(\det (Df_k)_J=0\) for \(J\notin\mathcal{J}\): 
-by <a href="#eq-12">(12)</a>, \(f_k=(p_k\circ F^{-1})\circ B\) with \(p_k\circ F^{-1}\) acting coordinatewise, so \((Df_k)_J\) is \(B_J\) multiplied on the left by a diagonal matrix.</p>
 <p>For \(J\in\mathcal{J}\) and \(k\ge1\), the form \(p_k^*dV_J\) is a nonnegative multiple of \(dV_J\), so it defines a measure on \(\mathbb{C}^J\). Let \(\mu_{k,J}\) denote the measure on \(\overline{\mathbb D}^J\) given by
 <span class="math">\[
 	\mu_{k,J}:=\frac{d!}{(\pi k)^d}\,\mathbf 1_{\mathbb B^{2k}_J}\,p_k^*dV_J.
@@ -353,19 +325,50 @@ Thus \(\mu_{k,J}\) is a probability measure: it is the law of the point obtained
 	\lim_k\int g\,d\mu_{k,J}=\frac{d!}{\pi^d}\int_{\mathbb B^2_J}g(\omega)\,dV_J(w)=\int g\,d\mu_J,
 \]</span>
 where the last equality holds because \(\mathbb B^2_J\) and \(dV_J\) are invariant under the rotations \(v\mapsto(\zeta_jv_j)_{j\in J}\), \(\zeta\in(\partial\mathbb D)^J\), so the law of \(\omega\) is a rotation-invariant probability measure on \((\partial\mathbb D)^J\), namely \(\mu_J\). \(\square\)</p>
-<h3 id="a-lower-bound-on-the-volume-of-the-image-of-a-holomorphic-function">A lower bound on the volume of the image of a holomorphic function</h3>
-<p>The proof will be finished once we prove that
+<p>Since \(A_J\) is closed, <a href="#lemma-2">Lemma 2</a> and the portmanteau theorem give \(\limsup_k\mu_{k,J}(A_J)\le\mu_J(A_J)\), and hence
+<span class="math">\[
+	\sum_{J\in\mathcal{J}}\mu_J(A_J)\ge\sum_{J\in\mathcal{J}}\limsup_k\mu_{k,J}(A_J)\ge\limsup_k\sum_{J\in\mathcal{J}}\mu_{k,J}(A_J).
+\]</span>
+Therefore it suffices to prove that
+<span class="math">\[
+	\sum_{J\in\mathcal{J}}\mu_{k,J}(A_J)\ge1,\qquad k\ge1.
+\]</span></p>
+<p>Let \(M_{k}\) denote the \(d\)-dimensional complex submanifold
+<span class="math">\[
+	M_k:=\mathbb B^{2k}_m\cap F^{-1}\big(B(\Omega)\big)\subseteq\mathbb D^m.
+\]</span>
+For \(u\in M_k\) and \(J\in\mathcal{J}\),
+<span class="math">\[
+	F(u)=B\,B_J^{-1}F(\pi_Ju),
+\]</span>
+so \(\pi_J\) is injective on \(M_k\) and \(\pi_J(M_k)\subseteq A_J\cap\mathbb B^{2k}_J\). Define a \(2d\)-form \(\sigma_{k}\) on \(M_{k}\) by
+<span class="math">\[
+	\sigma_k:=\sum_{J\in\mathcal{J}}(\pi_J|_{M_k})^*\,p_k^*\,dV_J.
+\]</span>
+Since \(p_k^*dV_J\) is a nonnegative multiple of \(dV_J\),
+<span class="math">\[
+	\frac{1}{(\pi k)^{d}}\int_{M_k}\sigma_k=\frac{1}{(\pi k)^{d}}\sum_{J\in\mathcal{J}}\int_{M_k}(\pi_J|_{M_k})^*p_k^*dV_J\le\frac{1}{(\pi k)^{d}}\sum_{J\in\mathcal{J}}\int_{A_J\cap \mathbb B^{2k}_J}p_k^*dV_J=\frac{1}{d!}\sum_{J\in\mathcal{J}}\mu_{k,J}(A_J).
+\]</span>
+Hence the proof will be finished once we prove that
 <span class="math">\[
 	\frac{1}{(\pi k)^{d}}\int_{M_{k}}\sigma_{k}\geq \frac{1}{d!}, \qquad k \ge 1.
-\]</span>
-Indeed, since \(\pi_J\) is injective on \(M_k\) and \(\pi_J(M_k)\subseteq A_J\cap \mathbb B^{2k}_J\) for \(J\in\mathcal{J}\), and since \(p_k^*dV_J\) is a nonnegative multiple of \(dV_J\), this would give
-<span class="math">\[
-	\frac{1}{d!}\le\frac{1}{(\pi k)^{d}}\sum_{J\in\mathcal{J}}\int_{M_k}(\pi_J|_{M_k})^*p_k^*dV_J\le\frac{1}{(\pi k)^{d}}\sum_{J\in\mathcal{J}}\int_{A_J\cap \mathbb B^{2k}_J}p_k^*dV_J=\frac{1}{d!}\sum_{J\in\mathcal{J}}\mu_{k,J}(A_J)
-\]</span>
-for every \(k\ge1\). By <a href="#lemma-2">Lemma 2</a>, \(\mu_{k,J}\to\mu_J\) weakly, and \(A_J\) is closed, so the portmanteau theorem gives \(\limsup_k\mu_{k,J}(A_J)\le\mu_J(A_J)\), and hence
-<span class="math">\[
-	\sum_{J\in\mathcal{J}}\mu_J(A_J)\ge\sum_{J\in\mathcal{J}}\limsup_k\mu_{k,J}(A_J)\ge\limsup_k\sum_{J\in\mathcal{J}}\mu_{k,J}(A_J)\ge1.
 \]</span></p>
+<p>The map \(F^{-1}\circ B\) is a biholomorphism of \(\Omega\) onto \(F^{-1}(B(\Omega))\). Let
+<span id="eq-12"></span><span class="math">\[
+	f_k:=p_k\circ F^{-1}\circ B\colon\Omega\to\mathbb{C}^m\tag{12}
+\]</span>
+and
+<span class="math">\[
+	\Omega_k:=f_k^{-1}(\mathbb B_m)\subseteq\Omega.
+\]</span>
+By <a href="#eq-11">(11)</a>, the map \(F^{-1}\circ B\) is a biholomorphism of \(\Omega_k\) onto \(M_k\).</p>
+<p id="eq-sigma-integral">For \(J\in{[m]\choose d}\) denote by \((Df_k)_J\) the \(d\times d\) minor of \(Df_k\) with rows in \(J\). Since \(F^{-1}\circ B\) is a biholomorphism of \(\Omega_k\) onto \(M_k\), the definition <a href="#eq-12">(12)</a> gives
+<span id="eq-13"></span><span class="math">\[
+	\int_{M_k}\sigma_k=\int_{\Omega_k}\sum_{J\in\mathcal{J}}(\pi_J\circ f_k)^*dV_J=\int_{\Omega_k}\sum_{J\in{[m]\choose d}}|\det (Df_k)_J|^2\,dV.\tag{13}
+\]</span>
+Here we used that a complex-linear map \(T\colon\mathbb{C}^d\to\mathbb{C}^J\) has real Jacobian \(|\det T|^2\), and that \(\det (Df_k)_J=0\) for \(J\notin\mathcal{J}\): 
+by <a href="#eq-12">(12)</a>, \(f_k=(p_k\circ F^{-1})\circ B\) with \(p_k\circ F^{-1}\) acting coordinatewise, so \((Df_k)_J\) is \(B_J\) multiplied on the left by a diagonal matrix.</p>
+<h3 id="a-lower-bound-on-the-volume-of-the-image-of-a-holomorphic-function">A lower bound on the volume of the image of a holomorphic function</h3>
 <p>By <a href="#eq-13">(13)</a>, and since \(\Omega_k=\{z\in\Omega\colon|f_k(z)|\lt1\}\) by definition, it suffices to apply the following key lemma to \(f=f_k\) and \(U=\Omega\):</p>
 <div class="callout callout-lemma" id="lemma-3"><div class="callout-title">Lemma 3</div><p>Let \(d\geq 1\) and \(m\geq d\). Let \(U\subset \mathbb{C}^{d}\) be an open set containing the origin, and let \(f:U\to \mathbb{C}^{m}\) be a holomorphic function satisfying</p>
 <ol><li>\(f^{-1}(0)=\{ 0 \}\)</li><li>\(|f(z)|\le C|z|^{k}\) on a neighbourhood of \(0\), for some integer \(k\geq 1\) and some \(C>0\),</li><li>for every \(s \lt 1\) the sublevel set \(U_{s}:=\{ |f|\lt s \}\) is relatively compact in \(U\).</li></ol>
