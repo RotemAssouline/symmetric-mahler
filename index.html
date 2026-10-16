@@ -154,11 +154,11 @@ Indeed, if \(h\in K^\circ\) and \(\langle h,y\rangle=1\), then \(h\in N_K(y)\), 
 <span class="math">\[
 	\Gamma:=\{t+i\lambda(t)\colon|t|\le1\}\subseteq\partial D.
 \]</span>
-Call \(h\in K^\circ\) <i>tight</i> at \(z\in\overline\Omega\) if \(\langle h,z\rangle\in\Gamma\); for \(z=x+iy\), this says \(\langle h,y\rangle=\lambda(\langle h,x\rangle)\), that is, equality holds in <a href="#eq-3">(3)</a>. We define
+We define
 <span id="eq-4"></span><span class="math">\[
-	\Sigma:=\bigcup_{z\in\overline\Omega}\{\mathrm{Re}\,z\}\times\operatorname{conv}\big(\{0\}\cup\{h\in K^{\circ}\colon h\text{ is tight at }z\}\big)\subseteq K\times K^{\circ},\tag{4}
+	\Sigma:=\bigcup_{z\in\overline\Omega}\{\mathrm{Re}\,z\}\times\operatorname{conv}\big(\{0\}\cup\{h\in K^{\circ}\colon\langle h,z\rangle\in\Gamma\}\big)\subseteq K\times K^{\circ},\tag{4}
 \]</span>
-and write \(\Sigma_x:=\{h\colon(x,h)\in\Sigma\}\) for the fiber of \(\Sigma\) over \(x\in K\). By <a href="#eq-3">(3)</a> with \(x=0\), \(iy\in\overline\Omega\) if and only if \(y\in\lambda(0)K\), and \(h\) is tight at \(iy\) if and only if \(\langle h,y/\lambda(0)\rangle=1\); hence \(\Sigma_0=K^{\circ}\).</p>
+where, for \(z=x+iy\) and \(h\in K^\circ\), the condition \(\langle h,z\rangle\in\Gamma\) says that \(\langle h,y\rangle=\lambda(\langle h,x\rangle)\), that is, equality holds in <a href="#eq-3">(3)</a>. We write \(\Sigma_x:=\{h\colon(x,h)\in\Sigma\}\) for the fiber of \(\Sigma\) over \(x\in K\). By <a href="#eq-3">(3)</a> with \(x=0\), \(iy\in\overline\Omega\) if and only if \(y\in\lambda(0)K\), and \(\langle h,iy\rangle\in\Gamma\) if and only if \(\langle h,y/\lambda(0)\rangle=1\); hence \(\Sigma_0=K^{\circ}\).</p>
 <p>From now on, until <a href="#the-equality-case">The equality case</a>, we assume that \(K\) is a polytope; the general case of <a href="#eq-2">(2)</a> follows by a standard approximation argument, see <a href="#lemma-5">Lemma 5</a>.
 Let \(b_1,\dots, b_{m}\) be nonzero, pairwise nonproportional vectors such that
 <span class="math">\[
@@ -429,7 +429,7 @@ Letting \(s\uparrow 1\) along regular values and using monotone convergence give
 \]</span>
 Then \((A\oplus_1A')^{\circ}=A^{\circ}\oplus_\infty A'^{\circ}\) and \((A\oplus_\infty A')^{\circ}=A^{\circ}\oplus_1 A'^{\circ}\). <i>Hanner polytopes</i> form the smallest class of convex bodies that contains the segments \([-a,a]\subset\mathbb{R}\), \(a>0\), and is closed under \(\oplus_1\) and \(\oplus_\infty\).</p>
 <p><b>Plan.</b> The proof above gives \(\frac{4^{d}}{d!}\le\operatorname{Vol}_{2d}(\Sigma)\le\operatorname{Vol}(K)\operatorname{Vol}(K^{\circ})\), where the first inequality follows from <a href="#lemma-5">Lemma 5</a> and the second holds true since \(\Sigma\subseteq K\times K^{\circ}\). Equality in the second inequality forces \(\Sigma_x=K^{\circ}\) for almost every \(x \in K\). <a href="#lemma-5">Lemma 5</a> shows that this is then true for all \(x \in \operatorname{int} K\). <a href="#lemma-5">Lemma 5</a> for \(\widehat K=K\oplus_1[-1,1]\) at points \((\delta x,1-\delta)\), \(\delta\downarrow0\), together with <a href="#lemma-0">Lemma 0</a>, gives that every triple of points of \((\mathbb{R}^d,\|\cdot\|_{K^{\circ}})\) has a metric median (<a href="#lemma-6-medians">Lemma 6</a>), and <a href="#theorem-7-lima-lima-1978-hansen-lima-hansen-lima-1981">Theorem 7</a>, which is due to Hansen and Lima, identifies the norm.</p>
-<p>By <a href="#eq-4">(4)</a>, \(\xi\in\Sigma_x\) iff \(\xi=\sum_i\alpha_ih_i\) for finitely many \(h_i\in K^{\circ}\) that are tight at \(x+iy\), that is, \(\langle h_i,y\rangle=\lambda(\langle h_i,x\rangle)\), for one \(y\) with \(x+iy\in\overline\Omega\), where \(\alpha_i\ge0\) and \(\sum_i\alpha_i\le1\); by Carathéodory's theorem, \(d+1\) terms suffice. Since \(\lambda\le\lambda(0)\), <a href="#eq-3">(3)</a> gives
+<p>By <a href="#eq-4">(4)</a>, \(\xi\in\Sigma_x\) iff \(\xi=\sum_i\alpha_ih_i\) for finitely many \(h_i\in K^{\circ}\) with \(\langle h_i,y\rangle=\lambda(\langle h_i,x\rangle)\) for one \(y\) with \(x+iy\in\overline\Omega\) and all \(i\), where \(\alpha_i\ge0\) and \(\sum_i\alpha_i\le1\); by Carathéodory's theorem, \(d+1\) terms suffice. Since \(\lambda\le\lambda(0)\), <a href="#eq-3">(3)</a> gives
 <span id="eq-16"></span><span class="math">\[
 	x+iy\in\overline\Omega\implies y\in\lambda(0)K .\tag{16}
 \]</span></p>
@@ -659,7 +659,7 @@ Thus \(F\) maps the upper and the lower semicircle bijectively onto the upper an
 \]</span>
 The ratio at \(\eta=\delta c\) and \(\eta=\delta\) is \(c\,\big(1+O(1/\log\tfrac1\delta)\big)\), uniformly for \(c\in[a,b]\). \(\square\)</p>
 <h3 id="appendix-simplex-decomposition">Appendix: \(\Sigma\) as a union of products</h3>
-<p>We prove the inclusion \(\subseteq\) in <a href="#eq-5">(5)</a>; it is not used elsewhere in this note. Fix \(x\in K\), and recall that \(h\in K^{\circ}\) is tight at \(x+iy\), \(y\in \Omega_x\), if \(\langle h,y\rangle=\lambda(\langle h,x\rangle)\). Then \(x\in K_{J,\varepsilon}\) if and only if \(\varepsilon_jb_j\) is tight at \(x+iy\) for all \(j\in J\), for some \(y\in\Omega_x\), since \(\lambda\) is even; this \(y\) is then \(y_{J,\varepsilon}(x)\). Fix \(y\in \Omega_x\) and let \[\xi\in\operatorname{conv}\big(\{0\}\cup\{h\in K^{\circ}\colon h\text{ is tight at }x+iy\}\big).\]</p>
+<p>We prove the inclusion \(\subseteq\) in <a href="#eq-5">(5)</a>; it is not used elsewhere in this note. Fix \(x\in K\). Call \(h\in K^{\circ}\) <i>tight</i> at \(x+iy\), \(y\in \Omega_x\), if \(\langle h,x+iy\rangle\in\Gamma\), that is, if \(\langle h,y\rangle=\lambda(\langle h,x\rangle)\), so that equality holds in <a href="#eq-3">(3)</a>. Then \(x\in K_{J,\varepsilon}\) if and only if \(\varepsilon_jb_j\) is tight at \(x+iy\) for all \(j\in J\), for some \(y\in\Omega_x\), since \(\lambda\) is even; this \(y\) is then \(y_{J,\varepsilon}(x)\). Fix \(y\in \Omega_x\) and let \[\xi\in\operatorname{conv}\big(\{0\}\cup\{h\in K^{\circ}\colon h\text{ is tight at }x+iy\}\big).\]</p>
 <p>Let \(h\in K^{\circ}\) be tight at \(x+iy\). Since \(K^{\circ}=\operatorname{conv}\{\pm b_l\}\), \(h\) is a convex combination, with positive weights, of some of the vectors \(\pm b_l\). The function \(\lambda(\langle \cdot,x\rangle)-\langle \cdot,y\rangle\) is concave on \(K^{\circ}\), nonnegative by <a href="#eq-3">(3)</a>, and vanishes at \(h\), so it vanishes at each of these vectors, that is, they are tight at \(x+iy\).
 Consequently,
 <span class="math">\[
