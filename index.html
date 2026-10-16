@@ -250,19 +250,27 @@ By <a href="#eq-8">(8)</a>, this set is contained in the product of the cube \([
 <span class="math">\[
 	\Phi_J(q,\varepsilon)_j:=q_{j}+i\varepsilon_{j}\lambda(q_{j}),\qquad j\in J.
 \]</span>
-By <a href="#eq-8">(8)</a> and the definition of \(K_{J,\varepsilon}\), a point \(x\in K\) lies in \(K_{J,\varepsilon}\) if and only if \(\Phi_J(B_Jx,\varepsilon)\in B_J(\overline\Omega)\). Since \(B_J\) is real, \(\mathrm{Re}\,B_Jz=B_J\mathrm{Re}\,z\) for every \(z\in\mathbb{C}^d\), and it follows that
+By the definition of \(y_{J,\varepsilon}\), for \(x\in\mathbb{R}^d\) with \(B_Jx\in[-1,1]^J\) and \(\varepsilon\in\{-1,1\}^J\),
 <span id="eq-10"></span><span class="math">\[
-	B_J(K_{J,\varepsilon})=\{q\in[-1,1]^J\,\,\colon\,\,\Phi_J(q,\varepsilon)\in B_J(\overline\Omega)\},\qquad\varepsilon\in\{-1,1\}^J.\tag{10}
-\]</span></p>
-<p>Let \(q\) be uniformly distributed on \([-1,1]^J\). For each fixed \(\varepsilon\in\{-1,1\}^J\), the volume of the right-hand side of <a href="#eq-10">(10)</a> is \(2^d\,\mathbb{P}\big(\Phi_J(q,\varepsilon)\in B_J(\overline\Omega)\big)\). Now let \(\varepsilon\) be uniformly distributed on \(\{-1,1\}^J\), independently of \(q\). Averaging over \(\varepsilon\) gives
+	\Phi_J(B_Jx,\varepsilon)=B_J\big(x+iy_{J,\varepsilon}(x)\big).\tag{10}
+\]</span>
+Since \(B_J\) is injective on \(\mathbb{C}^d\), and \(\mathrm{Re}\,z\in K\) for every \(z\in\overline\Omega\), it follows that \(\Phi_J(B_Jx,\varepsilon)\in B_J(\overline\Omega)\) if and only if \(x\in K_{J,\varepsilon}\). Together with <a href="#eq-8">(8)</a>, this gives
+<span class="math">\[
+	B_J(K_{J,\varepsilon})=\{q\in[-1,1]^J\,\,\colon\,\,\Phi_J(q,\varepsilon)\in B_J(\overline\Omega)\},\qquad\varepsilon\in\{-1,1\}^J.
+\]</span>
+Let \(\nu\) be the probability measure on \([-1,1]\times\{-1,1\}\) which is \(\frac14\) times the product of Lebesgue measure and counting measure, and let \(\nu_J:=\nu^{\otimes J}\), a probability measure on \([-1,1]^J\times\{-1,1\}^J\). Summing the last identity over \(\varepsilon\) gives
 <span id="eq-11"></span><span class="math">\[
-	\frac{1}{4^d}\sum_{\varepsilon\in\{-1,1\}^J}\operatorname{Vol}\big(B_J(K_{J,\varepsilon})\big)=\mathbb{P}\big(\Phi_J(q,\varepsilon)\in B_J(\overline\Omega)\big).\tag{11}
+	\sum_{\varepsilon\in\{-1,1\}^J}\operatorname{Vol}\big(B_J(K_{J,\varepsilon})\big)=\int_{[-1,1]^J}\sum_{\varepsilon\in\{-1,1\}^J}\mathbf 1_{B_J(\overline\Omega)}\big(\Phi_J(q,\varepsilon)\big)\,dq=4^d\int\mathbf 1_{B_J(\overline\Omega)}\circ\Phi_J\,d\nu_J.\tag{11}
 \]</span>
 View \(F\) as a map on \(\overline{\mathbb D}^J\) by applying it coordinatewise, and for \(J\in\mathcal{J}\) let
 <span class="math">\[
 	A_J:=F^{-1}\big(B_J(\overline\Omega)\big)\subseteq\overline{\mathbb D}^J.
 \]</span>
-The set \(A_J\) is closed, since \(B_J(\overline\Omega)\) is closed and \(F\) is continuous. The coordinates \(\Phi_J(q,\varepsilon)_j=q_j+i\varepsilon_j\lambda(q_j)\), \(j\in J\), are independent, and each has the law of \(X+i\varepsilon\lambda(X)\), where \(X\) is uniformly distributed on \([-1,1]\) and \(\varepsilon\) is an independent uniform sign. Let \(\mu_J\) be the Haar probability measure on the torus \((\partial\mathbb D)^J\). By <a href="#lemma-0">Lemma 0</a>, \(\Phi_J(q,\varepsilon)\) has the same law as \(F(\omega)\), where \(\omega\) is distributed according to \(\mu_J\). Therefore the right-hand side of <a href="#eq-11">(11)</a> equals \(\mathbb{P}\big(F(\omega)\in B_J(\overline\Omega)\big)=\mu_J(A_J)\), and <a href="#eq-9">(9)</a> becomes
+The set \(A_J\) is closed, since \(B_J(\overline\Omega)\) is closed and \(F\) is continuous. Let \(\sigma\) be the uniform probability measure on \(\partial\mathbb D\), and let \(\mu_J:=\sigma^{\otimes J}\) be the Haar probability measure on the torus \((\partial\mathbb D)^J\). By <a href="#lemma-0">Lemma 0</a>, the image of \(\sigma\) under \(F\) is the image of \(\nu\) under the map \((t,\varepsilon)\mapsto t+i\varepsilon\lambda(t)\). Since \(F\) and \(\Phi_J\) act coordinatewise, and \(\mu_J\) and \(\nu_J\) are the corresponding product measures, the image of \(\mu_J\) under \(F\) is the image of \(\nu_J\) under \(\Phi_J\). Therefore
+<span class="math">\[
+	\int\mathbf 1_{B_J(\overline\Omega)}\circ\Phi_J\,d\nu_J=\int\mathbf 1_{B_J(\overline\Omega)}\circ F\,d\mu_J=\mu_J(A_J),
+\]</span>
+and by <a href="#eq-11">(11)</a>, <a href="#eq-9">(9)</a> becomes
 <span class="math">\[
 	\operatorname{Vol}_{2d}(\Sigma)\ge\frac{4^d}{d!}\sum_{J\in\mathcal{J}}\mu_J(A_J).
 \]</span>
