@@ -233,20 +233,20 @@ Since there are finitely many pairs \((J,\varepsilon),(J',\varepsilon')\), this 
 	\end{aligned}
 \]</span>
 
-Since \(|\langle b_j,x\rangle|\le1\) for all \(x\in K\) and \(1\le j\le m\),
-<span id="eq-8"></span><span class="math">\[
-	B_J(K)\subseteq[-1,1]^J,\qquad J\in\mathcal{J}.\tag{8}
-\]</span>
 The linear map \((x,h)\mapsto(B_Jx,B_J^{-\mathsf T}h)\) of \(\mathbb{R}^d\times\mathbb{R}^d\) preserves volume and maps \(K_{J,\varepsilon}\times\Delta_{J,\varepsilon}\) onto
 <span class="math">\[
 	B_J(K_{J,\varepsilon})\times\operatorname{conv}\left(\{0\}\cup\{\varepsilon_je_j\}_{j\in J}\right).
 \]</span>
-By <a href="#eq-8">(8)</a>, this set is contained in the product of the cube \([-1,1]^J\) and the simplex \(\operatorname{conv}\left(\{0\}\cup\{\varepsilon_je_j\}_{j\in J}\right)\). Since the volume of this simplex is \(1/d!\),
-<span id="eq-9"></span><span class="math">\[
-	\operatorname{Vol}_{2d}(\Sigma)\ge\frac{1}{d!}\sum\limits_{J\in \mathcal{J}}\sum\limits_{\varepsilon \in \{ -1,1 \}^{J}}\operatorname{Vol}\left(B_J(K_{J,\varepsilon})\right).\tag{9}
+Since the volume of this simplex is \(1/d!\),
+<span id="eq-8"></span><span class="math">\[
+	\operatorname{Vol}_{2d}(\Sigma)\ge\frac{1}{d!}\sum\limits_{J\in \mathcal{J}}\sum\limits_{\varepsilon \in \{ -1,1 \}^{J}}\operatorname{Vol}\left(B_J(K_{J,\varepsilon})\right).\tag{8}
 \]</span></p>
 <h3 id="from-omega-to-the-cube-to-the-torus">From \(\Omega\) to the cube to the torus</h3>
-<p>Fix \(J\in \mathcal{J}\), and define \(\Phi_J:[-1,1]^J\times\{-1,1\}^J\to(\partial D)^J\) by
+<p>Fix \(J\in \mathcal{J}\). Since \(|\langle b_j,x\rangle|\le1\) for all \(x\in K\) and \(1\le j\le m\),
+<span id="eq-9"></span><span class="math">\[
+	B_J(K)\subseteq[-1,1]^J.\tag{9}
+\]</span>
+Define \(\Phi_J:[-1,1]^J\times\{-1,1\}^J\to(\partial D)^J\) by
 <span class="math">\[
 	\Phi_J(q,\varepsilon)_j:=q_{j}+i\varepsilon_{j}\lambda(q_{j}),\qquad j\in J.
 \]</span>
@@ -254,7 +254,7 @@ By the definition of \(y_{J,\varepsilon}\), for \(x\in\mathbb{R}^d\) with \(B_Jx
 <span id="eq-10"></span><span class="math">\[
 	\Phi_J(B_Jx,\varepsilon)=B_J\big(x+iy_{J,\varepsilon}(x)\big).\tag{10}
 \]</span>
-Since \(B_J\) is injective on \(\mathbb{C}^d\), and \(\mathrm{Re}\,z\in K\) for every \(z\in\overline\Omega\), it follows that \(\Phi_J(B_Jx,\varepsilon)\in B_J(\overline\Omega)\) if and only if \(x\in K_{J,\varepsilon}\). Together with <a href="#eq-8">(8)</a>, this gives
+Since \(B_J\) is injective on \(\mathbb{C}^d\), and \(\mathrm{Re}\,z\in K\) for every \(z\in\overline\Omega\), it follows that \(\Phi_J(B_Jx,\varepsilon)\in B_J(\overline\Omega)\) if and only if \(x\in K_{J,\varepsilon}\). Together with <a href="#eq-9">(9)</a>, this gives
 <span class="math">\[
 	B_J(K_{J,\varepsilon})=\{q\in[-1,1]^J\,\,\colon\,\,\Phi_J(q,\varepsilon)\in B_J(\overline\Omega)\},\qquad\varepsilon\in\{-1,1\}^J.
 \]</span>
@@ -266,7 +266,7 @@ View \(F\) as a map on \(\overline{\mathbb D}^J\) by applying it coordinatewise,
 <span class="math">\[
 	A_J:=F^{-1}\big(B_J(\overline\Omega)\big)\subseteq\overline{\mathbb D}^J.
 \]</span>
-The set \(A_J\) is closed, since \(B_J(\overline\Omega)\) is closed and \(F\) is continuous. Let \(\sigma\) be the uniform probability measure on \(\partial\mathbb D\), and let \(\mu_J:=\sigma^{\otimes J}\) be the Haar probability measure on the torus \((\partial\mathbb D)^J\). By <a href="#lemma-0">Lemma 0</a>, the map \((t,\varepsilon)\mapsto t+i\varepsilon\lambda(t)\) pushes the uniform probability measure on \([-1,1]\times\{-1,1\}\) forward to the image of \(\sigma\) under \(F\). Since \(F\) and \(\Phi_J\) act coordinatewise, \(\Phi_J\) pushes the uniform probability measure on \([-1,1]^J\times\{-1,1\}^J\) forward to the image of \(\mu_J\) under \(F\). Therefore the right-hand side of <a href="#eq-11">(11)</a> equals \(4^d\mu_J\big(F^{-1}(B_J(\overline\Omega))\big)=4^d\mu_J(A_J)\), and <a href="#eq-9">(9)</a> becomes
+The set \(A_J\) is closed, since \(B_J(\overline\Omega)\) is closed and \(F\) is continuous. Let \(\sigma\) be the uniform probability measure on \(\partial\mathbb D\), and let \(\mu_J:=\sigma^{\otimes J}\) be the Haar probability measure on the torus \((\partial\mathbb D)^J\). By <a href="#lemma-0">Lemma 0</a>, the map \((t,\varepsilon)\mapsto t+i\varepsilon\lambda(t)\) pushes the uniform probability measure on \([-1,1]\times\{-1,1\}\) forward to the image of \(\sigma\) under \(F\). Since \(F\) and \(\Phi_J\) act coordinatewise, \(\Phi_J\) pushes the uniform probability measure on \([-1,1]^J\times\{-1,1\}^J\) forward to the image of \(\mu_J\) under \(F\). Therefore the right-hand side of <a href="#eq-11">(11)</a> equals \(4^d\mu_J\big(F^{-1}(B_J(\overline\Omega))\big)=4^d\mu_J(A_J)\), and <a href="#eq-8">(8)</a> becomes
 <span class="math">\[
 	\operatorname{Vol}_{2d}(\Sigma)\ge\frac{4^d}{d!}\sum_{J\in\mathcal{J}}\mu_J(A_J).
 \]</span>
@@ -751,7 +751,7 @@ Here we used \(d\big(d^c|z|^2\wedge(dd^c|z|^2)^{d-1}\big)=(dd^c|z|^2)^d\), valid
 <tr><td>\(\Omega\)</td><td>\(\Omega\) rotated</td><td>Defined in the proof of Lemma 5.1. Here \(\Omega\) is defined via \(K^\circ\) for every symmetric convex body \(K\); for a polytope it is cut out by the \(b_j\).</td></tr>
 <tr><td>\(F^{-1}\circ B\)</td><td>\((h_1,\dots,h_m)\)</td><td>\(h_j(z)=g(b_jz)\).</td></tr>
 <tr><td>\(J\in\mathcal{J}\)</td><td>\(I\in\mathcal{B}\)</td><td>Sets of \(d\) independent rows.</td></tr>
-<tr><td>\(B_J\)</td><td>\(B_I\)</td><td>The determinant \(D_I=|\det B_I|\) does not appear here; see the change of variables before <a href="#eq-9">(9)</a>.</td></tr>
+<tr><td>\(B_J\)</td><td>\(B_I\)</td><td>The determinant \(D_I=|\det B_I|\) does not appear here; see the change of variables before <a href="#eq-8">(8)</a>.</td></tr>
 <tr><td>\(\varepsilon\)</td><td>\(\epsilon\)</td><td>Sign vectors.</td></tr>
 <tr><td>\(\bar\Omega_x\)</td><td>\(L_X\)</td><td>[25]. The fiber of \(\overline\Omega\) over \(x\), described by <a href="#eq-3">(3)</a>.</td></tr>
 <tr><td>\(x\in K_{J,\varepsilon}\)</td><td>\((I,\epsilon)\) feasible at \(X\)</td><td>\(y_{J,\varepsilon}(x)\) is the preprint's \(Y_{I,\epsilon}(X)\), and \((I,\epsilon)\) is called feasible when \(Y_{I,\epsilon}(X)\in L_X\).</td></tr>
@@ -780,7 +780,7 @@ Here we used \(d\big(d^c|z|^2\wedge(dd^c|z|^2)^{d-1}\big)=(dd^c|z|^2)^d\), valid
 <tr><td><a href="#lemma-0">Lemma 0</a></td><td>Lemmas 3.1, 3.2</td><td>Up to the rotation above; the endpoint asymptotics are Lemma 3.2, [14]. The proofs of Lemma 3.1 differ: here via \(zF'(z)=\frac{8}{\pi^2}\operatorname{arctanh}z\) and the argument principle, there via convexity of the curves \(F(re^{i\theta})\).</td></tr>
 <tr><td><a href="#eq-5">(5)</a>, <a href="#eq-6">(6)</a>, <a href="#appendix-simplex-decomposition">Appendix: \(\Sigma\) as a union of products</a></td><td>&mdash;</td><td>The preprint takes the union of feasible simplices as the definition of \(\Sigma_X\).</td></tr>
 <tr><td><a href="#lemma-1">Lemma 1</a></td><td>Proof of Proposition 6.1, Lemma 5.2</td><td>The preprint shows that extra tight constraints have probability zero on the complex side (Lemma 5.2); here this is done directly in \(x\), using \(\lambda''\neq0\).</td></tr>
-<tr><td><a href="#eq-9">(9)</a></td><td>[30]</td><td>Here integrated over \(x\).</td></tr>
+<tr><td><a href="#eq-8">(8)</a></td><td>[30]</td><td>Here integrated over \(x\).</td></tr>
 <tr><td><a href="#eq-10">(10)</a>, <a href="#eq-11">(11)</a> and the reduction to \(\sum_J\mu_J(A_J)\ge1\)</td><td>[27], [29]</td><td>Proposition 6.1: \(S=\frac{d!}{4^d}\int_A|\Sigma_X|\,dX\).</td></tr>
 <tr><td><a href="#eq-15">(15)</a></td><td>Proofs of Lemmas 4.1 and 5.1</td><td>The preprint expands the integrand as a sum of squared minors by Cauchy&ndash;Binet; here it is the form \((dd^c|f_k|^2)^d\).</td></tr>
 <tr><td><a href="#lemma-2">Lemma 2</a></td><td>[24] and the end of the proof of Lemma 5.1</td><td>Radial substitution; here phrased as the weak convergence \(\mu_{k,J}\to\mu_J\).</td></tr>
