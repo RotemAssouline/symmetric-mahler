@@ -90,7 +90,7 @@ window.MathJax = {
 <p>For background on the Mahler conjecture, see the survey of Fradelizi, Meyer and Zvavitch<sup class="fn"><a href="#fn-fmz" id="fnref-fmz">1</a></sup>.
 Complex-analytic methods were used earlier by Nazarov<sup class="fn"><a href="#fn-nazarov" id="fnref-nazarov">2</a></sup> and by Berndtsson<sup class="fn"><a href="#fn-berndtsson-pw" id="fnref-berndtsson-pw">3</a></sup><sup class="fn">,</sup><sup class="fn"><a href="#fn-berndtsson-kup" id="fnref-berndtsson-kup">4</a></sup> to prove the Bourgain&ndash;Milman inequality.</p>
 <h3>Table of contents</h3>
-<nav class="toc"><ul><li><a href="#statement">Statement</a></li><li><a href="#complexification">Complexification</a></li><li><a href="#a-collection-of-subsets-of">A collection of subsets of \(K^{\circ}\)</a></li><li><a href="#from-to-the-cube-to-the-torus">From \(K\) to the cube to the torus</a></li><li><a href="#from-the-torus-to-submanifolds-of-the-polydisc">From the torus to submanifolds of the polydisc</a></li><li><a href="#a-lower-bound-on-the-volume-of-the-image-of-a-holomorphic-function">A lower bound on the volume of the image of a holomorphic function</a></li><li><a href="#the-equality-case">The equality case</a></li><li><a href="#appendix-properties-of-the-function">Appendix: Properties of the function \(F\)</a></li><li><a href="#appendix-simplex-decomposition">Appendix: \(\Sigma_x\) as a union of simplices</a></li><li><a href="#appendix-volume">Appendix: The integral in Lemma 3 and \(\int_{M_k}\sigma_k\) are volumes</a></li><li><a href="#appendix-complex-geometry">Appendix: Complex-geometric background for Lemma 3</a></li><li><a href="#appendix-correspondence">Appendix: Correspondence with the original preprint</a></li></ul></nav>
+<nav class="toc"><ul><li><a href="#statement">Statement</a></li><li><a href="#complexification">Complexification: from \(K\) to \(\Omega\)</a></li><li><a href="#a-collection-of-subsets-of">A collection of subsets of \(K^{\circ}\)</a></li><li><a href="#from-omega-to-the-cube-to-the-torus">From \(\Omega\) to the cube to the torus</a></li><li><a href="#from-the-torus-to-submanifolds-of-the-polydisc">From the torus to submanifolds of the polydisc</a></li><li><a href="#a-lower-bound-on-the-volume-of-the-image-of-a-holomorphic-function">A lower bound on the volume of the image of a holomorphic function</a></li><li><a href="#the-equality-case">The equality case</a></li><li><a href="#appendix-properties-of-the-function">Appendix: Properties of the function \(F\)</a></li><li><a href="#appendix-simplex-decomposition">Appendix: \(\Sigma_x\) as a union of simplices</a></li><li><a href="#appendix-volume">Appendix: The integral in Lemma 3 and \(\int_{M_k}\sigma_k\) are volumes</a></li><li><a href="#appendix-complex-geometry">Appendix: Complex-geometric background for Lemma 3</a></li><li><a href="#appendix-correspondence">Appendix: Correspondence with the original preprint</a></li></ul></nav>
 <h3 id="statement">Statement</h3>
 <p>A <i>convex body</i> is a compact convex set \(K\subset\mathbb{R}^d\) with nonempty interior; it is <i>symmetric</i> if \(K=-K\). Recall that the polar body \(K^\circ\) of a convex body \(K\) containing the origin in its interior is defined by \[K^{\circ}:=\{y\in\mathbb{R}^d\colon\langle x,y\rangle\le1\ \ \forall\,x\in K\}.\]
 </p>
@@ -105,7 +105,7 @@ Complex-analytic methods were used earlier by Nazarov<sup class="fn"><a href="#f
 	\int_{K}\operatorname{Vol}(\Sigma_{x})\,d\operatorname{Vol}(x) \geq \frac{4^{d}}{d!}.\tag{2}
 \]</span>
 Since \(\operatorname{Vol}(\Sigma_{x})\leq \operatorname{Vol}(K^{\circ})\) for all \(x \in \operatorname{int} K\), this will imply <a href="#eq-1">(1)</a>.</p>
-<h3 id="complexification">Complexification</h3>
+<h3 id="complexification">Complexification: from \(K\) to \(\Omega\)</h3>
 <p>Define \(\lambda:[-1,1]\to[0,\infty)\) by
 <span class="math">
 \[
@@ -244,7 +244,7 @@ Since there are finitely many pairs \((J,\varepsilon),(J',\varepsilon')\), this 
 	& = \sum\limits_{J\in \mathcal{J}}\sum\limits_{\varepsilon \in \{ -1,1 \}^{J}}|\det B_{J}|\cdot \operatorname{Vol}\left(\{x \in K\,\,\colon\,\,\varepsilon \in \mathcal{E}_{J}(x)\}\right).
 	\end{aligned}\tag{7}
 \]</span></p>
-<h3 id="from-to-the-cube-to-the-torus">From \(K\) to the cube to the torus</h3>
+<h3 id="from-omega-to-the-cube-to-the-torus">From \(\Omega\) to the cube to the torus</h3>
 <p>Fix \(J\in \mathcal{J}\). Since \(|\langle b_j,x\rangle|\le1\) for all \(x\in K\) and \(j\in J\),
 <span id="eq-8"></span><span class="math">\[
 	B_J(K)\subseteq[-1,1]^J.\tag{8}
