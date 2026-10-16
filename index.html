@@ -178,7 +178,7 @@ and let
 <span class="math">\[
 	\Delta_{J,\varepsilon}:=\operatorname{conv} \left(  \{0\}\cup \{\varepsilon_{j}b_{j}\}_{j\in J}\right)\subset K^{\circ},
 \]</span>
-and, for \(x\in K\), let \(y_{J,\varepsilon}(x)\) be the unique solution \(y\in\mathbb{R}^d\) of the system
+and, for \(x\in\mathbb{R}^d\) with \(B_Jx\in[-1,1]^J\), let \(y_{J,\varepsilon}(x)\) be the unique solution \(y\in\mathbb{R}^d\) of the system
 <span class="math">\[
 	\langle b_j,y\rangle=\varepsilon_j\lambda(\langle b_j,x\rangle),\qquad j\in J,
 \]</span>
@@ -250,11 +250,11 @@ Define \(\Phi_J:[-1,1]^J\times\{-1,1\}^J\to(\partial D)^J\) by
 <span class="math">\[
 	\Phi_J(q,\varepsilon)_j:=q_{j}+i\varepsilon_{j}\lambda(q_{j}),\qquad j\in J.
 \]</span>
-By the definition of \(y_{J,\varepsilon}\), for \(x\in\mathbb{R}^d\) with \(B_Jx\in[-1,1]^J\) and \(\varepsilon\in\{-1,1\}^J\),
+By the definition of \(y_{J,\varepsilon}\), for \(q\in[-1,1]^J\) and \(\varepsilon\in\{-1,1\}^J\), writing \(x:=B_J^{-1}q\),
 <span id="eq-10"></span><span class="math">\[
-	\Phi_J(B_Jx,\varepsilon)=B_J\big(x+iy_{J,\varepsilon}(x)\big).\tag{10}
+	\Phi_J(q,\varepsilon)=B_J\big(x+iy_{J,\varepsilon}(x)\big).\tag{10}
 \]</span>
-Since \(B_J\) is injective on \(\mathbb{C}^d\), and \(\mathrm{Re}\,z\in K\) for every \(z\in\overline\Omega\), it follows that \(\Phi_J(B_Jx,\varepsilon)\in B_J(\overline\Omega)\) if and only if \(x\in K_{J,\varepsilon}\). Together with <a href="#eq-9">(9)</a>, this gives
+Since \(B_J\) is injective on \(\mathbb{C}^d\), and \(\mathrm{Re}\,z\in K\) for every \(z\in\overline\Omega\), it follows that \(\Phi_J(q,\varepsilon)\in B_J(\overline\Omega)\) if and only if \(x\in K_{J,\varepsilon}\). Together with <a href="#eq-9">(9)</a>, this gives
 <span class="math">\[
 	B_J(K_{J,\varepsilon})=\{q\in[-1,1]^J\,\,\colon\,\,\Phi_J(q,\varepsilon)\in B_J(\overline\Omega)\},\qquad\varepsilon\in\{-1,1\}^J.
 \]</span>
