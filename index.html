@@ -189,7 +189,7 @@ Since \(B_J\) is invertible, a point of \(\Omega_{J,\varepsilon}\) is determined
 <span id="eq-5"></span><span class="math">\[
 \Sigma=\bigcup\limits_{J\in \mathcal{J}}\bigcup\limits_{\varepsilon \in \{-1,1\}^J}\mathrm{Re}(\Omega_{J,\varepsilon})\times\Delta_{J,\varepsilon}.\tag{5}
 \]</span>
-We shall only need the inclusion \(\supseteq\), which is immediate from <a href="#eq-4">(4)</a>: if \(x+iy\in\Omega_{J,\varepsilon}\), then \(\langle\varepsilon_jb_j,y\rangle=\lambda(\langle\varepsilon_jb_j,x\rangle)\) for all \(j\in J\), since \(\lambda\) is even, so \(\Delta_{J,\varepsilon}\subseteq\Sigma_x\). The inclusion \(\subseteq\) is proved in <a href="#appendix-simplex-decomposition">Appendix: \(\Sigma\) as a union of products</a>. Figure 2 below shows the fiber \(L_x:=\{y\colon x+iy\in\overline\Omega\}\) of \(\overline\Omega\) over \(x\) (left; this notation is used only in the figures and in the appendix) and the fiber \(\Sigma_x\) (right). For each \((J,\varepsilon)\) with \(x\in\mathrm{Re}(\Omega_{J,\varepsilon})\), the point \(y\) with \(x+iy\in\Omega_{J,\varepsilon}\), which is a vertex of \(L_x\), and the simplex \(\Delta_{J,\varepsilon}\) are drawn in the same colour.</p>
+We shall only need the inclusion \(\supseteq\), which is immediate from <a href="#eq-4">(4)</a>: if \(x+iy\in\Omega_{J,\varepsilon}\), then \(\langle\varepsilon_jb_j,y\rangle=\lambda(\langle\varepsilon_jb_j,x\rangle)\) for all \(j\in J\), since \(\lambda\) is even, so \(\Delta_{J,\varepsilon}\subseteq\Sigma_x\). The inclusion \(\subseteq\) is proved in <a href="#appendix-simplex-decomposition">Appendix: \(\Sigma\) as a union of products</a>. Figure 2 below shows the fiber \(\{y\colon x+iy\in\overline\Omega\}\) of \(\overline\Omega\) over \(x\) (left) and the fiber \(\Sigma_x\) of \(\Sigma\) (right). For each \((J,\varepsilon)\) with \(x\in\mathrm{Re}(\Omega_{J,\varepsilon})\), the point \(y\) with \(x+iy\in\Omega_{J,\varepsilon}\), which is a vertex of the former fiber, and the simplex \(\Delta_{J,\varepsilon}\) are drawn in the same colour.</p>
 <p><b>Figure 2: the set \(\Sigma_x\)</b></p>
 <div class="figure interactive" id="fig-2"></div>
 <div class="callout callout-lemma" id="lemma-1"><div class="callout-title">Lemma 1</div><p>For almost every \(x \in \operatorname{int} K\), the simplices \(\Delta_{J,\varepsilon}\), over the pairs \((J,\varepsilon)\) with \(x\in\mathrm{Re}(\Omega_{J,\varepsilon})\), have disjoint interiors.</p></div>
@@ -663,16 +663,16 @@ Thus \(F\) maps the upper and the lower semicircle bijectively onto the upper an
 \]</span>
 The ratio at \(\eta=\delta c\) and \(\eta=\delta\) is \(c\,\big(1+O(1/\log\tfrac1\delta)\big)\), uniformly for \(c\in[a,b]\). \(\square\)</p>
 <h3 id="appendix-simplex-decomposition">Appendix: \(\Sigma\) as a union of products</h3>
-<p>We prove the inclusion \(\subseteq\) in <a href="#eq-5">(5)</a>; it is not used elsewhere in this note. Fix \(x\in K\), and write \(L_x:=\{y\in\mathbb{R}^d\colon x+iy\in\overline\Omega\}\) for the fiber of \(\overline\Omega\) over \(x\); by <a href="#eq-3">(3)</a>, \(L_x\) is the polytope \(\{y\colon|\langle b_l,y\rangle|\le\lambda(\langle b_l,x\rangle)\ \ \forall\,l\}\). Call \(h\in K^{\circ}\) <i>tight</i> at \(x+iy\), \(y\in L_x\), if \(\langle h,y\rangle=\lambda(\langle h,x\rangle)\), that is, if equality holds in <a href="#eq-3">(3)</a>; then \(x+iy\in\Omega_{J,\varepsilon}\) if and only if \(\varepsilon_jb_j\) is tight at \(x+iy\) for all \(j\in J\), since \(\lambda\) is even. Fix \(y\in L_x\) and let \[\xi\in\operatorname{conv}\big(\{0\}\cup\{h\in K^{\circ}\colon h\text{ is tight at }x+iy\}\big).\]</p>
+<p>We prove the inclusion \(\subseteq\) in <a href="#eq-5">(5)</a>; it is not used elsewhere in this note. Fix \(x\in K\), and write \(\Omega_x:=\{y\in\mathbb{R}^d\colon x+iy\in\overline\Omega\}\) for the fiber of \(\overline\Omega\) over \(x\); by <a href="#eq-3">(3)</a>, \(\Omega_x\) is the polytope \(\{y\colon|\langle b_l,y\rangle|\le\lambda(\langle b_l,x\rangle)\ \ \forall\,l\}\). Call \(h\in K^{\circ}\) <i>tight</i> at \(x+iy\), \(y\in \Omega_x\), if \(\langle h,y\rangle=\lambda(\langle h,x\rangle)\), that is, if equality holds in <a href="#eq-3">(3)</a>; then \(x+iy\in\Omega_{J,\varepsilon}\) if and only if \(\varepsilon_jb_j\) is tight at \(x+iy\) for all \(j\in J\), since \(\lambda\) is even. Fix \(y\in \Omega_x\) and let \[\xi\in\operatorname{conv}\big(\{0\}\cup\{h\in K^{\circ}\colon h\text{ is tight at }x+iy\}\big).\]</p>
 <p>Let \(h\in K^{\circ}\) be tight at \(x+iy\). Since \(K^{\circ}=\operatorname{conv}\{\pm b_l\}\), \(h\) is a convex combination, with positive weights, of some of the vectors \(\pm b_l\). The function \(\lambda(\langle \cdot,x\rangle)-\langle \cdot,y\rangle\) is concave on \(K^{\circ}\), nonnegative by <a href="#eq-3">(3)</a>, and vanishes at \(h\), so it vanishes at each of these vectors, that is, they are tight at \(x+iy\).
 Consequently,
 <span class="math">\[
 	\xi=\sum_v\beta_v\,v,\qquad\beta_v\ge0,\quad\sum_v\beta_v\le1,
 \]</span>
 where \(v\) ranges over the vectors \(\pm b_l\) tight at \(x+iy\). Among all such representations of \(\xi\), choose one with the fewest nonzero coefficients. Then the vectors \(v\) with \(\beta_v>0\) are linearly independent.</p>
-<p>The points \(y'\in L_x\) at which every \(v\) with \(\beta_v>0\) is tight, that is, \(\langle v,y'\rangle=\lambda(\langle v,x\rangle)\), form a face of \(L_x\) containing \(y\); let \(y'\) be a vertex of this face. Then \(y'\) is a vertex of \(L_x\), so the vectors \(\pm b_l\) tight at \(x+iy'\) span \(\mathbb{R}^d\). Hence the linearly independent vectors \(\{v\colon\beta_v>0\}\) can be completed, by vectors tight at \(x+iy'\), to a basis of \(\mathbb{R}^d\). A basis contains at most one of \(b_l,-b_l\), so it has the form \(\{\varepsilon_jb_j\}_{j\in J}\) with \(J\in\mathcal{J}\) and \(\varepsilon\in\{-1,1\}^J\). Thus \(x+iy'\in\Omega_{J,\varepsilon}\), so \(x\in\mathrm{Re}(\Omega_{J,\varepsilon})\), and \(\xi=\sum_v\beta_vv\in\Delta_{J,\varepsilon}\). \(\square\)</p>
-<p>The fiber of <a href="#eq-5">(5)</a> over \(x\) can also be seen as the image of a piecewise linear map. The polar of \(L_x\) is \(L_x^{\circ}=\operatorname{conv}\{v/\lambda(\langle v,x\rangle)\colon v\in\{\pm b_l\}\}\). A vertex \(y\) of \(L_x\) corresponds to the facet of \(L_x^{\circ}\) whose vertices are the points \(v/\lambda(\langle v,x\rangle)\) with \(v\) tight at \(x+iy\). For almost every \(x\), by the argument in the proof of <a href="#lemma-1">Lemma 1</a>, exactly \(d\) vectors \(v\) are tight at each vertex \(y\): for \(x+iy\in\Omega_{J,\varepsilon}\) these are \(v=\varepsilon_jb_j\), \(j\in J\). Then the map that is linear on the cone over this facet and sends \(v/\lambda(\langle v,x\rangle)\) to \(v\) stretches the cone onto \(\Delta_{J,\varepsilon}\), and these maps agree on common faces of the cones. Figure 5 shows the case \(d=2\).</p>
-<p><b>Figure 5: the stretching map from \(L_x^{\circ}\) to \(\Sigma_x\)</b></p>
+<p>The points \(y'\in \Omega_x\) at which every \(v\) with \(\beta_v>0\) is tight, that is, \(\langle v,y'\rangle=\lambda(\langle v,x\rangle)\), form a face of \(\Omega_x\) containing \(y\); let \(y'\) be a vertex of this face. Then \(y'\) is a vertex of \(\Omega_x\), so the vectors \(\pm b_l\) tight at \(x+iy'\) span \(\mathbb{R}^d\). Hence the linearly independent vectors \(\{v\colon\beta_v>0\}\) can be completed, by vectors tight at \(x+iy'\), to a basis of \(\mathbb{R}^d\). A basis contains at most one of \(b_l,-b_l\), so it has the form \(\{\varepsilon_jb_j\}_{j\in J}\) with \(J\in\mathcal{J}\) and \(\varepsilon\in\{-1,1\}^J\). Thus \(x+iy'\in\Omega_{J,\varepsilon}\), so \(x\in\mathrm{Re}(\Omega_{J,\varepsilon})\), and \(\xi=\sum_v\beta_vv\in\Delta_{J,\varepsilon}\). \(\square\)</p>
+<p>The fiber of <a href="#eq-5">(5)</a> over \(x\) can also be seen as the image of a piecewise linear map. The polar of \(\Omega_x\) is \(\Omega_x^{\circ}=\operatorname{conv}\{v/\lambda(\langle v,x\rangle)\colon v\in\{\pm b_l\}\}\). A vertex \(y\) of \(\Omega_x\) corresponds to the facet of \(\Omega_x^{\circ}\) whose vertices are the points \(v/\lambda(\langle v,x\rangle)\) with \(v\) tight at \(x+iy\). For almost every \(x\), by the argument in the proof of <a href="#lemma-1">Lemma 1</a>, exactly \(d\) vectors \(v\) are tight at each vertex \(y\): for \(x+iy\in\Omega_{J,\varepsilon}\) these are \(v=\varepsilon_jb_j\), \(j\in J\). Then the map that is linear on the cone over this facet and sends \(v/\lambda(\langle v,x\rangle)\) to \(v\) stretches the cone onto \(\Delta_{J,\varepsilon}\), and these maps agree on common faces of the cones. Figure 5 shows the case \(d=2\).</p>
+<p><b>Figure 5: the stretching map from \(\Omega_x^{\circ}\) to \(\Sigma_x\)</b></p>
 <div class="figure interactive" id="fig-5"></div>
 <h3 id="appendix-volume">Appendix: The integral in <a href="#lemma-3">Lemma 3</a> and \(\int_{M_k}\sigma_k\) are volumes</h3>
 <p>The integrals in <a href="#eq-15">(15)</a> and in <a href="#lemma-3">Lemma 3</a> have a geometric meaning, which is not used in the proof. Let \(U\subseteq\mathbb{C}^d\) be open and \(f\colon U\to\mathbb{C}^m\) holomorphic, and let \(z\in U\). Write \(T:=Df(z)\), a complex \(m\times d\) matrix, and \(T_\mathbb{R}\) for the real \(2m\times 2d\) matrix of the same linear map. Then \(T_\mathbb{R}^{\mathsf T}T_\mathbb{R}\) is the real matrix of the Hermitian matrix \(T^*T\), so \(\det(T_\mathbb{R}^{\mathsf T}T_\mathbb{R})=\det(T^*T)^2\), and by the Cauchy&ndash;Binet formula
@@ -755,7 +755,7 @@ Here we used \(d\big(d^c|z|^2\wedge(dd^c|z|^2)^{d-1}\big)=(dd^c|z|^2)^d\), valid
 <tr><td>\(J\in\mathcal{J}\)</td><td>\(I\in\mathcal{B}\)</td><td>Sets of \(d\) independent rows.</td></tr>
 <tr><td>\(B_J,\ |\det B_J|\)</td><td>\(B_I,\ D_I\)</td><td></td></tr>
 <tr><td>\(\varepsilon\)</td><td>\(\epsilon\)</td><td>Sign vectors.</td></tr>
-<tr><td>\(\{y\colon x+iy\in\overline\Omega\}\)</td><td>\(L_X\)</td><td>[25]. The fiber of \(\overline\Omega\) over \(x\), described by <a href="#eq-3">(3)</a>; it is named \(L_x\) only in the figures and in <a href="#appendix-simplex-decomposition">Appendix: \(\Sigma\) as a union of products</a>.</td></tr>
+<tr><td>\(\{y\colon x+iy\in\overline\Omega\}\)</td><td>\(L_X\)</td><td>[25]. The fiber of \(\overline\Omega\) over \(x\), described by <a href="#eq-3">(3)</a>; it is named \(\Omega_x\) in <a href="#appendix-simplex-decomposition">Appendix: \(\Sigma\) as a union of products</a> and in Figure 5.</td></tr>
 <tr><td>\(x+iy\in\Omega_{J,\varepsilon}\)</td><td>\(Y=Y_{I,\epsilon}(X)\), \((I,\epsilon)\) feasible at \(X\)</td><td>The preprint defines \(Y_{I,\epsilon}(X)\) for all \(X\) and calls \((I,\epsilon)\) feasible when \(Y_{I,\epsilon}(X)\in L_X\); here this is the condition \(x\in\mathrm{Re}(\Omega_{J,\varepsilon})\).</td></tr>
 <tr><td>\(\Delta_{J,\varepsilon}\)</td><td>\(T_{I,\epsilon}\)</td><td>[26].</td></tr>
 <tr><td>\(\Sigma\), \(\Sigma_x\)</td><td>\(\Sigma_X\)</td><td>The preprint defines \(\Sigma_X\) as the union of feasible simplices [26] and works with \(\int_A|\Sigma_X|\,dX\); the set \(\Sigma\subseteq K\times K^{\circ}\) and its intrinsic definition <a href="#eq-4">(4)</a> are not in the preprint.</td></tr>
@@ -1025,7 +1025,7 @@ box.insertAdjacentHTML('beforeend',`<div class="mfig-controls"><span>Body:</span
 <div class="f3-legend" data-id="leg"></div>
 <div class="f3-three">
   <div class="f3-view"><canvas class="fig f3-cv" data-id="cvX" aria-description="The body K in the x-plane, shaded by the number of feasible sign patterns at x"></canvas><div class="f3-vlabel">$\\mathbb{R}^2$</div></div>
-  <div class="f3-view"><canvas class="fig f3-cv" data-id="cvY" aria-description="The fibre L_x and the four candidate points y, one per sign pattern"></canvas><div class="f3-vlabel">$\\mathbb{R}^2$: $L_x$</div></div>
+  <div class="f3-view"><canvas class="fig f3-cv" data-id="cvY" aria-description="The fibre of Omega-bar over x and the four candidate points y, one per sign pattern"></canvas><div class="f3-vlabel">$\\{y\\colon x+iy\\in\\overline\\Omega\\}$</div></div>
   <div class="f3-view"><canvas class="fig f3-cv" data-id="cvQ" aria-description="The four copies of the square, one per sign pattern, with the image of K and the feasible set"></canvas><div class="f3-vlabel">$[-1,1]^J\\times\\{-1,1\\}^J$</div></div>
   <div class="f3-view"><canvas class="fig f3-cv" data-id="cvT" aria-description="The torus with the set A_J"></canvas><div class="f3-vlabel">$(\\partial\\mathbb D)^J$</div></div>
 </div>`);
@@ -1077,7 +1077,7 @@ function setJ(JJ){ J=JJ; M=inv2(B,J[0],J[1]); others=B.map((r,k)=>k).filter(k=>k
   rasterize(); readout(); draw(); }
 
 function readout(){
-  setHTML(q('leg'), EPS.map(([e1,e2],n)=>'<span><i class="f3-sw" style="background:var('+ECOL[n]+')"></i>$\\varepsilon=('+sgn(e1)+','+sgn(e2)+')$</span>').join('')+'<span class="f3-row">grey (top left): $\\#\\{\\varepsilon\\colon x\\in\\mathrm{Re}(\\Omega_{J,\\varepsilon})\\}$ = '+[0,2,4].map(n=>'<i class="f3-sw" style="background:'+rgba(rgb(css('--fg')),0.12*n)+';border:1px solid '+css('--rule')+'"></i>'+n+'&nbsp;&nbsp;').join('')+'</span><span class="f3-row">coloured: $\\Phi_J(\\cdot,\\varepsilon)^{-1}(B_J(\\overline\\Omega))$ (bottom left), $A_J\\cap(\\partial\\mathbb D)^J$ (bottom right)</span><span class="f3-row">dashed: $B_J^{-1}([-1,1]^J)$ (top left), $B_J(K)$ (bottom left), $F^{-1}(\\Phi_J(B_J(K)\\times\\{\\varepsilon\\}))$ (bottom right)</span>'+'<span class="f3-row">top right: $L_x$ (shaded), the lines $\\langle b_j,y\\rangle=\\pm\\lambda(\\langle b_j,x\\rangle)$, $j\\in J$ (dashed), and the points $y$ with $\\langle b_j,y\\rangle=\\varepsilon_j\\lambda(\\langle b_j,x\\rangle)$, $j\\in J$, filled if $x+iy\\in\\Omega_{J,\\varepsilon}$</span>'); }
+  setHTML(q('leg'), EPS.map(([e1,e2],n)=>'<span><i class="f3-sw" style="background:var('+ECOL[n]+')"></i>$\\varepsilon=('+sgn(e1)+','+sgn(e2)+')$</span>').join('')+'<span class="f3-row">grey (top left): $\\#\\{\\varepsilon\\colon x\\in\\mathrm{Re}(\\Omega_{J,\\varepsilon})\\}$ = '+[0,2,4].map(n=>'<i class="f3-sw" style="background:'+rgba(rgb(css('--fg')),0.12*n)+';border:1px solid '+css('--rule')+'"></i>'+n+'&nbsp;&nbsp;').join('')+'</span><span class="f3-row">coloured: $\\Phi_J(\\cdot,\\varepsilon)^{-1}(B_J(\\overline\\Omega))$ (bottom left), $A_J\\cap(\\partial\\mathbb D)^J$ (bottom right)</span><span class="f3-row">dashed: $B_J^{-1}([-1,1]^J)$ (top left), $B_J(K)$ (bottom left), $F^{-1}(\\Phi_J(B_J(K)\\times\\{\\varepsilon\\}))$ (bottom right)</span>'+'<span class="f3-row">top right: $\\{y\\colon x+iy\\in\\overline\\Omega\\}$ (shaded), the lines $\\langle b_j,y\\rangle=\\pm\\lambda(\\langle b_j,x\\rangle)$, $j\\in J$ (dashed), and the points $y$ with $\\langle b_j,y\\rangle=\\varepsilon_j\\lambda(\\langle b_j,x\\rangle)$, $j\\in J$, filled if $x+iy\\in\\Omega_{J,\\varepsilon}$</span>'); }
 
 // ---------- panels: logical size 360 x 360; rasters cached per (body, J, theme) ----------
 const SZ=360;
@@ -1124,7 +1124,7 @@ function draw(){
       ctx.setLineDash([5,4]); ctx.strokeStyle=muted; ctx.lineWidth=1;
       for (const j of J){ const b=B[j], n2=dot(b,b), t=[-b[1],b[0]]; for (const e of [1,-1]){ const p0=[e*w[j]*b[0]/n2,e*w[j]*b[1]/n2], A1=PY([p0[0]-4*t[0],p0[1]-4*t[1]]), A2=PY([p0[0]+4*t[0],p0[1]+4*t[1]]); ctx.beginPath(); ctx.moveTo(A1[0],A1[1]); ctx.lineTo(A2[0],A2[1]); ctx.stroke(); } }
       ctx.setLineDash([]);
-      if (L.length>=3){ const c=L.reduce((a,p)=>[a[0]+p[0]/L.length,a[1]+p[1]/L.length],[0,0]), cp=PY(c); ctx.fillStyle=fg; ctx.textAlign='center'; ctx.font='italic 19px "Times New Roman", serif'; ctx.fillText('L',cp[0]-3,cp[1]+6); ctx.font='italic 13px "Times New Roman", serif'; ctx.fillText('x',cp[0]+8,cp[1]+10); ctx.font='15px system-ui, sans-serif'; }
+
       EPS.forEach((eps,n)=>{ const y=M.apply(eps[0]*w[J[0]],eps[1]*w[J[1]]); const f=others.every(k=>Math.abs(dot(B[k],y))<=w[k]+1e-9); const big=hover.eps&&hover.eps[0]===eps[0]&&hover.eps[1]===eps[1]; mark(ctx,PY(y),css(ECOL[n]),f,big?7:5.5); });
     } else { ctx.fillStyle=muted; ctx.textAlign='center'; ctx.fillText('x ∉ K',180,180-10); }
   }
@@ -1317,7 +1317,7 @@ box.insertAdjacentHTML('beforeend',`<div class="mfig-dim" role="group" aria-desc
 </div>
 <div class="legend" data-id="legB"></div>
 <div class="mfig-two">
-  <svg class="fig" data-id="svgB1" viewBox="0 0 360 360" role="img" aria-description="Primal plane: the body K, the point x, the fiber L_x and its candidate vertices"></svg>
+  <svg class="fig" data-id="svgB1" viewBox="0 0 360 360" role="img" aria-description="Primal plane: the body K, the point x, the fiber of Omega-bar over x and its candidate vertices"></svg>
   <svg class="fig" data-id="svgB2" viewBox="0 0 360 360" role="img" aria-description="Dual plane: K polar, with the feasible simplices filled and the uncovered part hatched"></svg>
 </div></div>
 <div data-id="pane3"><div class="mfig-controls"><span>Body:</span>
@@ -1339,7 +1339,7 @@ box.insertAdjacentHTML('beforeend',`<div class="mfig-dim" role="group" aria-desc
   <label><input type="checkbox" data-id="chLink" checked> link cameras</label>
 </div>
 <div class="mfig-two t3-views">
-  <div class="t3-view"><canvas class="fig" data-id="cvL" aria-description="Primal view: the body K, the point x and the fiber L_x"></canvas><div class="t3-vlabel">$x$, $K$, $L_x$</div><div class="t3-vlabel r">primal</div><div class="t3-legend" data-id="legend"></div></div>
+  <div class="t3-view"><canvas class="fig" data-id="cvL" aria-description="Primal view: the body K, the point x and the fiber of Omega-bar over x"></canvas><div class="t3-vlabel">$x$, $K$, $\\{y\\colon x+iy\\in\\overline\\Omega\\}$</div><div class="t3-vlabel r">primal</div><div class="t3-legend" data-id="legend"></div></div>
   <div class="t3-view"><canvas class="fig" data-id="cvR" aria-description="Dual view: K polar with the feasible tetrahedra"></canvas><div class="t3-vlabel">$K^\\circ$, $\\Sigma_x$</div><div class="t3-vlabel r">dual</div></div>
 </div></div>`);
 setupBox(); mathify(box);
@@ -1413,7 +1413,7 @@ function lam(t){ t=Math.abs(t); if (t>=1) return 0; const x=t*(NT-1), i=Math.flo
       B.forEach((b,j)=>{ const n=Math.hypot(b[0],b[1]); const foot=[b[0]/n/n, b[1]/n/n]; if (B.some(bb=>Math.abs(dot(bb,foot))>1+1e-9)) return; /* strip j is redundant: no facet, no arrow */ const L=32/S1; const tip=[foot[0]+b[0]/n*L, foot[1]+b[1]/n*L]; const p0=PX1(foot), p1=PX1(tip);
         el('line',{x1:p0[0],y1:p0[1],x2:p1[0],y2:p1[1],stroke:fg,'stroke-width':1.3,'marker-end':'url(#mfigArrB1)'},s1);
         const lp=PX1([tip[0]+b[0]/n*(12/S1), tip[1]+b[1]/n*(12/S1)]); texLabel(s1,lp[0],lp[1]+4,'$b_{'+(j+1)+'}$','svgtext','middle'); });
-      texLabel(s1,10,22,'$x$, $K$, $L_x$','svgcap'); texLabel(s1,350,22,'primal','svgcap','end');
+      texLabel(s1,10,22,'$x$, $K$, $\\{y\\colon x+iy\\in\\overline\\Omega\\}$','svgcap'); texLabel(s1,350,22,'primal','svgcap','end');
       g1=el('g',{},s1);
       const defs=el('defs',{},s2); const pat=el('pattern',{id:'mfigHatchB',width:'7',height:'7',patternUnits:'userSpaceOnUse',patternTransform:'rotate(45)'},defs); el('line',{x1:0,y1:0,x2:0,y2:7,stroke:muted,'stroke-width':1.2},pat);
       el('line',{x1:0,y1:C.cy,x2:360,y2:C.cy,stroke:rule},s2); el('line',{x1:C.cx,y1:0,x2:C.cx,y2:360,stroke:rule},s2);
@@ -1433,7 +1433,7 @@ function lam(t){ t=Math.abs(t); if (t>=1) return 0; const x=t*(NT-1), i=Math.flo
       for (const c of cands){ const q=PX1(c.Y); if (Math.abs(q[0]-180)>175||Math.abs(q[1]-180)>175) continue; const col=pal[c.bi%pal.length]; if (c.feas) el('circle',{cx:q[0],cy:q[1],r:5,fill:col,stroke:surf,'stroke-width':1.5},s1); else el('circle',{cx:q[0],cy:q[1],r:5,fill:surf,stroke:col,'stroke-width':2},s1);
         const dir=Math.hypot(c.Y[0],c.Y[1])>1e-9?[c.Y[0]/Math.hypot(c.Y[0],c.Y[1]),c.Y[1]/Math.hypot(c.Y[0],c.Y[1])]:[1,0]; svgLabel(s1,q[0]+12*dir[0],q[1]-12*dir[1]+4,[[sgn(c.ei)+sgn(c.ej),0]],'svgmuted',dir[0]<-0.3?'end':(dir[0]>0.3?'start':'middle'),col); }
       const xq=PX1(Xp); el('circle',{cx:xq[0],cy:xq[1],r:7,fill:fg,stroke:surf,'stroke-width':2},s1); svgLabel(s1,xq[0]+10,xq[1]-8,[['x',1]]);
-      if (verts.length>=3){ const c=verts.reduce((a,p)=>[a[0]+p[0]/verts.length,a[1]+p[1]/verts.length],[0,0]); const cq=PX1(c); svgLabel(s1,cq[0],cq[1]+4,[['L',1],['ₓ',0]],'svgtext','middle'); }
+
       for (const c of cands){ if(!c.feas) continue; const tri=[[0,0],[c.ei*B[c.i][0],c.ei*B[c.i][1]],[c.ej*B[c.j][0],c.ej*B[c.j][1]]]; const col=pal[c.bi%pal.length];
         el('path',{d:polyD(tri,PX2),fill:tint[c.bi%pal.length],stroke:col,'stroke-width':1.2},s2);
         const cen=PX2([(tri[1][0]+tri[2][0])/3,(tri[1][1]+tri[2][1])/3]); svgLabel(s2,cen[0],cen[1]+4,vtag(c),'svgmuted','middle',col); }
@@ -1740,7 +1740,7 @@ const G = (function(){
     labels(); X=readX(); res=G.atX(S.B,X,S.TR,S.Apol);
     draw(); }
 
-  function setLegend(){ setHTML($('legend'),'<span><i class="t3-sw" style="background:var(--lx)"></i>$L_x$</span>'); }
+  function setLegend(){ setHTML($('legend'),'<span><i class="t3-sw" style="background:var(--lx)"></i>$\\{y\\colon x+iy\\in\\overline\\Omega\\}$</span>'); }
 
   function setBody(key){ bodyKey=key; const B = key==='random'?randomRows():BODIES[key].B; S=G.setup(B);
     figRoot.querySelectorAll('button[data-body3]').forEach(b=>b.setAttribute('aria-pressed', b.dataset.body3===key?'true':'false'));
@@ -1872,15 +1872,15 @@ box.insertAdjacentHTML('beforeend',`<div class="mfig-controls"><span>Body:</span
   <span class="k">Drag $x$ on the left.</span>
 </div>
 <div class="mfig-controls">
-  <span class="f5-tog"><span data-id="tl">$L_x^\\circ$</span><button type="button" role="switch" class="f5-switch" data-id="stretch" aria-checked="false" aria-label="Stretch the polar of L_x onto Sigma_x"></button><span data-id="tr">$\\Sigma_x$</span></span>
+  <span class="f5-tog"><span data-id="tl">$\\Omega_x^\\circ$</span><button type="button" role="switch" class="f5-switch" data-id="stretch" aria-checked="false" aria-label="Stretch the polar of Omega_x onto Sigma_x"></button><span data-id="tr">$\\Sigma_x$</span></span>
   <label><input type="checkbox" data-id="grid" checked> grid</label>
   <label>zoom <input type="range" data-id="zoom" min="0.04" max="0.35" step="0.005" value="0.12"></label>
 </div>
 <div class="f5-top">
   <div class="f5-view"><canvas class="f5-cv pick" tabindex="0" data-id="cvK" aria-description="The body K; drag to move the point x. Arrow keys also move it."></canvas><div class="f5-vlabel">$K$</div></div>
-  <div class="f5-view"><canvas class="f5-cv" data-id="cvL" aria-description="The polytope L_x, with the lines that bound it"></canvas><div class="f5-vlabel">$L_x$</div></div>
+  <div class="f5-view"><canvas class="f5-cv" data-id="cvL" aria-description="The polytope Omega_x, with the lines that bound it"></canvas><div class="f5-vlabel">$\\Omega_x$</div></div>
 </div>
-<div class="f5-view f5-big"><canvas class="f5-cv" data-id="cvM" aria-description="The polar of L_x stretched onto Sigma_x; zoom out to see far vertices"></canvas><div class="f5-legend" data-id="leg"></div><div class="f5-vlabel"><span data-id="lblP">$L_x^\\circ$</span><span data-id="lblS" hidden>$\\Sigma_x$</span></div></div>
+<div class="f5-view f5-big"><canvas class="f5-cv" data-id="cvM" aria-description="The polar of Omega_x stretched onto Sigma_x; zoom out to see far vertices"></canvas><div class="f5-legend" data-id="leg"></div><div class="f5-vlabel"><span data-id="lblP">$\\Omega_x^\\circ$</span><span data-id="lblS" hidden>$\\Sigma_x$</span></div></div>
 `);
 mathify(box); setupBox();
 
@@ -2110,7 +2110,7 @@ function render(){ C=compute(x); drawK(); drawL(); drawM(); }
 // ---------- legend ----------
 function buildLegend(){
   setHTML(q('leg'),
-    '<span><i class="f5-sw" style="color:var(--interactive-accent)"></i>$L_x^\\circ$</span>'+
+    '<span><i class="f5-sw" style="color:var(--interactive-accent)"></i>$\\Omega_x^\\circ$</span>'+
     '<span><i class="f5-sw dashed"></i>$K^\\circ$</span>'+
     '<span><i class="f5-sw area" style="background:var(--s2)"></i>$K^\\circ\\setminus\\Sigma_x$</span>');
 }
