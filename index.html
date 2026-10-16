@@ -182,11 +182,11 @@ and let
 <span class="math">\[
 	\Delta_{J,\varepsilon}:=\operatorname{conv} \left(  \{0\}\cup \{\varepsilon_{j}b_{j}\}_{j\in J}\right)\subset K^{\circ},
 \]</span>
-and, since \(B_J\) is invertible, define \(y_{J,\varepsilon}\colon K\to\mathbb{R}^d\) by
+and, for \(x\in K\), let \(y_{J,\varepsilon}(x)\) be the unique solution \(y\in\mathbb{R}^d\) of the system
 <span class="math">\[
-	y_{J,\varepsilon}(x):=B_J^{-1}\big(\varepsilon_j\lambda(\langle b_j,x\rangle)\big)_{j\in J},
+	\langle b_j,y\rangle=\varepsilon_j\lambda(\langle b_j,x\rangle),\qquad j\in J,
 \]</span>
-that is, \(y_{J,\varepsilon}(x)\) is the solution \(y\) of \(\langle b_j,y\rangle=\varepsilon_j\lambda(\langle b_j,x\rangle)\), \(j\in J\). Let
+which exists since \(B_J\) is invertible. Let
 <span class="math">\[
 	K_{J,\varepsilon}:=\{x\in K\,\colon\,x+iy_{J,\varepsilon}(x)\in\overline\Omega\}.
 \]</span>
