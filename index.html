@@ -1408,7 +1408,7 @@ function lam(t){ t=Math.abs(t); if (t>=1) return 0; const x=t*(NT-1), i=Math.flo
       B.forEach((b,j)=>{ const n=Math.hypot(b[0],b[1]); const foot=[b[0]/n/n, b[1]/n/n]; if (B.some(bb=>Math.abs(dot(bb,foot))>1+1e-9)) return; /* strip j is redundant: no facet, no arrow */ const L=32/S1; const tip=[foot[0]+b[0]/n*L, foot[1]+b[1]/n*L]; const p0=PX1(foot), p1=PX1(tip);
         el('line',{x1:p0[0],y1:p0[1],x2:p1[0],y2:p1[1],stroke:fg,'stroke-width':1.3,'marker-end':'url(#mfigArrB1)'},s1);
         const lp=PX1([tip[0]+b[0]/n*(12/S1), tip[1]+b[1]/n*(12/S1)]); texLabel(s1,lp[0],lp[1]+4,'$b_{'+(j+1)+'}$','svgtext','middle'); });
-      texLabel(s1,10,22,'$x$, $K$, $\\{y\\colon x+iy\\in\\overline\\Omega\\}$','svgcap'); texLabel(s1,350,22,'primal','svgcap','end');
+      texLabel(s1,10,22,'$x$, $K$, $\\Omega_x$','svgcap'); texLabel(s1,350,22,'primal','svgcap','end');
       g1=el('g',{},s1);
       const defs=el('defs',{},s2); const pat=el('pattern',{id:'mfigHatchB',width:'7',height:'7',patternUnits:'userSpaceOnUse',patternTransform:'rotate(45)'},defs); el('line',{x1:0,y1:0,x2:0,y2:7,stroke:muted,'stroke-width':1.2},pat);
       el('line',{x1:0,y1:C.cy,x2:360,y2:C.cy,stroke:rule},s2); el('line',{x1:C.cx,y1:0,x2:C.cx,y2:360,stroke:rule},s2);
