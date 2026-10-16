@@ -346,9 +346,9 @@ By <a href="#eq-12">(12)</a>, the map \(F^{-1}\circ B\) is a biholomorphism of \
 <span class="math">\[
 	d := \partial + \bar\partial, \qquad d^{c}:=\frac{i}{4}(\bar\partial-\partial),\qquad dd^{c}=\frac{i}{2}\partial\bar\partial,
 \]</span>
-so that \(dd^{c}|z|^{2}=\sum_{j}dx_{j}\wedge dy_{j}\) and \((dd^{c}|z|^{2})^{d}=d!\,dV\) on \(\mathbb{C}^d\); the standard facts used below are recalled in <a href="#appendix-complex-geometry">Appendix: Complex-geometric background for Lemma 3</a>. By <a href="#eq-A5">(A5)</a>, \((dd^c|w|^2)^d=d!\sum_{|J|=d}dV_J\) on \(\mathbb{C}^m\). Define a \(2d\)-form \(\sigma_{k}\) on \(M_{k}\) by
+so that \(dd^{c}|z|^{2}=\sum_{j}dx_{j}\wedge dy_{j}\) and \((dd^{c}|z|^{2})^{d}=d!\,dV\) on \(\mathbb{C}^d\); the standard facts used below are recalled in <a href="#appendix-complex-geometry">Appendix: Complex-geometric background for Lemma 3</a>. By <a href="#eq-A5">(A5)</a>, \((dd^c|\cdot|^2)^d=d!\sum_{J\in{[m]\choose d}}dV_J\) on \(\mathbb{C}^m\). Define a \(2d\)-form \(\sigma_{k}\) on \(M_{k}\) by
 <span class="math">\[
-	\sigma_k:=\frac1{d!}\,(p_k|_{M_k})^*(dd^c|w|^2)^d=\sum_{|J|=d}(\pi_J|_{M_k})^*\,p_k^*\,dV_J.
+	\sigma_k:=\frac1{d!}\,(p_k|_{M_k})^*(dd^c|\cdot|^2)^d=\sum_{J\in{[m]\choose d}}(\pi_J|_{M_k})^*\,p_k^*\,dV_J.
 \]</span>
 Since \(F^{-1}\circ B\) is a biholomorphism of \(\Omega_k\) onto \(M_k\) and \(dd^c\) commutes with holomorphic pullbacks, the definition <a href="#eq-14">(14)</a> gives
 <span id="eq-15"></span><span class="math">\[
@@ -706,7 +706,7 @@ For \(u=|z|^2\) the matrix is the identity, which gives \((dd^c|z|^2)^d=d!\,dV\)
 \]</span>
 Finally, write \(dV_J=\bigwedge_{j\in J}\frac i2dw_j\wedge d\bar w_j\) for the volume form of \(\mathbb{C}^J\), where \(J\subseteq[m]\), \(|J|=d\). Expanding \((dd^c|w|^2)^d=\big(\sum_{j=1}^m\frac i2dw_j\wedge d\bar w_j\big)^d\), each of the \(2\)-forms \(\frac i2dw_j\wedge d\bar w_j\) commutes with the others and squares to zero, so only products of \(d\) distinct ones survive, and each such product occurs \(d!\) times:
 <span id="eq-A5"></span><span class="math">\[
-(dd^c|w|^2)^d=d!\sum_{|J|=d}dV_J\qquad\text{on }\mathbb{C}^m.\tag{A5}
+(dd^c|w|^2)^d=d!\sum_{J\in{[m]\choose d}}dV_J\qquad\text{on }\mathbb{C}^m.\tag{A5}
 \]</span>
 Combining <a href="#eq-A4">(A4)</a> and <a href="#eq-A5">(A5)</a> with \(\pi_J\circ f\) in place of \(\Phi\) gives \((dd^c|f|^2)^d=d!\sum_J|\det(Df)_J|^2\,dV\) for holomorphic \(f\colon U\to\mathbb{C}^m\).</p>
 <p><b>Plurisubharmonic functions.</b> A smooth real function \(u\) on an open set of \(\mathbb{C}^d\) is <i>plurisubharmonic</i> (psh) if its complex Hessian is positive semidefinite at every point; equivalently, \(\sum u_{j\bar k}\xi_j\bar\xi_k\ge0\) for all \(\xi\in\mathbb{C}^d\), that is, the restriction of \(u\) to every complex line is subharmonic. Facts used:</p>
