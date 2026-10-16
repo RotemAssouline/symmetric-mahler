@@ -218,9 +218,9 @@ Since \(b_k\) is not proportional to \(b_j\) for any \(j\neq k\), at least two c
 \]</span>
 everywhere. By the implicit function theorem, both \(\{G=0,\ \nabla G\neq0\}\) and \(\{\partial G/\partial q_{j_1}=0\}\supseteq\{\nabla G=0\}\) are locally \(C^1\) hypersurfaces, so the level set \(\{G=0\}\) has measure zero.
 Since there are finitely many pairs \((J,\varepsilon),(J',\varepsilon')\), this proves the lemma. \(\square\)</p>
-<p>Each \(K_{J,\varepsilon}\) is closed, since \(\overline\Omega\) is closed and \(y\) depends continuously on \(x\), so the right-hand side of <a href="#eq-5">(5)</a> is compact, and its fiber over \(x\) is the union of the simplices \(\Delta_{J,\varepsilon}\) with \(x\in K_{J,\varepsilon}\). Since \(\operatorname{Vol}(\Delta_{J,\varepsilon})=|\det B_J|/d!\), <a href="#eq-5">(5)</a>, <a href="#lemma-1">Lemma 1</a> and Fubini's theorem give</p>
+<p>Each \(K_{J,\varepsilon}\) is closed, since \(\overline\Omega\) is closed and \(y\) depends continuously on \(x\), so the right-hand side of <a href="#eq-5">(5)</a> is compact, and its fiber over \(x\) is the union of the simplices \(\Delta_{J,\varepsilon}\) with \(x\in K_{J,\varepsilon}\). The linear map \((x,h)\mapsto(B_Jx,B_J^{-\mathsf T}h)\) of \(\mathbb{R}^d\times\mathbb{R}^d\) preserves volume and maps \(K_{J,\varepsilon}\times\Delta_{J,\varepsilon}\) onto \(B_J(K_{J,\varepsilon})\times\operatorname{conv}(\{0\}\cup\{\varepsilon_je_j\}_{j\in J})\), so \(\operatorname{Vol}_{2d}(K_{J,\varepsilon}\times\Delta_{J,\varepsilon})=\operatorname{Vol}(B_J(K_{J,\varepsilon}))/d!\). Hence <a href="#eq-5">(5)</a>, <a href="#lemma-1">Lemma 1</a> and Fubini's theorem give</p>
 <span id="eq-7"></span><span class="math">\[
-	\operatorname{Vol}_{2d}(\Sigma)\ge\frac{1}{d!}\sum\limits_{J\in \mathcal{J}}\sum\limits_{\varepsilon \in \{ -1,1 \}^{J}}|\det B_{J}|\cdot \operatorname{Vol}(K_{J,\varepsilon}).\tag{7}
+	\operatorname{Vol}_{2d}(\Sigma)\ge\frac{1}{d!}\sum\limits_{J\in \mathcal{J}}\sum\limits_{\varepsilon \in \{ -1,1 \}^{J}}\operatorname{Vol}\big(B_J(K_{J,\varepsilon})\big).\tag{7}
 \]</span>
 <h3 id="from-omega-to-the-cube-to-the-torus">From \(\Omega\) to the cube to the torus</h3>
 <p>Fix \(J\in \mathcal{J}\). Since \(|\langle b_j,x\rangle|\le1\) for all \(x\in K\) and \(j\in J\),
@@ -232,17 +232,12 @@ Since \(\overline D=\{w\colon|\mathrm{Re}\,w|\le1,\ |\mathrm{Im}\,w|\le\lambda(\
 	\Phi_J(q,\varepsilon)_j:=q_{j}+i\varepsilon_{j}\lambda(q_{j}),\qquad j\in J.
 \]</span>
 By <a href="#eq-8">(8)</a> and the definition of \(K_{J,\varepsilon}\), a point \(x\in K\) lies in \(K_{J,\varepsilon}\) if and only if \(\Phi_J(B_Jx,\varepsilon)\in B_J(\overline\Omega)\). Since \(B_J\) is real, \(\mathrm{Re}\,B_Jz=B_J\mathrm{Re}\,z\) for every \(z\in\mathbb{C}^d\), and it follows that
-<span class="math">\[
-	B_J(K_{J,\varepsilon})=\{q\in[-1,1]^J\,\,\colon\,\,\Phi_J(q,\varepsilon)\in B_J(\overline\Omega)\},\qquad\varepsilon\in\{-1,1\}^J.
-\]</span>
-By the change of variables \(q=B_Jx\),
 <span id="eq-9"></span><span class="math">\[
-	|\det B_J|\operatorname{Vol}(K_{J,\varepsilon})=\operatorname{Vol}\left(\{q\in[-1,1]^J\,\,\colon\,\,\Phi_J(q,\varepsilon)\in B_J(\overline\Omega)\}\right),\qquad\varepsilon\in\{-1,1\}^J.
-	\tag{9}
+	B_J(K_{J,\varepsilon})=\{q\in[-1,1]^J\,\,\colon\,\,\Phi_J(q,\varepsilon)\in B_J(\overline\Omega)\},\qquad\varepsilon\in\{-1,1\}^J.\tag{9}
 \]</span></p>
-<p>Let \(q\) be uniformly distributed on \([-1,1]^J\). For each fixed \(\varepsilon\in\{-1,1\}^J\), the right-hand side of <a href="#eq-9">(9)</a> is \(2^d\,\mathbb{P}\big(\Phi_J(q,\varepsilon)\in B_J(\overline\Omega)\big)\). Now let \(\varepsilon\) be uniformly distributed on \(\{-1,1\}^J\), independently of \(q\). Averaging <a href="#eq-9">(9)</a> over \(\varepsilon\) gives
+<p>Let \(q\) be uniformly distributed on \([-1,1]^J\). For each fixed \(\varepsilon\in\{-1,1\}^J\), the volume of the right-hand side of <a href="#eq-9">(9)</a> is \(2^d\,\mathbb{P}\big(\Phi_J(q,\varepsilon)\in B_J(\overline\Omega)\big)\). Now let \(\varepsilon\) be uniformly distributed on \(\{-1,1\}^J\), independently of \(q\). Averaging over \(\varepsilon\) gives
 <span id="eq-10"></span><span class="math">\[
-	\frac{1}{4^d}\sum_{\varepsilon\in\{-1,1\}^J}|\det B_J|\operatorname{Vol}(K_{J,\varepsilon})=\mathbb{P}\big(\Phi_J(q,\varepsilon)\in B_J(\overline\Omega)\big).\tag{10}
+	\frac{1}{4^d}\sum_{\varepsilon\in\{-1,1\}^J}\operatorname{Vol}\big(B_J(K_{J,\varepsilon})\big)=\mathbb{P}\big(\Phi_J(q,\varepsilon)\in B_J(\overline\Omega)\big).\tag{10}
 \]</span>
 View \(F\) as a map on \(\overline{\mathbb D}^J\) by applying it coordinatewise, and for \(J\in\mathcal{J}\) let
 <span class="math">\[
@@ -753,7 +748,7 @@ Here we used \(d\big(d^c|z|^2\wedge(dd^c|z|^2)^{d-1}\big)=(dd^c|z|^2)^d\), valid
 <tr><td>\(\Omega\)</td><td>\(\Omega\) rotated</td><td>Defined in the proof of Lemma 5.1. Here \(\Omega\) is defined via \(K^\circ\) for every symmetric convex body \(K\); for a polytope it is cut out by the \(b_j\).</td></tr>
 <tr><td>\(F^{-1}\circ B\)</td><td>\((h_1,\dots,h_m)\)</td><td>\(h_j(z)=g(b_jz)\).</td></tr>
 <tr><td>\(J\in\mathcal{J}\)</td><td>\(I\in\mathcal{B}\)</td><td>Sets of \(d\) independent rows.</td></tr>
-<tr><td>\(B_J,\ |\det B_J|\)</td><td>\(B_I,\ D_I\)</td><td></td></tr>
+<tr><td>\(B_J\)</td><td>\(B_I\)</td><td>The determinant \(D_I=|\det B_I|\) does not appear here; see the change of variables before <a href="#eq-7">(7)</a>.</td></tr>
 <tr><td>\(\varepsilon\)</td><td>\(\epsilon\)</td><td>Sign vectors.</td></tr>
 <tr><td>\(\{y\colon x+iy\in\overline\Omega\}\)</td><td>\(L_X\)</td><td>[25]. The fiber of \(\overline\Omega\) over \(x\), described by <a href="#eq-3">(3)</a>; it is named \(\Omega_x\) in <a href="#appendix-simplex-decomposition">Appendix: \(\Sigma\) as a union of products</a> and in Figure 5.</td></tr>
 <tr><td>\(x\in K_{J,\varepsilon}\)</td><td>\((I,\epsilon)\) feasible at \(X\)</td><td>The preprint defines \(Y_{I,\epsilon}(X)\) for all \(X\) and calls \((I,\epsilon)\) feasible when \(Y_{I,\epsilon}(X)\in L_X\).</td></tr>
