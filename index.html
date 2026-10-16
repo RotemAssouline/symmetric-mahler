@@ -309,43 +309,46 @@ For \(u\in M_k\) and \(J\in\mathcal{J}\),
 <span class="math">\[
 	F(u)=B\,B_J^{-1}F(\pi_Ju),
 \]</span>
-so \(\pi_J\) is injective on \(M_k\) and \(\pi_J(M_k)\subseteq A_J\cap\mathbb B^{2k}_J\). Define a \(2d\)-form \(\sigma_{k}\) on \(M_{k}\) by
-<span class="math">\[
-	\sigma_k:=\sum_{J\in\mathcal{J}}(\pi_J|_{M_k})^*\,p_k^*\,dV_J.
-\]</span>
-Since \(p_k^*dV_J\) is a nonnegative multiple of \(dV_J\),
-<span class="math">\[
-	\int_{M_k}\sigma_k=\sum_{J\in\mathcal{J}}\int_{M_k}(\pi_J|_{M_k})^*p_k^*dV_J\le\sum_{J\in\mathcal{J}}\int_{A_J\cap \mathbb B^{2k}_J}p_k^*dV_J=\frac{(\pi k)^{d}}{d!}\sum_{J\in\mathcal{J}}\mu_{k,J}(A_J).
-\]</span>
-Hence <a href="#eq-12">(12)</a> will follow once we prove that
-<span id="eq-13"></span><span class="math">\[
-	\int_{M_{k}}\sigma_{k}\geq \frac{(\pi k)^{d}}{d!}\qquad\text{for all }k \ge 1.\tag{13}
-\]</span></p>
+so \(\pi_J\) is injective on \(M_k\) and \(\pi_J(M_k)\subseteq A_J\cap\mathbb B^{2k}_J\).</p>
 <p>The map \(F^{-1}\circ B\) is a biholomorphism of \(\Omega\) onto \(F^{-1}(B(\Omega))\). Let
-<span id="eq-14"></span><span class="math">\[
-	f_k:=p_k\circ F^{-1}\circ B\colon\Omega\to\mathbb{C}^m\tag{14}
+<span id="eq-13"></span><span class="math">\[
+	f_k:=p_k\circ F^{-1}\circ B\colon\Omega\to\mathbb{C}^m\tag{13}
 \]</span>
 and
 <span class="math">\[
 	\Omega_k:=f_k^{-1}(\mathbb B_m)\subseteq\Omega.
 \]</span>
 By <a href="#eq-11">(11)</a>, the map \(F^{-1}\circ B\) is a biholomorphism of \(\Omega_k\) onto \(M_k\).</p>
-<p id="eq-sigma-integral">For \(J\in{[m]\choose d}\) denote by \((Df_k)_J\) the \(d\times d\) minor of \(Df_k\) with rows in \(J\). Since \(F^{-1}\circ B\) is a biholomorphism of \(\Omega_k\) onto \(M_k\), the definition <a href="#eq-14">(14)</a> gives
-<span id="eq-15"></span><span class="math">\[
-	\int_{M_k}\sigma_k=\int_{\Omega_k}\sum_{J\in\mathcal{J}}(\pi_J\circ f_k)^*dV_J=\int_{\Omega_k}\sum_{J\in{[m]\choose d}}|\det (Df_k)_J|^2\,dV.\tag{15}
+<p id="eq-sigma-integral">We use the normalization
+<span class="math">\[
+	d := \partial + \bar\partial, \qquad d^{c}:=\frac{i}{4}(\bar\partial-\partial),\qquad dd^{c}=\frac{i}{2}\partial\bar\partial,
 \]</span>
-Here we used that a complex-linear map \(T\colon\mathbb{C}^d\to\mathbb{C}^J\) has real Jacobian \(|\det T|^2\), and that \(\det (Df_k)_J=0\) for \(J\notin\mathcal{J}\): 
-by <a href="#eq-14">(14)</a> and the fact that \(p_k\circ F^{-1}\) acts coordinatewise, \((Df_k)_J\) is \(B_J\) multiplied on the left by a diagonal matrix.</p>
+so that \(dd^{c}|z|^{2}=\sum_{j}dx_{j}\wedge dy_{j}\) and \((dd^{c}|z|^{2})^{d}=d!\,dV\) on \(\mathbb{C}^d\); the standard facts used below are recalled in <a href="#appendix-complex-geometry">Appendix: Complex-geometric background for Lemma 3</a>. By <a href="#eq-A5">(A5)</a>, \((dd^c|w|^2)^d=d!\sum_{J\in{[m]\choose d}}dV_J\) on \(\mathbb{C}^m\). Define a \(2d\)-form \(\sigma_{k}\) on \(M_{k}\) by
+<span class="math">\[
+	\sigma_k:=\frac1{d!}\,(p_k|_{M_k})^*(dd^c|w|^2)^d=\sum_{J\in{[m]\choose d}}(\pi_J|_{M_k})^*\,p_k^*\,dV_J.
+\]</span>
+Since \(F^{-1}\circ B\) is a biholomorphism of \(\Omega_k\) onto \(M_k\) and \(dd^c\) commutes with holomorphic pullbacks, the definition <a href="#eq-13">(13)</a> gives
+<span id="eq-14"></span><span class="math">\[
+	\int_{M_k}\sigma_k=\frac1{d!}\int_{\Omega_k}(dd^c|f_k|^2)^d.\tag{14}
+\]</span>
+Moreover, for \(J\in{[m]\choose d}\), the pullback of \((\pi_J|_{M_k})^*p_k^*dV_J\) to \(\Omega_k\) is \((\pi_J\circ f_k)^*dV_J=|\det(Df_k)_J|^2\,dV\) by <a href="#eq-A4">(A4)</a>, where \((Df_k)_J\) is the \(d\times d\) minor of \(Df_k\) with rows in \(J\); by <a href="#eq-13">(13)</a> and the fact that \(p_k\circ F^{-1}\) acts coordinatewise, \((Df_k)_J\) is \(B_J\) multiplied on the left by a diagonal matrix, so this term vanishes for \(J\notin\mathcal{J}\). Since \(p_k^*dV_J\) is a nonnegative multiple of \(dV_J\),
+<span class="math">\[
+	\int_{M_k}\sigma_k=\sum_{J\in\mathcal{J}}\int_{M_k}(\pi_J|_{M_k})^*p_k^*dV_J\le\sum_{J\in\mathcal{J}}\int_{A_J\cap \mathbb B^{2k}_J}p_k^*dV_J=\frac{(\pi k)^{d}}{d!}\sum_{J\in\mathcal{J}}\mu_{k,J}(A_J).
+\]</span>
+Hence <a href="#eq-12">(12)</a> will follow once we prove that
+<span id="eq-15"></span><span class="math">\[
+	\int_{M_{k}}\sigma_{k}\geq \frac{(\pi k)^{d}}{d!}\qquad\text{for all }k \ge 1.\tag{15}
+\]</span></p>
 <h3 id="a-lower-bound-on-the-volume-of-the-image-of-a-holomorphic-function">A lower bound on the volume of the image of a holomorphic function</h3>
-<p>By <a href="#eq-15">(15)</a>, and since \(\Omega_k=\{z\in\Omega\colon|f_k(z)|\lt1\}\) by definition, <a href="#eq-13">(13)</a> follows by applying the following key lemma to \(f=f_k\) and \(U=\Omega\):</p>
+<p>By <a href="#eq-14">(14)</a>, and since \(\Omega_k=\{z\in\Omega\colon|f_k(z)|\lt1\}\) by definition, <a href="#eq-15">(15)</a> follows by applying the following key lemma to \(f=f_k\) and \(U=\Omega\):</p>
 <div class="callout callout-lemma" id="lemma-3"><div class="callout-title">Lemma 3</div><p>Let \(d\geq 1\) and \(m\geq d\). Let \(U\subset \mathbb{C}^{d}\) be an open set containing the origin, and let \(f:U\to \mathbb{C}^{m}\) be a holomorphic function satisfying</p>
 <ol><li>\(f^{-1}(0)=\{ 0 \}\)</li><li>\(|f(z)|\le C|z|^{k}\) on a neighbourhood of \(0\), for some integer \(k\geq 1\) and some \(C>0\),</li><li>for every \(s \lt 1\) the sublevel set \(U_{s}:=\{ |f|\lt s \}\) is relatively compact in \(U\).</li></ol>
 <p>Then
 <span class="math">\[
-\int_{U_1}\sum_{J\in{[m]\choose d}}|\det (Df)_J|^2\,dV\ge\frac{(\pi k)^{d}}{d!}.
+\int_{U_1}(dd^{c}|f|^{2})^{d}\geq(\pi k)^{d}.
 \]</span></p></div>
 <p>For a geometric interpretation of <a href="#lemma-3">Lemma 3</a>, see <a href="#appendix-volume">Appendix: The integral in Lemma 3 and \(\int_{M_k}\sigma_k\) are volumes</a>.</p>
-<p>Let us verify that the hypotheses of <a href="#lemma-3">Lemma 3</a> are satisfied with \(f=f_k\), defined in <a href="#eq-14">(14)</a>. 
+<p>Let us verify that the hypotheses of <a href="#lemma-3">Lemma 3</a> are satisfied with \(f=f_k\), defined in <a href="#eq-13">(13)</a>. 
 The set \(\Omega\) is open and contains \(0\), and \(f_k\) is holomorphic on \(\Omega\) because \(B(\Omega)\subseteq D^m\) and \(F^{-1}\) acts coordinatewise. 
 In the notation of the lemma, we have \(U_1=\{ |f_{k}|\lt 1 \}=\Omega_k\).
 Since \(F(0)=0\) and \(F\) is injective, \(f_k(z)=0\) if and only if \(Bz=0\), that is, \(z=0\), because \(b_1,\dots,b_m\) span \(\mathbb{R}^d\).</p>
@@ -364,19 +367,6 @@ so \(\langle b_j,z\rangle\in F(s^{1/k}\overline{\mathbb D})\). Hence
 The set \(F(s^{1/k}\overline{\mathbb D})\) is a compact subset of \(D\) and \(B\) is injective, so the right-hand side is a compact subset of \(\Omega\). Thus \(U_s\) is relatively compact in \(\Omega\).</p>
 <p>The hypotheses of <a href="#lemma-3">Lemma 3</a> are satisfied; hence the theorem (modulo the equality cases) would follow once we prove <a href="#lemma-3">Lemma 3</a>.</p>
 <p><i>Proof of <a href="#lemma-3">Lemma 3</a>.</i> (The notation and standard facts used here are recalled in <a href="#appendix-complex-geometry">Appendix: Complex-geometric background for Lemma 3</a>.)
-We use the normalization
-<span class="math">\[
-	d := \partial + \bar\partial, \qquad d^{c}:=\frac{i}{4}(\bar\partial-\partial),\qquad dd^{c}=\frac{i}{2}\partial\bar\partial,
-\]</span>
-so that \(dd^{c}|z|^{2}=\sum_{j}dx_{j}\wedge dy_{j}\) and \((dd^{c}|z|^{2})^{d}=d!\,dV\).</p>
-<p>On \(\mathbb{C}^m\), \((dd^{c}|w|^{2})^{d}=d!\sum_{J\in{[m]\choose d}}dV_J\), and the pullback of \(dV_J\) by the holomorphic map \(\pi_J\circ f\) is \(|\det (Df)_J|^2\,dV\). Since \(f\) is holomorphic, \(dd^c|f|^2=f^*(dd^c|w|^2)\), and therefore
-<span class="math">\[
-	(dd^{c}|f|^{2})^{d}=d!\sum_{J\in{[m]\choose d}}|\det (Df)_J|^2\,dV.
-\]</span></p>
-<p>Hence it suffices to prove that
-<span class="math">\[
-	\int_{U_{1}}(dd^{c}|f|^{2})^{d}\geq(\pi k)^{d}.
-\]</span>
 Let \(s \in(0,1)\) be a regular value of \(|f|\). By Stokes' theorem,
 <span class="math">\[
 	\int_{U_{s}}(dd^{c}|f|^{2})^{d}=\int_{\partial U_{s}}d^{c}|f|^{2}\wedge(dd^{c}|f|^{2})^{d-1}.
@@ -670,15 +660,15 @@ where \(v\) ranges over the vectors \(\pm b_l\) tight at \(x+iy\). Among all suc
 <p><b>Figure 5: the stretching map from \(\Omega_x^{\circ}\) to \(\Sigma_x\)</b></p>
 <div class="figure interactive" id="fig-5"></div>
 <h3 id="appendix-volume">Appendix: The integral in <a href="#lemma-3">Lemma 3</a> and \(\int_{M_k}\sigma_k\) are volumes</h3>
-<p>The integrals in <a href="#eq-15">(15)</a> and in <a href="#lemma-3">Lemma 3</a> have a geometric meaning, which is not used in the proof. Let \(U\subseteq\mathbb{C}^d\) be open and \(f\colon U\to\mathbb{C}^m\) holomorphic, and let \(z\in U\). Write \(T:=Df(z)\), a complex \(m\times d\) matrix, and \(T_\mathbb{R}\) for the real \(2m\times 2d\) matrix of the same linear map. Then \(T_\mathbb{R}^{\mathsf T}T_\mathbb{R}\) is the real matrix of the Hermitian matrix \(T^*T\), so \(\det(T_\mathbb{R}^{\mathsf T}T_\mathbb{R})=\det(T^*T)^2\), and by the Cauchy&ndash;Binet formula
+<p>The integrals in <a href="#eq-14">(14)</a> and in <a href="#lemma-3">Lemma 3</a> have a geometric meaning, which is not used in the proof. Let \(U\subseteq\mathbb{C}^d\) be open and \(f\colon U\to\mathbb{C}^m\) holomorphic, and let \(z\in U\). Write \(T:=Df(z)\), a complex \(m\times d\) matrix, and \(T_\mathbb{R}\) for the real \(2m\times 2d\) matrix of the same linear map. Then \(T_\mathbb{R}^{\mathsf T}T_\mathbb{R}\) is the real matrix of the Hermitian matrix \(T^*T\), so \(\det(T_\mathbb{R}^{\mathsf T}T_\mathbb{R})=\det(T^*T)^2\), and by the Cauchy&ndash;Binet formula
 <span class="math">\[
 	\sqrt{\det(T_\mathbb{R}^{\mathsf T}T_\mathbb{R})}=\det(T^*T)=\sum_{J\in{[m]\choose d}}|\det T_J|^2.
 \]</span>
-The left-hand side is the \(2d\)-dimensional Jacobian of \(f\) at \(z\). Hence, by the area formula,
+The left-hand side is the \(2d\)-dimensional Jacobian of \(f\) at \(z\), and by <a href="#eq-A4">(A4)</a> and <a href="#eq-A5">(A5)</a> the right-hand side times \(dV\) is \(\frac1{d!}(dd^c|f|^2)^d\). Hence, by the area formula,
 <span class="math">\[
-	\int_U\sum_{J\in{[m]\choose d}}|\det (Df)_J|^2\,dV
+	\frac1{d!}\int_U(dd^c|f|^2)^d=\int_U\sum_{J\in{[m]\choose d}}|\det (Df)_J|^2\,dV
 \]</span>
-is the \(2d\)-dimensional volume of \(f(U)\), counted with multiplicity. Thus, by <a href="#eq-15">(15)</a>, \(\int_{M_k}\sigma_k\) is the \(2d\)-dimensional volume of \(f_k(\Omega_k)=p_k(M_k)\), counted with multiplicity, and <a href="#lemma-3">Lemma 3</a> says that the \(2d\)-dimensional volume of \(f(U_1)\), counted with multiplicity, is at least \(\frac{(\pi k)^d}{d!}\).</p>
+is the \(2d\)-dimensional volume of \(f(U)\), counted with multiplicity. Thus, by <a href="#eq-14">(14)</a>, \(\int_{M_k}\sigma_k\) is the \(2d\)-dimensional volume of \(f_k(\Omega_k)=p_k(M_k)\), counted with multiplicity, and <a href="#lemma-3">Lemma 3</a> says that the \(2d\)-dimensional volume of \(f(U_1)\), counted with multiplicity, is at least \(\frac{(\pi k)^d}{d!}\).</p>
 <h3 id="appendix-complex-geometry">Appendix: Complex-geometric background for <a href="#lemma-3">Lemma 3</a></h3>
 <p>This appendix collects the notation and the standard facts used in the proof of <a href="#lemma-3">Lemma 3</a>. Throughout, \(z_j=x_j+iy_j\) are the coordinates of \(\mathbb{C}^d\), and \(\mathbb{C}^d\) is oriented by \(dV=\prod_j dx_j\wedge dy_j\).</p>
 <p><b>Differential forms.</b> A smooth function \(u\) on an open set of \(\mathbb{C}^d\) has \(du=\partial u+\bar\partial u\), where
@@ -705,7 +695,7 @@ Finally, write \(dV_J=\bigwedge_{j\in J}\frac i2dw_j\wedge d\bar w_j\) for the v
 <span id="eq-A5"></span><span class="math">\[
 (dd^c|w|^2)^d=d!\sum_{J\in{[m]\choose d}}dV_J\qquad\text{on }\mathbb{C}^m.\tag{A5}
 \]</span>
-Combining <a href="#eq-A4">(A4)</a> and <a href="#eq-A5">(A5)</a> with \(\pi_J\circ f\) in place of \(\Phi\) gives the identity \((dd^c|f|^2)^d=d!\sum_J|\det(Df)_J|^2\,dV\) used in the proof.</p>
+Combining <a href="#eq-A4">(A4)</a> and <a href="#eq-A5">(A5)</a> with \(\pi_J\circ f\) in place of \(\Phi\) gives the identity \((dd^c|f|^2)^d=d!\sum_J|\det(Df)_J|^2\,dV\) used in <a href="#appendix-volume">Appendix: The integral in Lemma 3 and \(\int_{M_k}\sigma_k\) are volumes</a>.</p>
 <p><b>Plurisubharmonic functions.</b> A smooth real function \(u\) on an open set of \(\mathbb{C}^d\) is <i>plurisubharmonic</i> (psh) if its complex Hessian is positive semidefinite at every point; equivalently, \(\sum u_{j\bar k}\xi_j\bar\xi_k\ge0\) for all \(\xi\in\mathbb{C}^d\), that is, the restriction of \(u\) to every complex line is subharmonic. Facts used:</p>
 <ol>
 <li>(Positivity.) If \(u\) is smooth and psh, then \(\det(u_{j\bar k})\ge0\), so \((dd^cu)^d\ge0\) by <a href="#eq-A2">(A2)</a>.</li>
@@ -779,7 +769,7 @@ Here we used \(d\big(d^c|z|^2\wedge(dd^c|z|^2)^{d-1}\big)=(dd^c|z|^2)^d\), valid
 <tr><td><a href="#lemma-1">Lemma 1</a></td><td>Proof of Proposition 6.1, Lemma 5.2</td><td>The preprint shows that extra tight constraints have probability zero on the complex side (Lemma 5.2); here this is done directly in \(x\), using \(\lambda''\neq0\).</td></tr>
 <tr><td><a href="#eq-7">(7)</a></td><td>[30]</td><td>Here integrated over \(x\).</td></tr>
 <tr><td><a href="#eq-9">(9)</a>, <a href="#eq-10">(10)</a> and the reduction to \(\sum_J\mu_J(A_J)\ge1\)</td><td>[27], [29]</td><td>Proposition 6.1: \(S=\frac{d!}{4^d}\int_A|\Sigma_X|\,dX\).</td></tr>
-<tr><td><a href="#eq-15">(15)</a></td><td>Proofs of Lemmas 4.1 and 5.1</td><td>Cauchy&ndash;Binet, and vanishing of the minors of dependent rows.</td></tr>
+<tr><td><a href="#eq-14">(14)</a></td><td>Proofs of Lemmas 4.1 and 5.1</td><td>Cauchy&ndash;Binet, and vanishing of the minors of dependent rows.</td></tr>
 <tr><td><a href="#lemma-2">Lemma 2</a></td><td>[24] and the end of the proof of Lemma 5.1</td><td>Radial substitution; here phrased as the weak convergence \(\mu_{k,J}\to\mu_J\).</td></tr>
 <tr><td><a href="#lemma-3">Lemma 3</a></td><td>Lemma 4.1, [17]</td><td>The preprint assumes a nondegenerate homogeneous leading term of degree \(k\), where this note assumes \(|f|\le C|z|^k\). The proofs differ: here by gluing with a regularized maximum (as in Demailly), there by computing the flux through a small sphere.</td></tr>
 <tr><td>Verification of the hypotheses of <a href="#lemma-3">Lemma 3</a></td><td>Proof of Lemma 5.1</td><td>Lemma 5.1 holds for any biholomorphism \(F\) of \(\mathbb D\) onto a bounded domain with \(F(0)=0\).</td></tr>
