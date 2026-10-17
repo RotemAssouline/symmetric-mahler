@@ -136,7 +136,11 @@ Replacing the interval \([-1,1]\) by the domain \(D\), whose intersection with \
 <span class="math">\[
 	\Omega :=\{ z\in \mathbb{C}^{d}\,\,\colon\,\, \langle h,z \rangle \in D \quad \forall\,h\in K^{\circ}\},
 \]</span>
-where \(\langle h,z\rangle=\sum_jh_jz_j\). The set \(\Omega\) is convex and open, \(\Omega\cap\mathbb{R}^d=\operatorname{int}K\), and \(\mathrm{Re}\,z\in K\) for every \(z\in\overline\Omega\). For \(x\in K\) and \(y\in\mathbb{R}^d\), since \(K^{\circ}\) is symmetric and \(\lambda\) is even,
+where \(\langle h,z\rangle=\sum_jh_jz_j\). The set \(\Omega\) is convex and open, \(\Omega\cap\mathbb{R}^d=\operatorname{int}K\), and \(\mathrm{Re}\,z\in K\) for every \(z\in\overline\Omega\). For \(x\in K\), let
+<span class="math">\[
+	\bar\Omega_x:=\{y\in\mathbb{R}^d\colon x+iy\in\overline\Omega\}
+\]</span>
+be the fiber of \(\overline\Omega\) over \(x\). For \(y\in\mathbb{R}^d\), since \(K^{\circ}\) is symmetric and \(\lambda\) is even,
 <span id="eq-3"></span><span class="math">\[
 	x+iy\in\overline\Omega\iff\langle h,y\rangle\le\lambda(\langle h,x\rangle)\quad\forall\,h\in K^{\circ}.\tag{3}
 \]</span></p>
@@ -148,7 +152,7 @@ where \(\langle h,z\rangle=\sum_jh_jz_j\). The set \(\Omega\) is convex and open
 Indeed, the right-hand side is contained in \(K^\circ\), since \(K^\circ\) is convex and contains \(0\). Conversely, let \(h\in K^\circ\setminus\{0\}\) and let \(y\in K\) maximize \(\langle h,\cdot\rangle\) on \(K\). Then \(t:=\langle h,y\rangle\in(0,1]\), \(h/t\in K^{\circ}\), \(\langle h/t,y\rangle=1\), and \(h\in\operatorname{conv}\{0,h/t\}\).</p>
 <p>For \(x\in K\), let
 <span id="eq-5"></span><span class="math">\[
-	\Sigma_x:=\bigcup_{y\colon\,x+iy\in\overline\Omega}\operatorname{conv}\big(\{0\}\cup\{h\in K^{\circ}\colon\langle h,y\rangle=\lambda(\langle h,x\rangle)\}\big)\subseteq K^{\circ},\tag{5}
+	\Sigma_x:=\bigcup_{y\in\bar\Omega_x}\operatorname{conv}\big(\{0\}\cup\{h\in K^{\circ}\colon\langle h,y\rangle=\lambda(\langle h,x\rangle)\}\big)\subseteq K^{\circ},\tag{5}
 \]</span>
 and let
 <span class="math">\[
@@ -191,11 +195,10 @@ If \(x\in K_{J,\varepsilon}\) and \(y=y_{J,\varepsilon}(x)\), then \(\langle\var
 \Sigma\supseteq\bigcup\limits_{J\in \mathcal{J}}\bigcup\limits_{\varepsilon \in \{-1,1\}^J}K_{J,\varepsilon}\times\Delta_{J,\varepsilon}.\tag{6}
 \]</span>
 In fact, equality holds in <a href="#eq-6">(6)</a>, see <a href="#appendix-simplex-decomposition">Appendix: \(\Sigma\) as a union of products</a>, but we shall not need this.</p>
-<p>For \(x\in K\), let
+<p>For \(x\in K\) and \(y\in\mathbb{R}^d\), the function \(h\mapsto\langle h,y\rangle-\lambda(\langle h,x\rangle)\) is convex on \(K^{\circ}\), so it suffices to check <a href="#eq-3">(3)</a> at the vertices \(\pm b_l\) of \(K^{\circ}\), and since \(\lambda\) is even,
 <span class="math">\[
-	\bar\Omega_x:=\{y\in\mathbb{R}^d\colon x+iy\in\overline\Omega\}=\{y\in\mathbb{R}^d\colon|\langle b_l,y\rangle|\le\lambda(\langle b_l,x\rangle)\ \ \forall\,1\leq l\leq m\}
-\]</span>
-be the fiber of \(\overline\Omega\) over \(x\).</p>
+	\bar\Omega_x=\{y\in\mathbb{R}^d\colon|\langle b_l,y\rangle|\le\lambda(\langle b_l,x\rangle)\ \ \forall\,1\leq l\leq m\}.
+\]</span></p>
 <p>Figure 2 below shows \(\bar\Omega_x\) (left) and the fiber \(\Sigma_x\) of \(\Sigma\) (right). For each \((J,\varepsilon)\) with \(x\in K_{J,\varepsilon}\), the vertex \(y_{J,\varepsilon}(x)\) of \(\bar\Omega_x\) and the simplex \(\Delta_{J,\varepsilon}\) are drawn in the same colour.</p>
 <p><b>Figure 2: the set \(\Sigma_x\)</b></p>
 <div class="figure interactive" id="fig-2"></div>
@@ -441,7 +444,7 @@ Letting \(s\uparrow 1\) along regular values and using monotone convergence give
 \]</span>
 Then \((A\oplus_1A')^{\circ}=A^{\circ}\oplus_\infty A'^{\circ}\) and \((A\oplus_\infty A')^{\circ}=A^{\circ}\oplus_1 A'^{\circ}\). <i>Hanner polytopes</i> form the smallest class of convex bodies that contains the segments \([-a,a]\subset\mathbb{R}\), \(a>0\), and is closed under \(\oplus_1\) and \(\oplus_\infty\).</p>
 <p><b>Plan.</b> The proof above gives \(\frac{4^{d}}{d!}\le\operatorname{Vol}_{2d}(\Sigma)\le\operatorname{Vol}(K)\operatorname{Vol}(K^{\circ})\), where the first inequality follows from <a href="#lemma-5">Lemma 5</a> and the second holds true since \(\Sigma\subseteq K\times K^{\circ}\). Equality in the second inequality forces \(\Sigma_x=K^{\circ}\) for almost every \(x \in K\). <a href="#lemma-5">Lemma 5</a> shows that this is then true for all \(x \in \operatorname{int} K\). <a href="#lemma-5">Lemma 5</a> for \(\widehat K=K\oplus_1[-1,1]\) at points \((\delta x,1-\delta)\), \(\delta\downarrow0\), together with <a href="#lemma-0">Lemma 0</a>, gives that every triple of points of \((\mathbb{R}^d,\|\cdot\|_{K^{\circ}})\) has a metric median (<a href="#lemma-6-medians">Lemma 6</a>), and <a href="#theorem-7-lima-lima-1978-hansen-lima-hansen-lima-1981">Theorem 7</a>, which is due to Hansen and Lima, identifies the norm.</p>
-<p>By <a href="#eq-5">(5)</a>, \(\xi\in\Sigma_x\) iff \(\xi=\sum_i\alpha_ih_i\) for finitely many \(h_i\in K^{\circ}\) with \(\langle h_i,y\rangle=\lambda(\langle h_i,x\rangle)\) for one \(y\) with \(x+iy\in\overline\Omega\) and all \(i\), where \(\alpha_i\ge0\) and \(\sum_i\alpha_i\le1\); by Carathéodory's theorem, \(d+1\) terms suffice. Since \(\lambda\le\lambda(0)\), <a href="#eq-3">(3)</a> gives
+<p>By <a href="#eq-5">(5)</a>, \(\xi\in\Sigma_x\) iff \(\xi=\sum_i\alpha_ih_i\) for finitely many \(h_i\in K^{\circ}\) with \(\langle h_i,y\rangle=\lambda(\langle h_i,x\rangle)\) for one \(y\in\bar\Omega_x\) and all \(i\), where \(\alpha_i\ge0\) and \(\sum_i\alpha_i\le1\); by Carathéodory's theorem, \(d+1\) terms suffice. Since \(\lambda\le\lambda(0)\), <a href="#eq-3">(3)</a> gives
 <span id="eq-17"></span><span class="math">\[
 	x+iy\in\overline\Omega\implies y\in\lambda(0)K .\tag{17}
 \]</span></p>
@@ -452,7 +455,7 @@ Then \((A\oplus_1A')^{\circ}=A^{\circ}\oplus_\infty A'^{\circ}\) and \((A\oplus_
 \operatorname{Vol}_{2d}(\Sigma)\ge\frac{4^{d}}{d!}.
 \]</span>
 If \(\operatorname{Vol}(K)\operatorname{Vol}(K^{\circ})=4^{d}/d!\), then \(\Sigma_x=K^{\circ}\) for <b>every</b> \(x\in\operatorname{int} K\). 
-In particular, for every \(x\in\operatorname{int} K\) and every \(\xi\in\partial K^{\circ}\) there exist \(y\) with \(x+iy\in\overline\Omega\) and \(h_i\in K^{\circ}\) such that \(\xi\in\operatorname{conv}\{h_i\}\) and \(\langle h_i,y\rangle=\lambda(\langle h_i,x\rangle)\) for all \(i\).</p></div>
+In particular, for every \(x\in\operatorname{int} K\) and every \(\xi\in\partial K^{\circ}\) there exist \(y\in\bar\Omega_x\) and \(h_i\in K^{\circ}\) such that \(\xi\in\operatorname{conv}\{h_i\}\) and \(\langle h_i,y\rangle=\lambda(\langle h_i,x\rangle)\) for all \(i\).</p></div>
 <p><i>Proof.</i> Take \(K^{(j)}=K\) and \(t_j=1\) in <a href="#lemma-4">Lemma 4</a>: if \((x_j,\xi_j)\in \Sigma\) and \((x_j,\xi_j)\to(x,\xi)\) with \(x\in\operatorname{int} K\), then \((x,\xi)\in \Sigma\). So \(\Sigma\cap(\operatorname{int} K\times\mathbb{R}^{d})\) is relatively closed in \(\operatorname{int} K\times\mathbb{R}^{d}\), and each fiber \(\Sigma_x\), \(x\in\operatorname{int}K\), is closed; since \(\Sigma_x\subseteq K^{\circ}\), it is compact. The rest of \(\Sigma\) lies in the null set \(\partial K\times K^{\circ}\), so \(\Sigma\) is measurable, and by Fubini \(\operatorname{Vol}_{2d}(\Sigma)=\int_K\operatorname{Vol}(\Sigma_x)\,dx\).</p>
 <p>Now choose \(t_j\in(0,1)\) with \(t_j\to1\), and symmetric polytopes \(K^{(j)}\) with
 <span class="math">\[
