@@ -198,12 +198,8 @@ In fact, equality holds in <a href="#eq-6">(6)</a>, see <a href="#appendix-simpl
 <p>Figure 2 below shows \(\bar\Omega_x\) (left) and the fiber \(\Sigma_x\) of \(\Sigma\) (right). For each \((J,\varepsilon)\) with \(x\in K_{J,\varepsilon}\), the vertex \(y_{J,\varepsilon}(x)\) of \(\bar\Omega_x\) and the simplex \(\Delta_{J,\varepsilon}\) are drawn in the same colour.</p>
 <p><b>Figure 2: the set \(\Sigma_x\)</b></p>
 <div class="figure interactive" id="fig-2"></div>
-<div class="callout callout-lemma" id="lemma-1"><div class="callout-title">Lemma 1</div><p>For almost every \(x \in \operatorname{int} K\), the simplices
-<span class="math">\[
-	\{\Delta_{J,\varepsilon}\colon J\in\mathcal{J},\ \varepsilon\in\{-1,1\}^J,\ x\in K_{J,\varepsilon}\}
-\]</span>
-have pairwise disjoint interiors.</p></div>
-<p><i>Proof.</i> Let \(x\in\operatorname{int}K\cap K_{J,\varepsilon}\), let \(y:=y_{J,\varepsilon}(x)\), and let \(\xi\in\operatorname{int}\Delta_{J,\varepsilon}\). Then there exist \(\alpha_{j}>0\) such that \(\sum\limits_{j\in J}\alpha_{j}\lt 1\) and
+<div class="callout callout-lemma" id="lemma-1"><div class="callout-title">Lemma 1</div><p>The sets \(K_{J,\varepsilon}\times\Delta_{J,\varepsilon}\), \(J\in\mathcal{J}\), \(\varepsilon\in\{-1,1\}^J\), have pairwise null intersections.</p></div>
+<p><i>Proof.</i> Let \((J,\varepsilon)\neq(J',\varepsilon')\). Since two simplices with disjoint interiors intersect in a null set, we may assume that there is some \(\xi\in\operatorname{int}\Delta_{J,\varepsilon}\cap\operatorname{int}\Delta_{J',\varepsilon'}\), and it suffices to show that \(K_{J,\varepsilon}\cap K_{J',\varepsilon'}\) is null. Let \(x\in\operatorname{int}K\cap K_{J,\varepsilon}\) and \(y:=y_{J,\varepsilon}(x)\). Then there exist \(\alpha_{j}>0\) such that \(\sum\limits_{j\in J}\alpha_{j}\lt 1\) and
 <span class="math">\[
 	\xi=\sum_{j\in J}\alpha_j\varepsilon_jb_j.
 \]</span>
@@ -211,10 +207,10 @@ For every \(y'\in\bar\Omega_x\), <a href="#eq-3">(3)</a> gives \(|\langle b_j,y'
 <span class="math">\[
 	\langle \xi,y'\rangle\le\sum_{j\in J}\alpha_j\lambda(\langle b_j,x\rangle)=\langle\xi,y\rangle,
 \]</span>
-with equality if and only if \(\langle b_j,y'\rangle=\varepsilon_j\lambda(\langle b_j,x\rangle)\) for all \(j\in J\), that is, if and only if \(y'=y\). So \(y\) is the unique maximizer of \(\langle\xi,\cdot\rangle\) on \(\bar\Omega_x\), that is, \(\xi\) lies in the interior of the normal cone of \(\bar\Omega_x\) at \(y\). Since the normal cones of \(\bar\Omega_x\) at distinct points have disjoint interiors, it suffices to show that for almost every \(x\in\operatorname{int}K\), the points \(y_{J,\varepsilon}(x)\), over the pairs \((J,\varepsilon)\) with \(x\in K_{J,\varepsilon}\), are distinct.
+with equality if and only if \(\langle b_j,y'\rangle=\varepsilon_j\lambda(\langle b_j,x\rangle)\) for all \(j\in J\), that is, if and only if \(y'=y\). So \(y\) is the unique maximizer of \(\langle\xi,\cdot\rangle\) on \(\bar\Omega_x\), that is, \(\xi\) lies in the interior of the normal cone of \(\bar\Omega_x\) at \(y\). Since the normal cones of \(\bar\Omega_x\) at distinct points have disjoint interiors, \(y_{J,\varepsilon}(x)=y_{J',\varepsilon'}(x)\) whenever \(x\in\operatorname{int}K\cap K_{J,\varepsilon}\cap K_{J',\varepsilon'}\). As \(\partial K\) is null, it suffices to show that this equation holds only on a null set of \(x\in\operatorname{int}K\).
 </p>
 <p>
-For fixed \(J\), since \(\lambda>0\) on \((-1,1)\), the points \(y_{J,\varepsilon}(x)\) are distinct for distinct \(\varepsilon\) when \(x\in\operatorname{int}K\). Thus it suffices to consider pairs \((J,\varepsilon), (J',\varepsilon')\) with \(J\neq J'\); fix such a pair and fix \(k\in J'\setminus J\). If \(x\in K_{J,\varepsilon}\cap K_{J',\varepsilon'}\) and \(y_{J,\varepsilon}(x)=y_{J',\varepsilon'}(x)=:y\), then
+If \(J=J'\), then \(\varepsilon\ne\varepsilon'\), and since \(\lambda>0\) on \((-1,1)\), the equation never holds on \(\operatorname{int}K\). So let \(J\neq J'\), and fix \(k\in J'\setminus J\). If \(x\in\operatorname{int}K\) and \(y_{J,\varepsilon}(x)=y_{J',\varepsilon'}(x)=:y\), then
 <span id="eq-7"></span><span class="math">\[
 	\langle b_k,y\rangle=\varepsilon'_k\lambda(\langle b_k,x\rangle).\tag{7}
 \]</span>
@@ -226,14 +222,10 @@ Since \(b_k\) is not proportional to \(b_j\) for any \(j\neq k\), at least two c
 <span class="math">\[
 	\frac{\partial^{2}G}{\partial q_{j_1}\,\partial q_{j_2}}=-\varepsilon'_k c_{j_1}c_{j_2}\lambda''\Big(\sum_{j\in J}c_jq_j\Big)\neq0
 \]</span>
-everywhere. By the implicit function theorem, both \(\{G=0,\ \nabla G\neq0\}\) and \(\{\partial G/\partial q_{j_1}=0\}\supseteq\{\nabla G=0\}\) are locally \(C^1\) hypersurfaces, so the level set \(\{G=0\}\) has measure zero.
-Since there are finitely many pairs \((J,\varepsilon),(J',\varepsilon')\), this proves the lemma. \(\square\)</p>
-<p>Each \(K_{J,\varepsilon}\) is closed, since \(\overline\Omega\) is closed and \(y_{J,\varepsilon}\) is continuous. By <a href="#eq-6">(6)</a>, <a href="#lemma-1">Lemma 1</a> and Fubini's theorem,
+everywhere. By the implicit function theorem, both \(\{G=0,\ \nabla G\neq0\}\) and \(\{\partial G/\partial q_{j_1}=0\}\supseteq\{\nabla G=0\}\) are locally \(C^1\) hypersurfaces, so the level set \(\{G=0\}\) has measure zero. \(\square\)</p>
+<p>Each \(K_{J,\varepsilon}\) is closed, since \(\overline\Omega\) is closed and \(y_{J,\varepsilon}\) is continuous. By <a href="#eq-6">(6)</a> and <a href="#lemma-1">Lemma 1</a>,
 <span class="math">\[
-	\begin{aligned}
-	\operatorname{Vol}_{2d}(\Sigma)&\ge \int_K\sum_{(J,\varepsilon)\colon\,x\in K_{J,\varepsilon}}\operatorname{Vol}(\Delta_{J,\varepsilon})\,dx\\
-	&=\sum\limits_{J\in \mathcal{J}}\sum\limits_{\varepsilon \in \{ -1,1 \}^{J}}\operatorname{Vol}_{2d}(K_{J,\varepsilon}\times\Delta_{J,\varepsilon}).
-	\end{aligned}
+	\operatorname{Vol}_{2d}(\Sigma)\ge\sum\limits_{J\in \mathcal{J}}\sum\limits_{\varepsilon \in \{ -1,1 \}^{J}}\operatorname{Vol}_{2d}(K_{J,\varepsilon}\times\Delta_{J,\varepsilon}).
 \]</span>
 
 Let \((e_j)_{j\in J}\) be the standard basis of \(\mathbb{R}^J\), and write \(B_J^{-\mathsf T}:=(B_J^{\mathsf T})^{-1}\colon\mathbb{R}^d\to\mathbb{R}^J\). The linear map \((x,h)\mapsto(B_Jx,B_J^{-\mathsf T}h)\) from \(\mathbb{R}^d\times\mathbb{R}^d\) to \(\mathbb{R}^J\times\mathbb{R}^J\) preserves volume. Since \(B_J^{-\mathsf T}b_j=e_j\) for \(j\in J\), it maps \(K_{J,\varepsilon}\times\Delta_{J,\varepsilon}\) onto
