@@ -476,7 +476,7 @@ Since \(K\subseteq K^{(j)}\), we have \(\Sigma^{(j)}_x\subseteq(K^{(j)})^{\circ}
 <span class="math">\[
 	\operatorname{Vol}_{2d}(E_j)\ge\frac{4^{d}}{d!}-\operatorname{Vol}\big(K^{(j)}\setminus K\big)\operatorname{Vol}(K^{\circ})\ge\frac{4^{d}}{d!}-\big(t_j^{-d}-1\big)\operatorname{Vol}(K)\operatorname{Vol}(K^{\circ}).
 \]</span>
-The last term tends to \(0\) as \(j\to\infty\). The set \(E_j\) is contained in \(K\times K^{\circ}\) for all \(j\), so by the reverse Fatou lemma
+The last term tends to \(0\) as \(j\to\infty\), so by the reverse Fatou lemma
 <span class="math">\[
 	\operatorname{Vol}_{2d}\Big(\limsup_{j\to\infty}E_j\Big)\ge\limsup_{j\to\infty}\operatorname{Vol}_{2d}(E_j)\ge\frac{4^{d}}{d!}.
 \]</span>
@@ -631,16 +631,7 @@ so \(w\in W\).</p>
 This proves <a href="#eq-19">(19)</a>, since \(w\in W\). \(\square\)</p>
 <div class="callout callout-theorem" id="theorem-7-lima-lima-1978-hansen-lima-hansen-lima-1981"><div class="callout-title">Theorem 7 (Lima,<sup class="fn"><a href="#fn-lima-1978" id="fnref-lima-1978">6</a></sup> Hansen–Lima<sup class="fn"><a href="#fn-hansen-lima-1981" id="fnref-hansen-lima-1981">7</a></sup>)</div><p>Let \(\|\cdot\|\) be a norm on \(\mathbb{R}^{d}\). Suppose that every triple of points has a median in \((\mathbb{R}^{d},\|\cdot\|)\). Then the unit ball of \(\|\cdot\|\) is a linear image of a Hanner polytope.</p></div>
 <p><i>Proof.</i> A normed space has the <i>3.2 intersection property</i> if any three pairwise intersecting closed balls, of arbitrary radii, have a common point.<sup class="fn"><a href="#fn-hl-sec1" id="fnref-hl-sec1">8</a></sup> Let the closed balls of radii \(\rho_i\) centered at \(x_i\), \(i=1,2,3\), intersect pairwise. Let \(m\) be a median of the centers and \(r_i=\|m-x_i\|\), so \(r_i+r_j=\|x_i-x_j\|\le\rho_i+\rho_j\). If every \(r_i\le\rho_i\), then \(m\) is a common point. Otherwise say \(t:=r_1-\rho_1>0\), so \(r_j+t\le\rho_j\) for \(j=2,3\). The point \(z=m+\frac t{r_1}(x_1-m)\) has \(\|z-x_1\|=\rho_1\) and \(\|z-x_j\|\le t+r_j\le\rho_j\). Hence the space has the 3.2 intersection property, and the conclusion is Corollary 7.4 of Hansen–Lima.<sup class="fn"><a href="#fn-hl-cor74" id="fnref-hl-cor74">9</a></sup> \(\square\)</p>
-<p>Suppose \(\operatorname{Vol}(K)\operatorname{Vol}(K^{\circ})=4^{d}/d!\). By <a href="#lemma-6-medians">Lemma 6</a> and <a href="#theorem-7-lima-lima-1978-hansen-lima-hansen-lima-1981">Theorem 7</a>, the unit ball \(K^{\circ}\) of \(\|\cdot\|_{K^{\circ}}\) is a linear image of a Hanner polytope. Polarity swaps \(\oplus_1\) and \(\oplus_\infty\) and commutes with linear maps up to transpose-inverse, so \(K=(K^{\circ})^{\circ}\) is one too.</p>
-<p>Conversely, for symmetric bodies \(A\subset\mathbb{R}^{k}\), \(A'\subset\mathbb{R}^{l}\), the fiber of \(A\oplus_1A'\) over \(x\in A\) is \((1-\|x\|_A)A'\), so
-<span class="math">\[
-	\operatorname{Vol}(A\oplus_1A')=k\operatorname{Vol}(A)\operatorname{Vol}(A')\int_0^{1}t^{k-1}(1-t)^{l}\,dt=\frac{k!\,l!}{(k+l)!}\operatorname{Vol}(A)\operatorname{Vol}(A')
-\]</span>
-and
-<span class="math">\[
-	\operatorname{Vol}(A\oplus_\infty A')=\operatorname{Vol}(A)\operatorname{Vol}(A').
-\]</span>
-Since polarity swaps the two sums, both satisfy \(\operatorname{Vol}(A\oplus A')\operatorname{Vol}\big((A\oplus A')^{\circ}\big)=\operatorname{Vol}(A)\operatorname{Vol}(A^{\circ})\cdot\operatorname{Vol}(A')\operatorname{Vol}(A'^{\circ})\big/\binom{k+l}{k}\). A segment gives \(4\), so induction gives \(4^{d}/d!\) for every Hanner polytope, and linear maps do not change the volume product. \(\square\)</p>
+<p>By <a href="#lemma-6-medians">Lemma 6</a> and <a href="#theorem-7-lima-lima-1978-hansen-lima-hansen-lima-1981">Theorem 7</a>, if \(\operatorname{Vol}(K)\operatorname{Vol}(K^{\circ})=4^{d}/d!\), then \(K^{\circ}\), and hence \(K\), is a linear image of a Hanner polytope; conversely, induction on the dimension shows that every Hanner polytope has volume product \(4^{d}/d!\). \(\square\)</p>
 <h3 id="appendix-properties-of-the-function">Appendix: Properties of the function \(F\)</h3>
 <p>Define an analytic function \(F\) on the unit disc \(\mathbb{D}\subset \mathbb{C}\) by
 <span class="math">\[
