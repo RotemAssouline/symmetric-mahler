@@ -195,14 +195,10 @@ If \(x\in K_{J,\varepsilon}\) and \(y=y_{J,\varepsilon}(x)\), then \(\langle\var
 \Sigma\supseteq\bigcup\limits_{J\in \mathcal{J}}\bigcup\limits_{\varepsilon \in \{-1,1\}^J}K_{J,\varepsilon}\times\Delta_{J,\varepsilon}.\tag{6}
 \]</span>
 In fact, equality holds in <a href="#eq-6">(6)</a>, see <a href="#appendix-simplex-decomposition">Appendix: \(\Sigma\) as a union of products</a>, but we shall not need this.</p>
-<p>For \(x\in K\) and \(y\in\mathbb{R}^d\), the function \(h\mapsto\langle h,y\rangle-\lambda(\langle h,x\rangle)\) is convex on \(K^{\circ}\), so it suffices to check <a href="#eq-3">(3)</a> at the vertices \(\pm b_l\) of \(K^{\circ}\), and since \(\lambda\) is even,
-<span class="math">\[
-	\bar\Omega_x=\{y\in\mathbb{R}^d\colon|\langle b_l,y\rangle|\le\lambda(\langle b_l,x\rangle)\ \ \forall\,1\leq l\leq m\}.
-\]</span></p>
 <p>Figure 2 below shows \(\bar\Omega_x\) (left) and the fiber \(\Sigma_x\) of \(\Sigma\) (right). For each \((J,\varepsilon)\) with \(x\in K_{J,\varepsilon}\), the vertex \(y_{J,\varepsilon}(x)\) of \(\bar\Omega_x\) and the simplex \(\Delta_{J,\varepsilon}\) are drawn in the same colour.</p>
 <p><b>Figure 2: the set \(\Sigma_x\)</b></p>
 <div class="figure interactive" id="fig-2"></div>
-<div class="callout callout-lemma" id="lemma-1"><div class="callout-title">Lemma 1</div><p>For almost every \(x \in \operatorname{int} K\), the simplices \(\Delta_{J,\varepsilon}\), over the pairs \((J,\varepsilon)\) with \(x\in K_{J,\varepsilon}\), have disjoint interiors.</p></div>
+<div class="callout callout-lemma" id="lemma-1"><div class="callout-title">Lemma 1</div><p>For almost every \(x \in \operatorname{int} K\), the simplices in \(\{\Delta_{J,\varepsilon}\colon J\in\mathcal{J},\ \varepsilon\in\{-1,1\}^J,\ x\in K_{J,\varepsilon}\}\) have pairwise disjoint interiors.</p></div>
 <p><i>Proof.</i> Let \(x\in\operatorname{int}K\cap K_{J,\varepsilon}\), let \(y:=y_{J,\varepsilon}(x)\), and let \(\xi\in\operatorname{int}\Delta_{J,\varepsilon}\). Then there exist \(\alpha_{j}>0\) such that \(\sum\limits_{j\in J}\alpha_{j}\lt 1\) and
 <span class="math">\[
 	\xi=\sum_{j\in J}\alpha_j\varepsilon_jb_j.
@@ -211,7 +207,7 @@ For every \(y'\in\bar\Omega_x\), <a href="#eq-3">(3)</a> gives \(|\langle b_j,y'
 <span class="math">\[
 	\langle \xi,y'\rangle\le\sum_{j\in J}\alpha_j\lambda(\langle b_j,x\rangle)=\langle\xi,y\rangle,
 \]</span>
-with equality if and only if \(\langle b_j,y'\rangle=\varepsilon_j\lambda(\langle b_j,x\rangle)\) for all \(j\in J\), that is, if and only if \(y'=y\). So \(y\) is the unique maximizer of \(\langle\xi,\cdot\rangle\) on \(\bar\Omega_x\), that is, \(\xi\) lies in the interior of the normal cone of \(\bar\Omega_x\) at \(y\). Since the normal cones of \(\bar\Omega_x\) at distinct vertices have disjoint interiors, it suffices to show that for almost every \(x\in\operatorname{int}K\), the points \(y_{J,\varepsilon}(x)\), over the pairs \((J,\varepsilon)\) with \(x\in K_{J,\varepsilon}\), are distinct.
+with equality if and only if \(\langle b_j,y'\rangle=\varepsilon_j\lambda(\langle b_j,x\rangle)\) for all \(j\in J\), that is, if and only if \(y'=y\). So \(y\) is the unique maximizer of \(\langle\xi,\cdot\rangle\) on \(\bar\Omega_x\), that is, \(\xi\) lies in the interior of the normal cone of \(\bar\Omega_x\) at \(y\). Since the normal cones of \(\bar\Omega_x\) at distinct points have disjoint interiors, it suffices to show that for almost every \(x\in\operatorname{int}K\), the points \(y_{J,\varepsilon}(x)\), over the pairs \((J,\varepsilon)\) with \(x\in K_{J,\varepsilon}\), are distinct.
 </p>
 <p>
 For fixed \(J\), since \(\lambda>0\) on \((-1,1)\), the points \(y_{J,\varepsilon}(x)\) are distinct for distinct \(\varepsilon\) when \(x\in\operatorname{int}K\). Thus it suffices to consider pairs \((J,\varepsilon), (J',\varepsilon')\) with \(J\neq J'\); fix such a pair and fix \(k\in J'\setminus J\). If \(x\in K_{J,\varepsilon}\cap K_{J',\varepsilon'}\) and \(y_{J,\varepsilon}(x)=y_{J',\varepsilon'}(x)=:y\), then
@@ -674,7 +670,11 @@ Thus \(F\) maps the upper and the lower semicircle bijectively onto the upper an
 \]</span>
 The ratio at \(\eta=\delta c\) and \(\eta=\delta\) is \(c\,\big(1+O(1/\log\tfrac1\delta)\big)\), uniformly for \(c\in[a,b]\). \(\square\)</p>
 <h3 id="appendix-simplex-decomposition">Appendix: \(\Sigma\) as a union of products</h3>
-<p>We prove that equality holds in <a href="#eq-6">(6)</a>, that is, the inclusion \(\subseteq\); this is not used elsewhere in this note. Fix \(x\in K\). Call \(h\in K^{\circ}\) <i>tight</i> at \(x+iy\), \(y\in \bar\Omega_x\), if \(\langle h,y\rangle=\lambda(\langle h,x\rangle)\), that is, if equality holds in <a href="#eq-3">(3)</a>. Then \(x\in K_{J,\varepsilon}\) if and only if \(\varepsilon_jb_j\) is tight at \(x+iy\) for all \(j\in J\), for some \(y\in\bar\Omega_x\), since \(\lambda\) is even; this \(y\) is then \(y_{J,\varepsilon}(x)\). Fix \(y\in \bar\Omega_x\) and let \[\xi\in\operatorname{conv}\big(\{0\}\cup\{h\in K^{\circ}\colon h\text{ is tight at }x+iy\}\big).\]</p>
+<p>We prove that equality holds in <a href="#eq-6">(6)</a>, that is, the inclusion \(\subseteq\); this is not used elsewhere in this note. Fix \(x\in K\). For \(y\in\mathbb{R}^d\), the function \(h\mapsto\langle h,y\rangle-\lambda(\langle h,x\rangle)\) is convex on \(K^{\circ}=\operatorname{conv}\{\pm b_l\}\), so it suffices to check <a href="#eq-3">(3)</a> at \(h=\pm b_l\), and since \(\lambda\) is even, \(\bar\Omega_x\) is the polytope
+<span class="math">\[
+	\bar\Omega_x=\{y\in\mathbb{R}^d\colon|\langle b_l,y\rangle|\le\lambda(\langle b_l,x\rangle)\ \ \forall\,1\leq l\leq m\}.
+\]</span>
+Call \(h\in K^{\circ}\) <i>tight</i> at \(x+iy\), \(y\in \bar\Omega_x\), if \(\langle h,y\rangle=\lambda(\langle h,x\rangle)\), that is, if equality holds in <a href="#eq-3">(3)</a>. Then \(x\in K_{J,\varepsilon}\) if and only if \(\varepsilon_jb_j\) is tight at \(x+iy\) for all \(j\in J\), for some \(y\in\bar\Omega_x\), since \(\lambda\) is even; this \(y\) is then \(y_{J,\varepsilon}(x)\). Fix \(y\in \bar\Omega_x\) and let \[\xi\in\operatorname{conv}\big(\{0\}\cup\{h\in K^{\circ}\colon h\text{ is tight at }x+iy\}\big).\]</p>
 <p>Let \(h\in K^{\circ}\) be tight at \(x+iy\). Since \(K^{\circ}=\operatorname{conv}\{\pm b_l\}\), \(h\) is a convex combination, with positive weights, of some of the vectors \(\pm b_l\). The function \(\lambda(\langle \cdot,x\rangle)-\langle \cdot,y\rangle\) is concave on \(K^{\circ}\), nonnegative by <a href="#eq-3">(3)</a>, and vanishes at \(h\), so it vanishes at each of these vectors, that is, they are tight at \(x+iy\).
 Consequently,
 <span class="math">\[
