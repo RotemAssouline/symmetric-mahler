@@ -123,7 +123,7 @@ D:=\{ w\in\mathbb{C}\,\,\colon\,\,|\mathrm{Re}(w)|\lt 1,\,\,|\mathrm{Im}(w)|\lt\
 <span class="math">\[
 \lim_{\delta \searrow0}\sup_{a\le c\le b}\Big|\frac{\lambda(1-\delta c)}{\lambda(1-\delta)}-c\Big|=0.
 \]</span></li>
-<li>The conformal map \(F\) of \(\mathbb{D}\) onto \(D\) with \(F(0)=0\) and \(F'(0)\gt0\) extends to a homeomorphism of \(\overline{\mathbb D}\) onto \(\overline D\), and pushes forward the uniform probability measure on \(\partial\mathbb D\) to the law of \(X+i\varepsilon\lambda(X)\), where \(X\) is uniform on \([-1,1]\) and \(\varepsilon\) is an independent uniform sign.</li>
+<li>The conformal map \(F\) of \(\mathbb{D}\) onto \(D\) with \(F(0)=0\) and \(F'(0)\gt0\) extends to a homeomorphism of \(\overline{\mathbb D}\) onto \(\overline D\), and satisfies \(F\big(e^{i\varepsilon\pi(1-t)/2}\big)=t+i\varepsilon\lambda(t)\) for \(t\in[-1,1]\) and \(\varepsilon\in\{-1,1\}\).</li>
 </ol></div>
 <p><b>Figure 1: the domain \(D\)</b></p>
 <div class="figure" id="fig-1"></div>
@@ -249,25 +249,25 @@ Hence, since \(\operatorname{Vol}\big(\operatorname{conv}\left(\{0\}\cup\{\varep
 <span id="eq-9"></span><span class="math">\[
 	B_J(K)\subseteq[-1,1]^J.\tag{9}
 \]</span>
-Define \(\Phi_J:[-1,1]^J\times\{-1,1\}^J\to(\partial D)^J\) by
+Define \(\Phi_J:[-1,1]^J\times\{-1,1\}^J\to(\partial\mathbb D)^J\) by
 <span class="math">\[
-	\Phi_J(q,\varepsilon)_j:=q_{j}+i\varepsilon_{j}\lambda(q_{j}),\qquad j\in J.
+	\Phi_J(q,\varepsilon)_j:=e^{i\varepsilon_j\pi(1-q_j)/2},\qquad j\in J.
 \]</span>
-By the definition of \(y_{J,\varepsilon}\), for \(q\in[-1,1]^J\) and \(\varepsilon\in\{-1,1\}^J\),
-<span id="eq-10"></span><span class="math">\[
-	\Phi_J(q,\varepsilon)=q+iB_Jy_{J,\varepsilon}(B_J^{-1}q).\tag{10}
-\]</span>
-Since \(B_J\) is injective on \(\mathbb{C}^d\), and \(\mathrm{Re}\,z\in K\) for every \(z\in\overline\Omega\), it follows that \(\Phi_J(q,\varepsilon)\in B_J(\overline\Omega)\) if and only if \(q\in B_J(K_{J,\varepsilon})\). Since \(B_J(K_{J,\varepsilon})\subseteq[-1,1]^J\) by <a href="#eq-9">(9)</a>, and \(\Phi_J\) takes values in \((\partial D)^J\), we obtain
-<span id="eq-11"></span><span class="math">\[
-	\Phi_J^{-1}\big(B_J(\partial\Omega)\big)=\bigcup_{\varepsilon\in\{-1,1\}^J}B_J(K_{J,\varepsilon})\times\{\varepsilon\}.\tag{11}
-\]</span>
-View \(F\) as a map on \(\overline{\mathbb D}^J\) by applying it coordinatewise, and for \(J\in\mathcal{J}\) let
+View \(F\) as a map on \(\overline{\mathbb D}^J\) by applying it coordinatewise, and let
 <span class="math">\[
 	A_J:=(\partial\mathbb D)^J\cap F^{-1}\big(B_J(\partial\Omega)\big).
 \]</span>
-Let \(\sigma\) be the uniform probability measure on \(\partial\mathbb D\), and let \(\mu_J:=\sigma^{\otimes J}\) be the Haar probability measure on the torus \((\partial\mathbb D)^J\). By <a href="#lemma-0">Lemma 0</a>, the map \((t,\varepsilon)\mapsto t+i\varepsilon\lambda(t)\) pushes the uniform probability measure on \([-1,1]\times\{-1,1\}\) forward to the image of \(\sigma\) under \(F\). Since \(F\) and \(\Phi_J\) act coordinatewise, \(\Phi_J\) pushes the uniform probability measure \(\nu_J\) on \([-1,1]^J\times\{-1,1\}^J\) forward to the image of \(\mu_J\) under \(F\). Therefore, by <a href="#eq-11">(11)</a>,
+By <a href="#lemma-0">Lemma 0</a> and the definition of \(y_{J,\varepsilon}\), for \(q\in[-1,1]^J\) and \(\varepsilon\in\{-1,1\}^J\),
+<span id="eq-10"></span><span class="math">\[
+	F\big(\Phi_J(q,\varepsilon)\big)=q+iB_Jy_{J,\varepsilon}(B_J^{-1}q).\tag{10}
+\]</span>
+Since \(B_J\) is injective on \(\mathbb{C}^d\), and \(\mathrm{Re}\,z\in K\) for every \(z\in\overline\Omega\), it follows that \(F(\Phi_J(q,\varepsilon))\in B_J(\overline\Omega)\) if and only if \(q\in B_J(K_{J,\varepsilon})\). Since \(B_J(K_{J,\varepsilon})\subseteq[-1,1]^J\) by <a href="#eq-9">(9)</a>, and \(F\circ\Phi_J\) takes values in \((\partial D)^J\), we obtain
+<span id="eq-11"></span><span class="math">\[
+	\Phi_J^{-1}(A_J)=\bigcup_{\varepsilon\in\{-1,1\}^J}B_J(K_{J,\varepsilon})\times\{\varepsilon\}.\tag{11}
+\]</span>
+Let \(\mu_J\) be the Haar probability measure on the torus \((\partial\mathbb D)^J\). The map \(\Phi_J\) pushes the uniform probability measure \(\nu_J\) on \([-1,1]^J\times\{-1,1\}^J\) forward to \(\mu_J\). Therefore, by <a href="#eq-11">(11)</a>,
 <span class="math">\[
-	\sum_{\varepsilon\in\{-1,1\}^J}\operatorname{Vol}\big(B_J(K_{J,\varepsilon})\big)=4^d\,\nu_J\big(\Phi_J^{-1}(B_J(\partial\Omega))\big)=4^d\mu_J\big(F^{-1}(B_J(\partial\Omega))\big)=4^d\mu_J(A_J),
+	\sum_{\varepsilon\in\{-1,1\}^J}\operatorname{Vol}\big(B_J(K_{J,\varepsilon})\big)=4^d\,\nu_J\big(\Phi_J^{-1}(A_J)\big)=4^d\mu_J(A_J),
 \]</span>
 and <a href="#eq-8">(8)</a> becomes
 <span class="math">\[
@@ -661,7 +661,6 @@ Hence \(\mathrm{Re}\,F(e^{i\theta})=1-2\theta/\pi=:t\), and, by \(\log\cot\frac{
 \]</span>
 Thus \(F\) maps the upper and the lower semicircle bijectively onto the upper and the lower half of \(\partial D\), and \(F|_{\partial\mathbb D}\) is a homeomorphism onto the Jordan curve \(\partial D\), which it traverses counterclockwise.</p>
 <p>Let \(w\in\mathbb{C}\setminus\partial D\). As \(r\uparrow1\), the curves \(\theta\mapsto F(re^{i\theta})\) converge uniformly to \(\theta\mapsto F(e^{i\theta})\), so for \(r\) close to \(1\) their winding number around \(w\) is \(1\) if \(w\in D\) and \(0\) if \(w\notin\overline D\). By the argument principle, \(F\) takes every value in \(D\) exactly once in \(\mathbb D\) and no value outside \(\overline D\). Since \(F(\mathbb D)\) is open, it does not meet \(\partial D\). Hence \(F\) is a biholomorphism of \(\mathbb D\) onto \(D\), and, with the boundary correspondence, a continuous bijection of the compact set \(\overline{\mathbb D}\) onto \(\overline D\), hence a homeomorphism.</p>
-<p>Let \(\zeta\) be uniform on \(\partial\mathbb D\), and write \(\zeta=e^{i\varepsilon\theta}\) with \(\varepsilon\in\{-1,1\}\) and \(\theta\in(0,\pi)\), which is possible almost surely. Then \(\varepsilon\) is a uniform sign, and \(\theta\) is uniform on \((0,\pi)\) and independent of \(\varepsilon\). So \(X:=1-2\theta/\pi\) is uniform on \([-1,1]\) and independent of \(\varepsilon\), and \(F(\zeta)=X+i\varepsilon\lambda(X)\).</p>
 <p>It remains to prove the endpoint asymptotics. Substituting \(s=1-\tau\) in the definition of \(\lambda\) and using \(\operatorname{arctanh}(\cos u)=\log\cot\frac u2\),
 <span class="math">\[
 	\lambda(1-\eta)=\frac2\pi\int_0^{\eta}\log\cot\frac{\pi\tau}{4}\,d\tau=\frac2\pi\,\eta\Big(\log\frac1\eta+1+\log\frac4\pi\Big)+O(\eta^{3}).
@@ -1076,7 +1075,7 @@ function setJ(JJ){ J=JJ; M=inv2(B,J[0],J[1]); others=B.map((r,k)=>k).filter(k=>k
   rasterize(); readout(); draw(); }
 
 function readout(){
-  setHTML(q('leg'), EPS.map(([e1,e2],n)=>'<span><i class="f3-sw" style="background:var('+ECOL[n]+')"></i>$\\varepsilon=('+sgn(e1)+','+sgn(e2)+')$</span>').join('')+'<span class="f3-row">grey (top left): $\\#\\{\\varepsilon\\colon x\\in K_{J,\\varepsilon}\\}$ = '+[0,2,4].map(n=>'<i class="f3-sw" style="background:'+rgba(rgb(css('--fg')),0.12*n)+';border:1px solid '+css('--rule')+'"></i>'+n+'&nbsp;&nbsp;').join('')+'</span><span class="f3-row">coloured: $\\Phi_J(\\cdot,\\varepsilon)^{-1}(B_J(\\partial\\Omega))$ (bottom left), $A_J$ (bottom right)</span><span class="f3-row">dashed: $B_J^{-1}([-1,1]^J)$ (top left), $B_J(K)$ (bottom left), $F^{-1}(\\Phi_J(B_J(K)\\times\\{\\varepsilon\\}))$ (bottom right)</span>'+'<span class="f3-row">top right: $\\bar\\Omega_x$ (shaded), the lines $\\langle b_j,y\\rangle=\\pm\\lambda(\\langle b_j,x\\rangle)$, $j\\in J$ (dashed), and the points $y$ with $\\langle b_j,y\\rangle=\\varepsilon_j\\lambda(\\langle b_j,x\\rangle)$, $j\\in J$, filled if $x\\in K_{J,\\varepsilon}$</span>'); }
+  setHTML(q('leg'), EPS.map(([e1,e2],n)=>'<span><i class="f3-sw" style="background:var('+ECOL[n]+')"></i>$\\varepsilon=('+sgn(e1)+','+sgn(e2)+')$</span>').join('')+'<span class="f3-row">grey (top left): $\\#\\{\\varepsilon\\colon x\\in K_{J,\\varepsilon}\\}$ = '+[0,2,4].map(n=>'<i class="f3-sw" style="background:'+rgba(rgb(css('--fg')),0.12*n)+';border:1px solid '+css('--rule')+'"></i>'+n+'&nbsp;&nbsp;').join('')+'</span><span class="f3-row">coloured: $\\Phi_J(\\cdot,\\varepsilon)^{-1}(A_J)$ (bottom left), $A_J$ (bottom right)</span><span class="f3-row">dashed: $B_J^{-1}([-1,1]^J)$ (top left), $B_J(K)$ (bottom left), $F^{-1}(\\Phi_J(B_J(K)\\times\\{\\varepsilon\\}))$ (bottom right)</span>'+'<span class="f3-row">top right: $\\bar\\Omega_x$ (shaded), the lines $\\langle b_j,y\\rangle=\\pm\\lambda(\\langle b_j,x\\rangle)$, $j\\in J$ (dashed), and the points $y$ with $\\langle b_j,y\\rangle=\\varepsilon_j\\lambda(\\langle b_j,x\\rangle)$, $j\\in J$, filled if $x\\in K_{J,\\varepsilon}$</span>'); }
 
 // ---------- panels: logical size 360 x 360; rasters cached per (body, J, theme) ----------
 const SZ=360;
