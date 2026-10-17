@@ -305,20 +305,19 @@ on \(\mathbb{C}^m\) and \(\mathbb{C}^J\), respectively, so that \(\pi_J(\mathbb 
 <span id="eq-12"></span><span class="math">\[
 	\mathbb B^{2k}_m=p_k^{-1}(\mathbb B_m).\tag{12}
 \]</span></p>
-<p>For \(J\in\mathcal{J}\) and \(k\ge1\), the form \(p_k^*dV_J\) is a nonnegative multiple of \(dV_J\). Let \(\mu_{k,J}\) denote the measure on \(\overline{\mathbb D}^J\) induced by the \(2d\)-form
+<p>For \(J\in\mathcal{J}\) and \(k\ge1\), the form \(p_k^*dV_J\) is a nonnegative multiple of \(dV_J\). Let \(\mu_{k,J}\) be the pushforward of the uniform probability measure on \(\mathbb B^2_J\) under
 <span class="math">\[
-	\frac{d!}{(\pi k)^d}\,\mathbf 1_{\mathbb B^{2k}_J}\,p_k^*dV_J.
-\]</span>
-As the proof of the following lemma shows, \(\mu_{k,J}\) is the law of the point obtained from a uniformly distributed point of \(\mathbb B^2_J\) by replacing the modulus of each coordinate with its \(k\)-th root.</p>
+	(v_j)_{j\in J}\mapsto\big(|v_j|^{1/k-1}v_j\big)_{j\in J}.
+\]</span></p>
 <div class="callout callout-lemma" id="lemma-2"><div class="callout-title">Lemma 2</div>
-For every \(J\in\mathcal{J}\) and \(k\ge1\), \(\mu_{k,J}\) is a probability measure, and \(\mu_{k,J}\to\mu_J\) weakly as \(k\to\infty\).</div>
+For every \(J\in\mathcal{J}\) and \(k\ge1\), \(\mu_{k,J}\) is the measure corresponding to the \(2d\)-form \(\frac{d!}{(\pi k)^d}\,\mathbf 1_{\mathbb B^{2k}_J}\,p_k^*dV_J\), and \(\mu_{k,J}\to\mu_J\) weakly as \(k\to\infty\).</div>
 <p><i>Proof.</i>
-Pick a uniformly distributed point of \(\mathbb B^2_J\) and write it as \((\rho_j\omega_j)_{j\in J}\) with \(\rho_j>0\) and \(\omega_j\in\partial\mathbb D\), which is possible almost surely. Since \(\mathbb B^2_J\) and \(dV_J\) are invariant under the rotations \(v\mapsto(\zeta_jv_j)_{j\in J}\), \(\zeta\in(\partial\mathbb D)^J\), the law of \(\omega\) is a rotation-invariant probability measure on \((\partial\mathbb D)^J\), namely \(\mu_J\). We claim that \(\mu_{k,J}\) is the law of \(\rho^{1/k}\omega:=(\rho_j^{1/k}\omega_j)_{j\in J}\). This gives the lemma: \(\mu_{k,J}\) is then a probability measure, and since \(\rho^{1/k}\omega\to\omega\) almost surely as \(k\to\infty\), the laws converge weakly.</p>
-<p>To prove the claim, note that \((\rho_j\omega_j)_{j\in J}\mapsto\rho^{1/k}\omega\) is a bijection between the points of \(\mathbb B^2_J\) with nonzero coordinates and the points of \(\mathbb B^{2k}_J\) with nonzero coordinates, and that the points with a zero coordinate form a null set. In polar coordinates \(dV_J=(2\pi)^d\prod_j\rho_j\,d\rho\otimes\mu_J\), and the substitution \(v_j=\rho_j^{1/k}\omega_j\) gives
+Pick a uniformly distributed point of \(\mathbb B^2_J\) and write it as \((\rho_j\omega_j)_{j\in J}\) with \(\rho_j>0\) and \(\omega_j\in\partial\mathbb D\), which is possible almost surely. Since \(\mathbb B^2_J\) and \(dV_J\) are invariant under the rotations \(v\mapsto(\zeta_jv_j)_{j\in J}\), \(\zeta\in(\partial\mathbb D)^J\), the law of \(\omega\) is a rotation-invariant probability measure on \((\partial\mathbb D)^J\), namely \(\mu_J\). By definition, \(\mu_{k,J}\) is the law of \(\rho^{1/k}\omega:=(\rho_j^{1/k}\omega_j)_{j\in J}\), and since \(\rho^{1/k}\omega\to\omega\) almost surely as \(k\to\infty\), \(\mu_{k,J}\to\mu_J\) weakly.</p>
+<p>The map \((\rho_j\omega_j)_{j\in J}\mapsto\rho^{1/k}\omega\) is a bijection between the points of \(\mathbb B^2_J\) with nonzero coordinates and the points of \(\mathbb B^{2k}_J\) with nonzero coordinates, and the points with a zero coordinate form a null set. In polar coordinates \(dV_J=(2\pi)^d\prod_j\rho_j\,d\rho\otimes\mu_J\), and the substitution \(v_j=\rho_j^{1/k}\omega_j\) gives
 <span class="math">\[
 	p_k^*dV_J(v)=k^d(2\pi)^d\prod_j\rho_j\,d\rho\otimes\mu_J=k^d\,dV_J.
 \]</span>
-Since the volume of \(\mathbb B^2_J\) is \(\pi^d/d!\), the law of \(\rho^{1/k}\omega\) is the measure induced by \(\frac{d!}{(\pi k)^d}\,\mathbf 1_{\mathbb B^{2k}_J}\,p_k^*dV_J\), that is, \(\mu_{k,J}\). \(\square\)</p>
+Since the volume of \(\mathbb B^2_J\) is \(\pi^d/d!\), \(\mu_{k,J}\) is the measure corresponding to \(\frac{d!}{(\pi k)^d}\,\mathbf 1_{\mathbb B^{2k}_J}\,p_k^*dV_J\). \(\square\)</p>
 <p>Let
 <span class="math">\[
 	U_J:=F^{-1}\big(B_J(\Omega)\big)\subseteq\mathbb D^J.
@@ -361,7 +360,7 @@ Since \(F^{-1}\circ B\) is a biholomorphism of \(\Omega_k\) onto \(M_k\) and \(d
 <span id="eq-15"></span><span class="math">\[
 	\int_{M_k}\sigma_k=\frac1{d!}\int_{\Omega_k}(dd^c|f_k|^2)^d.\tag{15}
 \]</span>
-Moreover, for \(J\in{[m]\choose d}\), the pullback of \((\pi_J|_{M_k})^*p_k^*dV_J\) to \(\Omega_k\) is \((\pi_J\circ f_k)^*dV_J=|\det(Df_k)_J|^2\,dV\) by <a href="#eq-A4">(A4)</a>, where \((Df_k)_J\) is the \(d\times d\) minor of \(Df_k\) with rows in \(J\); by <a href="#eq-14">(14)</a> and the fact that \(p_k\circ F^{-1}\) acts coordinatewise, \((Df_k)_J\) is \(B_J\) multiplied on the left by a diagonal matrix, so this term vanishes for \(J\notin\mathcal{J}\). Since \(p_k^*dV_J\) is a nonnegative multiple of \(dV_J\),
+Moreover, for \(J\in{[m]\choose d}\), the pullback of \((\pi_J|_{M_k})^*p_k^*dV_J\) to \(\Omega_k\) is \((\pi_J\circ f_k)^*dV_J=|\det(Df_k)_J|^2\,dV\) by <a href="#eq-A4">(A4)</a>, where \((Df_k)_J\) is the \(d\times d\) minor of \(Df_k\) with rows in \(J\); by <a href="#eq-14">(14)</a> and the fact that \(p_k\circ F^{-1}\) acts coordinatewise, \((Df_k)_J\) is \(B_J\) multiplied on the left by a diagonal matrix, so this term vanishes for \(J\notin\mathcal{J}\). Since \(p_k^*dV_J\) is a nonnegative multiple of \(dV_J\), <a href="#lemma-2">Lemma 2</a> gives
 <span class="math">\[
 	\int_{M_k}\sigma_k=\sum_{J\in\mathcal{J}}\int_{M_k}(\pi_J|_{M_k})^*p_k^*dV_J\le\sum_{J\in\mathcal{J}}\int_{U_J\cap \mathbb B^{2k}_J}p_k^*dV_J=\frac{(\pi k)^{d}}{d!}\sum_{J\in\mathcal{J}}\mu_{k,J}(U_J).
 \]</span>
