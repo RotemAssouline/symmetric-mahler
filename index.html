@@ -257,19 +257,15 @@ By the definition of \(y_{J,\varepsilon}\), for \(q\in[-1,1]^J\) and \(\varepsil
 <span id="eq-10"></span><span class="math">\[
 	\Phi_J(q,\varepsilon)=q+iB_Jy_{J,\varepsilon}(B_J^{-1}q).\tag{10}
 \]</span>
-Since \(B_J\) is injective on \(\mathbb{C}^d\), and \(\mathrm{Re}\,z\in K\) for every \(z\in\overline\Omega\), it follows that \(\Phi_J(q,\varepsilon)\in B_J(\overline\Omega)\) if and only if \(B_J^{-1}q\in K_{J,\varepsilon}\). Together with <a href="#eq-9">(9)</a>, this gives
-<span class="math">\[
-	B_J(K_{J,\varepsilon})=\{q\in[-1,1]^J\,\,\colon\,\,\Phi_J(q,\varepsilon)\in B_J(\overline\Omega)\},\qquad\varepsilon\in\{-1,1\}^J.
-\]</span>
-Taking volumes in the last identity and summing over \(\varepsilon\) gives
+Since \(B_J\) is injective on \(\mathbb{C}^d\), and \(\mathrm{Re}\,z\in K\) for every \(z\in\overline\Omega\), it follows that \(\Phi_J(q,\varepsilon)\in B_J(\overline\Omega)\) if and only if \(B_J^{-1}q\in K_{J,\varepsilon}\). Together with <a href="#eq-9">(9)</a>, this gives \(B_J(K_{J,\varepsilon})=\{q\in[-1,1]^J\colon\Phi_J(q,\varepsilon)\in B_J(\overline\Omega)\}\) for each \(\varepsilon\), so
 <span id="eq-11"></span><span class="math">\[
-	\sum_{\varepsilon\in\{-1,1\}^J}\operatorname{Vol}\big(B_J(K_{J,\varepsilon})\big)=\int_{[-1,1]^J}\sum_{\varepsilon\in\{-1,1\}^J}\mathbf 1_{B_J(\overline\Omega)}\big(\Phi_J(q,\varepsilon)\big)\,dq.\tag{11}
+	\sum_{\varepsilon\in\{-1,1\}^J}\operatorname{Vol}\big(B_J(K_{J,\varepsilon})\big)=\sum_{\varepsilon\in\{-1,1\}^J}\operatorname{Vol}\big(\{q\in[-1,1]^J\colon\Phi_J(q,\varepsilon)\in B_J(\overline\Omega)\}\big).\tag{11}
 \]</span>
 View \(F\) as a map on \(\overline{\mathbb D}^J\) by applying it coordinatewise, and for \(J\in\mathcal{J}\) let
 <span class="math">\[
 	A_J:=F^{-1}\big(B_J(\overline\Omega)\big)\subseteq\overline{\mathbb D}^J.
 \]</span>
-The set \(A_J\) is closed, since \(B_J(\overline\Omega)\) is closed and \(F\) is continuous. Let \(\sigma\) be the uniform probability measure on \(\partial\mathbb D\), and let \(\mu_J:=\sigma^{\otimes J}\) be the Haar probability measure on the torus \((\partial\mathbb D)^J\). By <a href="#lemma-0">Lemma 0</a>, the map \((t,\varepsilon)\mapsto t+i\varepsilon\lambda(t)\) pushes the uniform probability measure on \([-1,1]\times\{-1,1\}\) forward to the image of \(\sigma\) under \(F\). Since \(F\) and \(\Phi_J\) act coordinatewise, \(\Phi_J\) pushes the uniform probability measure on \([-1,1]^J\times\{-1,1\}^J\) forward to the image of \(\mu_J\) under \(F\). Therefore the right-hand side of <a href="#eq-11">(11)</a> equals \(4^d\mu_J\big(F^{-1}(B_J(\overline\Omega))\big)=4^d\mu_J(A_J)\), and <a href="#eq-8">(8)</a> becomes
+The set \(A_J\) is closed, since \(B_J(\overline\Omega)\) is closed and \(F\) is continuous. Let \(\sigma\) be the uniform probability measure on \(\partial\mathbb D\), and let \(\mu_J:=\sigma^{\otimes J}\) be the Haar probability measure on the torus \((\partial\mathbb D)^J\). By <a href="#lemma-0">Lemma 0</a>, the map \((t,\varepsilon)\mapsto t+i\varepsilon\lambda(t)\) pushes the uniform probability measure on \([-1,1]\times\{-1,1\}\) forward to the image of \(\sigma\) under \(F\). Since \(F\) and \(\Phi_J\) act coordinatewise, \(\Phi_J\) pushes the uniform probability measure on \([-1,1]^J\times\{-1,1\}^J\) forward to the image of \(\mu_J\) under \(F\). The right-hand side of <a href="#eq-11">(11)</a> is \(4^d\) times the uniform probability measure of \(\Phi_J^{-1}\big(B_J(\overline\Omega)\big)\subseteq[-1,1]^J\times\{-1,1\}^J\), so it equals \(4^d\mu_J\big(F^{-1}(B_J(\overline\Omega))\big)=4^d\mu_J(A_J)\), and <a href="#eq-8">(8)</a> becomes
 <span class="math">\[
 	\operatorname{Vol}_{2d}(\Sigma)\ge\frac{4^d}{d!}\sum_{J\in\mathcal{J}}\mu_J(A_J).
 \]</span>
