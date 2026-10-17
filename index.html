@@ -370,17 +370,17 @@ Hence <a href="#eq-13">(13)</a> will follow once we prove that
 	\int_{M_{k}}\sigma_{k}\geq \frac{(\pi k)^{d}}{d!}\qquad\text{for all }k \ge 1.\tag{16}
 \]</span></p>
 <h3 id="a-lower-bound-on-the-volume-of-the-image-of-a-holomorphic-function">A lower bound on the volume of the image of a holomorphic function</h3>
-<p>By <a href="#eq-15">(15)</a>, and since \(\Omega_k=\{z\in\Omega\colon|f_k(z)|\lt1\}\) by definition, <a href="#eq-16">(16)</a> follows by applying the following key lemma to \(f=f_k\) and \(U=\Omega\):</p>
-<div class="callout callout-lemma" id="lemma-3"><div class="callout-title">Lemma 3</div><p>Let \(d\geq 1\) and \(m\geq d\). Let \(U\subset \mathbb{C}^{d}\) be an open set containing the origin, and let \(f:U\to \mathbb{C}^{m}\) be a holomorphic function satisfying</p>
-<ol><li>\(f^{-1}(0)=\{ 0 \}\)</li><li>\(|f(z)|\le C|z|^{k}\) on a neighbourhood of \(0\), for some integer \(k\geq 1\) and some \(C>0\),</li><li>for every \(s \lt 1\) the sublevel set \(U_{s}:=\{ |f|\lt s \}\) is relatively compact in \(U\).</li></ol>
+<p>By <a href="#eq-15">(15)</a>, and since \(\Omega_k=\{z\in\Omega\colon|f_k(z)|\lt1\}\) by definition, <a href="#eq-16">(16)</a> follows by applying the following key lemma to \(f=f_k\):</p>
+<div class="callout callout-lemma" id="lemma-3"><div class="callout-title">Lemma 3</div><p>Let \(d\geq 1\) and \(m\geq d\). Let \(\Omega\subset \mathbb{C}^{d}\) be an open set containing the origin, and let \(f:\Omega\to \mathbb{C}^{m}\) be a holomorphic function satisfying</p>
+<ol><li>\(f^{-1}(0)=\{ 0 \}\)</li><li>\(|f(z)|\le C|z|^{k}\) on a neighbourhood of \(0\), for some integer \(k\geq 1\) and some \(C>0\),</li><li>for every \(s \lt 1\) the sublevel set \(\Omega(s):=\{ |f|\lt s \}\) is relatively compact in \(\Omega\).</li></ol>
 <p>Then
 <span class="math">\[
-\int_{U_1}(dd^{c}|f|^{2})^{d}\geq(\pi k)^{d}.
+\int_{\Omega(1)}(dd^{c}|f|^{2})^{d}\geq(\pi k)^{d}.
 \]</span></p></div>
-<p>Geometrically, \((dd^c|w|^2)^d/d!\) restricts to the volume form of every complex \(d\)-dimensional submanifold of \(\mathbb{C}^m\): the form \(dd^c|w|^2\) is invariant under unitary maps, and in unitary coordinates in which the tangent space at a given point is \(\mathbb{C}^d\times\{0\}\), <a href="#eq-A5">(A5)</a> reduces at that point to the volume form of \(\mathbb{C}^d\). So \(\int_{M_k}\sigma_k\) is the \(2d\)-dimensional volume of \(p_k(M_k)\), counted with multiplicity, and <a href="#lemma-3">Lemma 3</a> says that the volume of \(f(U_1)\), counted with multiplicity, is at least \((\pi k)^d/d!\), the volume of the ball of radius \(\sqrt k\) in \(\mathbb{C}^d\). This is not used in the proof.</p>
+<p>Geometrically, \((dd^c|w|^2)^d/d!\) restricts to the volume form of every complex \(d\)-dimensional submanifold of \(\mathbb{C}^m\): the form \(dd^c|w|^2\) is invariant under unitary maps, and in unitary coordinates in which the tangent space at a given point is \(\mathbb{C}^d\times\{0\}\), <a href="#eq-A5">(A5)</a> reduces at that point to the volume form of \(\mathbb{C}^d\). So \(\int_{M_k}\sigma_k\) is the \(2d\)-dimensional volume of \(p_k(M_k)\), counted with multiplicity, and <a href="#lemma-3">Lemma 3</a> says that the volume of \(f(\Omega(1))\), counted with multiplicity, is at least \((\pi k)^d/d!\), the volume of the ball of radius \(\sqrt k\) in \(\mathbb{C}^d\). This is not used in the proof.</p>
 <p>Let us verify that the hypotheses of <a href="#lemma-3">Lemma 3</a> are satisfied with \(f=f_k\), defined in <a href="#eq-14">(14)</a>. 
 The set \(\Omega\) is open and contains \(0\), and \(f_k\) is holomorphic on \(\Omega\) because \(B(\Omega)\subseteq D^m\) and \(F^{-1}\) acts coordinatewise. 
-In the notation of the lemma, we have \(U_1=\{ |f_{k}|\lt 1 \}=\Omega_k\).
+In the notation of the lemma, we have \(\Omega(1)=\{ |f_{k}|\lt 1 \}=\Omega_k\).
 Since \(F(0)=0\) and \(F\) is injective, \(f_k(z)=0\) if and only if \(Bz=0\), that is, \(z=0\), because \(b_1,\dots,b_m\) span \(\mathbb{R}^d\).</p>
 <p>Since \(F^{-1}\) is holomorphic near \(0\) and \(F^{-1}(0)=0\), there are \(\delta>0\) and \(C>0\) with \(|F^{-1}(w)|\le C|w|\) for \(|w|\lt\delta\). 
 Since \(|f_k(z)|^{2}=\sum_{j}\big|F^{-1}(\langle b_j,z\rangle)\big|^{2k}\), for \(z\) near \(0\) we have
@@ -388,18 +388,18 @@ Since \(|f_k(z)|^{2}=\sum_{j}\big|F^{-1}(\langle b_j,z\rangle)\big|^{2k}\), for 
 	|f_k(z)|\le\sqrt m\,C^{k}\max_j|\langle b_j,z\rangle|^{k}.
 \]</span>
 Since \(B\) is injective, \(\max_j|\langle b_j,\cdot\rangle|\) is a norm on \(\mathbb{C}^d\), so \(|f_k(z)|\le C'|z|^{k}\) for some \(C'>0\) near the origin.</p>
-<p>Let \(0\lt s \lt1\). For \(z\in U_s\) and every \(j\), 
+<p>Let \(0\lt s \lt1\). For \(z\in \Omega(s)\) and every \(j\), 
 <span class="math">\[|F^{-1}(\langle b_j,z\rangle)|^{k}\le|f_k(z)|\lt s,\]</span>
 so \(\langle b_j,z\rangle\in F(s^{1/k}\overline{\mathbb D})\). Hence
 <span class="math">\[
-	\overline{U_s}\subseteq\{z\in\mathbb{C}^d\colon\langle b_j,z\rangle\in F(s^{1/k}\overline{\mathbb D})\ \ \forall\,1\le j\le m\}=B^{-1}\big(F(s^{1/k}\overline{\mathbb D})^{m}\big).
+	\overline{\Omega(s)}\subseteq\{z\in\mathbb{C}^d\colon\langle b_j,z\rangle\in F(s^{1/k}\overline{\mathbb D})\ \ \forall\,1\le j\le m\}=B^{-1}\big(F(s^{1/k}\overline{\mathbb D})^{m}\big).
 \]</span>
-The set \(F(s^{1/k}\overline{\mathbb D})\) is a compact subset of \(D\) and \(B\) is injective, so the right-hand side is a compact subset of \(\Omega\). Thus \(U_s\) is relatively compact in \(\Omega\).</p>
+The set \(F(s^{1/k}\overline{\mathbb D})\) is a compact subset of \(D\) and \(B\) is injective, so the right-hand side is a compact subset of \(\Omega\). Thus \(\Omega(s)\) is relatively compact in \(\Omega\).</p>
 <p>The hypotheses of <a href="#lemma-3">Lemma 3</a> are satisfied; hence the theorem (modulo the equality cases) would follow once we prove <a href="#lemma-3">Lemma 3</a>.</p>
 <p><i>Proof of <a href="#lemma-3">Lemma 3</a>.</i> (The notation and standard facts used here are recalled in <a href="#appendix-complex-geometry">Appendix: Complex-geometric background for Lemma 3</a>.)
 Let \(s \in(0,1)\) be a regular value of \(|f|\). By Stokes' theorem,
 <span class="math">\[
-	\int_{U_{s}}(dd^{c}|f|^{2})^{d}=\int_{\partial U_{s}}d^{c}|f|^{2}\wedge(dd^{c}|f|^{2})^{d-1}.
+	\int_{\Omega(s)}(dd^{c}|f|^{2})^{d}=\int_{\partial\Omega(s)}d^{c}|f|^{2}\wedge(dd^{c}|f|^{2})^{d-1}.
 \]</span>
 Write
 <span class="math">\[
@@ -409,33 +409,33 @@ and note that
 <span class="math">\[
 	d\gamma=dd^{c}\log|f|^{2}=|f|^{-2}dd^{c}|f|^{2}-|f|^{-4}d|f|^{2}\wedge d^{c}|f|^{2}.
 \]</span>
-Since \(|f|\equiv s\) on \(\partial U_{s}\), by <a href="#eq-A7">(A7)</a> with \(\varrho=|f|^2\) we have
+Since \(|f|\equiv s\) on \(\partial\Omega(s)\), by <a href="#eq-A7">(A7)</a> with \(\varrho=|f|^2\) we have
 <span class="math">\[
-	\gamma=s^{-2}d^{c}|f|^{2}\qquad \text{and}\qquad d\gamma=s^{-2}dd^{c}|f|^{2}\qquad \text{on $\partial U_s$.}
+	\gamma=s^{-2}d^{c}|f|^{2}\qquad \text{and}\qquad d\gamma=s^{-2}dd^{c}|f|^{2}\qquad \text{on $\partial\Omega(s)$.}
 \]</span>
 Hence
 <span class="math">\[
-	\int_{U_{s}}(dd^{c}|f|^{2})^{d}=s^{2d}\int_{\partial U_{s}}\gamma \wedge(d\gamma)^{d-1}.
+	\int_{\Omega(s)}(dd^{c}|f|^{2})^{d}=s^{2d}\int_{\partial\Omega(s)}\gamma \wedge(d\gamma)^{d-1}.
 \]</span>
- The function \(\log|f|^{2}\) is smooth and plurisubharmonic on \(U_{s}\setminus\{0\}\) by the first assumption. </p>
+ The function \(\log|f|^{2}\) is smooth and plurisubharmonic on \(\Omega(s)\setminus\{0\}\) by the first assumption. </p>
 <p>For \(0 \lt \eta\lt 1\) set
 <span class="math">\[
-	g:=\log\frac{|f|^{2}}{s^{2}}\qquad \text{and}\qquad h:=(1-\eta)k\log\frac{|z|^{2}}{\max_{\overline{U_{s}}}|z|^{2}}-2 .
+	g:=\log\frac{|f|^{2}}{s^{2}}\qquad \text{and}\qquad h:=(1-\eta)k\log\frac{|z|^{2}}{\max_{\overline{\Omega(s)}}|z|^{2}}-2 .
 \]</span>
-On \(\overline{U_s}\) we have \(h\le-2\), while \(g=0\) on \(\partial U_s\). Hence \(g>h+1\) near \(\partial U_s\).</p>
+On \(\overline{\Omega(s)}\) we have \(h\le-2\), while \(g=0\) on \(\partial\Omega(s)\). Hence \(g>h+1\) near \(\partial\Omega(s)\).</p>
 <p>By the second assumption \(g\le k\log|z|^{2}+O(1)\) near the origin, so
 <span class="math">\[
 h-g\ge-\eta k\log|z|^{2}+O(1)\to\infty \qquad \text{as $z\to 0$.}
 \]</span>
-Let \(r>0\) be small enough that \(r\overline{\mathbb B}_d\subset U_{s}\) and \(h>g+1\) near \(\partial(r\mathbb B_d)\), where \(\mathbb B_d\) is the open unit ball of \(\mathbb{C}^d\).
-Let \(\widetilde{\max}:\mathbb{R}^{2}\to\mathbb{R}\) be smooth, convex and nondecreasing in each variable, with \(\widetilde{\max}(x,y)=\max(x,y)\) whenever \(|x-y|\geq 1\). Then the function \(\widetilde{\max}(g,h)\) is smooth and plurisubharmonic on \(U_{s}\setminus r\overline{\mathbb B}_d\), and equals \(g\) near \(\partial U_{s}\) and \(h\) near \(\partial(r\mathbb B_d)\).
-Hence, since \(d^{c}g=\gamma\) and \((dd^{c}\,\widetilde{\max}(g,h))^{d}\ge0\) on \(U_{s}\setminus r\overline{\mathbb B}_d\), Stokes' theorem on \(U_{s}\setminus r\overline{\mathbb B}_d\) and <a href="#eq-A8">(A8)</a> give
+Let \(r>0\) be small enough that \(r\overline{\mathbb B}_d\subset \Omega(s)\) and \(h>g+1\) near \(\partial(r\mathbb B_d)\), where \(\mathbb B_d\) is the open unit ball of \(\mathbb{C}^d\).
+Let \(\widetilde{\max}:\mathbb{R}^{2}\to\mathbb{R}\) be smooth, convex and nondecreasing in each variable, with \(\widetilde{\max}(x,y)=\max(x,y)\) whenever \(|x-y|\geq 1\). Then the function \(\widetilde{\max}(g,h)\) is smooth and plurisubharmonic on \(\Omega(s)\setminus r\overline{\mathbb B}_d\), and equals \(g\) near \(\partial\Omega(s)\) and \(h\) near \(\partial(r\mathbb B_d)\).
+Hence, since \(d^{c}g=\gamma\) and \((dd^{c}\,\widetilde{\max}(g,h))^{d}\ge0\) on \(\Omega(s)\setminus r\overline{\mathbb B}_d\), Stokes' theorem on \(\Omega(s)\setminus r\overline{\mathbb B}_d\) and <a href="#eq-A8">(A8)</a> give
 <span class="math">\[
-	\int_{\partial U_{s}}\gamma\wedge(d\gamma)^{d-1}\geq\int_{\partial(r\mathbb B_d)}d^{c}h\wedge(dd^{c}h)^{d-1}=\frac{((1-\eta)k)^{d}}{r^{2d}}\int_{r\mathbb B_d}(dd^{c}|z|^{2})^{d}=((1-\eta)\pi k)^{d}.
+	\int_{\partial\Omega(s)}\gamma\wedge(d\gamma)^{d-1}\geq\int_{\partial(r\mathbb B_d)}d^{c}h\wedge(dd^{c}h)^{d-1}=\frac{((1-\eta)k)^{d}}{r^{2d}}\int_{r\mathbb B_d}(dd^{c}|z|^{2})^{d}=((1-\eta)\pi k)^{d}.
 \]</span>
 Combining with the previous identity and letting \(\eta\to 0\), we get
 <span class="math">\[
-	\int_{U_{s}}(dd^{c}|f|^{2})^{d}\geq s^{2d}(\pi k)^{d}.
+	\int_{\Omega(s)}(dd^{c}|f|^{2})^{d}\geq s^{2d}(\pi k)^{d}.
 \]</span>
 Letting \(s\uparrow 1\) along regular values and using monotone convergence gives the claim.<sup class="fn"><a href="#fn-demailly" id="fnref-demailly">5</a></sup> \(\square\)</p>
 <h3 id="the-equality-case">The equality case</h3>
@@ -731,20 +731,20 @@ by the Cauchy&ndash;Schwarz inequality. Also \(|f|^2\) is psh (its Levi form is 
 <li>(Convex functions of psh functions.) If \(u_1,u_2\) are smooth and psh and \(\chi\colon\mathbb{R}^2\to\mathbb{R}\) is smooth, convex, and nondecreasing in each variable, then \(\chi(u_1,u_2)\) is smooth and psh. Indeed, by the chain rule its complex Hessian is \(\sum_a\chi_a\,\mathrm{Hess}_{\mathbb{C}}u_a+\sum_{a,b}\chi_{ab}\,\partial u_a\otimes\bar\partial u_b\), where \(\chi_a\ge0\) by monotonicity and \((\chi_{ab})\ge0\) by convexity.</li>
 <li>(Regularized maximum.) The only property of \(\widetilde{\max}\) used in the proof is that \(\widetilde{\max}(x,y)=\max(x,y)\) when \(|x-y|\ge1\); so \(\widetilde{\max}(g,h)=g\) where \(g\ge h+1\), and \(=h\) where \(h\ge g+1\). Such a function exists (convolve \(\max\) with a smooth nonnegative bump of small radius, adding a suitable constant if needed to keep it nondecreasing and convex; see the footnote at the end of the proof of <a href="#lemma-3">Lemma 3</a>).</li>
 </ol>
-<p><b>Stokes' theorem and regular values.</b> Let \(f\colon U\to\mathbb{C}^m\) be smooth, and let \(s>0\). If \(s\) is a <i>regular value</i> of \(|f|\), meaning that \(d|f|\neq0\) at every point of \(\{|f|=s\}\), then \(\{|f|\le s\}\) is a manifold with boundary \(\partial U_s=\{|f|=s\}\), which is compact when \(U_s\) is relatively compact in \(U\) and \(\{|f|\le s\}\) is closed in \(U\). By Sard's theorem, almost every \(s\) is a regular value. Boundaries carry the orientation induced from \(\mathbb{C}^d\) (outward normal first), so for a smooth \((2d-1)\)-form \(\beta\) on a neighborhood of \(\overline{U_s}\),
+<p><b>Stokes' theorem and regular values.</b> Let \(f\colon \Omega\to\mathbb{C}^m\) be smooth, and let \(s>0\). If \(s\) is a <i>regular value</i> of \(|f|\), meaning that \(d|f|\neq0\) at every point of \(\{|f|=s\}\), then \(\{|f|\le s\}\) is a manifold with boundary \(\partial\Omega(s)=\{|f|=s\}\), which is compact when \(\Omega(s)\) is relatively compact in \(\Omega\) and \(\{|f|\le s\}\) is closed in \(\Omega\). By Sard's theorem, almost every \(s\) is a regular value. Boundaries carry the orientation induced from \(\mathbb{C}^d\) (outward normal first), so for a smooth \((2d-1)\)-form \(\beta\) on a neighborhood of \(\overline{\Omega(s)}\),
 <span id="eq-A6"></span><span class="math">\[
-\int_{U_s}d\beta=\int_{\partial U_s}\beta.\tag{A6}
+\int_{\Omega(s)}d\beta=\int_{\partial\Omega(s)}\beta.\tag{A6}
 \]</span>
-The same holds on the region \(U_s\setminus r\overline{\mathbb{B}}_d\) between two such boundaries, whose oriented boundary is \(\partial U_s\) minus \(\partial(r\mathbb{B}_d)\), where \(\partial(r\mathbb{B}_d)\) is oriented as the boundary of the ball. This is how <a href="#eq-A6">(A6)</a> is used to compare the two boundary integrals in the proof. Two further remarks about forms restricted to a hypersurface \(\{\varrho=\text{const}\}\): the restriction of \(d\varrho\) to the hypersurface vanishes, so
+The same holds on the region \(\Omega(s)\setminus r\overline{\mathbb{B}}_d\) between two such boundaries, whose oriented boundary is \(\partial\Omega(s)\) minus \(\partial(r\mathbb{B}_d)\), where \(\partial(r\mathbb{B}_d)\) is oriented as the boundary of the ball. This is how <a href="#eq-A6">(A6)</a> is used to compare the two boundary integrals in the proof. Two further remarks about forms restricted to a hypersurface \(\{\varrho=\text{const}\}\): the restriction of \(d\varrho\) to the hypersurface vanishes, so
 <span id="eq-A7"></span><span class="math">\[
 \big(d\log\varrho\wedge d^c\log\varrho\big)\big|_{\{\varrho=\text{const}\}}=0,\tag{A7}
 \]</span>
-which is why \(dd^c\log|f|^2\) and \(|f|^{-2}dd^c|f|^2\) agree on \(\partial U_s\) (take \(\varrho=|f|^2\)) and likewise \(dd^c\log|z|^2=r^{-2}dd^c|z|^2\) on the sphere \(\partial(r\mathbb{B}_d)\); and, by <a href="#eq-A6">(A6)</a> applied to the ball and <a href="#eq-A3">(A3)</a>,
+which is why \(dd^c\log|f|^2\) and \(|f|^{-2}dd^c|f|^2\) agree on \(\partial\Omega(s)\) (take \(\varrho=|f|^2\)) and likewise \(dd^c\log|z|^2=r^{-2}dd^c|z|^2\) on the sphere \(\partial(r\mathbb{B}_d)\); and, by <a href="#eq-A6">(A6)</a> applied to the ball and <a href="#eq-A3">(A3)</a>,
 <span id="eq-A8"></span><span class="math">\[
 \int_{\partial(r\mathbb{B}_d)}d^c|z|^2\wedge(dd^c|z|^2)^{d-1}=\int_{r\mathbb{B}_d}(dd^c|z|^2)^d=(\pi r^2)^d.\tag{A8}
 \]</span>
 Here we used \(d\big(d^c|z|^2\wedge(dd^c|z|^2)^{d-1}\big)=(dd^c|z|^2)^d\), valid because \(dd^c\) of anything is closed.</p>
-<p><b>Other notation.</b> \(\mathbb{B}_m\) denotes the open Euclidean unit ball of \(\mathbb{C}^m\); \(|\cdot|\) is the Hermitian norm; \(\overline{U_s}\) is the closure; \(g=O(1)\) means that \(g\) is bounded near the point in question; and \(Df\) is the complex Jacobian of a holomorphic map \(f\), with \((Df)_J\) its \(d\times d\) minor with rows in \(J\).</p>
+<p><b>Other notation.</b> \(\mathbb{B}_m\) denotes the open Euclidean unit ball of \(\mathbb{C}^m\); \(|\cdot|\) is the Hermitian norm; \(\overline{\Omega(s)}\) is the closure; \(g=O(1)\) means that \(g\) is bounded near the point in question; and \(Df\) is the complex Jacobian of a holomorphic map \(f\), with \((Df)_J\) its \(d\times d\) minor with rows in \(J\).</p>
 <h3 id="appendix-correspondence">Appendix: Correspondence with the original preprint</h3>
 <p>The tables below match the notation and numbered statements of this note with those of the <a href="https://github.com/openai/math/blob/main/preprints/The-symmetric-Mahler-conjecture-and-its-equality-cases-September-22-2026/paper.pdf">original preprint</a> (version of September 22, 2026). Equation numbers of the preprint are written as [8], [26], etc., to distinguish them from equation numbers <a href="#eq-1">(1)</a>&ndash;<a href="#eq-21">(21)</a> of this note.</p>
 <p>The main difference in conventions is that the preprint's lens is the domain \(D\) of this note rotated by a quarter turn: the preprint uses \(F_{\mathrm{pre}}(z)=\frac{8}{\pi^2}\sum_j\frac{(-1)^jz^{2j+1}}{(2j+1)^2}\), so that \(F(z)=-iF_{\mathrm{pre}}(iz)\) and \(D=-iD_{\mathrm{pre}}\). Accordingly, the preprint's lens is \(\{v+it\colon|t|\le1,\ |v|\le\lambda(t)\}\), and a point of \(\mathbb{C}^d\) is written there as \(Y+iX\) rather than \(x+iy\).</p>
@@ -771,7 +771,7 @@ Here we used \(d\big(d^c|z|^2\wedge(dd^c|z|^2)^{d-1}\big)=(dd^c|z|^2)^d\), valid
 <tr><td>\(\mu_J(A_J)\)</td><td>\(P_I\)</td><td>[22]; \(\sum_J\mu_J(A_J)\) is \(S\).</td></tr>
 <tr><td>\(f_k=p_k\circ F^{-1}\circ B\)</td><td>\(f_k=(h_1^k,\dots,h_m^k)\)</td><td>\(|f_k|^2=\tau_k\), and \(\Omega_k=\{\tau_k\lt1\}\).</td></tr>
 <tr><td>\(\int_{M_k}(\pi_J|_{M_k})^*p_k^*dV_J\)</td><td>\(M_{I,k}\)</td><td>[23]. The submanifolds \(M_k\) and the form \(\sigma_k\) are not used in the preprint.</td></tr>
-<tr><td>\(m,\ U,\ U_s\)</td><td>\(N,\ \mathcal U,\ E_{s^2}\)</td><td>In Lemma 4.1, \(E_s=\{|f|^2\lt s\}\).</td></tr>
+<tr><td>\(m,\ \Omega,\ \Omega(s)\)</td><td>\(N,\ \mathcal U,\ E_{s^2}\)</td><td>In Lemma 4.1, \(E_s=\{|f|^2\lt s\}\).</td></tr>
 <tr><td>\(\|\cdot\|_A\)</td><td>\(p_A\)</td><td>Gauge; \(h_A\) is the support function.</td></tr>
 <tr><td>\(K^\circ\)</td><td>\(Q\)</td><td>In Sections 6.1, 7 and 8.</td></tr>
 <tr><td>\(\widehat K,\ \widehat K^\circ\)</td><td>\(B,\ C\)</td><td>[32].</td></tr>
@@ -805,7 +805,7 @@ Here we used \(d\big(d^c|z|^2\wedge(dd^c|z|^2)^{d-1}\big)=(dd^c|z|^2)^d\), valid
 <tr><td>Volume product of Hanner polytopes</td><td>Lemmas 2.1, 2.2</td><td></td></tr>
 <tr><td>&mdash;</td><td>Corollaries 1.2, 1.3</td><td>Functional and entropy&ndash;transport consequences; not covered in this note.</td></tr>
 </tbody></table></div>
-<hr><section class="footnotes"><ol><li id="fn-fmz">M. Fradelizi, M. Meyer and A. Zvavitch, <i>Volume product</i>, survey, 2023. <a href="https://arxiv.org/abs/2301.06131">arXiv:2301.06131</a>. <a href="#fnref-fmz" class="fnback">↩</a></li><li id="fn-nazarov">F. Nazarov, <i>The H&ouml;rmander proof of the Bourgain&ndash;Milman theorem</i>, in: Geometric Aspects of Functional Analysis, Lecture Notes in Math. <b>2050</b>, Springer, 2012, 335&ndash;343. <a href="https://doi.org/10.1007/978-3-642-29849-3_20">doi:10.1007/978-3-642-29849-3_20</a>. <a href="#fnref-nazarov" class="fnback">↩</a></li><li id="fn-berndtsson-pw">B. Berndtsson, <i>Bergman kernels for Paley&ndash;Wiener spaces and Nazarov&rsquo;s proof of the Bourgain&ndash;Milman theorem</i>, Pure Appl. Math. Q. <b>18</b> (2022), no. 2, 395&ndash;409. <a href="https://arxiv.org/abs/2008.00837">arXiv:2008.00837</a>. <a href="#fnref-berndtsson-pw" class="fnback">↩</a></li><li id="fn-berndtsson-kup">B. Berndtsson, <i>Complex integrals and Kuperberg&rsquo;s proof of the Bourgain&ndash;Milman theorem</i>, Adv. Math. <b>388</b> (2021), 107927. <a href="https://doi.org/10.1016/j.aim.2021.107927">doi:10.1016/j.aim.2021.107927</a>, <a href="https://arxiv.org/abs/2008.00838">arXiv:2008.00838</a>. <a href="#fnref-berndtsson-kup" class="fnback">↩</a></li><li id="fn-demailly">The gluing via \(\widetilde{\max}(g,h)\) followed by Stokes on \(U_{s}\setminus r\overline{\mathbb B}_d\) is the proof of the first comparison theorem for Lelong numbers (J.-P. Demailly, "Complex Analytic and Differential Geometry", book manuscript, version of June 21, 2012, Ch. III, Th. 7.1, p. 166), which uses \(\max(\psi-c,\varphi)\) in the same role. The regularized maximum \(\widetilde{\max}\) is Lemma 5.18 in Ch. I of the same manuscript, p. 43. <a href="https://www-fourier.ujf-grenoble.fr/~demailly/manuscripts/agbook.pdf">https://www-fourier.ujf-grenoble.fr/~demailly/manuscripts/agbook.pdf</a>. <a href="#fnref-demailly" class="fnback">↩</a></li><li id="fn-lima-1978">Å. Lima, <i>Intersection properties of balls in spaces of compact operators</i>, Ann. Inst. Fourier (Grenoble) <b>28</b> (1978), no. 3, 35–65, Theorem 1.2, (ii)\(\Leftrightarrow\)(iii): the 3.2 intersection property is equivalent to the \(R_{3,2}\)-property of p. 38, which is the existence of a median for every triple \(0,x,y\). <a href="https://doi.org/10.5802/aif.700">doi:10.5802/aif.700</a>. <a href="#fnref-lima-1978" class="fnback">↩</a></li><li id="fn-hansen-lima-1981">A. B. Hansen and Å. Lima, <i>The structure of finite dimensional Banach spaces with the 3.2. intersection property</i>, Acta Math. <b>146</b> (1981), 1–23. <a href="https://doi.org/10.1007/BF02392457">doi:10.1007/BF02392457</a>. <a href="#fnref-hansen-lima-1981" class="fnback">↩</a></li><li id="fn-hl-sec1">Hansen–Lima, Section 1, p. 1: the \(n.k.\) intersection property is defined with closed balls of arbitrary radii. The median form of the 3.2 property is their Theorem 3.6, (1)\(\Leftrightarrow\)(4), pp. 5–6, attributed there to Lima. <a href="#fnref-hl-sec1" class="fnback">↩</a></li><li id="fn-hl-cor74">Hansen–Lima, Corollary 7.4, p. 16: every finite dimensional Banach space with the 3.2.I.P. can be obtained by forming \(l_1\)- and \(l_\infty\)-sums of the real line. Deduced from the main Theorem 7.3 by Proposition 4.4 and induction. <a href="#fnref-hl-cor74" class="fnback">↩</a></li></ol></section>
+<hr><section class="footnotes"><ol><li id="fn-fmz">M. Fradelizi, M. Meyer and A. Zvavitch, <i>Volume product</i>, survey, 2023. <a href="https://arxiv.org/abs/2301.06131">arXiv:2301.06131</a>. <a href="#fnref-fmz" class="fnback">↩</a></li><li id="fn-nazarov">F. Nazarov, <i>The H&ouml;rmander proof of the Bourgain&ndash;Milman theorem</i>, in: Geometric Aspects of Functional Analysis, Lecture Notes in Math. <b>2050</b>, Springer, 2012, 335&ndash;343. <a href="https://doi.org/10.1007/978-3-642-29849-3_20">doi:10.1007/978-3-642-29849-3_20</a>. <a href="#fnref-nazarov" class="fnback">↩</a></li><li id="fn-berndtsson-pw">B. Berndtsson, <i>Bergman kernels for Paley&ndash;Wiener spaces and Nazarov&rsquo;s proof of the Bourgain&ndash;Milman theorem</i>, Pure Appl. Math. Q. <b>18</b> (2022), no. 2, 395&ndash;409. <a href="https://arxiv.org/abs/2008.00837">arXiv:2008.00837</a>. <a href="#fnref-berndtsson-pw" class="fnback">↩</a></li><li id="fn-berndtsson-kup">B. Berndtsson, <i>Complex integrals and Kuperberg&rsquo;s proof of the Bourgain&ndash;Milman theorem</i>, Adv. Math. <b>388</b> (2021), 107927. <a href="https://doi.org/10.1016/j.aim.2021.107927">doi:10.1016/j.aim.2021.107927</a>, <a href="https://arxiv.org/abs/2008.00838">arXiv:2008.00838</a>. <a href="#fnref-berndtsson-kup" class="fnback">↩</a></li><li id="fn-demailly">The gluing via \(\widetilde{\max}(g,h)\) followed by Stokes on \(\Omega(s)\setminus r\overline{\mathbb B}_d\) is the proof of the first comparison theorem for Lelong numbers (J.-P. Demailly, "Complex Analytic and Differential Geometry", book manuscript, version of June 21, 2012, Ch. III, Th. 7.1, p. 166), which uses \(\max(\psi-c,\varphi)\) in the same role. The regularized maximum \(\widetilde{\max}\) is Lemma 5.18 in Ch. I of the same manuscript, p. 43. <a href="https://www-fourier.ujf-grenoble.fr/~demailly/manuscripts/agbook.pdf">https://www-fourier.ujf-grenoble.fr/~demailly/manuscripts/agbook.pdf</a>. <a href="#fnref-demailly" class="fnback">↩</a></li><li id="fn-lima-1978">Å. Lima, <i>Intersection properties of balls in spaces of compact operators</i>, Ann. Inst. Fourier (Grenoble) <b>28</b> (1978), no. 3, 35–65, Theorem 1.2, (ii)\(\Leftrightarrow\)(iii): the 3.2 intersection property is equivalent to the \(R_{3,2}\)-property of p. 38, which is the existence of a median for every triple \(0,x,y\). <a href="https://doi.org/10.5802/aif.700">doi:10.5802/aif.700</a>. <a href="#fnref-lima-1978" class="fnback">↩</a></li><li id="fn-hansen-lima-1981">A. B. Hansen and Å. Lima, <i>The structure of finite dimensional Banach spaces with the 3.2. intersection property</i>, Acta Math. <b>146</b> (1981), 1–23. <a href="https://doi.org/10.1007/BF02392457">doi:10.1007/BF02392457</a>. <a href="#fnref-hansen-lima-1981" class="fnback">↩</a></li><li id="fn-hl-sec1">Hansen–Lima, Section 1, p. 1: the \(n.k.\) intersection property is defined with closed balls of arbitrary radii. The median form of the 3.2 property is their Theorem 3.6, (1)\(\Leftrightarrow\)(4), pp. 5–6, attributed there to Lima. <a href="#fnref-hl-sec1" class="fnback">↩</a></li><li id="fn-hl-cor74">Hansen–Lima, Corollary 7.4, p. 16: every finite dimensional Banach space with the 3.2.I.P. can be obtained by forming \(l_1\)- and \(l_\infty\)-sums of the real line. Deduced from the main Theorem 7.3 by Proposition 4.4 and induction. <a href="#fnref-hl-cor74" class="fnback">↩</a></li></ol></section>
 <hr>
 <section class="footnotes" id="license"><h4>License and attribution</h4>
 <p>If you use material from this note, please cite it as: Rotem Assouline, <i>Notes on OpenAI's proof of the symmetric Mahler conjecture</i>, <a href="https://rotemassouline.github.io/symmetric-mahler/">https://rotemassouline.github.io/symmetric-mahler/</a>.</p>
