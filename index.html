@@ -249,29 +249,29 @@ Hence, since \(\operatorname{Vol}\big(\operatorname{conv}\left(\{0\}\cup\{\varep
 <span id="eq-9"></span><span class="math">\[
 	B_J(K)\subseteq[-1,1]^J.\tag{9}
 \]</span>
-Define \(\Phi_J:[-1,1]^J\times\{-1,1\}^J\to(\partial\mathbb D)^J\) by
+Define \(\Phi:[-1,1]\times\{-1,1\}\to\partial\mathbb D\) by
 <span class="math">\[
-	\Phi_J(q,\varepsilon)_j:=e^{i\varepsilon_j\pi(1-q_j)/2},\qquad j\in J.
+	\Phi(t,\varepsilon):=e^{i\varepsilon\pi(1-t)/2},
 \]</span>
-View \(F\) as a map on \(\overline{\mathbb D}^J\) by applying it coordinatewise, and let
+so that, by <a href="#lemma-0">Lemma 0</a>,
+<span class="math">\[
+	F\big(\Phi(t,\varepsilon)\big)=t+i\varepsilon\lambda(t).
+\]</span>
+View \(F\) and \(\Phi\) as maps on \(\overline{\mathbb D}^J\) and on \([-1,1]^J\times\{-1,1\}^J\) by applying them coordinatewise, and let
 <span class="math">\[
 	A_J:=(\partial\mathbb D)^J\cap F^{-1}\big(B_J(\partial\Omega)\big).
 \]</span>
-By <a href="#lemma-0">Lemma 0</a>, for \(q\in[-1,1]^J\) and \(\varepsilon\in\{-1,1\}^J\),
-<span class="math">\[
-	F\big(\Phi_J(q,\varepsilon)\big)_j=q_j+i\varepsilon_j\lambda(q_j),\qquad j\in J,
-\]</span>
-so, by the definition of \(y_{J,\varepsilon}\),
+By the definition of \(y_{J,\varepsilon}\), for \(q\in[-1,1]^J\) and \(\varepsilon\in\{-1,1\}^J\),
 <span id="eq-10"></span><span class="math">\[
-	F\big(\Phi_J(q,\varepsilon)\big)=B_J\big(B_J^{-1}q+iy_{J,\varepsilon}(B_J^{-1}q)\big).\tag{10}
+	F\big(\Phi(q,\varepsilon)\big)=B_J\big(B_J^{-1}q+iy_{J,\varepsilon}(B_J^{-1}q)\big).\tag{10}
 \]</span>
-Since \(B_J\) is injective on \(\mathbb{C}^d\), and \(\mathrm{Re}\,z\in K\) for every \(z\in\overline\Omega\), it follows that \(F(\Phi_J(q,\varepsilon))\in B_J(\overline\Omega)\) if and only if \(q\in B_J(K_{J,\varepsilon})\). Since \(B_J(K_{J,\varepsilon})\subseteq[-1,1]^J\) by <a href="#eq-9">(9)</a>, and \(F\circ\Phi_J\) takes values in \((\partial D)^J\), we obtain
+Since \(B_J\) is injective on \(\mathbb{C}^d\), and \(\mathrm{Re}\,z\in K\) for every \(z\in\overline\Omega\), it follows that \(F(\Phi(q,\varepsilon))\in B_J(\overline\Omega)\) if and only if \(q\in B_J(K_{J,\varepsilon})\). Since \(B_J(K_{J,\varepsilon})\subseteq[-1,1]^J\) by <a href="#eq-9">(9)</a>, and \(F\circ\Phi\) takes values in \((\partial D)^J\), we obtain
 <span id="eq-11"></span><span class="math">\[
-	\Phi_J^{-1}(A_J)=\bigcup_{\varepsilon\in\{-1,1\}^J}B_J(K_{J,\varepsilon})\times\{\varepsilon\}.\tag{11}
+	\Phi^{-1}(A_J)=\bigcup_{\varepsilon\in\{-1,1\}^J}B_J(K_{J,\varepsilon})\times\{\varepsilon\}.\tag{11}
 \]</span>
-Let \(\mu_J\) be the Haar probability measure on the torus \((\partial\mathbb D)^J\). The map \(\Phi_J\) pushes the uniform probability measure \(\nu_J\) on \([-1,1]^J\times\{-1,1\}^J\) forward to \(\mu_J\). Therefore, by <a href="#eq-11">(11)</a>,
+Let \(\mu_J\) be the Haar probability measure on the torus \((\partial\mathbb D)^J\). The map \(\Phi\) pushes the uniform probability measure \(\nu_J\) on \([-1,1]^J\times\{-1,1\}^J\) forward to \(\mu_J\). Therefore, by <a href="#eq-11">(11)</a>,
 <span class="math">\[
-	\sum_{\varepsilon\in\{-1,1\}^J}\operatorname{Vol}\big(B_J(K_{J,\varepsilon})\big)=4^d\,\nu_J\big(\Phi_J^{-1}(A_J)\big)=4^d\mu_J(A_J),
+	\sum_{\varepsilon\in\{-1,1\}^J}\operatorname{Vol}\big(B_J(K_{J,\varepsilon})\big)=4^d\,\nu_J\big(\Phi^{-1}(A_J)\big)=4^d\mu_J(A_J),
 \]</span>
 and <a href="#eq-8">(8)</a> becomes
 <span class="math">\[
@@ -704,15 +704,15 @@ For \(u=|z|^2\) the matrix is the identity, which gives \((dd^c|z|^2)^d=d!\,dV\)
 <span id="eq-A3"></span><span class="math">\[
 \int_{r\mathbb{B}_d}(dd^c|z|^2)^d=(\pi r^2)^d.\tag{A3}
 \]</span></p>
-<p><b>Pullbacks.</b> If \(\Phi\) is a holomorphic map between open subsets of complex Euclidean spaces, then pullback by \(\Phi\) commutes with \(\partial\) and \(\bar\partial\), hence with \(d\), \(d^c\) and \(dd^c\). In particular \(dd^c|f|^2=f^*(dd^c|w|^2)\) for holomorphic \(f\colon U\to\mathbb{C}^m\). Moreover, a holomorphic map \(\Phi\colon\mathbb{C}^d\supseteq U\to\mathbb{C}^d\) has real Jacobian determinant \(|\det D\Phi|^2\), where \(D\Phi\) is the complex Jacobian matrix, so
+<p><b>Pullbacks.</b> If \(\Psi\) is a holomorphic map between open subsets of complex Euclidean spaces, then pullback by \(\Psi\) commutes with \(\partial\) and \(\bar\partial\), hence with \(d\), \(d^c\) and \(dd^c\). In particular \(dd^c|f|^2=f^*(dd^c|w|^2)\) for holomorphic \(f\colon U\to\mathbb{C}^m\). Moreover, a holomorphic map \(\Psi\colon\mathbb{C}^d\supseteq U\to\mathbb{C}^d\) has real Jacobian determinant \(|\det D\Psi|^2\), where \(D\Psi\) is the complex Jacobian matrix, so
 <span id="eq-A4"></span><span class="math">\[
-\Phi^*dV=|\det D\Phi|^2\,dV.\tag{A4}
+\Psi^*dV=|\det D\Psi|^2\,dV.\tag{A4}
 \]</span>
 Finally, write \(dV_J=\bigwedge_{j\in J}\frac i2dw_j\wedge d\bar w_j\) for the volume form of \(\mathbb{C}^J\), where \(J\subseteq[m]\), \(|J|=d\). Expanding \((dd^c|w|^2)^d=\big(\sum_{j=1}^m\frac i2dw_j\wedge d\bar w_j\big)^d\), each of the \(2\)-forms \(\frac i2dw_j\wedge d\bar w_j\) commutes with the others and squares to zero, so only products of \(d\) distinct ones survive, and each such product occurs \(d!\) times:
 <span id="eq-A5"></span><span class="math">\[
 (dd^c|w|^2)^d=d!\sum_{J\in{[m]\choose d}}dV_J\qquad\text{on }\mathbb{C}^m.\tag{A5}
 \]</span>
-Combining <a href="#eq-A4">(A4)</a> and <a href="#eq-A5">(A5)</a> with \(\pi_J\circ f\) in place of \(\Phi\) gives \((dd^c|f|^2)^d=d!\sum_J|\det(Df)_J|^2\,dV\) for holomorphic \(f\colon U\to\mathbb{C}^m\).</p>
+Combining <a href="#eq-A4">(A4)</a> and <a href="#eq-A5">(A5)</a> with \(\pi_J\circ f\) in place of \(\Psi\) gives \((dd^c|f|^2)^d=d!\sum_J|\det(Df)_J|^2\,dV\) for holomorphic \(f\colon U\to\mathbb{C}^m\).</p>
 <p><b>Plurisubharmonic functions.</b> A smooth real function \(u\) on an open set of \(\mathbb{C}^d\) is <i>plurisubharmonic</i> (psh) if its complex Hessian is positive semidefinite at every point; equivalently, \(\sum u_{j\bar k}\xi_j\bar\xi_k\ge0\) for all \(\xi\in\mathbb{C}^d\), that is, the restriction of \(u\) to every complex line is subharmonic. Facts used:</p>
 <ol>
 <li>(Positivity.) If \(u\) is smooth and psh, then \(\det(u_{j\bar k})\ge0\), so \((dd^cu)^d\ge0\) by <a href="#eq-A2">(A2)</a>.</li>
@@ -1079,7 +1079,7 @@ function setJ(JJ){ J=JJ; M=inv2(B,J[0],J[1]); others=B.map((r,k)=>k).filter(k=>k
   rasterize(); readout(); draw(); }
 
 function readout(){
-  setHTML(q('leg'), EPS.map(([e1,e2],n)=>'<span><i class="f3-sw" style="background:var('+ECOL[n]+')"></i>$\\varepsilon=('+sgn(e1)+','+sgn(e2)+')$</span>').join('')+'<span class="f3-row">grey (top left): $\\#\\{\\varepsilon\\colon x\\in K_{J,\\varepsilon}\\}$ = '+[0,2,4].map(n=>'<i class="f3-sw" style="background:'+rgba(rgb(css('--fg')),0.12*n)+';border:1px solid '+css('--rule')+'"></i>'+n+'&nbsp;&nbsp;').join('')+'</span><span class="f3-row">coloured: $\\Phi_J(\\cdot,\\varepsilon)^{-1}(A_J)$ (bottom left), $A_J$ (bottom right)</span><span class="f3-row">dashed: $B_J^{-1}([-1,1]^J)$ (top left), $B_J(K)$ (bottom left), $F^{-1}(\\Phi_J(B_J(K)\\times\\{\\varepsilon\\}))$ (bottom right)</span>'+'<span class="f3-row">top right: $\\bar\\Omega_x$ (shaded), the lines $\\langle b_j,y\\rangle=\\pm\\lambda(\\langle b_j,x\\rangle)$, $j\\in J$ (dashed), and the points $y$ with $\\langle b_j,y\\rangle=\\varepsilon_j\\lambda(\\langle b_j,x\\rangle)$, $j\\in J$, filled if $x\\in K_{J,\\varepsilon}$</span>'); }
+  setHTML(q('leg'), EPS.map(([e1,e2],n)=>'<span><i class="f3-sw" style="background:var('+ECOL[n]+')"></i>$\\varepsilon=('+sgn(e1)+','+sgn(e2)+')$</span>').join('')+'<span class="f3-row">grey (top left): $\\#\\{\\varepsilon\\colon x\\in K_{J,\\varepsilon}\\}$ = '+[0,2,4].map(n=>'<i class="f3-sw" style="background:'+rgba(rgb(css('--fg')),0.12*n)+';border:1px solid '+css('--rule')+'"></i>'+n+'&nbsp;&nbsp;').join('')+'</span><span class="f3-row">coloured: $\\Phi(\\cdot,\\varepsilon)^{-1}(A_J)$ (bottom left), $A_J$ (bottom right)</span><span class="f3-row">dashed: $B_J^{-1}([-1,1]^J)$ (top left), $B_J(K)$ (bottom left), $F^{-1}(\\Phi(B_J(K)\\times\\{\\varepsilon\\}))$ (bottom right)</span>'+'<span class="f3-row">top right: $\\bar\\Omega_x$ (shaded), the lines $\\langle b_j,y\\rangle=\\pm\\lambda(\\langle b_j,x\\rangle)$, $j\\in J$ (dashed), and the points $y$ with $\\langle b_j,y\\rangle=\\varepsilon_j\\lambda(\\langle b_j,x\\rangle)$, $j\\in J$, filled if $x\\in K_{J,\\varepsilon}$</span>'); }
 
 // ---------- panels: logical size 360 x 360; rasters cached per (body, J, theme) ----------
 const SZ=360;
