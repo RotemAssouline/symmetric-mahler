@@ -309,19 +309,20 @@ on \(\mathbb{C}^m\) and \(\mathbb{C}^J\), respectively, so that \(\pi_J(\mathbb 
 <span id="eq-13"></span><span class="math">\[
 	\mathbb B^{2k}_m=p_k^{-1}(\mathbb B_m).\tag{13}
 \]</span></p>
-<p>For \(J\in\mathcal{J}\) and \(k\ge1\), the form \(p_k^*dV_J\) is a nonnegative multiple of \(dV_J\). Let \(\mu_{k,J}\) be the pushforward of the uniform probability measure on \(\mathbb B^2_J\) under
+<p>For \(J\in\mathcal{J}\) and \(k\ge1\), the form \(p_k^*dV_J\) is a nonnegative multiple of \(dV_J\). Let \(\mu_{k,J}\) be the pushforward of the uniform probability measure on \(\mathbb B^2_J\) under the homeomorphism
 <span class="math">\[
-	(v_j)_{j\in J}\mapsto\big(|v_j|^{1/k-1}v_j\big)_{j\in J}.
-\]</span></p>
+	(v_j)_{j\in J}\mapsto\big(|v_j|^{1/k-1}v_j\big)_{j\in J}
+\]</span>
+of \(\mathbb B^2_J\) onto \(\mathbb B^{2k}_J\).</p>
 <div class="callout callout-lemma" id="lemma-2"><div class="callout-title">Lemma 2</div>
-For every \(J\in\mathcal{J}\) and \(k\ge1\), \(\mu_{k,J}\) is the measure corresponding to the \(2d\)-form \(\frac{d!}{(\pi k)^d}\,\mathbf 1_{\mathbb B^{2k}_J}\,p_k^*dV_J\), and \(\mu_{k,J}\to\mu_J\) weakly as \(k\to\infty\).</div>
+For every \(J\in\mathcal{J}\) and \(k\ge1\), \(\mu_{k,J}\) is the measure on \(\mathbb B^{2k}_J\) corresponding to the \(2d\)-form \(\frac{d!}{(\pi k)^d}\,p_k^*dV_J\), and \(\mu_{k,J}\to\mu_J\) weakly as \(k\to\infty\), as measures on \(\overline{\mathbb D}^J\).</div>
 <p><i>Proof.</i>
 Pick a uniformly distributed point of \(\mathbb B^2_J\) and write it as \((\rho_j\omega_j)_{j\in J}\) with \(\rho_j>0\) and \(\omega_j\in\partial\mathbb D\), which is possible almost surely. Since \(\mathbb B^2_J\) and \(dV_J\) are invariant under the rotations \(v\mapsto(\zeta_jv_j)_{j\in J}\), \(\zeta\in(\partial\mathbb D)^J\), the law of \(\omega\) is a rotation-invariant probability measure on \((\partial\mathbb D)^J\), namely \(\mu_J\). By definition, \(\mu_{k,J}\) is the law of \(\rho^{1/k}\omega:=(\rho_j^{1/k}\omega_j)_{j\in J}\), and since \(\rho^{1/k}\omega\to\omega\) almost surely as \(k\to\infty\), \(\mu_{k,J}\to\mu_J\) weakly.</p>
-<p>The map \((\rho_j\omega_j)_{j\in J}\mapsto\rho^{1/k}\omega\) is a bijection between the points of \(\mathbb B^2_J\) with nonzero coordinates and the points of \(\mathbb B^{2k}_J\) with nonzero coordinates, and the points with a zero coordinate form a null set. In polar coordinates \(dV_J=(2\pi)^d\prod_j\rho_j\,d\rho\otimes\mu_J\), and the substitution \(v_j=\rho_j^{1/k}\omega_j\) gives
+<p>The points with a zero coordinate form a null set. In polar coordinates \(dV_J=(2\pi)^d\prod_j\rho_j\,d\rho\otimes\mu_J\), and the substitution \(v_j=\rho_j^{1/k}\omega_j\) gives
 <span class="math">\[
 	p_k^*dV_J(v)=k^d(2\pi)^d\prod_j\rho_j\,d\rho\otimes\mu_J=k^d\,dV_J.
 \]</span>
-Since the volume of \(\mathbb B^2_J\) is \(\pi^d/d!\), \(\mu_{k,J}\) is the measure corresponding to \(\frac{d!}{(\pi k)^d}\,\mathbf 1_{\mathbb B^{2k}_J}\,p_k^*dV_J\). \(\square\)</p>
+Since the volume of \(\mathbb B^2_J\) is \(\pi^d/d!\), \(\mu_{k,J}\) is the measure on \(\mathbb B^{2k}_J\) corresponding to \(\frac{d!}{(\pi k)^d}\,p_k^*dV_J\). \(\square\)</p>
 <p>Let
 <span class="math">\[
 	U_J:=F^{-1}\big(B_J(\Omega)\big)\subseteq\mathbb D^J.
