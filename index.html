@@ -182,11 +182,19 @@ on \(\mathbb{C}^m\) and \(\mathbb{C}^J\), respectively, so that \(\pi_J(\mathbb 
 <span id="eq-4"></span><span class="math">\[
 	\mathbb B^{2k}_m=p_k^{-1}(\mathbb B_m).\tag{4}
 \]</span></p>
-<p>Let \(M_{k}\) denote the \(d\)-dimensional complex submanifold
+<p>The map \(F^{-1}\circ B\) is a biholomorphism of \(\Omega\) onto the \(d\)-dimensional complex submanifold
 <span class="math">\[
-	M_k:=\mathbb B^{2k}_m\cap F^{-1}\big(B(\Omega)\big)\subseteq\mathbb D^m.
+	M:=F^{-1}\big(B(\Omega)\big)\subseteq\mathbb D^m.
+\]</span>
+For \(u\in M\) and \(J\in\mathcal{J}\),
+<span class="math">\[
+	F(u)=B\,B_J^{-1}F(\pi_Ju),
+\]</span>
+so \(\pi_J\) is injective on \(M\), and \(\pi_J(M)=F^{-1}(B_J(\Omega))\). For \(k\ge1\), let
+<span class="math">\[
+	M_k:=M\cap\mathbb B^{2k}_m.
 \]</span></p>
-<p>The map \(F^{-1}\circ B\) is a biholomorphism of \(\Omega\) onto \(F^{-1}(B(\Omega))\). Let
+<p>Let
 <span id="eq-5"></span><span class="math">\[
 	f_k:=p_k\circ F^{-1}\circ B\colon\Omega\to\mathbb{C}^m\tag{5}
 \]</span>
@@ -203,7 +211,7 @@ so that \(dd^{c}|z|^{2}=\sum_{j}dx_{j}\wedge dy_{j}\) and \((dd^{c}|z|^{2})^{d}=
 <span class="math">\[
 	\sigma_k:=\frac1{d!}\,(p_k|_{M_k})^*(dd^c|\cdot|^2)^d=\sum_{J\in{[m]\choose d}}(\pi_J|_{M_k})^*\,p_k^*\,dV_J.
 \]</span>
-Since \(F^{-1}\circ B\) is a biholomorphism of \(\Omega_k\) onto \(M_k\) and \(dd^c\) commutes with holomorphic pullbacks, the definition <a href="#eq-5">(5)</a> gives
+Thus \(\int_{M_k}\sigma_k\) is the \(2d\)-dimensional volume of \(p_k(M_k)\), counted with multiplicity, and the \(J\)-th term is the volume of its projection \(\pi_J(p_k(M_k))\), counted with multiplicity; this is the Cauchy&ndash;Binet formula, see <a href="#eq-A5">(A5)</a>. Since \(F^{-1}\circ B\) is a biholomorphism of \(\Omega_k\) onto \(M_k\) and \(dd^c\) commutes with holomorphic pullbacks, the definition <a href="#eq-5">(5)</a> gives
 <span id="eq-6"></span><span class="math">\[
 	\int_{M_k}\sigma_k=\frac1{d!}\int_{\Omega_k}(dd^c|f_k|^2)^d.\tag{6}
 \]</span>
@@ -219,7 +227,7 @@ We will prove that
 <span class="math">\[
 \int_{\Omega(1)}(dd^{c}|f|^{2})^{d}\geq(\pi k)^{d}.
 \]</span></p></div>
-<p>Geometrically, \(\int_{M_k}\sigma_k\) is the \(2d\)-dimensional volume of \(p_k(M_k)\), counted with multiplicity, and <a href="#lemma-1">Lemma 1</a> says that the volume of \(f(\Omega(1))\), counted with multiplicity, is at least \((\pi k)^d/d!\), the volume of the ball of radius \(\sqrt k\) in \(\mathbb{C}^d\). This is not used in the proof.</p>
+<p>Geometrically, <a href="#lemma-1">Lemma 1</a> says that the volume of \(f(\Omega(1))\), counted with multiplicity, is at least \((\pi k)^d/d!\), the volume of the ball of radius \(\sqrt k\) in \(\mathbb{C}^d\). This is not used in the proof.</p>
 <p>Let us verify that the hypotheses of <a href="#lemma-1">Lemma 1</a> are satisfied with \(f=f_k\), defined in <a href="#eq-5">(5)</a>. 
 The set \(\Omega\) is open and contains \(0\), and \(f_k\) is holomorphic on \(\Omega\) because \(B(\Omega)\subseteq D^m\) and \(F^{-1}\) acts coordinatewise. 
 In the notation of the lemma, we have \(\Omega(1)=\{ |f_{k}|\lt 1 \}=\Omega_k\).
@@ -298,17 +306,13 @@ Pick a uniformly distributed point of \(\mathbb B^2_J\) and write it as \((\rho_
 Since the volume of \(\mathbb B^2_J\) is \(\pi^d/d!\), \(\mu_{k,J}\) is the measure on \(\mathbb B^{2k}_J\) corresponding to \(\frac{d!}{(\pi k)^d}\,p_k^*dV_J\). \(\square\)</p>
 <p>Let
 <span class="math">\[
-	U_J:=F^{-1}\big(B_J(\Omega)\big)\subseteq\mathbb D^J,
+	U_J:=\pi_J(M)=F^{-1}\big(B_J(\Omega)\big)\subseteq\mathbb D^J,
 \]</span>
 and
 <span class="math">\[
 	A_J:=(\partial\mathbb D)^J\cap F^{-1}\big(B_J(\partial\Omega)\big).
 \]</span>
-For \(u\in M_k\) and \(J\in\mathcal{J}\),
-<span class="math">\[
-	F(u)=B\,B_J^{-1}F(\pi_Ju),
-\]</span>
-so \(\pi_J\) is injective on \(M_k\) and \(\pi_J(M_k)\subseteq U_J\cap\mathbb B^{2k}_J\).
+Then \(\pi_J\) is injective on \(M_k\) and \(\pi_J(M_k)\subseteq U_J\cap\mathbb B^{2k}_J\).
 Moreover, for \(J\in{[m]\choose d}\), the pullback of \((\pi_J|_{M_k})^*p_k^*dV_J\) to \(\Omega_k\) is \((\pi_J\circ f_k)^*dV_J=|\det(Df_k)_J|^2\,dV\) by <a href="#eq-A4">(A4)</a>, where \((Df_k)_J\) is the \(d\times d\) minor of \(Df_k\) with rows in \(J\); by <a href="#eq-5">(5)</a> and the fact that \(p_k\circ F^{-1}\) acts coordinatewise, \((Df_k)_J\) is \(B_J\) multiplied on the left by a diagonal matrix, so this term vanishes for \(J\notin\mathcal{J}\). Since \(p_k^*dV_J\) is a nonnegative multiple of \(dV_J\), <a href="#lemma-2">Lemma 2</a> and <a href="#eq-7">(7)</a> give
 <span class="math">\[
 	\frac{(\pi k)^{d}}{d!}\le\int_{M_k}\sigma_k=\sum_{J\in\mathcal{J}}\int_{M_k}(\pi_J|_{M_k})^*p_k^*dV_J\le\sum_{J\in\mathcal{J}}\int_{U_J\cap \mathbb B^{2k}_J}p_k^*dV_J=\frac{(\pi k)^{d}}{d!}\sum_{J\in\mathcal{J}}\mu_{k,J}(U_J).
@@ -343,7 +347,7 @@ which exists since \(B_J\) is invertible. Let
 <span class="math">\[
 	K_{J,\varepsilon}:=\{x\in K\,\colon\,y_{J,\varepsilon}(x)\in\bar\Omega_x\}.
 \]</span>
-Each \(K_{J,\varepsilon}\) is closed, since \(\overline\Omega\) is closed and \(y_{J,\varepsilon}\) is continuous.
+Each \(K_{J,\varepsilon}\) is closed, since \(\overline\Omega\) is closed and \(y_{J,\varepsilon}\) is continuous. If \(x\in K_{J,\varepsilon}\), then \(y_{J,\varepsilon}(x)\) is the vertex of \(\bar\Omega_x\) at which the inequalities in <a href="#eq-3">(3)</a> with \(h=\varepsilon_jb_j\), \(j\in J\), are equalities, and \(z=x+iy_{J,\varepsilon}(x)\) is a point of \(\partial\Omega\) with \(\langle b_j,z\rangle\in\partial D\) for all \(j\in J\).
 By the definition of \(y_{J,\varepsilon}\), for \(q\in[-1,1]^J\) and \(\varepsilon\in\{-1,1\}^J\),
 <span class="math">\[
 	F\big(\Phi(q,\varepsilon)\big)=q+iB_Jy_{J,\varepsilon}(B_J^{-1}q)=B_J\big(B_J^{-1}q+iy_{J,\varepsilon}(B_J^{-1}q)\big).
@@ -410,15 +414,11 @@ everywhere. By the implicit function theorem, both \(\{G=0,\ \nabla G\neq0\}\) a
 
 Let \((e_j)_{j\in J}\) be the standard basis of \(\mathbb{R}^J\), and write \(B_J^{-\mathsf T}:=(B_J^{\mathsf T})^{-1}\colon\mathbb{R}^d\to\mathbb{R}^J\). The linear map \((x,h)\mapsto(B_Jx,B_J^{-\mathsf T}h)\) from \(\mathbb{R}^d\times\mathbb{R}^d\) to \(\mathbb{R}^J\times\mathbb{R}^J\) preserves volume. Since \(B_J^{-\mathsf T}b_j=e_j\) for \(j\in J\), it maps \(K_{J,\varepsilon}\times\Delta_{J,\varepsilon}\) onto
 <span class="math">\[
-	B_J(K_{J,\varepsilon})\times\operatorname{conv}\left(\{0\}\cup\{\varepsilon_je_j\}_{j\in J}\right).
+	B_J(K_{J,\varepsilon})\times\operatorname{conv}\left(\{0\}\cup\{\varepsilon_je_j\}_{j\in J}\right)\subseteq[-1,1]^J\times\operatorname{conv}\{\pm e_j\}_{j\in J},
 \]</span>
-Hence, since \(\operatorname{Vol}\big(\operatorname{conv}\left(\{0\}\cup\{\varepsilon_je_j\}_{j\in J}\right)\big)=1/d!\),
+where the inclusion follows from <a href="#eq-11">(11)</a>. The set on the right is the product of the cube with its polar; it has volume \(4^d/d!\), and since \(\operatorname{Vol}\big(\operatorname{conv}\left(\{0\}\cup\{\varepsilon_je_j\}_{j\in J}\right)\big)=1/d!\), by <a href="#eq-14">(14)</a> the sets on the left, \(\varepsilon\in\{-1,1\}^J\), cover a fraction \(\mu_J(A_J)\) of it. Hence
 <span id="eq-18"></span><span class="math">\[
-	\operatorname{Vol}_{2d}(\Sigma)\ge\frac{1}{d!}\sum\limits_{J\in \mathcal{J}}\sum\limits_{\varepsilon \in \{ -1,1 \}^{J}}\operatorname{Vol}\left(B_J(K_{J,\varepsilon})\right).\tag{18}
-\]</span>
-By <a href="#eq-14">(14)</a>, <a href="#eq-18">(18)</a> becomes
-<span class="math">\[
-	\operatorname{Vol}_{2d}(\Sigma)\ge\frac{4^d}{d!}\sum_{J\in\mathcal{J}}\mu_J(A_J),
+	\operatorname{Vol}_{2d}(\Sigma)\ge\frac{1}{d!}\sum\limits_{J\in \mathcal{J}}\sum\limits_{\varepsilon \in \{ -1,1 \}^{J}}\operatorname{Vol}\left(B_J(K_{J,\varepsilon})\right)=\frac{4^d}{d!}\sum_{J\in\mathcal{J}}\mu_J(A_J),\tag{18}
 \]</span>
 and <a href="#eq-10">(10)</a> gives <a href="#eq-2">(2)</a>.</p>
 <h3 id="the-equality-case">The equality case</h3>
@@ -707,7 +707,7 @@ Finally, write \(dV_J=\bigwedge_{j\in J}\frac i2dw_j\wedge d\bar w_j\) for the v
 <span id="eq-A5"></span><span class="math">\[
 (dd^c|w|^2)^d=d!\sum_{J\in{[m]\choose d}}dV_J\qquad\text{on }\mathbb{C}^m.\tag{A5}
 \]</span>
-Combining <a href="#eq-A4">(A4)</a> and <a href="#eq-A5">(A5)</a> with \(\pi_J\circ f\) in place of \(\Psi\) gives \((dd^c|f|^2)^d=d!\sum_J|\det(Df)_J|^2\,dV\) for holomorphic \(f\colon U\to\mathbb{C}^m\).</p>
+Combining <a href="#eq-A4">(A4)</a> and <a href="#eq-A5">(A5)</a> with \(\pi_J\circ f\) in place of \(\Psi\) gives \((dd^c|f|^2)^d=d!\sum_J|\det(Df)_J|^2\,dV\) for holomorphic \(f\colon U\to\mathbb{C}^m\), the Cauchy&ndash;Binet formula.</p>
 <p><b>Plurisubharmonic functions.</b> A smooth real function \(u\) on an open set of \(\mathbb{C}^d\) is <i>plurisubharmonic</i> (psh) if its complex Hessian is positive semidefinite at every point; equivalently, \(\sum u_{j\bar k}\xi_j\bar\xi_k\ge0\) for all \(\xi\in\mathbb{C}^d\), that is, the restriction of \(u\) to every complex line is subharmonic. Facts used:</p>
 <ol>
 <li>(Positivity.) If \(u\) is smooth and psh, then \(\det(u_{j\bar k})\ge0\), so \((dd^cu)^d\ge0\) by <a href="#eq-A2">(A2)</a>.</li>
