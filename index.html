@@ -75,7 +75,7 @@ window.MathJax = {
 <body>
 <h1>Notes on OpenAI's proof of the symmetric Mahler conjecture</h1>
 <h4>Rotem Assouline</h4>
-<p><i>Last updated: October 18, 2026</i></p>
+<p><i>Last updated: October 19, 2026</i></p>
 <p><button type="button" class="print-btn" onclick="window.print()">Print</button></p>
 <p>The following note is based on ongoing conversations between me and Claude about <a href="https://github.com/openai/math/tree/main/preprints/The-symmetric-Mahler-conjecture-and-its-equality-cases-September-22-2026">OpenAI's recent claimed proof of the symmetric Mahler conjecture</a>. While the main ideas are taken from the original proof, some of the details are being rewritten to facilitate my understanding, and some figures and interactive applets are being added for visualization. <b>This is a work in progress.</b> I do not claim to have verified the proof completely.</p>
 <p>Readers are welcome to contribute by</p>
@@ -359,29 +359,14 @@ The map \(\Phi\) pushes the uniform probability measure \(\nu_J\) on \([-1,1]^J\
 <p><b>Figure 2: from \(\Omega\) to the cube to the torus</b></p>
 <div class="figure interactive" id="fig-2"></div>
 <h3 id="the-set-sigma">The set \(\Sigma\)</h3>
-<p>To motivate the definition of \(\Sigma\), note that
-<span id="eq-15"></span><span class="math">\[
-	K^{\circ}=\bigcup_{x\in K}\operatorname{conv}\big(\{0\}\cup\{h\in K^{\circ}\colon\langle h,x\rangle=1\}\big).\tag{15}
-\]</span>
-Indeed, the right-hand side is contained in \(K^\circ\), since \(K^\circ\) is convex and contains \(0\). Conversely, let \(h\in K^\circ\setminus\{0\}\) and let \(x\in K\) maximize \(\langle h,\cdot\rangle\) on \(K\). Then \(t:=\langle h,x\rangle\in(0,1]\), \(h/t\in K^{\circ}\), \(\langle h/t,x\rangle=1\), and \(h\in\operatorname{conv}\{0,h/t\}\).</p>
-<p>For \(x\in K\), let
-<span id="eq-16"></span><span class="math">\[
-	\Sigma_x:=\bigcup_{z\in\overline\Omega,\ \mathrm{Re}\,z=x}\operatorname{conv}\big(\{0\}\cup\{h\in K^{\circ}\colon\mathrm{Im}\,\langle h,z\rangle=\lambda(\mathrm{Re}\,\langle h,z\rangle)\}\big)\subseteq K^{\circ},\tag{16}
-\]</span>
-and let
-<span class="math">\[
-	\Sigma:=\bigcup_{x\in K}\{x\}\times\Sigma_x\subseteq K\times K^{\circ}.
-\]</span>
-For \(z\in\overline\Omega\) and \(h\in K^\circ\), the condition in <a href="#eq-16">(16)</a> says that \(\langle h,z\rangle\) lies on the upper arc \(\{t+i\lambda(t)\colon|t|\le1\}\) of \(\partial D\). Thus <a href="#eq-16">(16)</a> is obtained from <a href="#eq-15">(15)</a> by replacing \(K\) with \(\overline\Omega\), and the right endpoint of \([-1,1]\) with the upper arc of \(\partial D\). Note that \(\Sigma_0=K^{\circ}\) by <a href="#eq-3">(3)</a> and <a href="#eq-15">(15)</a>.</p>
 <p id="simplex-decomposition">For \(J\in \mathcal{J}\) and \(\varepsilon \in \{ -1,1 \}^{J}\), write \(\Delta_{J,\varepsilon}\) for the simplex
 <span class="math">\[
-	\Delta_{J,\varepsilon}:=\operatorname{conv} \left(  \{0\}\cup \{\varepsilon_{j}b_{j}\}_{j\in J}\right)\subset K^{\circ}.
+	\Delta_{J,\varepsilon}:=\operatorname{conv} \left(  \{0\}\cup \{\varepsilon_{j}b_{j}\}_{j\in J}\right)\subset K^{\circ},
 \]</span>
-If \(x\in K_{J,\varepsilon}\) and \(y=y_{J,\varepsilon}(x)\), then \(\langle\varepsilon_jb_j,y\rangle=\lambda(\langle\varepsilon_jb_j,x\rangle)\) for all \(j\in J\), since \(\lambda\) is even, so \(\Delta_{J,\varepsilon}\subseteq\Sigma_x\) by <a href="#eq-16">(16)</a>. Hence
-<span id="eq-17"></span><span class="math">\[
-\Sigma\supseteq\bigcup\limits_{J\in \mathcal{J}}\bigcup\limits_{\varepsilon \in \{-1,1\}^J}K_{J,\varepsilon}\times\Delta_{J,\varepsilon}.\tag{17}
-\]</span>
-In fact, equality holds in <a href="#eq-17">(17)</a>, see <a href="#appendix-simplex-decomposition">Appendix: \(\Sigma\) as a union of products</a>, but we shall not need this.</p>
+and let
+<span id="eq-15"></span><span class="math">\[
+\Sigma:=\bigcup\limits_{J\in \mathcal{J}}\bigcup\limits_{\varepsilon \in \{-1,1\}^J}K_{J,\varepsilon}\times\Delta_{J,\varepsilon}\subseteq K\times K^{\circ}.\tag{15}
+\]</span></p>
 <p>Figure 3 below shows \(\bar\Omega_x\) (left) and the fiber \(\Sigma_x\) of \(\Sigma\) (right). For each \((J,\varepsilon)\) with \(x\in K_{J,\varepsilon}\), the vertex \(y_{J,\varepsilon}(x)\) of \(\bar\Omega_x\) and the simplex \(\Delta_{J,\varepsilon}\) are drawn in the same colour.</p>
 <p><b>Figure 3: the set \(\Sigma_x\)</b></p>
 <div class="figure interactive" id="fig-3"></div>
@@ -399,17 +384,17 @@ For every \(y'\in\bar\Omega_x\), <a href="#eq-3">(3)</a> gives \(|\langle b_j,y'
 	\langle \xi,y'\rangle\le\sum_{j\in J}\alpha_j\lambda(\langle b_j,x\rangle)=\langle\xi,y\rangle,
 \]</span>
 with equality if and only if \(\langle b_j,y'\rangle=\varepsilon_j\lambda(\langle b_j,x\rangle)\) for all \(j\in J\), that is, if and only if \(y'=y\). So \(y\) is the unique maximizer of \(\langle\xi,\cdot\rangle\) on \(\bar\Omega_x\), that is, \(\xi\) lies in the interior of the normal cone of \(\bar\Omega_x\) at \(y\). Since the normal cones of \(\bar\Omega_x\) at distinct points have disjoint interiors,
-<span id="eq-18"></span><span class="math">\[
-	y_{J,\varepsilon}(x)=y_{J',\varepsilon'}(x)\tag{18}
+<span id="eq-16"></span><span class="math">\[
+	y_{J,\varepsilon}(x)=y_{J',\varepsilon'}(x)\tag{16}
 \]</span>
-whenever \(x\in\operatorname{int}K\cap K_{J,\varepsilon}\cap K_{J',\varepsilon'}\). As \(\partial K\) is null, it suffices to show that <a href="#eq-18">(18)</a> holds only on a null set of \(x\in\operatorname{int}K\).
+whenever \(x\in\operatorname{int}K\cap K_{J,\varepsilon}\cap K_{J',\varepsilon'}\). As \(\partial K\) is null, it suffices to show that <a href="#eq-16">(16)</a> holds only on a null set of \(x\in\operatorname{int}K\).
 </p>
 <p>
-If \(J=J'\), then \(\varepsilon\ne\varepsilon'\), and since \(\lambda>0\) on \((-1,1)\), <a href="#eq-18">(18)</a> never holds on \(\operatorname{int}K\). So let \(J\neq J'\), and fix \(k\in J'\setminus J\). If \(x\in\operatorname{int}K\) satisfies <a href="#eq-18">(18)</a>, with common value \(y\), then
-<span id="eq-19"></span><span class="math">\[
-	\langle b_k,y\rangle=\varepsilon'_k\lambda(\langle b_k,x\rangle).\tag{19}
+If \(J=J'\), then \(\varepsilon\ne\varepsilon'\), and since \(\lambda>0\) on \((-1,1)\), <a href="#eq-16">(16)</a> never holds on \(\operatorname{int}K\). So let \(J\neq J'\), and fix \(k\in J'\setminus J\). If \(x\in\operatorname{int}K\) satisfies <a href="#eq-16">(16)</a>, with common value \(y\), then
+<span id="eq-17"></span><span class="math">\[
+	\langle b_k,y\rangle=\varepsilon'_k\lambda(\langle b_k,x\rangle).\tag{17}
 \]</span>
-Write \(b_k=\sum_{j\in J}c_jb_j\) and use the coordinates \(q_j=\langle b_j,x\rangle\), \(j\in J\), on \(\operatorname{int} K\). Since \(\langle b_j,y\rangle=\varepsilon_j\lambda(q_j)\), equation <a href="#eq-19">(19)</a> reads
+Write \(b_k=\sum_{j\in J}c_jb_j\) and use the coordinates \(q_j=\langle b_j,x\rangle\), \(j\in J\), on \(\operatorname{int} K\). Since \(\langle b_j,y\rangle=\varepsilon_j\lambda(q_j)\), equation <a href="#eq-17">(17)</a> reads
 <span class="math">\[
 	G(q):=\sum_{j\in J}c_j\varepsilon_j\lambda(q_j)-\varepsilon'_k\lambda\Big(\sum_{j\in J}c_jq_j\Big)=0.
 \]</span>
@@ -418,7 +403,7 @@ Since \(b_k\) is not proportional to \(b_j\) for any \(j\neq k\), at least two c
 	\frac{\partial^{2}G}{\partial q_{j_1}\,\partial q_{j_2}}=-\varepsilon'_k c_{j_1}c_{j_2}\lambda''\Big(\sum_{j\in J}c_jq_j\Big)\neq0
 \]</span>
 everywhere. By the implicit function theorem, both \(\{G=0,\ \nabla G\neq0\}\) and \(\{\partial G/\partial q_{j_1}=0\}\supseteq\{\nabla G=0\}\) are locally \(C^1\) hypersurfaces, so the level set \(\{G=0\}\) has measure zero. \(\square\)</p>
-<p>By <a href="#eq-17">(17)</a> and <a href="#lemma-3">Lemma 3</a>,
+<p>By <a href="#eq-15">(15)</a> and <a href="#lemma-3">Lemma 3</a>,
 <span class="math">\[
 	\operatorname{Vol}_{2d}(\Sigma)\ge\sum\limits_{J\in \mathcal{J}}\sum\limits_{\varepsilon \in \{ -1,1 \}^{J}}\operatorname{Vol}_{2d}(K_{J,\varepsilon}\times\Delta_{J,\varepsilon}).
 \]</span>
@@ -428,10 +413,10 @@ Let \((e_j)_{j\in J}\) be the standard basis of \(\mathbb{R}^J\), and write \(B_
 	B_J(K_{J,\varepsilon})\times\operatorname{conv}\left(\{0\}\cup\{\varepsilon_je_j\}_{j\in J}\right).
 \]</span>
 Hence, since \(\operatorname{Vol}\big(\operatorname{conv}\left(\{0\}\cup\{\varepsilon_je_j\}_{j\in J}\right)\big)=1/d!\),
-<span id="eq-20"></span><span class="math">\[
-	\operatorname{Vol}_{2d}(\Sigma)\ge\frac{1}{d!}\sum\limits_{J\in \mathcal{J}}\sum\limits_{\varepsilon \in \{ -1,1 \}^{J}}\operatorname{Vol}\left(B_J(K_{J,\varepsilon})\right).\tag{20}
+<span id="eq-18"></span><span class="math">\[
+	\operatorname{Vol}_{2d}(\Sigma)\ge\frac{1}{d!}\sum\limits_{J\in \mathcal{J}}\sum\limits_{\varepsilon \in \{ -1,1 \}^{J}}\operatorname{Vol}\left(B_J(K_{J,\varepsilon})\right).\tag{18}
 \]</span>
-By <a href="#eq-14">(14)</a>, <a href="#eq-20">(20)</a> becomes
+By <a href="#eq-14">(14)</a>, <a href="#eq-18">(18)</a> becomes
 <span class="math">\[
 	\operatorname{Vol}_{2d}(\Sigma)\ge\frac{4^d}{d!}\sum_{J\in\mathcal{J}}\mu_J(A_J),
 \]</span>
@@ -445,12 +430,27 @@ and <a href="#eq-10">(10)</a> gives <a href="#eq-2">(2)</a>.</p>
 	\end{aligned}
 \]</span>
 Then \((A\oplus_1A')^{\circ}=A^{\circ}\oplus_\infty A'^{\circ}\) and \((A\oplus_\infty A')^{\circ}=A^{\circ}\oplus_1 A'^{\circ}\). <i>Hanner polytopes</i> form the smallest class of convex bodies that contains the segments \([-a,a]\subset\mathbb{R}\), \(a>0\), and is closed under \(\oplus_1\) and \(\oplus_\infty\).</p>
+<p>To motivate the definition of \(\Sigma\) for a general symmetric convex body \(K\), note that
+<span id="eq-19"></span><span class="math">\[
+	K^{\circ}=\bigcup_{x\in K}\operatorname{conv}\big(\{0\}\cup\{h\in K^{\circ}\colon\langle h,x\rangle=1\}\big).\tag{19}
+\]</span>
+Indeed, the right-hand side is contained in \(K^\circ\), since \(K^\circ\) is convex and contains \(0\). Conversely, let \(h\in K^\circ\setminus\{0\}\) and let \(x\in K\) maximize \(\langle h,\cdot\rangle\) on \(K\). Then \(t:=\langle h,x\rangle\in(0,1]\), \(h/t\in K^{\circ}\), \(\langle h/t,x\rangle=1\), and \(h\in\operatorname{conv}\{0,h/t\}\).</p>
+<p>For \(x\in K\), let
+<span id="eq-20"></span><span class="math">\[
+	\Sigma_x:=\bigcup_{z\in\overline\Omega,\ \mathrm{Re}\,z=x}\operatorname{conv}\big(\{0\}\cup\{h\in K^{\circ}\colon\mathrm{Im}\,\langle h,z\rangle=\lambda(\mathrm{Re}\,\langle h,z\rangle)\}\big)\subseteq K^{\circ},\tag{20}
+\]</span>
+and let
+<span class="math">\[
+	\Sigma:=\bigcup_{x\in K}\{x\}\times\Sigma_x\subseteq K\times K^{\circ}.
+\]</span>
+For \(z\in\overline\Omega\) and \(h\in K^\circ\), the condition in <a href="#eq-20">(20)</a> says that \(\langle h,z\rangle\) lies on the upper arc \(\{t+i\lambda(t)\colon|t|\le1\}\) of \(\partial D\). Thus <a href="#eq-20">(20)</a> is obtained from <a href="#eq-19">(19)</a> by replacing \(K\) with \(\overline\Omega\), and the right endpoint of \([-1,1]\) with the upper arc of \(\partial D\). Note that \(\Sigma_0=K^{\circ}\) by <a href="#eq-3">(3)</a> and <a href="#eq-19">(19)</a>.</p>
+<p>If \(K\) is a polytope, \(x\in K_{J,\varepsilon}\) and \(y=y_{J,\varepsilon}(x)\), then \(\langle\varepsilon_jb_j,y\rangle=\lambda(\langle\varepsilon_jb_j,x\rangle)\) for all \(j\in J\), since \(\lambda\) is even, so \(\Delta_{J,\varepsilon}\subseteq\Sigma_x\) by <a href="#eq-20">(20)</a>. Hence, for a polytope \(K\), the set \(\Sigma\) defined here contains the set defined in <a href="#eq-15">(15)</a>; in fact the two coincide, see <a href="#appendix-simplex-decomposition">Appendix: \(\Sigma\) as a union of products</a>.</p>
 <p><b>Plan.</b> The proof above gives \(\frac{4^{d}}{d!}\le\operatorname{Vol}_{2d}(\Sigma)\le\operatorname{Vol}(K)\operatorname{Vol}(K^{\circ})\), where the first inequality follows from <a href="#lemma-5">Lemma 5</a> and the second holds true since \(\Sigma\subseteq K\times K^{\circ}\). Equality in the second inequality forces \(\Sigma_x=K^{\circ}\) for almost every \(x \in K\). <a href="#lemma-5">Lemma 5</a> shows that this is then true for all \(x \in \operatorname{int} K\). <a href="#lemma-5">Lemma 5</a> for \(\widehat K=K\oplus_1[-1,1]\) at points \((\delta x,1-\delta)\), \(\delta\downarrow0\), together with <a href="#lemma-0">Lemma 0</a>, gives that every triple of points of \((\mathbb{R}^d,\|\cdot\|_{K^{\circ}})\) has a metric median (<a href="#lemma-6-medians">Lemma 6</a>), and <a href="#theorem-7-lima-lima-1978-hansen-lima-hansen-lima-1981">Theorem 7</a>, which is due to Hansen and Lima, identifies the norm.</p>
-<p>By <a href="#eq-16">(16)</a>, \(\xi\in\Sigma_x\) iff \(\xi=\sum_i\alpha_ih_i\) for finitely many \(h_i\in K^{\circ}\) with \(\langle h_i,y\rangle=\lambda(\langle h_i,x\rangle)\) for one \(y\in\bar\Omega_x\) and all \(i\), where \(\alpha_i\ge0\) and \(\sum_i\alpha_i\le1\); by Carathéodory's theorem, \(d+1\) terms suffice. Since \(\lambda\le\lambda(0)\), <a href="#eq-3">(3)</a> gives
+<p>By <a href="#eq-20">(20)</a>, \(\xi\in\Sigma_x\) iff \(\xi=\sum_i\alpha_ih_i\) for finitely many \(h_i\in K^{\circ}\) with \(\langle h_i,y\rangle=\lambda(\langle h_i,x\rangle)\) for one \(y\in\bar\Omega_x\) and all \(i\), where \(\alpha_i\ge0\) and \(\sum_i\alpha_i\le1\); by Carathéodory's theorem, \(d+1\) terms suffice. Since \(\lambda\le\lambda(0)\), <a href="#eq-3">(3)</a> gives
 <span id="eq-21"></span><span class="math">\[
 	\bar\Omega_x\subseteq\lambda(0)K,\qquad x\in K.\tag{21}
 \]</span></p>
-<div class="callout callout-lemma" id="lemma-4"><div class="callout-title">Lemma 4</div><p>Let \(K^{(j)}\supseteq K\) be symmetric convex bodies with \(K^{(j)}\subseteq t_j^{-1}K\) and \(t_j\to1\), and let \(\Omega^{(j)}\) and \(\Sigma^{(j)}_x\) be defined as \(\Omega\) and \(\Sigma_x\) in <a href="#eq-16">(16)</a>, with \(K\) replaced by \(K^{(j)}\). If \(x_j\to x\in\operatorname{int} K\), \(\xi_j\to\xi\) and \(\xi_j\in\Sigma^{(j)}_{x_j}\), then \(\xi\in\Sigma_x\).</p></div>
+<div class="callout callout-lemma" id="lemma-4"><div class="callout-title">Lemma 4</div><p>Let \(K^{(j)}\supseteq K\) be symmetric convex bodies with \(K^{(j)}\subseteq t_j^{-1}K\) and \(t_j\to1\), and let \(\Omega^{(j)}\) and \(\Sigma^{(j)}_x\) be defined as \(\Omega\) and \(\Sigma_x\) in <a href="#eq-20">(20)</a>, with \(K\) replaced by \(K^{(j)}\). If \(x_j\to x\in\operatorname{int} K\), \(\xi_j\to\xi\) and \(\xi_j\in\Sigma^{(j)}_{x_j}\), then \(\xi\in\Sigma_x\).</p></div>
 <p><i>Proof.</i> Write \(\xi_j=\sum_{i=0}^{d}\alpha_{ij}h_{ij}\) with \(h_{ij}\in (K^{(j)})^{\circ}\), \(\langle h_{ij},y_j\rangle=\lambda(\langle h_{ij},x_j\rangle)\) for some \(y_j\) with \(x_j+iy_j\in\overline{\Omega^{(j)}}\), \(\alpha_{ij}\ge0\), \(\sum_i\alpha_{ij}\le1\). By <a href="#eq-21">(21)</a> for \(K^{(j)}\), \(y_j\in\lambda(0)K^{(j)}\subseteq\lambda(0)t_j^{-1}K\), so all data range in a compact set. Pass to a subsequence with \(y_j\to y\), \(h_{ij}\to h_i\in K^{\circ}\), \(\alpha_{ij}\to\alpha_i\). For \(h\in K^{\circ}\) we have \(t_jh\in (K^{(j)})^{\circ}\), so \(\langle t_jh,y_j\rangle\le\lambda(\langle t_jh,x_j\rangle)\) by <a href="#eq-3">(3)</a> for \(K^{(j)}\); continuity of \(\lambda\) gives \(\langle h,y\rangle\le\lambda(\langle h,x\rangle)\) for all \(h\in K^{\circ}\), that is, \(x+iy\in\overline\Omega\). The same continuity turns \(\langle h_{ij},y_j\rangle=\lambda(\langle h_{ij},x_j\rangle)\) into \(\langle h_i,y\rangle=\lambda(\langle h_i,x\rangle)\). So \(\xi=\sum\alpha_ih_i\in\Sigma_x\). \(\square\)</p>
 <div class="callout callout-lemma" id="lemma-5"><div class="callout-title">Lemma 5</div><p>For every symmetric convex body \(K\), the set \(\Sigma\) is measurable and
 <span class="math">\[
@@ -484,7 +484,7 @@ Finally, \(\limsup_jE_j\subseteq \Sigma\). Indeed, let \((x,\xi)\in E_j\) for in
 	\operatorname{Vol}_{2d}(\Sigma)\ge\operatorname{Vol}_{2d}\Big(\limsup_{j\to\infty}E_j\Big)\ge\frac{4^{d}}{d!},
 \]</span>
 which proves the inequality.</p>
-<p>Now assume \(\operatorname{Vol}(K)\operatorname{Vol}(K^{\circ})=4^{d}/d!\). Then \(\Sigma\subseteq K\times K^{\circ}\) and \(\operatorname{Vol}_{2d}(\Sigma)\ge\operatorname{Vol}_{2d}(K\times K^{\circ})\), so \((\operatorname{int} K\times\operatorname{int} K^{\circ})\setminus \Sigma\) is null. It is open by <a href="#lemma-4">Lemma 4</a>, hence empty. So \(\Sigma_x\supseteq\operatorname{int} K^{\circ}\), and \(\Sigma_x\) is closed. For \(\xi\in\partial K^{\circ}\), write \(\xi=\sum\alpha_ih_i\) as in the definition <a href="#eq-16">(16)</a> of \(\Sigma_x\); the weights \(\alpha_i\) sum to \(1\) since \[1=\|\xi\|_{K^{\circ}}\le\sum\alpha_i\|h_i\|_{K^{\circ}}\le\sum\alpha_i\le1,\] so \(\xi\in\operatorname{conv}\{h_i\}\). \(\square\)</p>
+<p>Now assume \(\operatorname{Vol}(K)\operatorname{Vol}(K^{\circ})=4^{d}/d!\). Then \(\Sigma\subseteq K\times K^{\circ}\) and \(\operatorname{Vol}_{2d}(\Sigma)\ge\operatorname{Vol}_{2d}(K\times K^{\circ})\), so \((\operatorname{int} K\times\operatorname{int} K^{\circ})\setminus \Sigma\) is null. It is open by <a href="#lemma-4">Lemma 4</a>, hence empty. So \(\Sigma_x\supseteq\operatorname{int} K^{\circ}\), and \(\Sigma_x\) is closed. For \(\xi\in\partial K^{\circ}\), write \(\xi=\sum\alpha_ih_i\) as in the definition <a href="#eq-20">(20)</a> of \(\Sigma_x\); the weights \(\alpha_i\) sum to \(1\) since \[1=\|\xi\|_{K^{\circ}}\le\sum\alpha_i\|h_i\|_{K^{\circ}}\le\sum\alpha_i\le1,\] so \(\xi\in\operatorname{conv}\{h_i\}\). \(\square\)</p>
 <div class="callout callout-definition" id="definition"><div class="callout-title">Definition</div><p>Let \((V,\|\cdot\|)\) be a normed space. A <i>median</i> of a triple  \(x_1,x_2,x_3\in V\) is a point \(m\) with \(\|x_i-m\|+\|m-x_j\|=\|x_i-x_j\|\) for all \(i\neq j\).</p></div>
 <div class="callout callout-lemma" id="lemma-6-medians"><div class="callout-title">Lemma 6</div><p>If \(\operatorname{Vol}(K)\operatorname{Vol}(K^{\circ})=4^{d}/d!\) then every triple of points has a median in \((\mathbb{R}^{d},\|\cdot\|_{K^{\circ}})\).</p></div>
 <p><i>Proof.</i> 
@@ -666,7 +666,7 @@ Thus \(F\) maps the upper and the lower semicircle bijectively onto the upper an
 \]</span>
 The ratio at \(\eta=\delta c\) and \(\eta=\delta\) is \(c\,\big(1+O(1/\log\tfrac1\delta)\big)\), uniformly for \(c\in[a,b]\). \(\square\)</p>
 <h3 id="appendix-simplex-decomposition">Appendix: \(\Sigma\) as a union of products</h3>
-<p>We prove that equality holds in <a href="#eq-17">(17)</a>, that is, the inclusion \(\subseteq\); this is not used elsewhere in this note. Fix \(x\in K\). For \(y\in\mathbb{R}^d\), the function \(h\mapsto\langle h,y\rangle-\lambda(\langle h,x\rangle)\) is convex on \(K^{\circ}=\operatorname{conv}\{\pm b_l\}\), so it suffices to check <a href="#eq-3">(3)</a> at \(h=\pm b_l\), and since \(\lambda\) is even, \(\bar\Omega_x\) is the polytope
+<p>We prove that, for a polytope \(K\), the set \(\Sigma\) defined by <a href="#eq-20">(20)</a> is contained in the set defined in <a href="#eq-15">(15)</a>. Fix \(x\in K\). For \(y\in\mathbb{R}^d\), the function \(h\mapsto\langle h,y\rangle-\lambda(\langle h,x\rangle)\) is convex on \(K^{\circ}=\operatorname{conv}\{\pm b_l\}\), so it suffices to check <a href="#eq-3">(3)</a> at \(h=\pm b_l\), and since \(\lambda\) is even, \(\bar\Omega_x\) is the polytope
 <span class="math">\[
 	\bar\Omega_x=\{y\in\mathbb{R}^d\colon|\langle b_l,y\rangle|\le\lambda(\langle b_l,x\rangle)\ \ \forall\,1\leq l\leq m\}.
 \]</span>
@@ -678,7 +678,7 @@ Consequently,
 \]</span>
 where \(v\) ranges over the vectors \(\pm b_l\) tight at \(x+iy\). Among all such representations of \(\xi\), choose one with the fewest nonzero coefficients. Then the vectors \(v\) with \(\beta_v>0\) are linearly independent.</p>
 <p>The points \(y'\in \bar\Omega_x\) at which every \(v\) with \(\beta_v>0\) is tight, that is, \(\langle v,y'\rangle=\lambda(\langle v,x\rangle)\), form a face of \(\bar\Omega_x\) containing \(y\); let \(y'\) be a vertex of this face. Then \(y'\) is a vertex of \(\bar\Omega_x\), so the vectors \(\pm b_l\) tight at \(x+iy'\) span \(\mathbb{R}^d\). Hence the linearly independent vectors \(\{v\colon\beta_v>0\}\) can be completed, by vectors tight at \(x+iy'\), to a basis of \(\mathbb{R}^d\). A basis contains at most one of \(b_l,-b_l\), so it has the form \(\{\varepsilon_jb_j\}_{j\in J}\) with \(J\in\mathcal{J}\) and \(\varepsilon\in\{-1,1\}^J\). Thus \(x\in K_{J,\varepsilon}\), and \(\xi=\sum_v\beta_vv\in\Delta_{J,\varepsilon}\). \(\square\)</p>
-<p>The fiber over \(x\) of the union in <a href="#eq-17">(17)</a> can also be seen as the image of a piecewise linear map. The polar of \(\bar\Omega_x\) is \(\bar\Omega_x^{\circ}=\operatorname{conv}\{v/\lambda(\langle v,x\rangle)\colon v\in\{\pm b_l\}\}\). A vertex \(y\) of \(\bar\Omega_x\) corresponds to the facet of \(\bar\Omega_x^{\circ}\) whose vertices are the points \(v/\lambda(\langle v,x\rangle)\) with \(v\) tight at \(x+iy\). For almost every \(x\), by the argument in the proof of <a href="#lemma-3">Lemma 3</a>, exactly \(d\) vectors \(v\) are tight at each vertex \(y\): for \(x\in K_{J,\varepsilon}\) and \(y=y_{J,\varepsilon}(x)\) these are \(v=\varepsilon_jb_j\), \(j\in J\). Then the map that is linear on the cone over this facet and sends \(v/\lambda(\langle v,x\rangle)\) to \(v\) stretches the cone onto \(\Delta_{J,\varepsilon}\), and these maps agree on common faces of the cones. Figure 5 shows the case \(d=2\).</p>
+<p>The fiber over \(x\) of the union in <a href="#eq-15">(15)</a> can also be seen as the image of a piecewise linear map. The polar of \(\bar\Omega_x\) is \(\bar\Omega_x^{\circ}=\operatorname{conv}\{v/\lambda(\langle v,x\rangle)\colon v\in\{\pm b_l\}\}\). A vertex \(y\) of \(\bar\Omega_x\) corresponds to the facet of \(\bar\Omega_x^{\circ}\) whose vertices are the points \(v/\lambda(\langle v,x\rangle)\) with \(v\) tight at \(x+iy\). For almost every \(x\), by the argument in the proof of <a href="#lemma-3">Lemma 3</a>, exactly \(d\) vectors \(v\) are tight at each vertex \(y\): for \(x\in K_{J,\varepsilon}\) and \(y=y_{J,\varepsilon}(x)\) these are \(v=\varepsilon_jb_j\), \(j\in J\). Then the map that is linear on the cone over this facet and sends \(v/\lambda(\langle v,x\rangle)\) to \(v\) stretches the cone onto \(\Delta_{J,\varepsilon}\), and these maps agree on common faces of the cones. Figure 5 shows the case \(d=2\).</p>
 <p><b>Figure 5: the stretching map from \(\bar\Omega_x^{\circ}\) to \(\Sigma_x\)</b></p>
 <div class="figure interactive" id="fig-5"></div>
 <h3 id="appendix-complex-geometry">Appendix: Complex-geometric background for <a href="#lemma-1">Lemma 1</a></h3>
@@ -750,12 +750,12 @@ Here we used \(d\big(d^c|z|^2\wedge(dd^c|z|^2)^{d-1}\big)=(dd^c|z|^2)^d\), valid
 <tr><td>\(\Omega\)</td><td>\(\Omega\) rotated</td><td>Defined in the proof of Lemma 5.1. Here \(\Omega\) is defined via \(K^\circ\) for every symmetric convex body \(K\); for a polytope it is cut out by the \(b_j\).</td></tr>
 <tr><td>\(F^{-1}\circ B\)</td><td>\((h_1,\dots,h_m)\)</td><td>\(h_j(z)=g(b_jz)\).</td></tr>
 <tr><td>\(J\in\mathcal{J}\)</td><td>\(I\in\mathcal{B}\)</td><td>Sets of \(d\) independent rows.</td></tr>
-<tr><td>\(B_J\)</td><td>\(B_I\)</td><td>The determinant \(D_I=|\det B_I|\) does not appear here; see the change of variables before <a href="#eq-20">(20)</a>.</td></tr>
+<tr><td>\(B_J\)</td><td>\(B_I\)</td><td>The determinant \(D_I=|\det B_I|\) does not appear here; see the change of variables before <a href="#eq-18">(18)</a>.</td></tr>
 <tr><td>\(\varepsilon\)</td><td>\(\epsilon\)</td><td>Sign vectors.</td></tr>
 <tr><td>\(\bar\Omega_x\)</td><td>\(L_X\)</td><td>[25]. The fiber of \(\overline\Omega\) over \(x\), described by <a href="#eq-3">(3)</a>.</td></tr>
 <tr><td>\(x\in K_{J,\varepsilon}\)</td><td>\((I,\epsilon)\) feasible at \(X\)</td><td>\(y_{J,\varepsilon}(x)\) is the preprint's \(Y_{I,\epsilon}(X)\), and \((I,\epsilon)\) is called feasible when \(Y_{I,\epsilon}(X)\in L_X\).</td></tr>
 <tr><td>\(\Delta_{J,\varepsilon}\)</td><td>\(T_{I,\epsilon}\)</td><td>[26].</td></tr>
-<tr><td>\(\Sigma\), \(\Sigma_x\)</td><td>\(\Sigma_X\)</td><td>The preprint defines \(\Sigma_X\) as the union of feasible simplices [26] and works with \(\int_A|\Sigma_X|\,dX\); the set \(\Sigma\subseteq K\times K^{\circ}\) and its intrinsic definition <a href="#eq-16">(16)</a> are not in the preprint.</td></tr>
+<tr><td>\(\Sigma\), \(\Sigma_x\)</td><td>\(\Sigma_X\)</td><td>The preprint defines \(\Sigma_X\) as the union of feasible simplices [26] and works with \(\int_A|\Sigma_X|\,dX\); the set \(\Sigma\subseteq K\times K^{\circ}\) and the intrinsic definition <a href="#eq-20">(20)</a>, used in the equality case, are not in the preprint.</td></tr>
 <tr><td>\(\mu_J(A_J)\)</td><td>\(P_I\)</td><td>[22]; \(\sum_J\mu_J(A_J)\) is \(S\).</td></tr>
 <tr><td>\(f_k=p_k\circ F^{-1}\circ B\)</td><td>\(f_k=(h_1^k,\dots,h_m^k)\)</td><td>\(|f_k|^2=\tau_k\), and \(\Omega_k=\{\tau_k\lt1\}\).</td></tr>
 <tr><td>\(\int_{M_k}(\pi_J|_{M_k})^*p_k^*dV_J\)</td><td>\(M_{I,k}\)</td><td>[23]. The submanifolds \(M_k\) and the form \(\sigma_k\) are not used in the preprint.</td></tr>
@@ -777,9 +777,9 @@ Here we used \(d\big(d^c|z|^2\wedge(dd^c|z|^2)^{d-1}\big)=(dd^c|z|^2)^d\), valid
 <tbody>
 <tr><td><a href="#theorem">Theorem</a>, <a href="#eq-1">(1)</a></td><td>Theorem 1.1, [1]</td><td>The equality case is Proposition 8.4 with Lemma 2.2.</td></tr>
 <tr><td><a href="#lemma-0">Lemma 0</a></td><td>Lemmas 3.1, 3.2</td><td>Up to the rotation above; the endpoint asymptotics are Lemma 3.2, [14]. The proofs of Lemma 3.1 differ: here via \(zF'(z)=\frac{8}{\pi^2}\operatorname{arctanh}z\) and the argument principle, there via convexity of the curves \(F(re^{i\theta})\).</td></tr>
-<tr><td><a href="#eq-16">(16)</a>, <a href="#eq-17">(17)</a>, <a href="#appendix-simplex-decomposition">Appendix: \(\Sigma\) as a union of products</a></td><td>&mdash;</td><td>The preprint takes the union of feasible simplices as the definition of \(\Sigma_X\).</td></tr>
+<tr><td><a href="#eq-15">(15)</a>, <a href="#eq-20">(20)</a>, <a href="#appendix-simplex-decomposition">Appendix: \(\Sigma\) as a union of products</a></td><td>&mdash;</td><td>The preprint takes the union of feasible simplices as the definition of \(\Sigma_X\), as in <a href="#eq-15">(15)</a>.</td></tr>
 <tr><td><a href="#lemma-3">Lemma 3</a></td><td>Proof of Proposition 6.1, Lemma 5.2</td><td>The preprint shows that extra tight constraints have probability zero on the complex side (Lemma 5.2); here this is done directly in \(x\), using \(\lambda''\neq0\).</td></tr>
-<tr><td><a href="#eq-20">(20)</a></td><td>[30]</td><td>Here integrated over \(x\).</td></tr>
+<tr><td><a href="#eq-18">(18)</a></td><td>[30]</td><td>Here integrated over \(x\).</td></tr>
 <tr><td><a href="#eq-13">(13)</a> and <a href="#eq-10">(10)</a></td><td>[27], [29]</td><td>Proposition 6.1: \(S=\frac{d!}{4^d}\int_A|\Sigma_X|\,dX\).</td></tr>
 <tr><td><a href="#eq-6">(6)</a></td><td>Proofs of Lemmas 4.1 and 5.1</td><td>The preprint expands the integrand as a sum of squared minors by Cauchy&ndash;Binet; here it is the form \((dd^c|f_k|^2)^d\).</td></tr>
 <tr><td><a href="#lemma-2">Lemma 2</a></td><td>[24] and the end of the proof of Lemma 5.1</td><td>Radial substitution; here phrased as the weak convergence \(\mu_{k,J}\to\mu_J\).</td></tr>
