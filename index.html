@@ -61,7 +61,7 @@ details.proof > summary { font-style: italic; }
   summary { list-style: none; }
   summary::-webkit-details-marker { display: none; }
   summary:has(+ .figure.interactive)::after { content: "(Interactive figure, omitted from the printed version.)"; display: block; font-style: italic; color: var(--text-muted); }
-  #fig-1 { break-inside: avoid; }
+  #fig-1, #fig-phi { break-inside: avoid; }
   .math { overflow: visible; }
   h3 { break-after: avoid; }
 }
@@ -92,7 +92,7 @@ window.addEventListener('afterprint', () => { closedBeforePrint.forEach((d) => d
 <body>
 <h1>Notes on OpenAI's proof of the symmetric Mahler conjecture</h1>
 <h4>Rotem Assouline</h4>
-<p><i>Last updated: October 20, 2026</i></p>
+<p><i>Last updated: October 21, 2026</i></p>
 <p><button type="button" class="print-btn" onclick="window.print()">Print</button></p>
 <p>The following note is based on ongoing conversations between me and Claude about <a href="https://github.com/openai/math/tree/main/preprints/The-symmetric-Mahler-conjecture-and-its-equality-cases-September-22-2026">OpenAI's recent claimed proof of the symmetric Mahler conjecture</a>. While the main ideas are taken from the original proof, some of the details are being rewritten to facilitate my understanding, and some figures and interactive applets are being added for visualization. <b>This is a work in progress.</b> I do not claim to have verified the proof completely.</p>
 <p>Readers are welcome to contribute by</p>
@@ -106,6 +106,7 @@ window.addEventListener('afterprint', () => { closedBeforePrint.forEach((d) => d
 <p>To contribute, you may contact me, or open a pull request on <a href="https://github.com/RotemAssouline/symmetric-mahler">GitHub</a>. If you use material from this note, such as text, figures or code, please <a href="#license">give credit</a>.</p>
 <p>For background on the Mahler conjecture, see the survey of Fradelizi, Meyer and Zvavitch<sup class="fn"><a href="#fn-fmz" id="fnref-fmz">1</a></sup>.
 <!-- Complex-analytic methods were used earlier by Nazarov<sup class="fn"><a href="#fn-nazarov" id="fnref-nazarov">2</a></sup> and by Berndtsson<sup class="fn"><a href="#fn-berndtsson-pw" id="fnref-berndtsson-pw">3</a></sup><sup class="fn">,</sup><sup class="fn"><a href="#fn-berndtsson-kup" id="fnref-berndtsson-kup">4</a></sup> to prove the Bourgain&ndash;Milman inequality. --></p>
+<p>See also <a href="https://chessapig.github.io/Mahler">Elliot Kienzle's page</a> on OpenAI's proof.</p>
 <h3>Table of contents</h3>
 <nav class="toc"><ul><li><a href="#statement">Statement</a></li><li><a href="#complexification">Complexification: from \(K\) to \(\Omega\)</a></li><li><a href="#from-the-polydisc-to-the-torus">From \(\Omega\) to the polydisc to the torus</a></li><li><a href="#from-the-torus-to-the-cube-and-back-to-k">From the torus to the cube and back to \(K\)</a></li><li><a href="#the-equality-case">The equality case</a></li><li><a href="#appendix-properties-of-the-function">Appendix: Properties of the function \(F\)</a></li><li><a href="#appendix-complex-geometry">Appendix: Complex-geometric background</a></li><li><a href="#appendix-correspondence">Appendix: Correspondence with the original preprint</a></li></ul></nav>
 <h3 id="statement">Statement</h3>
@@ -131,9 +132,9 @@ D:=\{ w\in\mathbb{C}\,\,\colon\,\,|\mathrm{Re}(w)|\lt 1,\,\,|\mathrm{Im}(w)|\lt\
 <div class="callout callout-lemma" id="lemma-0"><div class="callout-title">Lemma 0</div>
 <ol>
 <li>The function \(\lambda\) is continuous, even, positive on \((-1,1)\), vanishes at \(\pm1\), and satisfies \(\lambda''(t)=-\sec\frac{\pi t}{2}\lt0\) on \((-1,1)\).</li>
-<li>For every \(0 \lt a\le b\),
+<li>As \(\delta\searrow0\),
 <span class="math">\[
-\lim_{\delta \searrow0}\sup_{a\le c\le b}\Big|\frac{\lambda(1-\delta c)}{\lambda(1-\delta)}-c\Big|=0.
+\lambda(1-\delta)=\frac2\pi\,\delta\log\frac1\delta+O(\delta).
 \]</span></li>
 <li>The conformal map \(F\) of the unit disc \(\mathbb{D}\) onto \(D\) with \(F(0)=0\) and \(F'(0)\gt0\) extends to a homeomorphism of \(\overline{\mathbb D}\) onto \(\overline D\), and satisfies \(F\big(e^{i\varepsilon\pi(1-t)/2}\big)=t+i\varepsilon\lambda(t)\) for \(t\in[-1,1]\) and \(\varepsilon\in\{-1,1\}\).</li>
 </ol></div>
@@ -169,29 +170,30 @@ and let
 \]</span>
 so that \(B_J=\pi_J\circ B\) where \(\pi_J:\mathbb{C}^m\to\mathbb{C}^J\) is the canonical projection.</p>
 <p>Note that, since \(|\langle b_j,x\rangle|\le1\) for all \(x\in K\) and \(1\le j\le m\),
-<span id="eq-11"></span><span class="math">\[
-	B_J(K)\subseteq[-1,1]^J, \qquad J\in \mathcal{J}.\tag{11}
+<span id="eq-3"></span><span class="math">\[
+	B_J(K)\subseteq[-1,1]^J, \qquad J\in \mathcal{J}.\tag{3}
 \]</span>
 <h3 id="from-the-polydisc-to-the-torus">From \(\Omega\) to the polydisc to the torus</h3>
-<p>Since \(K\) is bounded, \(b_1,\dots,b_m\) span \(\mathbb{R}^d\), so \(B\) is injective. Since moreover \(\langle b_j,z\rangle\in D\) for all \(z \in \Omega\) and all \(j \in [m]\), the map \(F^{-1}\circ B\) is a biholomorphism of \(\Omega\) onto the \(d\)-dimensional complex submanifold
+<p>Write
 <span class="math">\[
 	M:=F^{-1}\big(B(\Omega)\big)\subseteq\mathbb D^m.
 \]</span>
 Here and below, we view \(F\) and \(F^{-1}\) as maps on \(\overline{\mathbb D}^m\) and \(\overline D^m\) respectively (and similarly on \(\overline{\mathbb D}^J\) and \(\overline D^J\)), by letting them act coordinatewise.
-
+Since the vectors \(b_1,\dots,b_m\) span \(\mathbb{R}^d\), and \(\langle b_j,z\rangle\in D\) for all \(z \in \Omega\) and all \(j \in [m]\), the map \(F^{-1}\circ B\) is a biholomorphism of \(\Omega\) onto the \(d\)-dimensional complex submanifold \(M\).
+</p>
 <p>
 Let
 <span class="math">\[
-	A_J:=\pi_J(\overline M)=F^{-1}\big(B_J(\overline\Omega)\big),.
+	A_J:=\pi_J(\overline M)=F^{-1}\big(B_J(\overline\Omega)\big),
 \]</span>
-where the second inequality holds true since \(F\) is a homeomorphism of \(\overline{\mathbb D}^m\) onto \(\overline D^m\) and \(B\) is injective, so that \(\overline M=F^{-1}\big(B(\overline\Omega)\big)\).</p>
-Our goal in this section is to prove that
-<span id="eq-3"></span><span class="math">\[
-	\sum_{J\in\mathcal{J}}\mu_J(A_J)\ge1,\tag{3}
+where the second equality holds true since \(F\) is a homeomorphism of \(\overline{\mathbb D}^m\) onto \(\overline D^m\) and \(B\) is injective, so that \(\overline M=F^{-1}\big(B(\overline\Omega)\big)\).</p>
+<p>Our goal in this section is to prove that
+<span id="eq-4"></span><span class="math">\[
+	\sum_{J\in\mathcal{J}}\mu_J(A_J)\ge1,\tag{4}
 \]</span>
-where \(\mu_J\) is the Haar probability measure on the torus \((\partial\mathbb D)^J\) for all \(J \in \mathcal{J}\), which we view also as a map on the polydisc \(\overline{\mathbb D}^J\) by pushing it forward via the inclusion map. We shall prove <a href="#eq-3">(3)</a> by approximating each measure \(\mu_J\) by a smooth measure on the polydisc and applying a complex-analytic lemma.
+where \(\mu_J\) is the Haar probability measure on the torus \((\partial\mathbb D)^J\) for all \(J \in \mathcal{J}\), which we view also as a map on the polydisc \(\overline{\mathbb D}^J\) by pushing it forward via the inclusion map. We shall prove <a href="#eq-4">(4)</a> by approximating each measure \(\mu_J\) by a sequence of smooth volume forms on the polydisc and applying a complex-analytic lemma.
 </p>
-<p>For \(k\ge1\) let \(p_k\) be the coordinatewise \(k\)-th power \[p_k(v)=(v_j^k)_j\] on \(\mathbb{C}^m\) and on each \(\mathbb{C}^J\). 
+<p>For \(k\ge1\) let \(p_k\) be the coordinatewise \(k\)-th power \[p_k(v)_j=v_j^k, \qquad 1 \le j \le m\] on \(\mathbb{C}^m\) and on each \(\mathbb{C}^J\). 
 Let 
 <span class="math">\[
 dV_J:=\bigwedge_{j\in J}\frac{i}{2}\,dv_j\wedge d\bar v_j
@@ -201,18 +203,18 @@ denote the volume form of \(\mathbb{C}^J\), and let \(dV\) denote the volume for
 	\|v\|_{2k}:=\Big(\sum_j|v_j|^{2k}\Big)^{1/2k}
 \]</span>
 on \(\mathbb{C}^m\) and \(\mathbb{C}^J\), respectively. Note that
-<span id="eq-4"></span><span class="math">\[
-	\mathbb B^{2k}_m=p_k^{-1}(\mathbb B^2_m), \qquad k \ge 1.\tag{4}
+<span id="eq-5"></span><span class="math">\[
+	\mathbb B^{2k}_m=p_k^{-1}(\mathbb B^2_m), \qquad k \ge 1.\tag{5}
 \]</span></p>
-<p>Let
+<p>For \(k \ge 1\), define
 <span class="math">\[
 	M_k:=M\cap\mathbb B^{2k}_m
 \]</span>
 and
-<span id="eq-5"></span><span class="math">\[
-	f_k:=p_k\circ F^{-1}\circ B:\Omega\to\mathbb{C}^m.\tag{5}
+<span id="eq-6"></span><span class="math">\[
+	f_k:=p_k\circ F^{-1}\circ B:\Omega\to\mathbb{C}^m.\tag{6}
 \]</span>
-By <a href="#eq-4">(4)</a>, the map \(F^{-1}\circ B\) is a biholomorphism of the open set
+By <a href="#eq-5">(5)</a>, the map \(F^{-1}\circ B\) is a biholomorphism from the open set
 <span class="math">\[
 	\Omega_k:=f_k^{-1}(\mathbb B^2_m)\subseteq\Omega
 \]</span>
@@ -223,10 +225,14 @@ Since the \(\ell^{2k}\)-balls \(\mathbb{B}_m^{2k}\) exhaust the polydisc \(\math
 	\sigma_k:=\frac1{d!}\,(p_k|_{M_k})^*(dd^c|\cdot|^2)^d=\sum_{J\in{[m]\choose d}}(\pi_J|_{M_k})^*\,p_k^*\,dV_J,
 \]</span>
 where \(d^c:=\frac i4(\bar\partial-\partial)\), and the second equality follows from <a href="#eq-A5">(A5)</a> (or the Cauchy&ndash;Binet formula); see <a href="#appendix-complex-geometry">Appendix: Complex-geometric background</a>.
-Thus \(\int_{M_k}\sigma_k\) is the \(2d\)-dimensional volume of \(p_k(M_k)\), counted with multiplicity, and the \(J\)-th term is the volume of its projection \(\pi_J(p_k(M_k))\), counted with multiplicity. Since \(F^{-1}\circ B\) is a biholomorphism of \(\Omega_k\) onto \(M_k\) and \(dd^c\) commutes with holomorphic pullbacks, the definition <a href="#eq-5">(5)</a> gives
-<span id="eq-6"></span><span class="math">\[
-	\int_{M_k}\sigma_k=\frac1{d!}\int_{\Omega_k}(dd^c|f_k|^2)^d.\tag{6}
-\]</span></p>
+Thus \(\int_{M_k}\sigma_k\) is the \(2d\)-dimensional volume of \(p_k(M_k)\), counted with multiplicity, and the \(J\)-th term is the volume of its projection \(\pi_J(p_k(M_k))\), counted with multiplicity. We have
+<span id="eq-7"></span><span class="math">\[
+	\begin{aligned}
+	\int_{M_k}\sigma_k&=\int_{\Omega_k}(F^{-1}\circ B)^*\sigma_k=\frac1{d!}\int_{\Omega_k}f_k^*(dd^c|\cdot|^2)^d\\
+	&=\frac1{d!}\int_{\Omega_k}(dd^c|f_k|^2)^d,
+	\end{aligned}\tag{7}
+\]</span>
+where the first equality is the change of variables formula, since \(F^{-1}\circ B\) is a biholomorphism, and hence an orientation-preserving diffeomorphism, of \(\Omega_k\) onto \(M_k\); the second follows from the definition <a href="#eq-6">(6)</a> of \(f_k\); and the third from the fact that \(dd^c\) commutes with holomorphic pullbacks.</p>
 <div class="callout callout-lemma" id="lemma-1"><div class="callout-title">Lemma 1</div><p>Let \(d,m\geq 1\). Let \(\Omega\subset \mathbb{C}^{d}\) be an open set containing the origin, and let \(f:\Omega\to \mathbb{C}^{m}\) be a holomorphic function satisfying</p>
 <ol><li>\(f^{-1}(0)=\{ 0 \}\)</li><li>\(|f(z)|\le C|z|^{k}\) on a neighbourhood of \(0\), for some integer \(k\geq 1\) and some \(C>0\),</li><li>for every \(s \lt 1\) the sublevel set \(\Omega(s):=\{ |f|\lt s \}\) is relatively compact in \(\Omega\).</li></ol>
 <p>Then
@@ -253,8 +259,8 @@ Since \(|f|\equiv s\) on \(\partial\Omega(s)\), by <a href="#eq-A7">(A7)</a> wit
 	\gamma=s^{-2}d^{c}|f|^{2}\qquad \text{and}\qquad d\gamma=s^{-2}dd^{c}|f|^{2}\qquad \text{on $\partial\Omega(s)$.}
 \]</span>
 Hence
-<span id="eq-7"></span><span class="math">\[
-	\int_{\Omega(s)}(dd^{c}|f|^{2})^{d}=s^{2d}\int_{\partial\Omega(s)}\gamma \wedge(d\gamma)^{d-1}.\tag{7}
+<span id="eq-8"></span><span class="math">\[
+	\int_{\Omega(s)}(dd^{c}|f|^{2})^{d}=s^{2d}\int_{\partial\Omega(s)}\gamma \wedge(d\gamma)^{d-1}.\tag{8}
 \]</span>
  The function \(\log|f|^{2}\) is smooth and plurisubharmonic on \(\Omega(s)\setminus\{0\}\) by the first assumption. </p>
 <p>For \(0 \lt \eta\lt 1\) set
@@ -272,13 +278,13 @@ Hence, since \(d^{c}g=\gamma\) and \((dd^{c}\,\widetilde{\max}(g,h))^{d}\ge0\) o
 <span class="math">\[
 	\int_{\partial\Omega(s)}\gamma\wedge(d\gamma)^{d-1}\geq\int_{\partial(r\mathbb B_d)}d^{c}h\wedge(dd^{c}h)^{d-1}=\frac{((1-\eta)k)^{d}}{r^{2d}}\int_{r\mathbb B_d}(dd^{c}|z|^{2})^{d}=((1-\eta)\pi k)^{d}.
 \]</span>
-By <a href="#eq-7">(7)</a>, letting \(\eta\to 0\), we get
+By <a href="#eq-8">(8)</a>, letting \(\eta\to 0\), we get
 <span class="math">\[
 	\int_{\Omega(s)}(dd^{c}|f|^{2})^{d}\geq s^{2d}(\pi k)^{d}.
 \]</span>
 Letting \(s\uparrow 1\) along regular values and using monotone convergence gives the claim.<sup class="fn"><a href="#fn-demailly" id="fnref-demailly">2</a></sup> \(\square\)</p>
 </details>
-<p>Let us verify that the hypotheses of <a href="#lemma-1">Lemma 1</a> are satisfied with \(f=f_k\), defined in <a href="#eq-5">(5)</a>. 
+<p>Let us verify that the hypotheses of <a href="#lemma-1">Lemma 1</a> are satisfied with \(f=f_k\) as defined in <a href="#eq-6">(6)</a>. 
 The set \(\Omega\) is open and contains \(0\), and \(f_k\) is holomorphic on \(\Omega\) because \(B(\Omega)\subseteq D^m\) and \(F^{-1}\) acts coordinatewise. 
 In the notation of the lemma, we have \(\Omega(1)=\{ |f_{k}|\lt 1 \}=\Omega_k\) by the definition of \(\Omega_k\).
 Since \(F(0)=0\) and \(F\) is injective, \(f_k(z)=0\) if and only if \(Bz=0\), that is, \(z=0\).</p>
@@ -295,54 +301,45 @@ so \(\langle b_j,z\rangle\in F(s^{1/k}\overline{\mathbb D})\). Hence
 	\overline{\Omega(s)}\subseteq\{z\in\mathbb{C}^d\colon\langle b_j,z\rangle\in F(s^{1/k}\overline{\mathbb D})\ \ \forall\,1\le j\le m\}=B^{-1}\big(F(s^{1/k}\overline{\mathbb D})^{m}\big).
 \]</span>
 The set \(F(s^{1/k}\overline{\mathbb D})\) is a compact subset of \(D\) and \(B\) is injective, so the right-hand side is a compact subset of \(\Omega\). Thus \(\Omega(s)\) is relatively compact in \(\Omega\).</p>
-<p>Hence <a href="#lemma-1">Lemma 1</a> applies to \(f=f_k\), and by <a href="#eq-6">(6)</a>,
-<span id="eq-8"></span><span class="math">\[
-	\int_{M_{k}}\sigma_{k}\geq \frac{(\pi k)^{d}}{d!}\qquad\text{for all }k \ge 1.\tag{8}
-\]</span></p>
-<p>It remains to deduce <a href="#eq-3">(3)</a> from <a href="#eq-8">(8)</a>. For \(J\in\mathcal{J}\) and \(k\ge1\), let \(\mu_{k,J}\) be the pushforward of the uniform probability measure on \(\mathbb B^2_J\) under the homeomorphism
-<span class="math">\[
-	(v_j)_{j\in J}\mapsto\big(|v_j|^{1/k-1}v_j\big)_{j\in J}
-\]</span>
-of \(\mathbb B^2_J\) onto \(\mathbb B^{2k}_J\). We first show that \(\mu_{k,J}\) is the measure on \(\mathbb B^{2k}_J\) corresponding to the \(2d\)-form \(\frac{d!}{(\pi k)^d}\,p_k^*dV_J\), and that \(\mu_{k,J}\to\mu_J\) weakly as \(k\to\infty\), as measures on \(\overline{\mathbb D}^J\).</p>
-<p>Pick a uniformly distributed point of \(\mathbb B^2_J\) and write it as \((\rho_j\omega_j)_{j\in J}\) with \(\rho_j>0\) and \(\omega_j\in\partial\mathbb D\), which is possible almost surely. Since \(\mathbb B^2_J\) and \(dV_J\) are invariant under the rotations \(v\mapsto(\zeta_jv_j)_{j\in J}\), \(\zeta\in(\partial\mathbb D)^J\), the law of \(\omega\) is a rotation-invariant probability measure on \((\partial\mathbb D)^J\), namely \(\mu_J\). By definition, \(\mu_{k,J}\) is the law of \(\rho^{1/k}\omega:=(\rho_j^{1/k}\omega_j)_{j\in J}\), and since \(\rho^{1/k}\omega\to\omega\) almost surely as \(k\to\infty\), \(\mu_{k,J}\to\mu_J\) weakly.</p>
-<p>The points with a zero coordinate form a null set. In the polar coordinates \((\rho_j\omega_j)_{j\in J}\) on \(\mathbb B^2_J\) we have \(dV_J=(2\pi)^d\prod_j\rho_j\,d\rho\otimes\mu_J\), and in the coordinates \(v_j=\rho_j^{1/k}\omega_j\) on \(\mathbb B^{2k}_J\),
-<span class="math">\[
-	p_k^*dV_J=k^d(2\pi)^d\prod_j\rho_j\,d\rho\otimes\mu_J.
-\]</span>
-Thus \(p_k^*dV_J\) is \(k^d\) times the pushforward of \(dV_J\) under the homeomorphism of \(\mathbb B^2_J\) onto \(\mathbb B^{2k}_J\) defining \(\mu_{k,J}\). Since the volume of \(\mathbb B^2_J\) is \(\pi^d/d!\), \(\mu_{k,J}\) is the measure on \(\mathbb B^{2k}_J\) corresponding to \(\frac{d!}{(\pi k)^d}\,p_k^*dV_J\).</p>
-<p>For \(J\in\mathcal{J}\), we have \(F\vert_M=B\circ B_J^{-1} \circ F \circ \pi_J\vert_M\), so \(\pi_J\) is injective on \(M\), and
-<span class="math">\[
-	\pi_J(M)=F^{-1}\big(B_J(\Omega)\big)\subseteq\mathbb D^J,
-\]</span>
-and since \(\pi_J(\mathbb B^{2k}_m)\subseteq\mathbb B^{2k}_J\), \[\pi_J(M_k)\subseteq F^{-1}\big(B_J(\Omega)\big)\cap\mathbb B^{2k}_J.\]
-Moreover, for \(J\in{[m]\choose d}\),
-<span class="math">\[
-	(F^{-1}\circ B)^*(\pi_J|_{M_k})^*p_k^*dV_J=(\pi_J\circ f_k)^*dV_J\overset{\href{#eq-A4}{(A4)}}{=}|\det(Df_k)_J|^2\,dV\qquad\text{on }\Omega_k,
-\]</span>
-where \((Df_k)_J\) is the \(d\times d\) minor of \(Df_k\) with rows in \(J\). By <a href="#eq-5">(5)</a> and the fact that \(p_k\circ F^{-1}\) acts coordinatewise, \((Df_k)_J\) is \(B_J\) multiplied on the left by a diagonal matrix, so this form vanishes for \(J\notin\mathcal{J}\). Since \(\pi_J\) is injective on \(M_k\) for \(J\in\mathcal{J}\), \(p_k^*dV_J\) is a nonnegative multiple of \(dV_J\), and the measure \(\mu_{k,J}\) corresponds to the volume form \(\frac{d!}{(\pi k)^d}\,p_k^*dV_J\), we get
+<p>Hence <a href="#lemma-1">Lemma 1</a> applies to \(f=f_k\), and by <a href="#eq-7">(7)</a>,
 <span id="eq-9"></span><span class="math">\[
-	\frac{d!}{(\pi k)^d}\int_{M_k}\sigma_k\le\sum_{J\in\mathcal{J}}\mu_{k,J}(F^{-1}\big(B_J(\Omega)\big)).\tag{9}
-\]</span>
-Since \(\overline M\) is compact, \[A_J=F^{-1}\big(B_J(\overline\Omega)\big)=\overline{F^{-1}\big(B_J(\Omega)\big)},\] so since \(\mu_{k,J}\to\mu_J\) weakly, by the portmanteau theorem
-<span id="eq-10"></span><span class="math">\[
-	\mu_J(A_J)\ge\limsup_{k\to\infty}\mu_{k,J}(F^{-1}\big(B_J(\Omega)\big)),\qquad J\in\mathcal{J}.\tag{10}
-\]</span>
-Hence
+	\int_{M_{k}}\sigma_{k}\geq \frac{(\pi k)^{d}}{d!}\qquad\text{for all }k \ge 1.\tag{9}
+\]</span></p>
+<p>It remains to deduce <a href="#eq-4">(4)</a> from <a href="#eq-9">(9)</a>. Let \(J\in{[m]\choose d}\). The map \(\pi_J\circ f_k=p_k\circ F^{-1}\circ B_J\) pulls the \(J\)-th term of \(\sigma_k\) back to \(\Omega_k\):
 <span class="math">\[
-	\sum_{J\in\mathcal{J}}\mu_J(A_J)\overset{\href{#eq-10}{(10)}}{\ge}\limsup_{k\to\infty}\sum_{J\in\mathcal{J}}\mu_{k,J}(F^{-1}\big(B_J(\Omega)\big))\overset{\href{#eq-9}{(9)}}{\ge}\limsup_{k\to\infty}\frac{d!}{(\pi k)^d}\int_{M_k}\sigma_k\overset{\href{#eq-8}{(8)}}{\ge}1,
+	(F^{-1}\circ B)^*(\pi_J|_{M_k})^*p_k^*dV_J=(\pi_J\circ f_k)^*dV_J\overset{\href{#eq-A4}{(A4)}}{=}\big|\det D(\pi_J\circ f_k)\big|^2\,dV\qquad\text{on }\Omega_k.
 \]</span>
-and <a href="#eq-3">(3)</a> is proved.
+Since \(p_k\circ F^{-1}\) acts coordinatewise, \(D(\pi_J\circ f_k)\) is \(B_J\) multiplied on the left by a diagonal matrix, so this term vanishes for \(J\notin\mathcal{J}\). For \(J\in\mathcal{J}\), the map \(\pi_J\) is a biholomorphism of \(M\) onto the open set \(F^{-1}\big(B_J(\Omega)\big)\), with inverse \(F^{-1}\circ B\circ B_J^{-1}\circ F\). Moreover, \(\pi_J(M_k)\subseteq\pi_J(\overline M)\cap\pi_J(\mathbb B^{2k}_m)\subseteq A_J\cap\mathbb B^{2k}_J\), and \(p_k^*dV_J=|\det Dp_k|^2\,dV_J\) by <a href="#eq-A4">(A4)</a>. Hence
+<span class="math">\[
+	\int_{M_k}(\pi_J|_{M_k})^*p_k^*dV_J=\int_{\pi_J(M_k)}p_k^*dV_J\le\int_{A_J\cap\mathbb B^{2k}_J}p_k^*dV_J,\qquad J\in\mathcal{J}.
+\]</span></p>
+<p>Fix \(J\in\mathcal{J}\). Outside the null set where some coordinate vanishes, write points of \(\mathbb B^2_J\) as \(\rho\omega=(\rho_j\omega_j)_{j\in J}\) with \(\rho_j>0\) and \(\omega_j\in\partial\mathbb D\), and let \(\rho^{1/k}\omega:=(\rho_j^{1/k}\omega_j)_{j\in J}\). The map \(\rho\omega\mapsto\rho^{1/k}\omega\) extends to a homeomorphism of \(\mathbb B^2_J\) onto \(\mathbb B^{2k}_J\), and is an orientation-preserving diffeomorphism away from that null set. In the polar coordinates \(\omega_j=e^{i\theta_j}\), in which \(dV_J=\bigwedge_j\rho_j\,d\rho_j\wedge d\theta_j\), its composition with \(p_k\) is \((\rho,\theta)\mapsto(\rho,k\theta)\), so it pulls \(p_k^*dV_J\) back to \(k^d\,dV_J\). Since the volume of \(\mathbb B^2_J\) is \(\pi^d/d!\), it follows that, if \(\rho\omega\) is a uniformly distributed random point of \(\mathbb B^2_J\), then
+<span class="math">\[
+	\frac{d!}{(\pi k)^d}\int_{A_J\cap\mathbb B^{2k}_J}p_k^*dV_J=\frac{d!}{\pi^d}\operatorname{Vol}\big\{\rho\omega\in\mathbb B^2_J\colon\rho^{1/k}\omega\in A_J\big\}=\mathbb P\big(\rho^{1/k}\omega\in A_J\big).
+\]</span>
+Summing over \(J\), we get
+<span id="eq-10"></span><span class="math">\[
+	\frac{d!}{(\pi k)^d}\int_{M_k}\sigma_k\le\sum_{J\in\mathcal{J}}\mathbb P\big(\rho^{1/k}\omega\in A_J\big).\tag{10}
+\]</span></p>
+<p>Since \(\mathbb B^2_J\) and \(dV_J\) are invariant under the rotations \(v\mapsto(\zeta_jv_j)_{j\in J}\), \(\zeta\in(\partial\mathbb D)^J\), the law of \(\omega\) is a rotation-invariant probability measure on \((\partial\mathbb D)^J\), and so it coincides with \(\mu_J\). The set \(A_J=\pi_J(\overline M)\) is compact, and \(\rho^{1/k}\omega\to\omega\) as \(k\to\infty\), so \(\limsup_k\mathbf 1_{A_J}(\rho^{1/k}\omega)\le\mathbf 1_{A_J}(\omega)\). Hence, by the reverse Fatou lemma,
+<span class="math">\[
+	\sum_{J\in\mathcal{J}}\mu_J(A_J)=\sum_{J\in\mathcal{J}}\mathbb P\big(\omega\in A_J\big)\ge\limsup_{k\to\infty}\sum_{J\in\mathcal{J}}\mathbb P\big(\rho^{1/k}\omega\in A_J\big)\overset{\href{#eq-10}{(10)}}{\ge}\limsup_{k\to\infty}\frac{d!}{(\pi k)^d}\int_{M_k}\sigma_k\overset{\href{#eq-9}{(9)}}{\ge}1,
+\]</span>
+and <a href="#eq-4">(4)</a> is proved.
 </p>
-<h3 id="from-the-torus-to-the-cube-to-omega">From the torus to the cube to \(\Omega\)</h3>
+<h3 id="from-the-torus-to-the-cube-and-back-to-k">From the torus to the cube and back to \(K\)</h3>
 Define \(\Phi:[-1,1]\times\{-1,1\}\to\partial\mathbb D\) by
 <span class="math">\[
 	\Phi(t,\varepsilon):=e^{i\varepsilon\pi(1-t)/2},
 \]</span>
 so that, by <a href="#lemma-0">Lemma 0</a>,
-<span id="eq-12"></span><span class="math">\[
-	F\big(\Phi(t,\varepsilon)\big)=t+i\varepsilon\lambda(t),\qquad t\in[-1,1],\ \varepsilon\in\{-1,1\}.\tag{12}
+<span id="eq-11"></span><span class="math">\[
+	F\big(\Phi(t,\varepsilon)\big)=t+i\varepsilon\lambda(t),\qquad t\in[-1,1],\ \varepsilon\in\{-1,1\}.\tag{11}
 \]</span>
-View \(\Phi\) as a map on \([-1,1]^J\times\{-1,1\}^J\) by applying it coordinatewise.
+<details class="fig" open><summary><b>Figure 2: the map \(\Phi\)</b></summary>
+<div class="figure" id="fig-phi"></div>
+</details>
+<p>View \(\Phi\) as a map on \([-1,1]^J\times\{-1,1\}^J\) by applying it coordinatewise.
 For \(\varepsilon \in \{ -1,1 \}^{J}\) and \(x\in B_J^{-1}([-1,1]^J)\), let \(y_{J,\varepsilon}(x)\) be the unique solution \(y\in\mathbb{R}^d\) of the system
 <span class="math">\[
 	\langle b_j,y\rangle=\varepsilon_j\lambda(\langle b_j,x\rangle),\qquad j\in J,
@@ -357,25 +354,28 @@ and define
 <span class="math">\[
 	K_{J,\varepsilon}:=\{x\in K\,\colon\,y_{J,\varepsilon}(x)\in\overline\Omega_x\}.
 \]</span>
-Each \(K_{J,\varepsilon}\) is closed, since \(\overline\Omega\) is closed and \(y_{J,\varepsilon}\) is continuous. If \(x\in K_{J,\varepsilon}\), then \(y_{J,\varepsilon}(x)\) is the vertex of \(\overline\Omega_x\) at which the inequalities in <a href="#eq-2">(2)</a> for \(j\in J\) are equalities, see Figure 2.
-By <a href="#eq-12">(12)</a> and the definition of \(y_{J,\varepsilon}\), for \(q\in[-1,1]^J\) and \(\varepsilon\in\{-1,1\}^J\),
+Each \(K_{J,\varepsilon}\) is closed, since \(\overline\Omega\) is closed and \(y_{J,\varepsilon}\) is continuous. If \(x\in K_{J,\varepsilon}\), then \(y_{J,\varepsilon}(x)\) is the vertex of \(\overline\Omega_x\) at which the inequalities in <a href="#eq-2">(2)</a> for \(j\in J\) are equalities, see Figure 3.
+By <a href="#eq-11">(11)</a> and the definition of \(y_{J,\varepsilon}\), for \(q\in[-1,1]^J\) and \(\varepsilon\in\{-1,1\}^J\),
 <span class="math">\[
-	F\big(\Phi(q,\varepsilon)\big)=q+iB_Jy_{J,\varepsilon}(B_J^{-1}q)=B_J\big(B_J^{-1}q+iy_{J,\varepsilon}(B_J^{-1}q)\big).
+	F\big(\Phi(q,\varepsilon)\big)=B_J\big(B_J^{-1}q+iy_{J,\varepsilon}(B_J^{-1}q)\big).
 \]</span>
-Since \(B_J\) is injective on \(\mathbb{C}^d\), and \(\mathrm{Re}\,z\in K\) for every \(z\in\overline\Omega\), it follows that \(F(\Phi(q,\varepsilon))\in B_J(\overline\Omega)\) if and only if \(q\in B_J(K_{J,\varepsilon})\). Thus, by <a href="#eq-11">(11)</a> and the definition of \(A_J\),
+Since \(B_J\) is injective on \(\mathbb{C}^d\), and \(\mathrm{Re}\,z\in K\) for every \(z\in\overline\Omega\), it follows that \(F(\Phi(q,\varepsilon))\in B_J(\overline\Omega)\) if and only if \(q\in B_J(K_{J,\varepsilon})\). Thus, by <a href="#eq-3">(3)</a> and the definition of \(A_J\),
+<span id="eq-12"></span><span class="math">\[
+	\Phi^{-1}(A_J)=\bigcup_{\varepsilon\in\{-1,1\}^J}B_J(K_{J,\varepsilon})\times\{\varepsilon\}.\tag{12}
+\]</span>
+The map \(\Phi\) pushes forward the uniform probability measure on \([-1,1]^J\times\{-1,1\}^J\) to the Haar measure \(\mu_J\) on \((\partial\mathbb{D})^J\). Therefore, by <a href="#eq-12">(12)</a>,
 <span id="eq-13"></span><span class="math">\[
-	\Phi^{-1}(A_J)=\bigcup_{\varepsilon\in\{-1,1\}^J}B_J(K_{J,\varepsilon})\times\{\varepsilon\}.\tag{13}
-\]</span>
-The map \(\Phi\) pushes forward the uniform probability measure on \([-1,1]^J\times\{-1,1\}^J\) to the Haar measure \(\mu_J\) on \((\partial\mathbb{D})^J\). Therefore, by <a href="#eq-13">(13)</a>,
-<span id="eq-14"></span><span class="math">\[
-	\sum_{\varepsilon\in\{-1,1\}^J}\operatorname{Vol}\big(B_J(K_{J,\varepsilon})\big)=4^d\mu_J(A_J).\tag{14}
+	\sum_{\varepsilon\in\{-1,1\}^J}\operatorname{Vol}\big(B_J(K_{J,\varepsilon})\big)=4^d\mu_J(A_J).\tag{13}
 \]</span></p>
+<details class="fig" open><summary><b>Figure 3: from the torus to the cube to \(K\)</b></summary>
+<div class="figure interactive" id="fig-2"></div>
+</details>
 <p id="simplex-decomposition">For \(J\in \mathcal{J}\) and \(\varepsilon \in \{ -1,1 \}^{J}\), write \(\Delta_{J,\varepsilon}\) for the simplex
 <span class="math">\[
 	\Delta_{J,\varepsilon}:=\operatorname{conv} \left(  \{0\}\cup \{\varepsilon_{j}b_{j}\}_{j\in J}\right)\subset K^{\circ}.
 \]</span></p>
-<p>Figure 3 below shows \(\overline\Omega_x\) (left) and the union of the simplices \(\Delta_{J,\varepsilon}\) with \(x\in K_{J,\varepsilon}\) (right). For each \((J,\varepsilon)\) with \(x\in K_{J,\varepsilon}\), the vertex \(y_{J,\varepsilon}(x)\) of \(\overline\Omega_x\) and the simplex \(\Delta_{J,\varepsilon}\) are drawn in the same colour.</p>
-<details class="fig" open><summary><b>Figure 3: the simplices \(\Delta_{J,\varepsilon}\), \(x\in K_{J,\varepsilon}\)</b></summary>
+<p>Figure 4 below shows \(\overline\Omega_x\) (left) and the union of the simplices \(\Delta_{J,\varepsilon}\) with \(x\in K_{J,\varepsilon}\) (right). For each \((J,\varepsilon)\) with \(x\in K_{J,\varepsilon}\), the vertex \(y_{J,\varepsilon}(x)\) of \(\overline\Omega_x\) and the simplex \(\Delta_{J,\varepsilon}\) are drawn in the same colour.</p>
+<details class="fig" open><summary><b>Figure 4: the simplices \(\Delta_{J,\varepsilon}\), \(x\in K_{J,\varepsilon}\)</b></summary>
 <div class="figure interactive" id="fig-3"></div>
 </details>
 <div class="callout callout-lemma" id="lemma-2"><div class="callout-title">Lemma 2</div><p>The sets
@@ -393,17 +393,17 @@ For every \(y'\in\overline\Omega_x\), <a href="#eq-2">(2)</a> gives \(|\langle b
 	\langle \xi,y'\rangle\le\sum_{j\in J}\alpha_j\lambda(\langle b_j,x\rangle)=\langle\xi,y\rangle,
 \]</span>
 with equality if and only if \(\langle b_j,y'\rangle=\varepsilon_j\lambda(\langle b_j,x\rangle)\) for all \(j\in J\), that is, if and only if \(y'=y\). So \(y\) is the unique maximizer of \(\langle\xi,\cdot\rangle\) on \(\overline\Omega_x\), that is, \(\xi\) lies in the interior of the normal cone of \(\overline\Omega_x\) at \(y\). Since the normal cones of \(\overline\Omega_x\) at distinct points have disjoint interiors,
-<span id="eq-15"></span><span class="math">\[
-	y_{J,\varepsilon}(x)=y_{J',\varepsilon'}(x)\tag{15}
+<span id="eq-14"></span><span class="math">\[
+	y_{J,\varepsilon}(x)=y_{J',\varepsilon'}(x)\tag{14}
 \]</span>
-whenever \(x\in\operatorname{int}K\cap K_{J,\varepsilon}\cap K_{J',\varepsilon'}\). As \(\partial K\) is null, it suffices to show that <a href="#eq-15">(15)</a> holds only on a null set of \(x\in\operatorname{int}K\).
+whenever \(x\in\operatorname{int}K\cap K_{J,\varepsilon}\cap K_{J',\varepsilon'}\). As \(\partial K\) is null, it suffices to show that <a href="#eq-14">(14)</a> holds only on a null set of \(x\in\operatorname{int}K\).
 </p>
 <p>
-If \(J=J'\), then \(\varepsilon\ne\varepsilon'\), and since \(\lambda>0\) on \((-1,1)\), <a href="#eq-15">(15)</a> never holds on \(\operatorname{int}K\). So let \(J\neq J'\), and fix \(l\in J'\setminus J\). If \(x\in\operatorname{int}K\) satisfies <a href="#eq-15">(15)</a>, with common value \(y\), then
-<span id="eq-16"></span><span class="math">\[
-	\langle b_l,y\rangle=\varepsilon'_l\lambda(\langle b_l,x\rangle).\tag{16}
+If \(J=J'\), then \(\varepsilon\ne\varepsilon'\), and since \(\lambda>0\) on \((-1,1)\), <a href="#eq-14">(14)</a> never holds on \(\operatorname{int}K\). So let \(J\neq J'\), and fix \(l\in J'\setminus J\). If \(x\in\operatorname{int}K\) satisfies <a href="#eq-14">(14)</a>, with common value \(y\), then
+<span id="eq-15"></span><span class="math">\[
+	\langle b_l,y\rangle=\varepsilon'_l\lambda(\langle b_l,x\rangle).\tag{15}
 \]</span>
-Write \(b_l=\sum_{j\in J}c_jb_j\) and use the coordinates \(q_j=\langle b_j,x\rangle\), \(j\in J\), on \(\operatorname{int} K\). Since \(\langle b_j,y\rangle=\varepsilon_j\lambda(q_j)\), equation <a href="#eq-16">(16)</a> reads
+Write \(b_l=\sum_{j\in J}c_jb_j\) and use the coordinates \(q_j=\langle b_j,x\rangle\), \(j\in J\), on \(\operatorname{int} K\). Since \(\langle b_j,y\rangle=\varepsilon_j\lambda(q_j)\), equation <a href="#eq-15">(15)</a> reads
 <span class="math">\[
 	G(q):=\sum_{j\in J}c_j\varepsilon_j\lambda(q_j)-\varepsilon'_l\lambda\Big(\sum_{j\in J}c_jq_j\Big)=0.
 \]</span>
@@ -413,17 +413,21 @@ Since \(b_l\) is not proportional to \(b_j\) for any \(j\neq l\), at least two c
 \]</span>
 everywhere. By the implicit function theorem, both \(\{G=0,\ \nabla G\neq0\}\) and \(\{\partial G/\partial q_{j_1}=0\}\supseteq\{\nabla G=0\}\) are locally \(C^1\) hypersurfaces, so the level set \(\{G=0\}\) has measure zero. \(\square\)</p>
 </details>
-<p>Let \((e_j)_{j\in J}\) be the standard basis of \(\mathbb{R}^J\), and write \[B_J^{-\mathsf T}:=(B_J^{\mathsf T})^{-1}\colon\mathbb{R}^d\to\mathbb{R}^J.\] The linear map \((x,h)\mapsto(B_Jx,B_J^{-\mathsf T}h)\) from \(\mathbb{R}^d\times\mathbb{R}^d\) to \(\mathbb{R}^J\times\mathbb{R}^J\) preserves volume. Since \(B_J^{-\mathsf T}b_j=e_j\) for \(j\in J\), it maps \(K_{J,\varepsilon}\times\Delta_{J,\varepsilon}\) onto the set
+<p><b>Conclusion of the proof of <a href="#eq-1">(1)</a>.</b> Since the sets \(K_{J,\varepsilon}\times\Delta_{J,\varepsilon}\) are contained in \(K\times K^{\circ}\) and have pairwise null intersections by <a href="#lemma-2">Lemma 2</a>,
 <span class="math">\[
-	B_J(K_{J,\varepsilon})\times\operatorname{conv}\left(\{0\}\cup\{\varepsilon_je_j\}_{j\in J}\right)\subseteq[-1,1]^J\times\operatorname{conv}\{\pm e_j\}_{j\in J},
+	\operatorname{Vol}(K)\operatorname{Vol}(K^{\circ})=\operatorname{Vol}_{2d}(K\times K^{\circ})\ge\sum_{J\in \mathcal{J}}\sum_{\varepsilon \in \{ -1,1 \}^{J}}\operatorname{Vol}_{2d}(K_{J,\varepsilon}\times\Delta_{J,\varepsilon}).
 \]</span>
-where the inclusion follows from <a href="#eq-11">(11)</a>. Since the volume of the simplex \(\operatorname{conv}\left(\{0\}\cup\{\varepsilon_je_j\}_{j\in J}\right)\) is \(1/d!\), by <a href="#eq-14">(14)</a> we have
-<span id="eq-17"></span><span class="math">\[
-	\sum\limits_{J\in \mathcal{J}}\sum\limits_{\varepsilon \in \{ -1,1 \}^{J}}\operatorname{Vol}_{2d}(K_{J,\varepsilon}\times\Delta_{J,\varepsilon})=\frac{1}{d!}\sum\limits_{J\in \mathcal{J}}\sum\limits_{\varepsilon \in \{ -1,1 \}^{J}}\operatorname{Vol}\left(B_J(K_{J,\varepsilon})\right)=\frac{4^d}{d!}\sum_{J\in\mathcal{J}}\mu_J(A_J).\tag{17}
+For \(J\in\mathcal{J}\), the linear map \((x,h)\mapsto\big(B_Jx,(B_J^{\mathsf T})^{-1}h\big)\) from \(\mathbb{R}^d\times\mathbb{R}^d\) to \(\mathbb{R}^J\times\mathbb{R}^J\) preserves volume, and \((B_J^{\mathsf T})^{-1}b_j=e_j\) for \(j\in J\), where \((e_j)_{j\in J}\) is the standard basis of \(\mathbb{R}^J\). Since the simplex \(\operatorname{conv}\big(\{0\}\cup\{\varepsilon_je_j\}_{j\in J}\big)\) has volume \(1/d!\) for every \(\varepsilon\in\{-1,1\}^J\), it follows that
+<span id="eq-16"></span><span class="math">\[
+	\begin{aligned}
+	\sum_{J\in \mathcal{J}}\sum_{\varepsilon \in \{ -1,1 \}^{J}}\operatorname{Vol}_{2d}(K_{J,\varepsilon}\times\Delta_{J,\varepsilon})&=\sum_{J\in \mathcal{J}}\sum_{\varepsilon \in \{ -1,1 \}^{J}}\operatorname{Vol}_{2d}\Big(B_J(K_{J,\varepsilon})\times(B_J^{\mathsf T})^{-1}(\Delta_{J,\varepsilon})\Big)\\
+	&=\sum_{J\in \mathcal{J}}\sum_{\varepsilon \in \{ -1,1 \}^{J}}\operatorname{Vol}\big(B_J(K_{J,\varepsilon})\big)\operatorname{Vol}\Big(\operatorname{conv}\big(\{0\}\cup\{\varepsilon_je_j\}_{j\in J}\big)\Big)\\
+	&=\frac{1}{d!}\sum_{J\in \mathcal{J}}\sum_{\varepsilon \in \{ -1,1 \}^{J}}\operatorname{Vol}\big(B_J(K_{J,\varepsilon})\big)\overset{\href{#eq-13}{(13)}}{=}\frac{4^d}{d!}\sum_{J\in\mathcal{J}}\mu_J(A_J),
+	\end{aligned}\tag{16}
 \]</span>
-Since the sets \(K_{J,\varepsilon}\times\Delta_{J,\varepsilon}\) are contained in \(K\times K^{\circ}\) and have pairwise null intersections by <a href="#lemma-2">Lemma 2</a>, we conclude that
+Therefore, by <a href="#eq-4">(4)</a>,
 <span class="math">\[
-	\operatorname{Vol}(K)\operatorname{Vol}(K^{\circ})=\operatorname{Vol}_{2d}(K\times K^{\circ})\ge\sum\limits_{J\in \mathcal{J}}\sum\limits_{\varepsilon \in \{ -1,1 \}^{J}}\operatorname{Vol}_{2d}(K_{J,\varepsilon}\times\Delta_{J,\varepsilon})\overset{\href{#eq-17}{(17)}}{=}\frac{4^d}{d!}\sum_{J\in\mathcal{J}}\mu_J(A_J)\overset{\href{#eq-3}{(3)}}{\ge}\frac{4^d}{d!},
+	\operatorname{Vol}(K)\operatorname{Vol}(K^{\circ})\ge\frac{4^d}{d!}\sum_{J\in\mathcal{J}}\mu_J(A_J)\ge\frac{4^d}{d!},
 \]</span>
 and <a href="#eq-1">(1)</a> is proved.</p>
 <h3 id="the-equality-case">The equality case</h3>
@@ -444,35 +448,35 @@ and we define
 	\Omega :=\{ z\in \mathbb{C}^{d}\,\,\colon\,\, \langle h,z \rangle \in D \quad \forall\,h\in K^{\circ}\}.
 \]</span>
 For a polytope this agrees with the definition in <a href="#complexification">Complexification: from \(K\) to \(\Omega\)</a>, since \(K^{\circ}=\operatorname{conv}\{\pm b_j\}\) and \(\{h\in\mathbb{R}^d\colon\langle h,z\rangle\in D\}\) is convex and symmetric for each \(z\in\mathbb{C}^d\). The set \(\Omega\) is convex and open, \(\Omega\cap\mathbb{R}^d=\operatorname{int}K\), and \(\mathrm{Re}\,z\in K\) for every \(z\in\overline\Omega\). For \(x\in K\), let \(\overline\Omega_x\) be the fiber of \(\overline\Omega\) over \(x\), as before. For \(y\in\mathbb{R}^d\), since \(K^{\circ}\) is symmetric and \(\lambda\) is even,
-<span id="eq-18"></span><span class="math">\[
-	x+iy\in\overline\Omega\iff\langle h,y\rangle\le\lambda(\langle h,x\rangle)\quad\forall\,h\in K^{\circ}.\tag{18}
+<span id="eq-17"></span><span class="math">\[
+	x+iy\in\overline\Omega\iff\langle h,y\rangle\le\lambda(\langle h,x\rangle)\quad\forall\,h\in K^{\circ}.\tag{17}
 \]</span></p>
 <p>To motivate the definition of \(\Sigma\), note that
-<span id="eq-19"></span><span class="math">\[
-	K^{\circ}=\bigcup_{x\in K}\operatorname{conv}\big(\{0\}\cup\{h\in K^{\circ}\colon\langle h,x\rangle=1\}\big).\tag{19}
+<span id="eq-18"></span><span class="math">\[
+	K^{\circ}=\bigcup_{x\in K}\operatorname{conv}\big(\{0\}\cup\{h\in K^{\circ}\colon\langle h,x\rangle=1\}\big).\tag{18}
 \]</span>
 Indeed, the right-hand side is contained in \(K^\circ\), since \(K^\circ\) is convex and contains \(0\). Conversely, let \(h\in K^\circ\setminus\{0\}\) and let \(x\in K\) maximize \(\langle h,\cdot\rangle\) on \(K\). Then \(t:=\langle h,x\rangle\in(0,1]\), \(h/t\in K^{\circ}\), \(\langle h/t,x\rangle=1\), and \(h\in\operatorname{conv}\{0,h/t\}\).</p>
 <p>For \(x\in K\), let
-<span id="eq-20"></span><span class="math">\[
-	\Sigma_x:=\bigcup_{z\in\overline\Omega,\ \mathrm{Re}\,z=x}\operatorname{conv}\big(\{0\}\cup\{h\in K^{\circ}\colon\mathrm{Im}\,\langle h,z\rangle=\lambda(\mathrm{Re}\,\langle h,z\rangle)\}\big)\subseteq K^{\circ},\tag{20}
+<span id="eq-19"></span><span class="math">\[
+	\Sigma_x:=\bigcup_{z\in\overline\Omega,\ \mathrm{Re}\,z=x}\operatorname{conv}\big(\{0\}\cup\{h\in K^{\circ}\colon\mathrm{Im}\,\langle h,z\rangle=\lambda(\mathrm{Re}\,\langle h,z\rangle)\}\big)\subseteq K^{\circ},\tag{19}
 \]</span>
 and let
 <span class="math">\[
 	\Sigma:=\bigcup_{x\in K}\{x\}\times\Sigma_x\subseteq K\times K^{\circ}.
 \]</span>
-For \(z\in\overline\Omega\) and \(h\in K^\circ\), the condition in <a href="#eq-20">(20)</a> says that \(\langle h,z\rangle\) lies on the upper arc \(\{t+i\lambda(t)\colon|t|\le1\}\) of \(\partial D\). Thus <a href="#eq-20">(20)</a> is obtained from <a href="#eq-19">(19)</a> by replacing \(K\) with \(\overline\Omega\), and the right endpoint of \([-1,1]\) with the upper arc of \(\partial D\). Note that \(\Sigma_0=K^{\circ}\) by <a href="#eq-18">(18)</a> and <a href="#eq-19">(19)</a>.</p>
-<p>If \(K\) is a polytope, \(x\in K_{J,\varepsilon}\) and \(y=y_{J,\varepsilon}(x)\), then \(\langle\varepsilon_jb_j,y\rangle=\lambda(\langle\varepsilon_jb_j,x\rangle)\) for all \(j\in J\), since \(\lambda\) is even, so \(\Delta_{J,\varepsilon}\subseteq\Sigma_x\) by <a href="#eq-20">(20)</a>. Hence, for a polytope \(K\), the set \(\Sigma\) contains the sets \(K_{J,\varepsilon}\times\Delta_{J,\varepsilon}\), so by <a href="#lemma-2">Lemma 2</a>, <a href="#eq-17">(17)</a> and <a href="#eq-3">(3)</a>,
+For \(z\in\overline\Omega\) and \(h\in K^\circ\), the condition in <a href="#eq-19">(19)</a> says that \(\langle h,z\rangle\) lies on the upper arc \(\{t+i\lambda(t)\colon|t|\le1\}\) of \(\partial D\). Thus <a href="#eq-19">(19)</a> is obtained from <a href="#eq-18">(18)</a> by replacing \(K\) with \(\overline\Omega\), and the right endpoint of \([-1,1]\) with the upper arc of \(\partial D\). Note that \(\Sigma_0=K^{\circ}\) by <a href="#eq-17">(17)</a> and <a href="#eq-18">(18)</a>.</p>
+<p>If \(K\) is a polytope, \(x\in K_{J,\varepsilon}\) and \(y=y_{J,\varepsilon}(x)\), then \(\langle\varepsilon_jb_j,y\rangle=\lambda(\langle\varepsilon_jb_j,x\rangle)\) for all \(j\in J\), since \(\lambda\) is even, so \(\Delta_{J,\varepsilon}\subseteq\Sigma_x\) by <a href="#eq-19">(19)</a>. Hence, for a polytope \(K\), the set \(\Sigma\) contains the sets \(K_{J,\varepsilon}\times\Delta_{J,\varepsilon}\), so by <a href="#lemma-2">Lemma 2</a>, <a href="#eq-16">(16)</a> and <a href="#eq-4">(4)</a>,
+<span id="eq-20"></span><span class="math">\[
+	\operatorname{Vol}_{2d}(\Sigma)\ge\frac{4^{d}}{d!}.\tag{20}
+\]</span></p>
+<p><b>Plan.</b> For every symmetric convex body \(K\), we have \(\frac{4^{d}}{d!}\le\operatorname{Vol}_{2d}(\Sigma)\le\operatorname{Vol}(K)\operatorname{Vol}(K^{\circ})\). The first inequality is <a href="#eq-20">(20)</a> for polytopes, and follows from it by approximation in general (<a href="#lemma-4">Lemma 4</a>); the second holds since \(\Sigma\subseteq K\times K^{\circ}\). Equality in the second inequality forces \(\Sigma_x=K^{\circ}\) for almost every \(x \in K\). <a href="#lemma-4">Lemma 4</a> shows that this is then true for all \(x \in \operatorname{int} K\). <a href="#lemma-4">Lemma 4</a> for \(\widehat K=K\oplus_1[-1,1]\) at points \((\delta x,1-\delta)\), \(\delta\downarrow0\), together with <a href="#lemma-0">Lemma 0</a>, gives that every triple of points of \((\mathbb{R}^d,\|\cdot\|_{K^{\circ}})\) has a metric median (<a href="#lemma-6-medians">Lemma 5</a>), and <a href="#theorem-7-lima-lima-1978-hansen-lima-hansen-lima-1981">Theorem 6</a>, which is due to Hansen and Lima, identifies the norm.</p>
+<p>By <a href="#eq-19">(19)</a>, \(\xi\in\Sigma_x\) iff \(\xi=\sum_i\alpha_ih_i\) for finitely many \(h_i\in K^{\circ}\) with \(\langle h_i,y\rangle=\lambda(\langle h_i,x\rangle)\) for one \(y\in\overline\Omega_x\) and all \(i\), where \(\alpha_i\ge0\) and \(\sum_i\alpha_i\le1\); by Carathéodory's theorem, \(d+1\) terms suffice. Since \(\lambda\le\lambda(0)\), <a href="#eq-17">(17)</a> gives
 <span id="eq-21"></span><span class="math">\[
-	\operatorname{Vol}_{2d}(\Sigma)\ge\frac{4^{d}}{d!}.\tag{21}
+	\overline\Omega_x\subseteq\lambda(0)K,\qquad x\in K.\tag{21}
 \]</span></p>
-<p><b>Plan.</b> For every symmetric convex body \(K\), we have \(\frac{4^{d}}{d!}\le\operatorname{Vol}_{2d}(\Sigma)\le\operatorname{Vol}(K)\operatorname{Vol}(K^{\circ})\). The first inequality is <a href="#eq-21">(21)</a> for polytopes, and follows from it by approximation in general (<a href="#lemma-4">Lemma 4</a>); the second holds since \(\Sigma\subseteq K\times K^{\circ}\). Equality in the second inequality forces \(\Sigma_x=K^{\circ}\) for almost every \(x \in K\). <a href="#lemma-4">Lemma 4</a> shows that this is then true for all \(x \in \operatorname{int} K\). <a href="#lemma-4">Lemma 4</a> for \(\widehat K=K\oplus_1[-1,1]\) at points \((\delta x,1-\delta)\), \(\delta\downarrow0\), together with <a href="#lemma-0">Lemma 0</a>, gives that every triple of points of \((\mathbb{R}^d,\|\cdot\|_{K^{\circ}})\) has a metric median (<a href="#lemma-6-medians">Lemma 5</a>), and <a href="#theorem-7-lima-lima-1978-hansen-lima-hansen-lima-1981">Theorem 6</a>, which is due to Hansen and Lima, identifies the norm.</p>
-<p>By <a href="#eq-20">(20)</a>, \(\xi\in\Sigma_x\) iff \(\xi=\sum_i\alpha_ih_i\) for finitely many \(h_i\in K^{\circ}\) with \(\langle h_i,y\rangle=\lambda(\langle h_i,x\rangle)\) for one \(y\in\overline\Omega_x\) and all \(i\), where \(\alpha_i\ge0\) and \(\sum_i\alpha_i\le1\); by Carathéodory's theorem, \(d+1\) terms suffice. Since \(\lambda\le\lambda(0)\), <a href="#eq-18">(18)</a> gives
-<span id="eq-22"></span><span class="math">\[
-	\overline\Omega_x\subseteq\lambda(0)K,\qquad x\in K.\tag{22}
-\]</span></p>
-<div class="callout callout-lemma" id="lemma-3"><div class="callout-title">Lemma 3</div><p>Let \(K^{(j)}\supseteq K\) be symmetric convex bodies with \(K^{(j)}\subseteq t_j^{-1}K\) and \(t_j\to1\), and let \(\Omega^{(j)}\) and \(\Sigma^{(j)}_x\) be defined as \(\Omega\) and \(\Sigma_x\) in <a href="#eq-20">(20)</a>, with \(K\) replaced by \(K^{(j)}\). If \(x_j\to x\in\operatorname{int} K\), \(\xi_j\to\xi\) and \(\xi_j\in\Sigma^{(j)}_{x_j}\), then \(\xi\in\Sigma_x\).</p></div>
+<div class="callout callout-lemma" id="lemma-3"><div class="callout-title">Lemma 3</div><p>Let \(K^{(j)}\supseteq K\) be symmetric convex bodies with \(K^{(j)}\subseteq t_j^{-1}K\) and \(t_j\to1\), and let \(\Omega^{(j)}\) and \(\Sigma^{(j)}_x\) be defined as \(\Omega\) and \(\Sigma_x\) in <a href="#eq-19">(19)</a>, with \(K\) replaced by \(K^{(j)}\). If \(x_j\to x\in\operatorname{int} K\), \(\xi_j\to\xi\) and \(\xi_j\in\Sigma^{(j)}_{x_j}\), then \(\xi\in\Sigma_x\).</p></div>
 <details class="proof"><summary>Proof.</summary>
-<p>Write \(\xi_j=\sum_{i=0}^{d}\alpha_{ij}h_{ij}\) with \(h_{ij}\in (K^{(j)})^{\circ}\), \(\langle h_{ij},y_j\rangle=\lambda(\langle h_{ij},x_j\rangle)\) for some \(y_j\) with \(x_j+iy_j\in\overline{\Omega^{(j)}}\), \(\alpha_{ij}\ge0\), \(\sum_i\alpha_{ij}\le1\). By <a href="#eq-22">(22)</a> for \(K^{(j)}\), \(y_j\in\lambda(0)K^{(j)}\subseteq\lambda(0)t_j^{-1}K\), so all data range in a compact set. Pass to a subsequence with \(y_j\to y\), \(h_{ij}\to h_i\in K^{\circ}\), \(\alpha_{ij}\to\alpha_i\). For \(h\in K^{\circ}\) we have \(t_jh\in (K^{(j)})^{\circ}\), so \(\langle t_jh,y_j\rangle\le\lambda(\langle t_jh,x_j\rangle)\) by <a href="#eq-18">(18)</a> for \(K^{(j)}\); continuity of \(\lambda\) gives \(\langle h,y\rangle\le\lambda(\langle h,x\rangle)\) for all \(h\in K^{\circ}\), that is, \(x+iy\in\overline\Omega\). The same continuity turns \(\langle h_{ij},y_j\rangle=\lambda(\langle h_{ij},x_j\rangle)\) into \(\langle h_i,y\rangle=\lambda(\langle h_i,x\rangle)\). So \(\xi=\sum\alpha_ih_i\in\Sigma_x\). \(\square\)</p>
+<p>Write \(\xi_j=\sum_{i=0}^{d}\alpha_{ij}h_{ij}\) with \(h_{ij}\in (K^{(j)})^{\circ}\), \(\langle h_{ij},y_j\rangle=\lambda(\langle h_{ij},x_j\rangle)\) for some \(y_j\) with \(x_j+iy_j\in\overline{\Omega^{(j)}}\), \(\alpha_{ij}\ge0\), \(\sum_i\alpha_{ij}\le1\). By <a href="#eq-21">(21)</a> for \(K^{(j)}\), \(y_j\in\lambda(0)K^{(j)}\subseteq\lambda(0)t_j^{-1}K\), so all data range in a compact set. Pass to a subsequence with \(y_j\to y\), \(h_{ij}\to h_i\in K^{\circ}\), \(\alpha_{ij}\to\alpha_i\). For \(h\in K^{\circ}\) we have \(t_jh\in (K^{(j)})^{\circ}\), so \(\langle t_jh,y_j\rangle\le\lambda(\langle t_jh,x_j\rangle)\) by <a href="#eq-17">(17)</a> for \(K^{(j)}\); continuity of \(\lambda\) gives \(\langle h,y\rangle\le\lambda(\langle h,x\rangle)\) for all \(h\in K^{\circ}\), that is, \(x+iy\in\overline\Omega\). The same continuity turns \(\langle h_{ij},y_j\rangle=\lambda(\langle h_{ij},x_j\rangle)\) into \(\langle h_i,y\rangle=\lambda(\langle h_i,x\rangle)\). So \(\xi=\sum\alpha_ih_i\in\Sigma_x\). \(\square\)</p>
 </details>
 <div class="callout callout-lemma" id="lemma-4"><div class="callout-title">Lemma 4</div><p>For every symmetric convex body \(K\), the set \(\Sigma\) is measurable and
 <span class="math">\[
@@ -486,7 +490,7 @@ In particular, for every \(x\in\operatorname{int} K\) and every \(\xi\in\partial
 <span class="math">\[
 	K\subseteq K^{(j)}\subseteq t_j^{-1}K\qquad\text{for all }j.
 \]</span>
-Write \(\Sigma^{(j)}\) for the set \(\Sigma\) with \(K\) replaced by \(K^{(j)}\). Since \(K^{(j)}\) is a polytope, <a href="#eq-21">(21)</a> applies to it, so
+Write \(\Sigma^{(j)}\) for the set \(\Sigma\) with \(K\) replaced by \(K^{(j)}\). Since \(K^{(j)}\) is a polytope, <a href="#eq-20">(20)</a> applies to it, so
 <span class="math">\[
 	\operatorname{Vol}_{2d}\big(\Sigma^{(j)}\big)\ge\frac{4^{d}}{d!}\qquad\text{for all }j.
 \]</span>
@@ -507,7 +511,7 @@ Finally, \(\limsup_jE_j\subseteq \Sigma\). Indeed, let \((x,\xi)\in E_j\) for in
 	\operatorname{Vol}_{2d}(\Sigma)\ge\operatorname{Vol}_{2d}\Big(\limsup_{j\to\infty}E_j\Big)\ge\frac{4^{d}}{d!},
 \]</span>
 which proves the inequality.</p>
-<p>Now assume \(\operatorname{Vol}(K)\operatorname{Vol}(K^{\circ})=4^{d}/d!\). Then \(\Sigma\subseteq K\times K^{\circ}\) and \(\operatorname{Vol}_{2d}(\Sigma)\ge\operatorname{Vol}_{2d}(K\times K^{\circ})\), so \((\operatorname{int} K\times\operatorname{int} K^{\circ})\setminus \Sigma\) is null. It is open by <a href="#lemma-3">Lemma 3</a>, hence empty. So \(\Sigma_x\supseteq\operatorname{int} K^{\circ}\), and \(\Sigma_x\) is closed. For \(\xi\in\partial K^{\circ}\), write \(\xi=\sum\alpha_ih_i\) as in the definition <a href="#eq-20">(20)</a> of \(\Sigma_x\); the weights \(\alpha_i\) sum to \(1\) since \[1=\|\xi\|_{K^{\circ}}\le\sum\alpha_i\|h_i\|_{K^{\circ}}\le\sum\alpha_i\le1,\] so \(\xi\in\operatorname{conv}\{h_i\}\). \(\square\)</p>
+<p>Now assume \(\operatorname{Vol}(K)\operatorname{Vol}(K^{\circ})=4^{d}/d!\). Then \(\Sigma\subseteq K\times K^{\circ}\) and \(\operatorname{Vol}_{2d}(\Sigma)\ge\operatorname{Vol}_{2d}(K\times K^{\circ})\), so \((\operatorname{int} K\times\operatorname{int} K^{\circ})\setminus \Sigma\) is null. It is open by <a href="#lemma-3">Lemma 3</a>, hence empty. So \(\Sigma_x\supseteq\operatorname{int} K^{\circ}\), and \(\Sigma_x\) is closed. For \(\xi\in\partial K^{\circ}\), write \(\xi=\sum\alpha_ih_i\) as in the definition <a href="#eq-19">(19)</a> of \(\Sigma_x\); the weights \(\alpha_i\) sum to \(1\) since \[1=\|\xi\|_{K^{\circ}}\le\sum\alpha_i\|h_i\|_{K^{\circ}}\le\sum\alpha_i\le1,\] so \(\xi\in\operatorname{conv}\{h_i\}\). \(\square\)</p>
 </details>
 <div class="callout callout-definition" id="definition"><div class="callout-title">Definition</div><p>Let \((V,\|\cdot\|)\) be a normed space. A <i>median</i> of a triple  \(x_1,x_2,x_3\in V\) is a point \(m\) with \(\|x_i-m\|+\|m-x_j\|=\|x_i-x_j\|\) for all \(i\neq j\).</p></div>
 <div class="callout callout-lemma" id="lemma-6-medians"><div class="callout-title">Lemma 5</div><p>If \(\operatorname{Vol}(K)\operatorname{Vol}(K^{\circ})=4^{d}/d!\) then every triple of points has a median in \((\mathbb{R}^{d},\|\cdot\|_{K^{\circ}})\).</p></div>
@@ -520,10 +524,10 @@ The set
 \]</span>
 is compact and convex; indeed by the triangle inequality, it is the set of minimizers of the convex function \(\|v-\cdot\|+\|u-\cdot\|\), which tends to \(\infty\) at \(\infty\).</p>
 <p>We claim that</p>
-<span id="eq-23"></span><span class="math">\[
-	\min_{w\in W}\langle w,x\rangle\le\tfrac12\big(\|v\|+\|u\|-\|v-u\|\big)\qquad\text{for every }x\in K.\tag{23}
+<span id="eq-22"></span><span class="math">\[
+	\min_{w\in W}\langle w,x\rangle\le\tfrac12\big(\|v\|+\|u\|-\|v-u\|\big)\qquad\text{for every }x\in K.\tag{22}
 \]</span>
-<p>First let us deduce the lemma from <a href="#eq-23">(23)</a>. Since \(\|w\|=\max_{x\in K}\langle w,x\rangle\), the minimax theorem for the bilinear pairing on the compact convex sets \(W\) and \(K\) gives
+<p>First let us deduce the lemma from <a href="#eq-22">(22)</a>. Since \(\|w\|=\max_{x\in K}\langle w,x\rangle\), the minimax theorem for the bilinear pairing on the compact convex sets \(W\) and \(K\) gives
 <span class="math">\[
 	\min_{w\in W}\|w\|=\max_{x\in K}\min_{w\in W}\langle w,x\rangle\le\tfrac12\big(\|v\|+\|u\|-\|v-u\|\big).
 \]</span>
@@ -536,7 +540,7 @@ Pick a minimizer \(w_{0}\); then by the triangle inequality
 	\end{align*}
 \]</span>
 so the three triangle inequalities in the second step are equalities and \(w_{0}\) is a median. </p>
-<p>It remains to prove <a href="#eq-23">(23)</a>. By continuity, we may assume that \(x\in\operatorname{int} K\), so that \(\|x\|_K\lt 1\). Let
+<p>It remains to prove <a href="#eq-22">(22)</a>. By continuity, we may assume that \(x\in\operatorname{int} K\), so that \(\|x\|_K\lt 1\). Let
 <span class="math">\[
 	\widehat K:=K\oplus_1[-1,1]=\{(z,s):\ \|z\|_K+|s|\le1\},\qquad \widehat K^{\circ}=K^{\circ}\times[-1,1].
 \]</span>
@@ -552,27 +556,27 @@ Let \(\hat v:=(v,\|v\|)\) and \(\hat u:=(u,\|u\|)\) be the lifts of \(v\) and \(
 	\hat v-\hat u=\sum_ia_i(h_i,s_i).
 \]</span>
 For \((h,s)\in\widehat K^{\circ}\), concavity and evenness of \(\lambda\) give
-<span id="eq-24"></span><span class="math">\[
+<span id="eq-23"></span><span class="math">\[
 	\begin{aligned}
 	\lambda\big(\langle(h,s),\hat x\rangle\big)&=\lambda\Big(\frac{1+s}2\big(1-\delta(1-\langle h,x\rangle)\big)-\frac{1-s}2\big(1-\delta(1+\langle h,x\rangle)\big)\Big)\\
 	&\ge\frac{1+s}2\,\lambda\big(1-\delta(1-\langle h,x\rangle)\big)+\frac{1-s}2\,\lambda\big(1-\delta(1+\langle h,x\rangle)\big).
-	\end{aligned}\tag{24}
+	\end{aligned}\tag{23}
 \]</span>
-Apply <a href="#eq-24">(24)</a> to each \((h_i,s_i)\), then pair with \(\hat y\), and finally use <a href="#eq-18">(18)</a> for \(\widehat K\) at \(\hat x+i\hat y\) with the covectors \(\hat v/\|v\|\) and \(-\hat u/\|u\|\), which lie in \(\widehat K^{\circ}\), together with evenness of \(\lambda\) and the definition of \(\hat x\):
-<span id="eq-25"></span><span class="math">\[
+Apply <a href="#eq-23">(23)</a> to each \((h_i,s_i)\), then pair with \(\hat y\), and finally use <a href="#eq-17">(17)</a> for \(\widehat K\) at \(\hat x+i\hat y\) with the covectors \(\hat v/\|v\|\) and \(-\hat u/\|u\|\), which lie in \(\widehat K^{\circ}\), together with evenness of \(\lambda\) and the definition of \(\hat x\):
+<span id="eq-24"></span><span class="math">\[
 	\begin{aligned}
 	&\sum_ia_i\Big(\frac{1+s_i}2\,\lambda\big(1-\delta(1-\langle h_i,x\rangle)\big)+\frac{1-s_i}2\,\lambda\big(1-\delta(1+\langle h_i,x\rangle)\big)\Big)\\
 	&\qquad\le\sum_ia_i\lambda\big(\langle(h_i,s_i),\hat x\rangle\big)=\langle\hat v-\hat u,\hat y\rangle\\
 	&\qquad\le\|v\|\,\lambda\Big(1-\delta\Big(1-\frac{\langle v,x\rangle}{\|v\|}\Big)\Big)+\|u\|\,\lambda\Big(1-\delta\Big(1-\frac{\langle u,x\rangle}{\|u\|}\Big)\Big).
-	\end{aligned}\tag{25}
+	\end{aligned}\tag{24}
 \]</span>
-Now divide <a href="#eq-25">(25)</a> by \(\lambda(1-\delta)\) and let \(\delta\searrow0\). Every argument of \(\lambda\) in <a href="#eq-25">(25)</a> is of the form \(1-\delta c\) with \(c\in[1-\|x\|_K,1+\|x\|_K]\), so by <a href="#lemma-0">Lemma 0</a> each ratio \(\lambda(1-\delta c)/\lambda(1-\delta)\) may be replaced by \(c\), with a total error of \(o(1)\):
-<span id="eq-26"></span><span class="math">\[
+Now divide <a href="#eq-24">(24)</a> by \(\lambda(1-\delta)\) and let \(\delta\searrow0\). Every argument of \(\lambda\) in <a href="#eq-24">(24)</a> is of the form \(1-\delta c\) with \(c\in[1-\|x\|_K,1+\|x\|_K]\), and by <a href="#lemma-0">Lemma 0</a>, \(\lambda(1-\delta c)/\lambda(1-\delta)=c+O\big(1/\log\frac1\delta\big)\) uniformly for such \(c\). Since \(\sum_ia_i=\|v-u\|\), we may therefore replace each ratio by \(c\), with a total error of \(o(1)\):
+<span id="eq-25"></span><span class="math">\[
 	\begin{aligned}
 	\sum_ia_i\big(1-s_i\langle h_i,x\rangle\big)&=\sum_ia_i\Big(\frac{1+s_i}2\big(1-\langle h_i,x\rangle\big)+\frac{1-s_i}2\big(1+\langle h_i,x\rangle\big)\Big)\\
 	&\le\|v\|\Big(1-\frac{\langle v,x\rangle}{\|v\|}\Big)+\|u\|\Big(1-\frac{\langle u,x\rangle}{\|u\|}\Big)+o(1)\\
 	&=\|v\|+\|u\|-\langle v+u,x\rangle+o(1).
-	\end{aligned}\tag{26}
+	\end{aligned}\tag{25}
 \]</span>
 Now put
 <span class="math">\[w:=v-\sum_ia_i\frac{1+s_i}2h_i.
@@ -582,7 +586,7 @@ Since \(\sum_ia_ih_i=v-u\), we have \(u-w=-\sum_ia_i\frac{1-s_i}2h_i\), and sinc
 	\|v-w\|+\|u-w\|\le\sum_ia_i\Big(\frac{1+s_i}2+\frac{1-s_i}2\Big)=\|v-u\|,
 \]</span>
 so \(w\in W\).</p>
-<details class="fig" open><summary><b>Figure 4: proof of <a href="#lemma-6-medians">Lemma 5</a></b></summary>
+<details class="fig" open><summary><b>Figure 5: proof of <a href="#lemma-6-medians">Lemma 5</a></b></summary>
 <div class="figure med-fig interactive" id="fig-4">
 <svg viewBox="0 0 560 400" role="img" aria-label="The cone of the l-infinity norm over the plane, the lifted points u-hat and v-hat on it, the path through 0 and the geodesic whose lowest point lies above the median w. Drag to rotate."></svg>
 <div class="med-ctl"><button type="button" data-act="new">new <i>u</i>, <i>v</i></button><button type="button" data-act="reset">reset</button><span>drag to rotate</span></div>
@@ -649,11 +653,11 @@ so \(w\in W\).</p>
   draw();
 })();
 </script>
-<p>Adding the expressions for \(v-w\) and \(u-w\) gives \(v+u-2w=\sum_ia_is_ih_i\), so the left side of <a href="#eq-26">(26)</a> is \(\|v-u\|-\langle v+u-2w,x\rangle\), and <a href="#eq-26">(26)</a> reads
+<p>Adding the expressions for \(v-w\) and \(u-w\) gives \(v+u-2w=\sum_ia_is_ih_i\), so the left side of <a href="#eq-25">(25)</a> is \(\|v-u\|-\langle v+u-2w,x\rangle\), and <a href="#eq-25">(25)</a> reads
 <span class="math">\[
 	\langle w,x\rangle\le\tfrac12\big(\|v\|+\|u\|-\|v-u\|\big)+o(1)\qquad\text{as }\delta\searrow0.
 \]</span>
-This proves <a href="#eq-23">(23)</a>, since \(w\in W\). \(\square\)</p>
+This proves <a href="#eq-22">(22)</a>, since \(w\in W\). \(\square\)</p>
 </details>
 <div class="callout callout-theorem" id="theorem-7-lima-lima-1978-hansen-lima-hansen-lima-1981"><div class="callout-title">Theorem 6 (Lima,<sup class="fn"><a href="#fn-lima-1978" id="fnref-lima-1978">3</a></sup> Hansen–Lima<sup class="fn"><a href="#fn-hansen-lima-1981" id="fnref-hansen-lima-1981">4</a></sup>)</div><p>Let \(\|\cdot\|\) be a norm on \(\mathbb{R}^{d}\). Suppose that every triple of points has a median in \((\mathbb{R}^{d},\|\cdot\|)\). Then the unit ball of \(\|\cdot\|\) is a linear image of a Hanner polytope.</p></div>
 <details class="proof"><summary>Proof.</summary>
@@ -691,9 +695,9 @@ Thus \(F\) maps the upper and the lower semicircle bijectively onto the upper an
 <p>Let \(w\in\mathbb{C}\setminus\partial D\). As \(r\uparrow1\), the curves \(\theta\mapsto F(re^{i\theta})\) converge uniformly to \(\theta\mapsto F(e^{i\theta})\), so for \(r\) close to \(1\) their winding number around \(w\) is \(1\) if \(w\in D\) and \(0\) if \(w\notin\overline D\). By the argument principle, \(F\) takes every value in \(D\) exactly once in \(\mathbb D\) and no value outside \(\overline D\). Since \(F(\mathbb D)\) is open, it does not meet \(\partial D\). Hence \(F\) is a biholomorphism of \(\mathbb D\) onto \(D\), and, with the boundary correspondence, a continuous bijection of the compact set \(\overline{\mathbb D}\) onto \(\overline D\), hence a homeomorphism.</p>
 <p>It remains to prove the endpoint asymptotics. Substituting \(s=1-\tau\) in the definition of \(\lambda\) and using \(\operatorname{arctanh}(\cos u)=\log\cot\frac u2\),
 <span class="math">\[
-	\lambda(1-\eta)=\frac2\pi\int_0^{\eta}\log\cot\frac{\pi\tau}{4}\,d\tau=\frac2\pi\,\eta\Big(\log\frac1\eta+1+\log\frac4\pi\Big)+O(\eta^{3}).
+	\lambda(1-\delta)=\frac2\pi\int_0^{\delta}\log\cot\frac{\pi\tau}{4}\,d\tau.
 \]</span>
-The ratio at \(\eta=\delta c\) and \(\eta=\delta\) is \(c\,\big(1+O(1/\log\tfrac1\delta)\big)\), uniformly for \(c\in[a,b]\). \(\square\)</p>
+Since \(\log\cot u=\log\frac1u+O(u^2)\) for \(0\lt u\le\frac\pi4\), the integral equals \(\int_0^\delta\log\frac{4}{\pi\tau}\,d\tau+O(\delta^3)=\delta\log\frac1\delta+O(\delta)\). \(\square\)</p>
 </details>
 <h3 id="appendix-complex-geometry">Appendix: Complex-geometric background</h3>
 <p>This appendix collects the notation and the standard facts used in <a href="#from-the-polydisc-to-the-torus">From \(\Omega\) to the polydisc to the torus</a>. Throughout, \(z_j=x_j+iy_j\) are the coordinates of \(\mathbb{C}^d\), and \(\mathbb{C}^d\) is oriented by \(dV=\prod_j dx_j\wedge dy_j\).</p>
@@ -748,7 +752,7 @@ which is why \(dd^c\log|f|^2\) and \(|f|^{-2}dd^c|f|^2\) agree on \(\partial\Ome
 Here we used \(d\big(d^c|z|^2\wedge(dd^c|z|^2)^{d-1}\big)=(dd^c|z|^2)^d\), valid because \(dd^c\) of anything is closed.</p>
 <p><b>Other notation.</b> \(\mathbb{B}_d\) denotes the open Euclidean unit ball of \(\mathbb{C}^d\); \(|\cdot|\) is the Hermitian norm; \(\overline{\Omega(s)}\) is the closure; \(g=O(1)\) means that \(g\) is bounded near the point in question; and \(Df\) is the complex Jacobian of a holomorphic map \(f\), with \((Df)_J\) its \(d\times d\) minor with rows in \(J\).</p>
 <h3 id="appendix-correspondence">Appendix: Correspondence with the original preprint</h3>
-<p>The tables below match the notation and numbered statements of this note with those of the <a href="https://github.com/openai/math/blob/main/preprints/The-symmetric-Mahler-conjecture-and-its-equality-cases-September-22-2026/paper.pdf">original preprint</a> (version of September 22, 2026). Equation numbers of the preprint are written as [8], [26], etc., to distinguish them from equation numbers <a href="#eq-1">(1)</a>&ndash;<a href="#eq-26">(26)</a> of this note.</p>
+<p>The tables below match the notation and numbered statements of this note with those of the <a href="https://github.com/openai/math/blob/main/preprints/The-symmetric-Mahler-conjecture-and-its-equality-cases-September-22-2026/paper.pdf">original preprint</a> (version of September 22, 2026). Equation numbers of the preprint are written as [8], [26], etc., to distinguish them from equation numbers <a href="#eq-1">(1)</a>&ndash;<a href="#eq-25">(25)</a> of this note.</p>
 <p>The main difference in conventions is that the preprint's lens is the domain \(D\) of this note rotated by a quarter turn: the preprint uses \(F_{\mathrm{pre}}(z)=\frac{8}{\pi^2}\sum_j\frac{(-1)^jz^{2j+1}}{(2j+1)^2}\), so that \(F(z)=-iF_{\mathrm{pre}}(iz)\) and \(D=-iD_{\mathrm{pre}}\). Accordingly, the preprint's lens is \(\{v+it\colon|t|\le1,\ |v|\le\lambda(t)\}\), and a point of \(\mathbb{C}^d\) is written there as \(Y+iX\) rather than \(x+iy\).</p>
 <p><b>Notation</b></p>
 <div class="legend-wrap"><table class="legend">
@@ -764,12 +768,12 @@ Here we used \(d\big(d^c|z|^2\wedge(dd^c|z|^2)^{d-1}\big)=(dd^c|z|^2)^d\), valid
 <tr><td>\(\Omega\)</td><td>\(\Omega\) rotated</td><td>Defined in the proof of Lemma 5.1. Here \(\Omega\) is cut out by the \(b_j\) for a polytope, and defined via \(K^\circ\) for a general body in the equality case.</td></tr>
 <tr><td>\(F^{-1}\circ B\)</td><td>\((h_1,\dots,h_m)\)</td><td>\(h_j(z)=g(b_jz)\).</td></tr>
 <tr><td>\(J\in\mathcal{J}\)</td><td>\(I\in\mathcal{B}\)</td><td>Sets of \(d\) independent rows.</td></tr>
-<tr><td>\(B_J\)</td><td>\(B_I\)</td><td>The determinant \(D_I=|\det B_I|\) does not appear here; see the change of variables before <a href="#eq-17">(17)</a>.</td></tr>
+<tr><td>\(B_J\)</td><td>\(B_I\)</td><td>The determinant \(D_I=|\det B_I|\) does not appear here; see the change of variables before <a href="#eq-16">(16)</a>.</td></tr>
 <tr><td>\(\varepsilon\)</td><td>\(\epsilon\)</td><td>Sign vectors.</td></tr>
 <tr><td>\(\overline\Omega_x\)</td><td>\(L_X\)</td><td>[25]. The fiber of \(\overline\Omega\) over \(x\), described by <a href="#eq-2">(2)</a>.</td></tr>
 <tr><td>\(x\in K_{J,\varepsilon}\)</td><td>\((I,\epsilon)\) feasible at \(X\)</td><td>\(y_{J,\varepsilon}(x)\) is the preprint's \(Y_{I,\epsilon}(X)\), and \((I,\epsilon)\) is called feasible when \(Y_{I,\epsilon}(X)\in L_X\).</td></tr>
 <tr><td>\(\Delta_{J,\varepsilon}\)</td><td>\(T_{I,\epsilon}\)</td><td>[26].</td></tr>
-<tr><td>\(\Sigma\), \(\Sigma_x\)</td><td>\(\Sigma_X\)</td><td>The preprint defines \(\Sigma_X\) as the union of feasible simplices [26] and works with \(\int_A|\Sigma_X|\,dX\); the set \(\Sigma\subseteq K\times K^{\circ}\) and its definition <a href="#eq-20">(20)</a>, used only in the equality case, are not in the preprint.</td></tr>
+<tr><td>\(\Sigma\), \(\Sigma_x\)</td><td>\(\Sigma_X\)</td><td>The preprint defines \(\Sigma_X\) as the union of feasible simplices [26] and works with \(\int_A|\Sigma_X|\,dX\); the set \(\Sigma\subseteq K\times K^{\circ}\) and its definition <a href="#eq-19">(19)</a>, used only in the equality case, are not in the preprint.</td></tr>
 <tr><td>\(\mu_J(A_J)\)</td><td>\(P_I\)</td><td>[22]; \(\sum_J\mu_J(A_J)\) is \(S\).</td></tr>
 <tr><td>\(f_k=p_k\circ F^{-1}\circ B\)</td><td>\(f_k=(h_1^k,\dots,h_m^k)\)</td><td>\(|f_k|^2=\tau_k\), and \(\Omega_k=\{\tau_k\lt1\}\).</td></tr>
 <tr><td>\(\int_{M_k}(\pi_J|_{M_k})^*p_k^*dV_J\)</td><td>\(M_{I,k}\)</td><td>[23]. The submanifolds \(M_k\) and the form \(\sigma_k\) are not used in the preprint.</td></tr>
@@ -791,18 +795,18 @@ Here we used \(d\big(d^c|z|^2\wedge(dd^c|z|^2)^{d-1}\big)=(dd^c|z|^2)^d\), valid
 <tbody>
 <tr><td><a href="#theorem">Theorem</a>, <a href="#eq-1">(1)</a></td><td>Theorem 1.1, [1]</td><td>The equality case is Proposition 8.4 with Lemma 2.2.</td></tr>
 <tr><td><a href="#lemma-0">Lemma 0</a></td><td>Lemmas 3.1, 3.2</td><td>Up to the rotation above; the endpoint asymptotics are Lemma 3.2, [14]. The proofs of Lemma 3.1 differ: here via \(zF'(z)=\frac{8}{\pi^2}\operatorname{arctanh}z\) and the argument principle, there via convexity of the curves \(F(re^{i\theta})\).</td></tr>
-<tr><td><a href="#eq-20">(20)</a></td><td>&mdash;</td><td>The preprint takes the union of feasible simplices as the definition of \(\Sigma_X\); for a polytope, the two definitions agree (not proved in this note; see the figure of the <a href="stretching-map.html">stretching map</a>).</td></tr>
+<tr><td><a href="#eq-19">(19)</a></td><td>&mdash;</td><td>The preprint takes the union of feasible simplices as the definition of \(\Sigma_X\); for a polytope, the two definitions agree (not proved in this note; see the figure of the <a href="stretching-map.html">stretching map</a>).</td></tr>
 <tr><td><a href="#lemma-2">Lemma 2</a></td><td>Proof of Proposition 6.1, Lemma 5.2</td><td>The preprint shows that extra tight constraints have probability zero on the complex side (Lemma 5.2); here this is done directly in \(x\), using \(\lambda''\neq0\).</td></tr>
-<tr><td><a href="#eq-17">(17)</a></td><td>[30]</td><td>Here integrated over \(x\).</td></tr>
-<tr><td><a href="#eq-13">(13)</a> and <a href="#eq-3">(3)</a></td><td>[27], [29]</td><td>Proposition 6.1: \(S=\frac{d!}{4^d}\int_A|\Sigma_X|\,dX\).</td></tr>
-<tr><td><a href="#eq-6">(6)</a></td><td>Proofs of Lemmas 4.1 and 5.1</td><td>The preprint expands the integrand as a sum of squared minors by Cauchy&ndash;Binet; here it is the form \((dd^c|f_k|^2)^d\).</td></tr>
-<tr><td>Deduction of <a href="#eq-3">(3)</a> from <a href="#eq-8">(8)</a>, first part</td><td>[24] and the end of the proof of Lemma 5.1</td><td>Radial substitution; here phrased as the weak convergence \(\mu_{k,J}\to\mu_J\).</td></tr>
+<tr><td><a href="#eq-16">(16)</a></td><td>[30]</td><td>Here integrated over \(x\).</td></tr>
+<tr><td><a href="#eq-12">(12)</a> and <a href="#eq-4">(4)</a></td><td>[27], [29]</td><td>Proposition 6.1: \(S=\frac{d!}{4^d}\int_A|\Sigma_X|\,dX\).</td></tr>
+<tr><td><a href="#eq-7">(7)</a></td><td>Proofs of Lemmas 4.1 and 5.1</td><td>The preprint expands the integrand as a sum of squared minors by Cauchy&ndash;Binet; here it is the form \((dd^c|f_k|^2)^d\).</td></tr>
+<tr><td>Deduction of <a href="#eq-4">(4)</a> from <a href="#eq-9">(9)</a>, first part</td><td>[24] and the end of the proof of Lemma 5.1</td><td>Radial substitution; here \(\rho\omega\mapsto\rho^{1/k}\omega\) and the reverse Fatou lemma.</td></tr>
 <tr><td><a href="#lemma-1">Lemma 1</a></td><td>Lemma 4.1, [17]</td><td>The preprint assumes a nondegenerate homogeneous leading term of degree \(k\), where this note assumes \(|f|\le C|z|^k\). The proofs differ: here by gluing with a regularized maximum (as in Demailly), there by computing the flux through a small sphere.</td></tr>
 <tr><td>Verification of the hypotheses of <a href="#lemma-1">Lemma 1</a></td><td>Proof of Lemma 5.1</td><td>Lemma 5.1 holds for any biholomorphism \(F\) of \(\mathbb D\) onto a bounded domain with \(F(0)=0\).</td></tr>
 <tr><td><a href="#lemma-4">Lemma 4</a>, inequality</td><td>Corollary 6.2</td><td>The preprint approximates \(K^\circ\) from inside by polytopes and applies Proposition 6.1.</td></tr>
 <tr><td><a href="#lemma-3">Lemma 3</a>, <a href="#lemma-4">Lemma 4</a>, equality</td><td>Proposition 7.1, [33]&ndash;[35]</td><td>The preprint works only with the lifted body \(B\), and obtains a common witness \(Y\) as a limit of feasible pairs [39]&ndash;[41], using the vanishing deficit [38].</td></tr>
 <tr><td><a href="#definition">Definition</a> (median)</td><td>Beginning of Section 8</td><td></td></tr>
-<tr><td><a href="#lemma-6-medians">Lemma 5</a></td><td>Proposition 8.1</td><td><a href="#eq-23">(23)</a> corresponds to [45], and <a href="#eq-24">(24)</a>&ndash;<a href="#eq-26">(26)</a> to [44] and the endpoint comparison.</td></tr>
+<tr><td><a href="#lemma-6-medians">Lemma 5</a></td><td>Proposition 8.1</td><td><a href="#eq-22">(22)</a> corresponds to [45], and <a href="#eq-23">(23)</a>&ndash;<a href="#eq-25">(25)</a> to [44] and the endpoint comparison.</td></tr>
 <tr><td><a href="#theorem-7-lima-lima-1978-hansen-lima-hansen-lima-1981">Theorem 6</a></td><td>Lemma 8.2, Theorem 8.3, Proposition 8.4</td><td>Medians imply the 3.2 intersection property (Lemma 8.2), then Hansen&ndash;Lima (Theorem 8.3).</td></tr>
 <tr><td>Volume product of Hanner polytopes</td><td>Lemmas 2.1, 2.2</td><td></td></tr>
 <tr><td>&mdash;</td><td>Corollaries 1.2, 1.3</td><td>Functional and entropy&ndash;transport consequences; not covered in this note.</td></tr>
@@ -949,6 +953,56 @@ function lam(t){ t=Math.abs(t); if (t>=1) return 0; const x=t*(NT-1), i=Math.flo
   }
 drawLens();
 onTheme(drawLens);
+})();
+
+(function(){ const root = document.getElementById("fig-phi");
+// Figure 2. The map Phi(t,eps) = exp(i eps pi (1-t)/2): two copies of [-1,1] onto the two halves of the unit circle.
+// Marked points t = +-1/6, +-1/2, +-5/6 are those of Figure 1.
+if (!root) return;
+const PI = Math.PI, NS = 'http://www.w3.org/2000/svg';
+function el(tag, attrs, parent){ const e=document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; }
+function txt(parent, x, y, s, size, fill, anchor){ const t=el('text',{x:x,y:y,'font-family':'var(--font-interface, sans-serif)','font-size':size,fill:fill,'text-anchor':anchor||'start'},parent); t.textContent=s; return t; }
+const PALETTE={ light:{s1:'#2a78d6',s2:'#eb6834',fg:'#222222',muted:'#777777',rule:'#dddddd',surface:'#ffffff'},
+                dark:{s1:'#3987e5',s2:'#d95926',fg:'#dcddde',muted:'#999999',rule:'#3a3a3a',surface:'#1e1e1e'} };
+const isDark=()=>document.body.classList.contains('theme-dark');
+const box=document.createElement('div'); box.style.maxWidth='680px'; box.style.margin='0 auto'; root.appendChild(box);
+const svg=el('svg',{viewBox:'0 0 720 300',role:'img','aria-description':'Two copies of the interval [-1,1], labelled epsilon = 1 and epsilon = -1, mapped onto the upper and lower halves of the unit circle'},box);
+svg.style.cssText='box-sizing:border-box;width:100%;height:auto;display:block;background:var(--background-primary);border:1px solid var(--background-modifier-border);border-radius:4px;';
+function draw(){
+  const c=PALETTE[isDark()?'dark':'light'];
+  svg.innerHTML='';
+  const defs=el('defs',{},svg), mk=el('marker',{id:'mfigArrPhi',viewBox:'0 0 10 10',refX:'9',refY:'5',markerWidth:'6',markerHeight:'6',orient:'auto'},defs);
+  el('path',{d:'M0 0 L10 5 L0 10 z',fill:c.fg},mk);
+  const TS=[-5/6,-1/2,-1/6,1/6,1/2,5/6];
+  const dot=(x,y,col)=>el('circle',{cx:x,cy:y,r:4.5,fill:col,stroke:c.surface,'stroke-width':1.5},svg);
+  // left: [-1,1] x {1} and [-1,1] x {-1}
+  const S={x0:90,x1:310,y1:105,y2:205}, X=(t)=>(S.x0+S.x1)/2+(S.x1-S.x0)/2*t;
+  txt(svg,(S.x0+S.x1)/2,30,'[−1,1] × {−1,1}',13,c.fg,'middle');
+  for (const [y,col,lab] of [[S.y1,c.s1,'ε = 1'],[S.y2,c.s2,'ε = −1']]){
+    el('line',{x1:S.x0,y1:y,x2:S.x1,y2:y,stroke:col,'stroke-width':2.5},svg);
+    for (const t of [-1,0,1]){ el('line',{x1:X(t),y1:y-5,x2:X(t),y2:y+5,stroke:c.fg,'stroke-width':1},svg); txt(svg,X(t),y+20,t<0?'−1':String(t),11,c.muted,'middle'); }
+    txt(svg,S.x0-14,y+4,lab,12,c.fg,'end');
+    for (const t of TS) dot(X(t),y,col);
+  }
+  txt(svg,X(1/2),S.y1-12,'t',12,c.fg,'middle'); txt(svg,X(1/2),S.y2-12,'t',12,c.fg,'middle');
+  // right: the unit circle, upper half = Phi(.,1), lower half = Phi(.,-1)
+  const C={cx:575,cy:155,r:95}, P=(th)=>[C.cx+C.r*Math.cos(th),C.cy-C.r*Math.sin(th)];
+  el('line',{x1:C.cx-C.r-14,y1:C.cy,x2:C.cx+C.r+14,y2:C.cy,stroke:c.rule,'stroke-width':1},svg);
+  el('line',{x1:C.cx,y1:C.cy-C.r-14,x2:C.cx,y2:C.cy+C.r+14,stroke:c.rule,'stroke-width':1},svg);
+  el('path',{d:`M${C.cx+C.r} ${C.cy} A${C.r} ${C.r} 0 0 0 ${C.cx-C.r} ${C.cy}`,fill:'none',stroke:c.s1,'stroke-width':2.5},svg);
+  el('path',{d:`M${C.cx+C.r} ${C.cy} A${C.r} ${C.r} 0 0 1 ${C.cx-C.r} ${C.cy}`,fill:'none',stroke:c.s2,'stroke-width':2.5},svg);
+  txt(svg,C.cx,30,'∂𝔻',13,c.fg,'middle');
+  txt(svg,C.cx+C.r+6,C.cy+16,'1',11,c.muted,'start'); txt(svg,C.cx-C.r-6,C.cy+16,'−1',11,c.muted,'end');
+  txt(svg,C.cx+6,C.cy-C.r-4,'i',11,c.muted,'start'); txt(svg,C.cx+6,C.cy+C.r+14,'−i',11,c.muted,'start');
+  for (const t of TS){ const th=PI*(1-t)/2, [x,yu]=P(th), [,yl]=P(-th); dot(x,yu,c.s1); dot(x,yl,c.s2); }
+  const [xa,ya]=P(PI/4), [,yb]=P(-PI/4);
+  txt(svg,xa+9,ya-7,'Φ(t,1)',12,c.fg,'start'); txt(svg,xa+9,yb+17,'Φ(t,−1)',12,c.fg,'start');
+  // arrow between panels
+  el('line',{x1:S.x1+40,y1:C.cy,x2:C.cx-C.r-30,y2:C.cy,stroke:c.fg,'stroke-width':1.2,'marker-end':'url(#mfigArrPhi)'},svg);
+  txt(svg,(S.x1+40+C.cx-C.r-30)/2,C.cy-8,'Φ',13,c.fg,'middle');
+}
+draw();
+let dark=isDark(); new MutationObserver(()=>{ const d=isDark(); if (d!==dark){ dark=d; draw(); } }).observe(document.body,{attributes:true,attributeFilter:['class']});
 })();
 
 (function(){ const dv = { container: document.getElementById("fig-2") };
