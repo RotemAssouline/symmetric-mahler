@@ -308,24 +308,24 @@ of \(\mathbb B^2_J\) onto \(\mathbb B^{2k}_J\). We first show that \(\mu_{k,J}\)
 Thus \(p_k^*dV_J\) is \(k^d\) times the pushforward of \(dV_J\) under the homeomorphism of \(\mathbb B^2_J\) onto \(\mathbb B^{2k}_J\) defining \(\mu_{k,J}\). Since the volume of \(\mathbb B^2_J\) is \(\pi^d/d!\), \(\mu_{k,J}\) is the measure on \(\mathbb B^{2k}_J\) corresponding to \(\frac{d!}{(\pi k)^d}\,p_k^*dV_J\).</p>
 <p>For \(J\in\mathcal{J}\), we have \(F\vert_M=B\circ B_J^{-1} \circ F \circ \pi_J\vert_M\), so \(\pi_J\) is injective on \(M\), and
 <span class="math">\[
-	U_J:=\pi_J(M)=F^{-1}\big(B_J(\Omega)\big)\subseteq\mathbb D^J.
+	\pi_J(M)=F^{-1}\big(B_J(\Omega)\big)\subseteq\mathbb D^J,
 \]</span>
-Since \(\pi_J(\mathbb B^{2k}_m)\subseteq\mathbb B^{2k}_J\), we have \(\pi_J(M_k)\subseteq U_J\cap\mathbb B^{2k}_J\).
+and since \(\pi_J(\mathbb B^{2k}_m)\subseteq\mathbb B^{2k}_J\), \[\pi_J(M_k)\subseteq F^{-1}\big(B_J(\Omega)\big)\cap\mathbb B^{2k}_J.\]
 Moreover, for \(J\in{[m]\choose d}\),
 <span class="math">\[
 	(F^{-1}\circ B)^*(\pi_J|_{M_k})^*p_k^*dV_J=(\pi_J\circ f_k)^*dV_J\overset{\href{#eq-A4}{(A4)}}{=}|\det(Df_k)_J|^2\,dV\qquad\text{on }\Omega_k,
 \]</span>
-where \((Df_k)_J\) is the \(d\times d\) minor of \(Df_k\) with rows in \(J\). By <a href="#eq-5">(5)</a> and the fact that \(p_k\circ F^{-1}\) acts coordinatewise, \((Df_k)_J\) is \(B_J\) multiplied on the left by a diagonal matrix, so this form vanishes for \(J\notin\mathcal{J}\). Since \(\pi_J\) is injective on \(M_k\) for \(J\in\mathcal{J}\), \(p_k^*dV_J\) is a nonnegative multiple of \(dV_J\), and \(\mu_{k,J}\) corresponds to \(\frac{d!}{(\pi k)^d}\,p_k^*dV_J\), we get
+where \((Df_k)_J\) is the \(d\times d\) minor of \(Df_k\) with rows in \(J\). By <a href="#eq-5">(5)</a> and the fact that \(p_k\circ F^{-1}\) acts coordinatewise, \((Df_k)_J\) is \(B_J\) multiplied on the left by a diagonal matrix, so this form vanishes for \(J\notin\mathcal{J}\). Since \(\pi_J\) is injective on \(M_k\) for \(J\in\mathcal{J}\), \(p_k^*dV_J\) is a nonnegative multiple of \(dV_J\), and the measure \(\mu_{k,J}\) corresponds to the volume form \(\frac{d!}{(\pi k)^d}\,p_k^*dV_J\), we get
 <span id="eq-9"></span><span class="math">\[
-	\frac{d!}{(\pi k)^d}\int_{M_k}\sigma_k\le\sum_{J\in\mathcal{J}}\mu_{k,J}(U_J).\tag{9}
+	\frac{d!}{(\pi k)^d}\int_{M_k}\sigma_k\le\sum_{J\in\mathcal{J}}\mu_{k,J}(F^{-1}\big(B_J(\Omega)\big)).\tag{9}
 \]</span>
-Since \(\overline M\) is compact, \(A_J=\overline{U_J}\), so the weak convergence \(\mu_{k,J}\to\mu_J\) and the portmanteau theorem give
+Since \(\overline M\) is compact, \[A_J=F^{-1}\big(B_J(\overline\Omega)\big)=\overline{F^{-1}\big(B_J(\Omega)\big)},\] so since \(\mu_{k,J}\to\mu_J\) weakly, by the portmanteau theorem
 <span id="eq-10"></span><span class="math">\[
-	\mu_J(A_J)\ge\limsup_{k\to\infty}\mu_{k,J}(U_J),\qquad J\in\mathcal{J}.\tag{10}
+	\mu_J(A_J)\ge\limsup_{k\to\infty}\mu_{k,J}(F^{-1}\big(B_J(\Omega)\big)),\qquad J\in\mathcal{J}.\tag{10}
 \]</span>
 Hence
 <span class="math">\[
-	\sum_{J\in\mathcal{J}}\mu_J(A_J)\overset{\href{#eq-10}{(10)}}{\ge}\limsup_{k\to\infty}\sum_{J\in\mathcal{J}}\mu_{k,J}(U_J)\overset{\href{#eq-9}{(9)}}{\ge}\limsup_{k\to\infty}\frac{d!}{(\pi k)^d}\int_{M_k}\sigma_k\overset{\href{#eq-8}{(8)}}{\ge}1.
+	\sum_{J\in\mathcal{J}}\mu_J(A_J)\overset{\href{#eq-10}{(10)}}{\ge}\limsup_{k\to\infty}\sum_{J\in\mathcal{J}}\mu_{k,J}(F^{-1}\big(B_J(\Omega)\big))\overset{\href{#eq-9}{(9)}}{\ge}\limsup_{k\to\infty}\frac{d!}{(\pi k)^d}\int_{M_k}\sigma_k\overset{\href{#eq-8}{(8)}}{\ge}1.
 \]</span></p>
 <h3 id="from-the-torus-to-the-cube-to-omega">From the torus to the cube to \(\Omega\)</h3>
 <p>Fix \(J\in \mathcal{J}\). Since \(|\langle b_j,x\rangle|\le1\) for all \(x\in K\) and \(1\le j\le m\),
