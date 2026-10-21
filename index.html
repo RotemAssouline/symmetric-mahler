@@ -135,7 +135,7 @@ D:=\{ w\in\mathbb{C}\,\,\colon\,\,|\mathrm{Re}(w)|\lt 1,\,\,|\mathrm{Im}(w)|\lt\
 <span class="math">\[
 \lim_{\delta \searrow0}\sup_{a\le c\le b}\Big|\frac{\lambda(1-\delta c)}{\lambda(1-\delta)}-c\Big|=0.
 \]</span></li>
-<li>The conformal map \(F\) of \(\mathbb{D}\) onto \(D\) with \(F(0)=0\) and \(F'(0)\gt0\) extends to a homeomorphism of \(\overline{\mathbb D}\) onto \(\overline D\), and satisfies \(F\big(e^{i\varepsilon\pi(1-t)/2}\big)=t+i\varepsilon\lambda(t)\) for \(t\in[-1,1]\) and \(\varepsilon\in\{-1,1\}\).</li>
+<li>The conformal map \(F\) of the unit disc \(\mathbb{D}\) onto \(D\) with \(F(0)=0\) and \(F'(0)\gt0\) extends to a homeomorphism of \(\overline{\mathbb D}\) onto \(\overline D\), and satisfies \(F\big(e^{i\varepsilon\pi(1-t)/2}\big)=t+i\varepsilon\lambda(t)\) for \(t\in[-1,1]\) and \(\varepsilon\in\{-1,1\}\).</li>
 </ol></div>
 <details class="fig" open><summary><b>Figure 1: the domain \(D\)</b></summary>
 <div class="figure" id="fig-1"></div>
@@ -148,9 +148,9 @@ Let \(b_1,\dots, b_{m}\) be nonzero, pairwise nonproportional vectors such that
 \]</span>
 Then \(K^{\circ}=\operatorname{conv}\{\pm b_j\}\). Replacing the interval \([-1,1]\) by the domain \(D\), whose intersection with \(\mathbb{R}\) is \((-1,1)\), we define
 <span class="math">\[
-	\Omega :=\{ z\in \mathbb{C}^{d}\,\,\colon\,\, \langle b_{j},z \rangle \in D \quad \forall\,1\leq j\leq m\};
+	\Omega :=\{ z\in \mathbb{C}^{d}\,\,\colon\,\, \langle b_{j},z \rangle \in D \quad \forall\,1\leq j\leq m\}.
 \]</span>
-then \(\overline\Omega=\{ z\in \mathbb{C}^{d}\,\colon\, \langle b_{j},z \rangle \in \overline D \ \ \forall\,1\leq j\leq m\}\). The set \(\Omega\) is convex and open, \(\Omega\cap\mathbb{R}^d=\operatorname{int}K\), and \(\mathrm{Re}\,z\in K\) for every \(z\in\overline\Omega\). 
+The set \(\Omega\) is convex and open, \(\Omega\cap\mathbb{R}^d=\operatorname{int}K\), and \(\mathrm{Re}\,z\in K\) for every \(z\in\overline\Omega\). 
 Since \(\lambda\) is even,
 <span id="eq-2"></span><span class="math">\[
 	x+iy\in\overline\Omega\iff|\langle b_j,y\rangle|\le\lambda(\langle b_j,x\rangle)\quad\forall\,1\leq j\leq m.\tag{2}
@@ -163,52 +163,57 @@ and let
 <span class="math">\[
 	\mathcal{J}:=\left\{ J\in{[m]\choose d}\,\,\colon\,\,B_J\text{ is invertible} \right\}
 \]</span>
-(note that \(\mathbb{R}^d\) and \(\mathbb{R}^J\) have the same dimension).</p>
-<p>Define a linear map \(B:\mathbb{C}^d\to\mathbb{C}^m\) by
+(note that \(\mathbb{R}^d\) and \(\mathbb{R}^J\) have the same dimension). Define also \(B:\mathbb{C}^d\to\mathbb{C}^m\) by
 <span class="math">\[
 	(Bz)_j=\langle b_j,z\rangle,\qquad 1\le j\le m,\qquad z\in\mathbb{C}^d,
 \]</span>
-so that \(B_J=\pi_J\circ B\) for the coordinate projection \(\pi_J:\mathbb{C}^m\to\mathbb{C}^J\). We let \(F\) and \(F^{-1}\) act coordinatewise on \(\overline{\mathbb D}^m\) and \(\overline D^m\), and on \(\overline{\mathbb D}^J\) and \(\overline D^J\), so that they commute with \(\pi_J\).</p>
+so that \(B_J=\pi_J\circ B\) where \(\pi_J:\mathbb{C}^m\to\mathbb{C}^J\) is the canonical projection.</p>
 <h3 id="from-the-polydisc-to-the-torus">From \(\Omega\) to the polydisc to the torus</h3>
 <p>Since \(K\) is bounded, \(b_1,\dots,b_m\) span \(\mathbb{R}^d\), so \(B\) is injective. Since moreover \(\langle b_j,z\rangle\in D\) for all \(z \in \Omega\) and all \(j \in [m]\), the map \(F^{-1}\circ B\) is a biholomorphism of \(\Omega\) onto the \(d\)-dimensional complex submanifold
 <span class="math">\[
 	M:=F^{-1}\big(B(\Omega)\big)\subseteq\mathbb D^m.
 \]</span>
-For \(J\in\mathcal{J}\), let \(\mu_J\) be the Haar probability measure on the torus \((\partial\mathbb D)^J\subset\overline{\mathbb D}^J\), and let
+Here and below, we view \(F\) and \(F^{-1}\) as maps on \(\overline{\mathbb D}^m\) and \(\overline D^m\) respectively (and similarly on \(\overline{\mathbb D}^J\) and \(\overline D^J\)), by letting them act coordinatewise.
+
+<p>
+Let
 <span class="math">\[
 	A_J:=\pi_J(\overline M).
 \]</span>
-Since \(F\) is a homeomorphism of \(\overline{\mathbb D}^m\) onto \(\overline D^m\) and \(B\) is injective, \(\overline M=F^{-1}\big(B(\overline\Omega)\big)\), whence \(A_J=F^{-1}\big(B_J(\overline\Omega)\big)\).
+Since \(F\) is a homeomorphism of \(\overline{\mathbb D}^m\) onto \(\overline D^m\) and \(B\) is injective, \(\overline M=F^{-1}\big(B(\overline\Omega)\big)\), whence \[A_J=F^{-1}\big(B_J(\overline\Omega)\big).\]</p>
 Our goal in this section is to prove that
 <span id="eq-3"></span><span class="math">\[
-	\sum_{J\in\mathcal{J}}\mu_J(A_J)\ge1.\tag{3}
-\]</span></p>
+	\sum_{J\in\mathcal{J}}\mu_J(A_J)\ge1,\tag{3}
+\]</span>
+where \(\mu_J\) is the Haar probability measure on the torus \((\partial\mathbb D)^J\) for all \(J \in \mathcal{J}\), which we view also as a map on the polydisc \(\overline{\mathbb D}^J\) by pushing it forward via the inclusion map. We shall prove <a href="#eq-3">(3)</a> by approximating each measure \(\mu_J\) by a smooth measure on the polydisc and applying a complex-analytic lemma.
+</p>
 <p>For \(k\ge1\) let \(p_k\) be the coordinatewise \(k\)-th power \[p_k(v)=(v_j^k)_j\] on \(\mathbb{C}^m\) and on each \(\mathbb{C}^J\). 
 Let 
 <span class="math">\[
 dV_J:=\bigwedge_{j\in J}\frac{i}{2}\,dv_j\wedge d\bar v_j
 \]</span>
-denote the volume form of \(\mathbb{C}^J\), and let \(dV\) denote the volume form of \(\mathbb{C}^d\). Let \(\mathbb B^{2k}_m\) and \(\mathbb B^{2k}_J\) denote the open unit balls of the \(\ell^{2k}\) norm
+denote the volume form of \(\mathbb{C}^J\), and let \(dV\) denote the volume form of \(\mathbb{C}^d\). Let \(\mathbb B^{2k}_m\) and \(\mathbb B^{2k}_J\) denote the open unit \(\ell^{2k}\)-balls
 <span class="math">\[
 	\|v\|_{2k}:=\Big(\sum_j|v_j|^{2k}\Big)^{1/2k}
 \]</span>
-on \(\mathbb{C}^m\) and \(\mathbb{C}^J\), respectively, so that \(\pi_J(\mathbb B^{2k}_m)\subseteq\mathbb B^{2k}_J\). Since \(\mathbb B^{2}_m\) is the open Euclidean unit ball in \(\mathbb{C}^m\),
+on \(\mathbb{C}^m\) and \(\mathbb{C}^J\), respectively. Note that
 <span id="eq-4"></span><span class="math">\[
-	\mathbb B^{2k}_m=p_k^{-1}(\mathbb B^2_m).\tag{4}
+	\mathbb B^{2k}_m=p_k^{-1}(\mathbb B^2_m), \qquad k \ge 1.\tag{4}
 \]</span></p>
 <p>Let
 <span class="math">\[
 	M_k:=M\cap\mathbb B^{2k}_m
 \]</span>
-and set
+and
 <span id="eq-5"></span><span class="math">\[
-	f_k:=p_k\circ F^{-1}\circ B\colon\Omega\to\mathbb{C}^m.\tag{5}
+	f_k:=p_k\circ F^{-1}\circ B:\Omega\to\mathbb{C}^m.\tag{5}
 \]</span>
 By <a href="#eq-4">(4)</a>, the map \(F^{-1}\circ B\) is a biholomorphism of the open set
 <span class="math">\[
 	\Omega_k:=f_k^{-1}(\mathbb B^2_m)\subseteq\Omega
 \]</span>
-onto \(M_k\).</p>
+onto \(M_k\).
+Since the \(\ell^{2k}\)-balls \(\mathbb{B}_m^{2k}\) exhaust the polydisc \(\mathbb{D}^m\), the submanifolds \(M_k\) exhaust the submanifold \(M\) and the sets \(\Omega_k\) exhaust the set \(\Omega\).</p>
 <p>Define a \(2d\)-form \(\sigma_{k}\) on \(M_{k}\) by
 <span class="math">\[
 	\sigma_k:=\frac1{d!}\,(p_k|_{M_k})^*(dd^c|\cdot|^2)^d=\sum_{J\in{[m]\choose d}}(\pi_J|_{M_k})^*\,p_k^*\,dV_J,
@@ -224,7 +229,7 @@ Thus \(\int_{M_k}\sigma_k\) is the \(2d\)-dimensional volume of \(p_k(M_k)\), co
 <span class="math">\[
 \int_{\Omega(1)}(dd^{c}|f|^{2})^{d}\geq(\pi k)^{d}.
 \]</span></p></div>
-<p>Geometrically, <a href="#lemma-1">Lemma 1</a> says that the volume of \(f(\Omega(1))\), counted with multiplicity, is at least \((\pi k)^d/d!\), the volume of the ball of radius \(\sqrt k\) in \(\mathbb{C}^d\). This is not used in the proof.</p>
+<p>Geometrically, <a href="#lemma-1">Lemma 1</a> says that the volume of \(f(\Omega(1))\), counted with multiplicity, is at least that of the ball of radius \(\sqrt k\) in \(\mathbb{C}^d\). This is not used in the proof.</p>
 <details class="proof"><summary>Proof of <a href="#lemma-1">Lemma 1</a>.</summary>
 <p>(The notation and standard facts used here are recalled in <a href="#appendix-complex-geometry">Appendix: Complex-geometric background</a>.)
 Let \(s \in(0,1)\) be a regular value of \(|f|\). By Stokes' theorem,
