@@ -54,6 +54,12 @@ table.legend th { background: var(--background-secondary); font-family: system-u
 table.legend td:first-child, table.legend td:nth-child(2) { white-space: nowrap; }
 details.proof > summary, details.fig > summary { cursor: pointer; margin: .8rem 0; }
 details.proof > summary { font-style: italic; }
+details.proof[open] { border: 1px solid var(--background-modifier-border); border-radius: 4px; padding: 0 1rem; margin: .8rem 0; }
+details.sec > summary { list-style: none; cursor: pointer; }
+details.sec > summary::-webkit-details-marker { display: none; }
+details.sec > summary > h3 { position: relative; }
+details.sec > summary > h3::before { content: "\25BE"; position: absolute; left: -1.2rem; font-size: 1.1em; line-height: 1.1; color: var(--text-muted); }
+details.sec:not([open]) > summary > h3::before { content: "\25B8"; }
 .print-btn { font: .85rem system-ui, sans-serif; padding: .2rem .7rem; cursor: pointer; }
 @media print {
   body { max-width: none; margin: 0; font-size: 11pt; }
@@ -64,6 +70,7 @@ details.proof > summary { font-style: italic; }
   #fig-1, #fig-phi { break-inside: avoid; }
   .math { overflow: visible; }
   h3 { break-after: avoid; }
+  details.sec > summary > h3::before { content: none; }
 }
 </style>
 <script>
@@ -109,7 +116,7 @@ window.addEventListener('afterprint', () => { closedBeforePrint.forEach((d) => d
 <p>See also <a href="https://chessapig.github.io/Mahler">Elliot Kienzle's page</a> on OpenAI's proof.</p>
 <h3>Table of contents</h3>
 <nav class="toc"><ul><li><a href="#statement">Statement</a></li><li><a href="#complexification">Complexification: from \(K\) to \(\Omega\)</a></li><li><a href="#from-the-polydisc-to-the-torus">From \(\Omega\) to the polydisc to the torus</a></li><li><a href="#from-the-torus-to-the-cube-and-back-to-k">From the torus to the cube and back to \(K\)</a></li><li><a href="#the-equality-case">The equality case</a></li><li><a href="#appendix-properties-of-the-function">Appendix: Properties of the function \(F\)</a></li><li><a href="#appendix-complex-geometry">Appendix: Complex-geometric background</a></li><li><a href="#appendix-correspondence">Appendix: Correspondence with the original preprint</a></li></ul></nav>
-<h3 id="statement">Statement</h3>
+<details class="sec" open><summary><h3 id="statement">Statement</h3></summary>
 <p>A <i>convex body</i> is a compact convex set \(K\subset\mathbb{R}^d\) with nonempty interior; it is <i>symmetric</i> if \(K=-K\). Recall that the polar body \(K^\circ\) of a convex body \(K\) containing the origin in its interior is defined by \[K^{\circ}:=\{y\in\mathbb{R}^d\colon\langle x,y\rangle\le1\ \ \forall\,x\in K\}.\]
 </p>
 <div class="callout callout-theorem" id="theorem"><div class="callout-title">Theorem</div><p>For every symmetric convex body \(K\subset \mathbb{R}^{d}\),</p>
@@ -118,7 +125,8 @@ window.addEventListener('afterprint', () => { closedBeforePrint.forEach((d) => d
 \]</span>
 <p>Equality holds if and only if \(K\) is a linear image of a Hanner polytope.</p></div>
 <p>For the definition of Hanner polytopes, see <a href="#the-equality-case">The equality case</a>.</p>
-<h3 id="complexification">Complexification: from \(K\) to \(\Omega\)</h3>
+</details>
+<details class="sec" open><summary><h3 id="complexification">Complexification: from \(K\) to \(\Omega\)</h3></summary>
 <p>Define \(\lambda:[-1,1]\to[0,\infty)\) by
 <span class="math">
 \[
@@ -173,7 +181,8 @@ so that \(B_J=\pi_J\circ B\) where \(\pi_J:\mathbb{C}^m\to\mathbb{C}^J\) is the 
 <span id="eq-3"></span><span class="math">\[
 	B_J(K)\subseteq[-1,1]^J, \qquad J\in \mathcal{J}.\tag{3}
 \]</span>
-<h3 id="from-the-polydisc-to-the-torus">From \(\Omega\) to the polydisc to the torus</h3>
+</details>
+<details class="sec" open><summary><h3 id="from-the-polydisc-to-the-torus">From \(\Omega\) to the polydisc to the torus</h3></summary>
 <p>Write
 <span class="math">\[
 	M:=F^{-1}\big(B(\Omega)\big)\subseteq\mathbb D^m.
@@ -327,7 +336,8 @@ Summing over \(J\), we get
 \]</span>
 and <a href="#eq-4">(4)</a> is proved.
 </p>
-<h3 id="from-the-torus-to-the-cube-and-back-to-k">From the torus to the cube and back to \(K\)</h3>
+</details>
+<details class="sec" open><summary><h3 id="from-the-torus-to-the-cube-and-back-to-k">From the torus to the cube and back to \(K\)</h3></summary>
 Define \(\Phi:[-1,1]\times\{-1,1\}\to\partial\mathbb D\) by
 <span class="math">\[
 	\Phi(t,\varepsilon):=e^{i\varepsilon\pi(1-t)/2},
@@ -430,7 +440,8 @@ Therefore, by <a href="#eq-4">(4)</a>,
 	\operatorname{Vol}(K)\operatorname{Vol}(K^{\circ})\ge\frac{4^d}{d!}\sum_{J\in\mathcal{J}}\mu_J(A_J)\ge\frac{4^d}{d!},
 \]</span>
 and <a href="#eq-1">(1)</a> is proved.</p>
-<h3 id="the-equality-case">The equality case</h3>
+</details>
+<details class="sec" open><summary><h3 id="the-equality-case">The equality case</h3></summary>
 <p>For a symmetric convex body \(A\), write \(\|x\|_A:=\min\{t\ge0\colon x\in tA\}\) for the norm with unit ball \(A\). For symmetric convex bodies \(A\subset\mathbb{R}^{k}\) and \(A'\subset\mathbb{R}^{l}\), define the symmetric convex bodies
 <span class="math">\[
 	\begin{aligned}
@@ -664,7 +675,8 @@ This proves <a href="#eq-22">(22)</a>, since \(w\in W\). \(\square\)</p>
 <p>A normed space has the <i>3.2 intersection property</i> if any three pairwise intersecting closed balls, of arbitrary radii, have a common point.<sup class="fn"><a href="#fn-hl-sec1" id="fnref-hl-sec1">5</a></sup> Let the closed balls of radii \(\rho_i\) centered at \(x_i\), \(i=1,2,3\), intersect pairwise. Let \(m\) be a median of the centers and \(r_i=\|m-x_i\|\), so \(r_i+r_j=\|x_i-x_j\|\le\rho_i+\rho_j\). If every \(r_i\le\rho_i\), then \(m\) is a common point. Otherwise say \(t:=r_1-\rho_1>0\), so \(r_j+t\le\rho_j\) for \(j=2,3\). The point \(z=m+\frac t{r_1}(x_1-m)\) has \(\|z-x_1\|=\rho_1\) and \(\|z-x_j\|\le t+r_j\le\rho_j\). Hence the space has the 3.2 intersection property, and the conclusion is Corollary 7.4 of Hansen–Lima.<sup class="fn"><a href="#fn-hl-cor74" id="fnref-hl-cor74">6</a></sup> \(\square\)</p>
 </details>
 <p>By <a href="#lemma-6-medians">Lemma 5</a> and <a href="#theorem-7-lima-lima-1978-hansen-lima-hansen-lima-1981">Theorem 6</a>, if \(\operatorname{Vol}(K)\operatorname{Vol}(K^{\circ})=4^{d}/d!\), then \(K^{\circ}\), and hence \(K\), is a linear image of a Hanner polytope; conversely, induction on the dimension shows that every Hanner polytope has volume product \(4^{d}/d!\). \(\square\)</p>
-<h3 id="appendix-properties-of-the-function">Appendix: Properties of the function \(F\)</h3>
+</details>
+<details class="sec" open><summary><h3 id="appendix-properties-of-the-function">Appendix: Properties of the function \(F\)</h3></summary>
 <p>Define an analytic function \(F\) on the unit disc \(\mathbb{D}\subset \mathbb{C}\) by
 <span class="math">\[
 	F(z):=\frac{8}{\pi^{2}}\sum\limits_{j=0}^{\infty} \frac{z^{2j+1}}{(2j+1)^{2}},\qquad z\in\mathbb{D}.
@@ -699,7 +711,8 @@ Thus \(F\) maps the upper and the lower semicircle bijectively onto the upper an
 \]</span>
 Since \(\log\cot u=\log\frac1u+O(u^2)\) for \(0\lt u\le\frac\pi4\), the integral equals \(\int_0^\delta\log\frac{4}{\pi\tau}\,d\tau+O(\delta^3)=\delta\log\frac1\delta+O(\delta)\). \(\square\)</p>
 </details>
-<h3 id="appendix-complex-geometry">Appendix: Complex-geometric background</h3>
+</details>
+<details class="sec" open><summary><h3 id="appendix-complex-geometry">Appendix: Complex-geometric background</h3></summary>
 <p>This appendix collects the notation and the standard facts used in <a href="#from-the-polydisc-to-the-torus">From \(\Omega\) to the polydisc to the torus</a>. Throughout, \(z_j=x_j+iy_j\) are the coordinates of \(\mathbb{C}^d\), and \(\mathbb{C}^d\) is oriented by \(dV=\prod_j dx_j\wedge dy_j\).</p>
 <p><b>Differential forms.</b> A smooth function \(u\) on an open set of \(\mathbb{C}^d\) has \(du=\partial u+\bar\partial u\), where
 <span class="math">\[
@@ -751,7 +764,8 @@ which is why \(dd^c\log|f|^2\) and \(|f|^{-2}dd^c|f|^2\) agree on \(\partial\Ome
 \]</span>
 Here we used \(d\big(d^c|z|^2\wedge(dd^c|z|^2)^{d-1}\big)=(dd^c|z|^2)^d\), valid because \(dd^c\) of anything is closed.</p>
 <p><b>Other notation.</b> \(\mathbb{B}_d\) denotes the open Euclidean unit ball of \(\mathbb{C}^d\); \(|\cdot|\) is the Hermitian norm; \(\overline{\Omega(s)}\) is the closure; \(g=O(1)\) means that \(g\) is bounded near the point in question; and \(Df\) is the complex Jacobian of a holomorphic map \(f\), with \((Df)_J\) its \(d\times d\) minor with rows in \(J\).</p>
-<h3 id="appendix-correspondence">Appendix: Correspondence with the original preprint</h3>
+</details>
+<details class="sec" open><summary><h3 id="appendix-correspondence">Appendix: Correspondence with the original preprint</h3></summary>
 <p>The tables below match the notation and numbered statements of this note with those of the <a href="https://github.com/openai/math/blob/main/preprints/The-symmetric-Mahler-conjecture-and-its-equality-cases-September-22-2026/paper.pdf">original preprint</a> (version of September 22, 2026). Equation numbers of the preprint are written as [8], [26], etc., to distinguish them from equation numbers <a href="#eq-1">(1)</a>&ndash;<a href="#eq-25">(25)</a> of this note.</p>
 <p>The main difference in conventions is that the preprint's lens is the domain \(D\) of this note rotated by a quarter turn: the preprint uses \(F_{\mathrm{pre}}(z)=\frac{8}{\pi^2}\sum_j\frac{(-1)^jz^{2j+1}}{(2j+1)^2}\), so that \(F(z)=-iF_{\mathrm{pre}}(iz)\) and \(D=-iD_{\mathrm{pre}}\). Accordingly, the preprint's lens is \(\{v+it\colon|t|\le1,\ |v|\le\lambda(t)\}\), and a point of \(\mathbb{C}^d\) is written there as \(Y+iX\) rather than \(x+iy\).</p>
 <p><b>Notation</b></p>
@@ -811,6 +825,7 @@ Here we used \(d\big(d^c|z|^2\wedge(dd^c|z|^2)^{d-1}\big)=(dd^c|z|^2)^d\), valid
 <tr><td>Volume product of Hanner polytopes</td><td>Lemmas 2.1, 2.2</td><td></td></tr>
 <tr><td>&mdash;</td><td>Corollaries 1.2, 1.3</td><td>Functional and entropy&ndash;transport consequences; not covered in this note.</td></tr>
 </tbody></table></div>
+</details>
 <hr><section class="footnotes"><ol><li id="fn-fmz">M. Fradelizi, M. Meyer and A. Zvavitch, <i>Volume product</i>, survey, 2023. <a href="https://arxiv.org/abs/2301.06131">arXiv:2301.06131</a>. <a href="#fnref-fmz" class="fnback">↩</a></li><!-- <li id="fn-nazarov">F. Nazarov, <i>The H&ouml;rmander proof of the Bourgain&ndash;Milman theorem</i>, in: Geometric Aspects of Functional Analysis, Lecture Notes in Math. <b>2050</b>, Springer, 2012, 335&ndash;343. <a href="https://doi.org/10.1007/978-3-642-29849-3_20">doi:10.1007/978-3-642-29849-3_20</a>. <a href="#fnref-nazarov" class="fnback">↩</a></li><li id="fn-berndtsson-pw">B. Berndtsson, <i>Bergman kernels for Paley&ndash;Wiener spaces and Nazarov&rsquo;s proof of the Bourgain&ndash;Milman theorem</i>, Pure Appl. Math. Q. <b>18</b> (2022), no. 2, 395&ndash;409. <a href="https://arxiv.org/abs/2008.00837">arXiv:2008.00837</a>. <a href="#fnref-berndtsson-pw" class="fnback">↩</a></li><li id="fn-berndtsson-kup">B. Berndtsson, <i>Complex integrals and Kuperberg&rsquo;s proof of the Bourgain&ndash;Milman theorem</i>, Adv. Math. <b>388</b> (2021), 107927. <a href="https://doi.org/10.1016/j.aim.2021.107927">doi:10.1016/j.aim.2021.107927</a>, <a href="https://arxiv.org/abs/2008.00838">arXiv:2008.00838</a>. <a href="#fnref-berndtsson-kup" class="fnback">↩</a></li> --><li id="fn-demailly">The gluing via \(\widetilde{\max}(g,h)\) followed by Stokes on \(\Omega(s)\setminus r\overline{\mathbb B}_d\) is the proof of the first comparison theorem for Lelong numbers (J.-P. Demailly, "Complex Analytic and Differential Geometry", book manuscript, version of June 21, 2012, Ch. III, Th. 7.1, p. 166), which uses \(\max(\psi-c,\varphi)\) in the same role. The regularized maximum \(\widetilde{\max}\) is Lemma 5.18 in Ch. I of the same manuscript, p. 43. <a href="https://www-fourier.ujf-grenoble.fr/~demailly/manuscripts/agbook.pdf">https://www-fourier.ujf-grenoble.fr/~demailly/manuscripts/agbook.pdf</a>. <a href="#fnref-demailly" class="fnback">↩</a></li><li id="fn-lima-1978">Å. Lima, <i>Intersection properties of balls in spaces of compact operators</i>, Ann. Inst. Fourier (Grenoble) <b>28</b> (1978), no. 3, 35–65, Theorem 1.2, (ii)\(\Leftrightarrow\)(iii): the 3.2 intersection property is equivalent to the \(R_{3,2}\)-property of p. 38, which is the existence of a median for every triple \(0,x,y\). <a href="https://doi.org/10.5802/aif.700">doi:10.5802/aif.700</a>. <a href="#fnref-lima-1978" class="fnback">↩</a></li><li id="fn-hansen-lima-1981">A. B. Hansen and Å. Lima, <i>The structure of finite dimensional Banach spaces with the 3.2. intersection property</i>, Acta Math. <b>146</b> (1981), 1–23. <a href="https://doi.org/10.1007/BF02392457">doi:10.1007/BF02392457</a>. <a href="#fnref-hansen-lima-1981" class="fnback">↩</a></li><li id="fn-hl-sec1">Hansen–Lima, Section 1, p. 1: the \(n.k.\) intersection property is defined with closed balls of arbitrary radii. The median form of the 3.2 property is their Theorem 3.6, (1)\(\Leftrightarrow\)(4), pp. 5–6, attributed there to Lima. <a href="#fnref-hl-sec1" class="fnback">↩</a></li><li id="fn-hl-cor74">Hansen–Lima, Corollary 7.4, p. 16: every finite dimensional Banach space with the 3.2.I.P. can be obtained by forming \(l_1\)- and \(l_\infty\)-sums of the real line. Deduced from the main Theorem 7.3 by Proposition 4.4 and induction. <a href="#fnref-hl-cor74" class="fnback">↩</a></li></ol></section>
 <hr>
 <section class="footnotes" id="license"><h4>License and attribution</h4>
