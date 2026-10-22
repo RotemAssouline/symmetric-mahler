@@ -100,7 +100,18 @@ window.addEventListener('afterprint', () => { closedBeforePrint.forEach((d) => d
 <h1>Notes on OpenAI's proof of the symmetric Mahler conjecture</h1>
 <h4>Rotem Assouline</h4>
 <p><i>Last updated: October 22, 2026</i></p>
-<p><button type="button" class="print-btn" onclick="window.print()">Print</button></p>
+<p><button type="button" class="print-btn" onclick="window.print()">Print</button> <button type="button" class="print-btn" id="toggle-sections">Collapse all</button></p>
+<script>
+(function(){
+  // Collapse or expand all sections; the label follows the state of the sections.
+  const btn = document.getElementById('toggle-sections');
+  const secs = () => [...document.querySelectorAll('details.sec')];
+  const sync = () => { btn.textContent = secs().some((d) => d.open) ? 'Collapse all' : 'Expand all'; };
+  btn.addEventListener('click', () => { const open = !secs().some((d) => d.open); secs().forEach((d) => d.open = open); sync(); });
+  document.addEventListener('toggle', (e) => { if (e.target.matches && e.target.matches('details.sec')) sync(); }, true);
+  document.addEventListener('DOMContentLoaded', sync);
+})();
+</script>
 <p>The following note is based on ongoing conversations between me and Claude about <a href="https://github.com/openai/math/tree/main/preprints/The-symmetric-Mahler-conjecture-and-its-equality-cases-September-22-2026">OpenAI's recent claimed proof of the symmetric Mahler conjecture</a>. While the main ideas are taken from the original proof, some of the details are being rewritten to facilitate my understanding, and some figures and interactive applets are being added for visualization. <b>This is a work in progress.</b> I do not claim to have verified the proof completely.</p>
 <p>Readers are welcome to contribute by</p>
 <ul>
@@ -113,7 +124,7 @@ window.addEventListener('afterprint', () => { closedBeforePrint.forEach((d) => d
 <p>To contribute, you may contact me, or open a pull request on <a href="https://github.com/RotemAssouline/symmetric-mahler">GitHub</a>. If you use material from this note, such as text, figures or code, please <a href="#license">give credit</a>.</p>
 <p>For background on the Mahler conjecture, see the survey of Fradelizi, Meyer and Zvavitch<sup class="fn"><a href="#fn-fmz" id="fnref-fmz">1</a></sup>.
 <!-- Complex-analytic methods were used earlier by Nazarov<sup class="fn"><a href="#fn-nazarov" id="fnref-nazarov">2</a></sup> and by Berndtsson<sup class="fn"><a href="#fn-berndtsson-pw" id="fnref-berndtsson-pw">3</a></sup><sup class="fn">,</sup><sup class="fn"><a href="#fn-berndtsson-kup" id="fnref-berndtsson-kup">4</a></sup> to prove the Bourgain&ndash;Milman inequality. --></p>
-<p>See also <a href="https://chessapig.github.io/Mahler">Elliot Kienzle's page</a> on OpenAI's proof.</p>
+<p>See also <a href="https://chessapig.github.io/Mahler">Elliot Kienzle's page</a> for an explanation of the proof from a symplectic point of view.</p>
 <h3>Table of contents</h3>
 <nav class="toc"><ul><li><a href="#statement">Statement</a></li><li><a href="#complexification">Complexification: from \(K\) to \(\Omega\)</a></li><li><a href="#from-k-to-the-cube-to-the-torus">From \(K\) to the cube to the torus</a></li><li><a href="#from-the-torus-to-the-polydisc-to-omega">From the torus to the polydisc to \(\Omega\)</a></li><li><a href="#the-equality-case">The equality case</a></li><li><a href="#appendix-properties-of-the-function">Appendix: Properties of the function \(F\)</a></li><li><a href="#appendix-complex-geometry">Appendix: Complex-geometric background</a></li><li><a href="#appendix-correspondence">Appendix: Correspondence with the original preprint</a></li></ul></nav>
 <details class="sec" open><summary><h3 id="statement">Statement</h3></summary>
@@ -518,7 +529,7 @@ Therefore \(\xi=\sum_i\alpha_ih_i\in\Sigma_x\) by <a href="#eq-19">(19)</a>. \(\
 \operatorname{Vol}_{2d}(\Sigma)\ge\frac{4^{d}}{d!}.
 \]</span>
 If \(\operatorname{Vol}(K)\operatorname{Vol}(K^{\circ})=4^{d}/d!\), then \(\Sigma_x=K^{\circ}\) for <b>every</b> \(x\in\operatorname{int} K\). 
-In particular, for every \(x\in\operatorname{int} K\) and every \(\xi\in\partial K^{\circ}\) there exist \(y\in\overline\Omega_x\) and \(h_i\in K^{\circ}\) such that \(\xi\in\operatorname{conv}\{h_i\}\) and \(\langle h_i,y\rangle=\lambda(\langle h_i,x\rangle)\) for all \(i\).</p></div>
+In particular, for every \(x\in\operatorname{int} K\) and every \(\xi\in\partial K^{\circ}\) there exist \(y\in\overline\Omega_x\) and vectors \(h_i\in K^{\circ}\) such that \(\xi\in\operatorname{conv}\{h_i\}\) and \(\langle h_i,y\rangle=\lambda(\langle h_i,x\rangle)\) for all \(i\).</p></div>
 <details class="proof"><summary>Proof.</summary>
 <p>Take \(K^{(j)}=K\) and \(t_j=1\) in <a href="#lemma-3">Lemma 3</a>: if \((x_j,\xi_j)\in \Sigma\) and \((x_j,\xi_j)\to(x,\xi)\) with \(x\in\operatorname{int} K\), then \((x,\xi)\in \Sigma\). So \(\Sigma\cap(\operatorname{int} K\times\mathbb{R}^{d})\) is relatively closed in \(\operatorname{int} K\times\mathbb{R}^{d}\), and each fiber \(\Sigma_x\), \(x\in\operatorname{int}K\), is closed; since \(\Sigma_x\subseteq K^{\circ}\), it is compact. The rest of \(\Sigma\) lies in the null set \(\partial K\times K^{\circ}\), so \(\Sigma\) is measurable, and by Fubini \(\operatorname{Vol}_{2d}(\Sigma)=\int_K\operatorname{Vol}(\Sigma_x)\,dx\).</p>
 <p>Now choose \(t_j\in(0,1)\) with \(t_j\to1\), and symmetric polytopes \(K^{(j)}\) with
@@ -586,47 +597,67 @@ Let \(\hat v:=(v,\|v\|)\) and \(\hat u:=(u,\|u\|)\) be the lifts of \(v\) and \(
 <span class="math">\[
 	\|\hat v-\hat u\|_{\widehat K^{\circ}}=\max\big\{\|v-u\|,\,\big|\|v\|-\|u\|\big|\big\}=\|v-u\|,\qquad \|\hat v\|_{\widehat K^{\circ}}=\|v\|,\qquad \|\hat u\|_{\widehat K^{\circ}}=\|u\|.
 \]</span>
-<p>By <a href="#lemma-4">Lemma 4</a> for \(\widehat K\) at \(\hat x\), applied to \((\hat v-\hat u)/\|v-u\|\in\partial\widehat K^{\circ}\), there exist \(\hat y\) with \(\hat x+i\hat y\in\overline{\widehat\Omega}\), finitely many points \((h_i,s_i)\in\widehat K^{\circ}\) and weights \(a_i\ge0\) with \(\sum_ia_i=\|v-u\|\) and \(\langle(h_i,s_i),\hat y\rangle=\lambda\big(\langle(h_i,s_i),\hat x\rangle\big)\) for all \(i\), such that
-<span class="math">\[
-	\hat v-\hat u=\sum_ia_i(h_i,s_i).
-\]</span>
-For \((h,s)\in\widehat K^{\circ}\), concavity and evenness of \(\lambda\) give
-<span id="eq-23"></span><span class="math">\[
-	\begin{aligned}
-	\lambda\big(\langle(h,s),\hat x\rangle\big)&=\lambda\Big(\frac{1+s}2\big(1-\delta(1-\langle h,x\rangle)\big)-\frac{1-s}2\big(1-\delta(1+\langle h,x\rangle)\big)\Big)\\
-	&\ge\frac{1+s}2\,\lambda\big(1-\delta(1-\langle h,x\rangle)\big)+\frac{1-s}2\,\lambda\big(1-\delta(1+\langle h,x\rangle)\big).
-	\end{aligned}\tag{23}
-\]</span>
-Apply <a href="#eq-23">(23)</a> to each \((h_i,s_i)\), then pair with \(\hat y\), and finally use <a href="#eq-17">(17)</a> for \(\widehat K\) at \(\hat x+i\hat y\) with the covectors \(\hat v/\|v\|\) and \(-\hat u/\|u\|\), which lie in \(\widehat K^{\circ}\), together with evenness of \(\lambda\) and the definition of \(\hat x\):
-<span id="eq-24"></span><span class="math">\[
-	\begin{aligned}
-	&\sum_ia_i\Big(\frac{1+s_i}2\,\lambda\big(1-\delta(1-\langle h_i,x\rangle)\big)+\frac{1-s_i}2\,\lambda\big(1-\delta(1+\langle h_i,x\rangle)\big)\Big)\\
-	&\qquad\le\sum_ia_i\lambda\big(\langle(h_i,s_i),\hat x\rangle\big)=\langle\hat v-\hat u,\hat y\rangle\\
-	&\qquad\le\|v\|\,\lambda\Big(1-\delta\Big(1-\frac{\langle v,x\rangle}{\|v\|}\Big)\Big)+\|u\|\,\lambda\Big(1-\delta\Big(1-\frac{\langle u,x\rangle}{\|u\|}\Big)\Big).
-	\end{aligned}\tag{24}
-\]</span>
-Now divide <a href="#eq-24">(24)</a> by \(\lambda(1-\delta)\) and let \(\delta\searrow0\). Every argument of \(\lambda\) in <a href="#eq-24">(24)</a> is of the form \(1-\delta c\) with \(c\in[1-\|x\|_K,1+\|x\|_K]\), and by <a href="#lemma-0">Lemma 0</a>, \(\lambda(1-\delta c)/\lambda(1-\delta)=c+O\big(1/\log\frac1\delta\big)\) uniformly for such \(c\). Since \(\sum_ia_i=\|v-u\|\), we may therefore replace each ratio by \(c\), with a total error of \(o(1)\):
-<span id="eq-25"></span><span class="math">\[
-	\begin{aligned}
-	\sum_ia_i\big(1-s_i\langle h_i,x\rangle\big)&=\sum_ia_i\Big(\frac{1+s_i}2\big(1-\langle h_i,x\rangle\big)+\frac{1-s_i}2\big(1+\langle h_i,x\rangle\big)\Big)\\
-	&\le\|v\|\Big(1-\frac{\langle v,x\rangle}{\|v\|}\Big)+\|u\|\Big(1-\frac{\langle u,x\rangle}{\|u\|}\Big)+o(1)\\
-	&=\|v\|+\|u\|-\langle v+u,x\rangle+o(1).
-	\end{aligned}\tag{25}
-\]</span>
-Now put
-<span class="math">\[w:=v-\sum_ia_i\frac{1+s_i}2h_i.
-\]</span>
-Since \(\sum_ia_ih_i=v-u\), we have \(u-w=-\sum_ia_i\frac{1-s_i}2h_i\), and since \(\|h_i\|\le1\),
-<span class="math">\[
-	\|v-w\|+\|u-w\|\le\sum_ia_i\Big(\frac{1+s_i}2+\frac{1-s_i}2\Big)=\|v-u\|,
-\]</span>
-so \(w\in W\).</p>
 <details class="fig" open><summary><b>Figure 6: proof of <a href="#lemma-6-medians">Lemma 5</a></b></summary>
 <div class="figure med-fig interactive" id="fig-4">
 <svg viewBox="0 0 560 400" role="img" aria-label="The cone of the l-infinity norm over the plane, the lifted points u-hat and v-hat on it, the path through 0 and the geodesic whose lowest point lies above the median w. Drag to rotate."></svg>
 <div class="med-ctl"><button type="button" data-act="new">new <i>u</i>, <i>v</i></button><button type="button" data-act="reset">reset</button><span>drag to rotate</span></div>
 </div>
 </details>
+<p>By <a href="#lemma-4">Lemma 4</a> for \(\widehat K\) at \(\hat x\), applied to \((\hat v-\hat u)/\|v-u\|\in\partial\widehat K^{\circ}\), there exist \(\hat y\) with \(\hat x+i\hat y\in\overline{\widehat\Omega}\), finitely many points \((h_i,s_i)\in\widehat K^{\circ}\) and weights \(a_i\ge0\) such that
+<span id="eq-23"></span><span class="math">\[
+	\hat v-\hat u=\sum_ia_i(h_i,s_i),\qquad\sum_ia_i=\|v-u\|,\qquad\langle(h_i,s_i),\hat y\rangle=\lambda\big(\langle(h_i,s_i),\hat x\rangle\big)\quad\text{for all }i.\tag{23}
+\]</span>
+For \((h,s)\in\widehat K^{\circ}\), concavity and evenness of \(\lambda\) give
+<span id="eq-24"></span><span class="math">\[
+	\begin{aligned}
+	\lambda\big(\langle(h,s),\hat x\rangle\big)&=\lambda\Big(\frac{1+s}2\big(1-\delta(1-\langle h,x\rangle)\big)-\frac{1-s}2\big(1-\delta(1+\langle h,x\rangle)\big)\Big)\\
+	&\ge\frac{1+s}2\,\lambda\big(1-\delta(1-\langle h,x\rangle)\big)+\frac{1-s}2\,\lambda\big(1-\delta(1+\langle h,x\rangle)\big).
+	\end{aligned}\tag{24}
+\]</span>
+Since \(\|x\|_K\lt1\), <a href="#lemma-0">Lemma 0</a> gives
+<span class="math">\[
+	\lambda(1-\delta c)=\frac2\pi\,\delta c\log\frac1\delta+O(\delta)\qquad\text{uniformly for }c\in[1-\|x\|_K,1+\|x\|_K],
+\]</span>
+and hence
+<span id="eq-25"></span><span class="math">\[
+	\lambda(1-\delta c)=\lambda(1-\delta)\big(c+o(1)\big)\quad\text{as }\delta\searrow0,\qquad\text{uniformly for }c\in[1-\|x\|_K,1+\|x\|_K].\tag{25}
+\]</span>
+Since \(h_i,\,v/\|v\|,\,u/\|u\|\in K^{\circ}\), and \(|\langle h,x\rangle|\le\|x\|_K\) for \(h\in K^{\circ}\),
+<span id="eq-26"></span><span class="math">\[
+	1\pm\langle h_i,x\rangle,\quad 1-\frac{\langle v,x\rangle}{\|v\|},\quad 1-\frac{\langle u,x\rangle}{\|u\|}\ \in\ [1-\|x\|_K,1+\|x\|_K];\tag{26}
+\]</span>
+moreover, by <a href="#eq-23">(23)</a>, \(\sum_ia_i=\|v-u\|\) does not depend on \(\delta\), so the errors in <a href="#eq-25">(25)</a> sum to \(o(1)\). Also,
+<span id="eq-27"></span><span class="math">\[
+	\frac{\hat v}{\|v\|}=\Big(\frac{v}{\|v\|},1\Big)\in\widehat K^{\circ},\qquad-\frac{\hat u}{\|u\|}=\Big(-\frac{u}{\|u\|},-1\Big)\in\widehat K^{\circ}.\tag{27}
+\]</span>
+Since \(\lambda\) is even, we get
+<span class="math">\[
+	\begin{aligned}
+	&\lambda(1-\delta)\Big(\sum_ia_i\big(1-s_i\langle h_i,x\rangle\big)+o(1)\Big)\\
+	&\qquad=\lambda(1-\delta)\Big(\sum_ia_i\Big(\frac{1+s_i}2\big(1-\langle h_i,x\rangle\big)+\frac{1-s_i}2\big(1+\langle h_i,x\rangle\big)\Big)+o(1)\Big)\\
+	&\qquad\overset{\href{#eq-25}{(25)},\,\href{#eq-26}{(26)}}{=}\sum_ia_i\Big(\frac{1+s_i}2\,\lambda\big(1-\delta(1-\langle h_i,x\rangle)\big)+\frac{1-s_i}2\,\lambda\big(1-\delta(1+\langle h_i,x\rangle)\big)\Big)\\
+	&\qquad\overset{\href{#eq-24}{(24)}}{\le}\sum_ia_i\lambda\big(\langle(h_i,s_i),\hat x\rangle\big)\\
+	&\qquad\overset{\href{#eq-23}{(23)}}{=}\sum_ia_i\langle(h_i,s_i),\hat y\rangle\\
+	&\qquad=\langle\hat v-\hat u,\hat y\rangle\\
+	&\qquad=\|v\|\Big\langle\frac{\hat v}{\|v\|},\hat y\Big\rangle+\|u\|\Big\langle-\frac{\hat u}{\|u\|},\hat y\Big\rangle\\
+	&\qquad\overset{\href{#eq-17}{(17)},\,\href{#eq-27}{(27)}}{\le}\|v\|\,\lambda\Big(\Big\langle\frac{\hat v}{\|v\|},\hat x\Big\rangle\Big)+\|u\|\,\lambda\Big(\Big\langle-\frac{\hat u}{\|u\|},\hat x\Big\rangle\Big)\\
+	&\qquad=\|v\|\,\lambda\Big(1-\delta\Big(1-\frac{\langle v,x\rangle}{\|v\|}\Big)\Big)+\|u\|\,\lambda\Big(1-\delta\Big(1-\frac{\langle u,x\rangle}{\|u\|}\Big)\Big)\\
+	&\qquad\overset{\href{#eq-25}{(25)},\,\href{#eq-26}{(26)}}{=}\lambda(1-\delta)\big(\|v\|+\|u\|-\langle v+u,x\rangle+o(1)\big).
+	\end{aligned}
+\]</span>
+Dividing by \(\lambda(1-\delta)\) gives
+<span id="eq-28"></span><span class="math">\[
+	\sum_ia_i\big(1-s_i\langle h_i,x\rangle\big)\le\|v\|+\|u\|-\langle v+u,x\rangle+o(1)\qquad\text{as }\delta\searrow0.\tag{28}
+\]</span>
+Now put
+<span id="eq-29"></span><span class="math">\[
+	w:=v-\sum_ia_i\frac{1+s_i}2h_i.\tag{29}
+\]</span>
+Since \(\sum_ia_ih_i=v-u\) by <a href="#eq-23">(23)</a>, we have \(u-w=-\sum_ia_i\frac{1-s_i}2h_i\), and since \(\|h_i\|\le1\),
+<span class="math">\[
+	\|v-w\|+\|u-w\|\le\sum_ia_i\Big(\frac{1+s_i}2+\frac{1-s_i}2\Big)=\|v-u\|,
+\]</span>
+so \(w\in W\).</p>
 <script>
 (function(){
   // l_inf norm on R^2, cone {(z,t): |z|_inf <= t}. Plain SVG, redrawn at most once per frame while dragging.
@@ -688,7 +719,7 @@ so \(w\in W\).</p>
   draw();
 })();
 </script>
-<p>Adding the expressions for \(v-w\) and \(u-w\) gives \(v+u-2w=\sum_ia_is_ih_i\), so the left side of <a href="#eq-25">(25)</a> is \(\|v-u\|-\langle v+u-2w,x\rangle\), and <a href="#eq-25">(25)</a> reads
+<p>By <a href="#eq-23">(23)</a>, <a href="#eq-28">(28)</a> and <a href="#eq-29">(29)</a>,
 <span class="math">\[
 	\langle w,x\rangle\le\tfrac12\big(\|v\|+\|u\|-\|v-u\|\big)+o(1)\qquad\text{as }\delta\searrow0.
 \]</span>
@@ -788,7 +819,7 @@ Here we used \(d\big(d^c|z|^2\wedge(dd^c|z|^2)^{d-1}\big)=(dd^c|z|^2)^d\), valid
 <p><b>Other notation.</b> \(\mathbb{B}_d\) denotes the open Euclidean unit ball of \(\mathbb{C}^d\); \(|\cdot|\) is the Hermitian norm; \(\overline{\Omega(s)}\) is the closure; \(g=O(1)\) means that \(g\) is bounded near the point in question; and \(Df\) is the complex Jacobian of a holomorphic map \(f\), with \((Df)_J\) its \(d\times d\) minor with rows in \(J\).</p>
 </details>
 <details class="sec" open><summary><h3 id="appendix-correspondence">Appendix: Correspondence with the original preprint</h3></summary>
-<p>The tables below match the notation and numbered statements of this note with those of the <a href="https://github.com/openai/math/blob/main/preprints/The-symmetric-Mahler-conjecture-and-its-equality-cases-September-22-2026/paper.pdf">original preprint</a> (version of September 22, 2026). Equation numbers of the preprint are written as [8], [26], etc., to distinguish them from equation numbers <a href="#eq-1">(1)</a>&ndash;<a href="#eq-25">(25)</a> of this note.</p>
+<p>The tables below match the notation and numbered statements of this note with those of the <a href="https://github.com/openai/math/blob/main/preprints/The-symmetric-Mahler-conjecture-and-its-equality-cases-September-22-2026/paper.pdf">original preprint</a> (version of September 22, 2026). Equation numbers of the preprint are written as [8], [26], etc., to distinguish them from equation numbers <a href="#eq-1">(1)</a>&ndash;<a href="#eq-29">(29)</a> of this note.</p>
 <p>The main difference in conventions is that the preprint's lens is the domain \(D\) of this note rotated by a quarter turn: the preprint uses \(F_{\mathrm{pre}}(z)=\frac{8}{\pi^2}\sum_j\frac{(-1)^jz^{2j+1}}{(2j+1)^2}\), so that \(F(z)=-iF_{\mathrm{pre}}(iz)\) and \(D=-iD_{\mathrm{pre}}\). Accordingly, the preprint's lens is \(\{v+it\colon|t|\le1,\ |v|\le\lambda(t)\}\), and a point of \(\mathbb{C}^d\) is written there as \(Y+iX\) rather than \(x+iy\).</p>
 <p><b>Notation</b></p>
 <div class="legend-wrap"><table class="legend">
@@ -843,7 +874,7 @@ Here we used \(d\big(d^c|z|^2\wedge(dd^c|z|^2)^{d-1}\big)=(dd^c|z|^2)^d\), valid
 <tr><td><a href="#lemma-4">Lemma 4</a>, inequality</td><td>Corollary 6.2</td><td>The preprint approximates \(K^\circ\) from inside by polytopes and applies Proposition 6.1.</td></tr>
 <tr><td><a href="#lemma-3">Lemma 3</a>, <a href="#lemma-4">Lemma 4</a>, equality</td><td>Proposition 7.1, [33]&ndash;[35]</td><td>The preprint works only with the lifted body \(B\), and obtains a common witness \(Y\) as a limit of feasible pairs [39]&ndash;[41], using the vanishing deficit [38].</td></tr>
 <tr><td><a href="#definition">Definition</a> (median)</td><td>Beginning of Section 8</td><td></td></tr>
-<tr><td><a href="#lemma-6-medians">Lemma 5</a></td><td>Proposition 8.1</td><td><a href="#eq-22">(22)</a> corresponds to [45], and <a href="#eq-23">(23)</a>&ndash;<a href="#eq-25">(25)</a> to [44] and the endpoint comparison.</td></tr>
+<tr><td><a href="#lemma-6-medians">Lemma 5</a></td><td>Proposition 8.1</td><td><a href="#eq-22">(22)</a> corresponds to [45], and <a href="#eq-24">(24)</a>&ndash;<a href="#eq-28">(28)</a> to [44] and the endpoint comparison.</td></tr>
 <tr><td><a href="#theorem-7-lima-lima-1978-hansen-lima-hansen-lima-1981">Theorem 6</a></td><td>Lemma 8.2, Theorem 8.3, Proposition 8.4</td><td>Medians imply the 3.2 intersection property (Lemma 8.2), then Hansen&ndash;Lima (Theorem 8.3).</td></tr>
 <tr><td>Volume product of Hanner polytopes</td><td>Lemmas 2.1, 2.2</td><td></td></tr>
 <tr><td>&mdash;</td><td>Corollaries 1.2, 1.3</td><td>Functional and entropy&ndash;transport consequences; not covered in this note.</td></tr>
