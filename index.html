@@ -182,28 +182,30 @@ so that \(B_J=\pi_J\circ B\) where \(\pi_J:\mathbb{C}^m\to\mathbb{C}^J\) is the 
 	B_J(K)\subseteq[-1,1]^J, \qquad J\in \mathcal{J}.\tag{3}
 \]</span>
 </p>
-<p>For \(J\in\mathcal{J}\), \(\varepsilon \in \{ -1,1 \}^{J}\) and \(x\in B_J^{-1}([-1,1]^J)\), let \(y_{J,\varepsilon}(x)\) be the unique solution \(y\in\mathbb{R}^d\) of the system
+<p>For \(J\in\mathcal{J}\), \(\varepsilon \in \{ -1,1 \}^{J}\) and \(x\in B_J^{-1}([-1,1]^J)\), let \(y_{J,\varepsilon}(x)\) be the unique solution to
 <span class="math">\[
-	\langle b_j,y\rangle=\varepsilon_j\lambda(\langle b_j,x\rangle),\qquad j\in J,
+	\langle b_j,y_{J,\varepsilon}(x)\rangle=\varepsilon_j\lambda(\langle b_j,x\rangle),\qquad j\in J,
 \]</span>
 which exists since \(B_J\) is invertible. 
 For \(x\in K\), let
 <span class="math">\[
-	\overline\Omega_x:=\left\{y\in\mathbb{R}^d\colon x+iy\in\overline\Omega\right\}
+	\overline\Omega_x:=\left\{y\in\mathbb{R}^d\,\,\colon\,\, x+iy\in\overline\Omega\right\}
 \]</span>
 be the fiber of \(\overline\Omega\) over \(x\),
 and define
 <span class="math">\[
-	K_{J,\varepsilon}:=\{x\in K\,\colon\,y_{J,\varepsilon}(x)\in\overline\Omega_x\}.
+	K_{J,\varepsilon}:=\left\{x\in K\,\,\colon\,\,y_{J,\varepsilon}(x)\in\overline\Omega_x\right\}.
 \]</span>
-Each \(K_{J,\varepsilon}\) is closed, since \(\overline\Omega\) is closed and \(y_{J,\varepsilon}\) is continuous. If \(x\in K_{J,\varepsilon}\), then \(y_{J,\varepsilon}(x)\) is the vertex of \(\overline\Omega_x\) at which the inequalities in <a href="#eq-2">(2)</a> for \(j\in J\) are equalities.
-The left panel of Figure 2 below illustrates these definitions. The dashed lines are the lines \(\langle b_j,y\rangle=\pm\lambda(\langle b_j,x\rangle)\), \(1\le j\le m\). The point drawn in the colour of \(J\) and marked \(\varepsilon\) is \(y_{J,\varepsilon}(x)\), the intersection of the lines \(\langle b_j,y\rangle=\varepsilon_j\lambda(\langle b_j,x\rangle)\), \(j\in J\); it is filled if \(x\in K_{J,\varepsilon}\), and hollow otherwise.
+If \(x\in K_{J,\varepsilon}\), then \(y_{J,\varepsilon}(x)\) is the vertex of \(\overline\Omega_x\) at which the inequalities in <a href="#eq-2">(2)</a> for \(j\in J\) are equalities.
+</p>
+<p>
+The left panel of Figure 2 below illustrates these definitions. The point \(x\) (in black) can be moved around inside the set \(K\). The set \(\overline\Omega_x\) is drawn in grey. The dashed lines are the lines \(\langle b_j,y\rangle=\pm\lambda(\langle b_j,x\rangle)\), \(1\le j\le m\). The colored points are \(y_{J,\varepsilon}(x)\) for various values of \(J\) (represented by different colors) and \(\varepsilon\) (represented by sign labels). Each point \(y_{J,\varepsilon}(x)\) is filled if \(x\in K_{J,\varepsilon}\) and hollow otherwise.
 </p>
 <p id="simplex-decomposition">For \(J\in \mathcal{J}\) and \(\varepsilon \in \{ -1,1 \}^{J}\), write \(\Delta_{J,\varepsilon}\) for the simplex
 <span class="math">\[
 	\Delta_{J,\varepsilon}:=\operatorname{conv} \left(  \{0\}\cup \{\varepsilon_{j}b_{j}\}_{j\in J}\right)\subset K^{\circ}.
 \]</span>
-The right panel of Figure 2 shows \(K^{\circ}\) and the simplices \(\Delta_{J,\varepsilon}\) with \(x\in K_{J,\varepsilon}\), each drawn in the colour of \(J\) and marked \(\varepsilon\). Clicking a point \(y_{J,\varepsilon}(x)\) in the left panel, or a simplex in the right panel, highlights the lines defining \(y_{J,\varepsilon}(x)\) and outlines \(\Delta_{J,\varepsilon}\) (dashed if \(x\notin K_{J,\varepsilon}\)); pressing anywhere else in the left panel moves \(x\).</p>
+The right panel of Figure 2 shows \(K^{\circ}\) and the simplices \(\Delta_{J,\varepsilon}\) with \(x\in K_{J,\varepsilon}\), each drawn in the colour of \(J\) and marked \(\varepsilon\). Clicking a point \(y_{J,\varepsilon}(x)\) in the left panel, or a simplex in the right panel, highlights the lines defining \(y_{J,\varepsilon}(x)\) and outlines \(\Delta_{J,\varepsilon}\) (dashed if \(x\notin K_{J,\varepsilon}\)).</p>
 <details class="fig" open><summary><b>Figure 2: the vertices \(y_{J,\varepsilon}(x)\) and the simplices \(\Delta_{J,\varepsilon}\)</b></summary>
 <div class="figure interactive" id="fig-3"></div>
 </details>
