@@ -309,7 +309,7 @@ Thus it remains to prove that
 \]</span>
 Since the vectors \(b_1,\dots,b_m\) span \(\mathbb{R}^d\), and \(\langle b_j,z\rangle\in D\) for all \(z \in \Omega\) and all \(j \in [m]\), the map \(F^{-1}\circ B\) is a biholomorphism of \(\Omega\) onto the \(d\)-dimensional complex submanifold \(M\).
 Since \(F\) is a homeomorphism of \(\overline{\mathbb D}^m\) onto \(\overline D^m\) and \(B\) is injective, we have \(\overline M=F^{-1}\big(B(\overline\Omega)\big)\), and therefore \[A_J=\pi_J(\overline M), \qquad J\in\mathcal{J}.\]</p>
-<p>Our goal in this section is to prove <a href="#eq-11">(11)</a>. We shall approximate each measure \(\mu_J\) by a sequence of smooth volume forms on the polydisc, pull these forms back to \(\Omega\) via \(M\), and reduce <a href="#eq-11">(11)</a> to a complex-analytic lemma.
+<p>Our goal in this section is to prove <a href="#eq-11">(11)</a>. We shall approximate each measure \(\mu_J\) by a sequence of smooth volume forms on the polydisc, pull them back to \(M\) by the projections \(\pi_J\) and then to \(\Omega\) by \(F^{-1}\circ B\), and reduce <a href="#eq-11">(11)</a> to a complex-analytic lemma.
 </p>
 <p>For \(k\ge1\) let \(p_k\) be the coordinatewise \(k\)-th power \[p_k(v)_j=v_j^k, \qquad 1 \le j \le m\] on \(\mathbb{C}^m\) and on each \(\mathbb{C}^J\).
 Let
@@ -331,16 +331,20 @@ on \(\mathbb{C}^m\) and \(\mathbb{C}^J\), respectively. Note that
 Since \(\mathbb B^2_J\) and \(dV_J\) are invariant under the rotations \(v\mapsto(\zeta_jv_j)_{j\in J}\), \(\zeta\in(\partial\mathbb D)^J\), the law of \(\omega\) is a rotation-invariant probability measure on \((\partial\mathbb D)^J\), and so it coincides with \(\mu_J\). The set \(A_J=\pi_J(\overline M)\) is compact, and \(\rho^{1/k}\omega\to\omega\) as \(k\to\infty\), so \(\limsup_k\mathbf 1_{A_J}(\rho^{1/k}\omega)\le\mathbf 1_{A_J}(\omega)\). Hence, by the reverse Fatou lemma,
 <span class="math">\[
 	\sum_{J\in\mathcal{J}}\mu_J(A_J)=\sum_{J\in\mathcal{J}}\mathbb P\big(\omega\in A_J\big)\ge\limsup_{k\to\infty}\sum_{J\in\mathcal{J}}\mathbb P\big(\rho^{1/k}\omega\in A_J\big)=\limsup_{k\to\infty}\frac{d!}{(\pi k)^d}\sum_{J\in\mathcal{J}}\int_{A_J\cap\mathbb B^{2k}_J}p_k^*dV_J.
-\]</span>
-Thus <a href="#eq-11">(11)</a> would follow if we prove that
-<span id="eq-13"></span><span class="math">\[
-	\sum_{J\in\mathcal{J}}\int_{A_J\cap\mathbb B^{2k}_J}p_k^*dV_J\ge\frac{(\pi k)^d}{d!}\qquad\text{for all }k\ge1.\tag{13}
 \]</span></p>
 <p>For \(k \ge 1\), define
 <span class="math">\[
-	M_k:=M\cap\mathbb B^{2k}_m
+	M_k:=M\cap\mathbb B^{2k}_m.
 \]</span>
-and
+For \(J\in\mathcal{J}\), the map \(\pi_J\) is a biholomorphism of \(M\) onto the open set \(F^{-1}\big(B_J(\Omega)\big)\), with inverse \(F^{-1}\circ B\circ B_J^{-1}\circ F\). Moreover, \[\pi_J(M_k)\subseteq\pi_J(\overline M)\cap\pi_J(\mathbb B^{2k}_m)\subseteq A_J\cap\mathbb B^{2k}_J,\] and \(p_k^*dV_J=|\det Dp_k|^2\,dV_J\) by <a href="#eq-A4">(A4)</a>. Hence
+<span class="math">\[
+	\int_{M_k}(\pi_J|_{M_k})^*p_k^*dV_J=\int_{\pi_J(M_k)}p_k^*dV_J\le\int_{A_J\cap\mathbb B^{2k}_J}p_k^*dV_J,\qquad J\in\mathcal{J}.
+\]</span>
+Thus <a href="#eq-11">(11)</a> would follow if we prove that
+<span id="eq-13"></span><span class="math">\[
+	\sum_{J\in\mathcal{J}}\int_{M_k}(\pi_J|_{M_k})^*p_k^*dV_J\ge\frac{(\pi k)^d}{d!}\qquad\text{for all }k\ge1.\tag{13}
+\]</span></p>
+<p>Define
 <span id="eq-14"></span><span class="math">\[
 	f_k:=p_k\circ F^{-1}\circ B:\Omega\to\mathbb{C}^m.\tag{14}
 \]</span>
@@ -359,11 +363,7 @@ Thus \(\int_{M_k}\sigma_k\) is the \(2d\)-dimensional volume of \(p_k(M_k)\), co
 <span class="math">\[
 	(F^{-1}\circ B)^*(\pi_J|_{M_k})^*p_k^*dV_J=(\pi_J\circ f_k)^*dV_J\overset{\href{#eq-A4}{(A4)}}{=}\big|\det D(\pi_J\circ f_k)\big|^2\,dV\qquad\text{on }\Omega_k.
 \]</span>
-Since \(p_k\circ F^{-1}\) acts coordinatewise, \(D(\pi_J\circ f_k)\) is \(B_J\) multiplied on the left by a diagonal matrix, so this term vanishes for \(J\notin\mathcal{J}\). For \(J\in\mathcal{J}\), the map \(\pi_J\) is a biholomorphism of \(M\) onto the open set \(F^{-1}\big(B_J(\Omega)\big)\), with inverse \(F^{-1}\circ B\circ B_J^{-1}\circ F\). Moreover, \(\pi_J(M_k)\subseteq\pi_J(\overline M)\cap\pi_J(\mathbb B^{2k}_m)\subseteq A_J\cap\mathbb B^{2k}_J\), and \(p_k^*dV_J=|\det Dp_k|^2\,dV_J\) by <a href="#eq-A4">(A4)</a>. Hence
-<span class="math">\[
-	\int_{M_k}\sigma_k=\sum_{J\in\mathcal{J}}\int_{M_k}(\pi_J|_{M_k})^*p_k^*dV_J=\sum_{J\in\mathcal{J}}\int_{\pi_J(M_k)}p_k^*dV_J\le\sum_{J\in\mathcal{J}}\int_{A_J\cap\mathbb B^{2k}_J}p_k^*dV_J.
-\]</span>
-Moreover,
+Since \(p_k\circ F^{-1}\) acts coordinatewise, \(D(\pi_J\circ f_k)\) is \(B_J\) multiplied on the left by a diagonal matrix, so this term vanishes for \(J\notin\mathcal{J}\). Hence \(\int_{M_k}\sigma_k\) is the left-hand side of <a href="#eq-13">(13)</a>. Moreover,
 <span id="eq-15"></span><span class="math">\[
 	\begin{aligned}
 	\int_{M_k}\sigma_k&=\int_{\Omega_k}(F^{-1}\circ B)^*\sigma_k=\frac1{d!}\int_{\Omega_k}f_k^*(dd^c|\cdot|^2)^d\\
