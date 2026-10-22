@@ -704,8 +704,7 @@ This proves <a href="#eq-23">(23)</a>, since \(w\in W\). \(\square\)</p>
 <span class="math">\[
 	F(z):=\frac{8}{\pi^{2}}\sum\limits_{j=0}^{\infty} \frac{z^{2j+1}}{(2j+1)^{2}},\qquad z\in\mathbb{D}.
 \]</span></p>
-<details class="proof" id="proof-of-lemma-0"><summary>Proof of <a href="#lemma-0">Lemma 0</a>.</summary>
-<p>The integrand \(\operatorname{arctanh}\big(\sin\frac{\pi s}{2}\big)\) is positive on \((0,1)\) and \(O\big(\log\frac{1}{1-s}\big)\) as \(s\uparrow1\), so \(\lambda\) is continuous on \([-1,1]\), \(\lambda(\pm1)=0\), and \(\lambda>0\) on \((-1,1)\). For \(0\lt |t| \lt 1\), since \(\lambda\) is even,
+<p id="proof-of-lemma-0"><i>Proof of <a href="#lemma-0">Lemma 0</a>.</i> The integrand \(\operatorname{arctanh}\big(\sin\frac{\pi s}{2}\big)\) is positive on \((0,1)\) and \(O\big(\log\frac{1}{1-s}\big)\) as \(s\uparrow1\), so \(\lambda\) is continuous on \([-1,1]\), \(\lambda(\pm1)=0\), and \(\lambda>0\) on \((-1,1)\). For \(0\lt |t| \lt 1\), since \(\lambda\) is even,
 <span class="math">\[
 	\lambda'(t)=-\frac{2}{\pi}\operatorname{arctanh}\Big(\sin\frac{\pi t}{2}\Big),
 \]</span>
@@ -733,7 +732,6 @@ Thus \(F\) maps the upper and the lower semicircle bijectively onto the upper an
 	\lambda(1-\delta)=\frac2\pi\int_0^{\delta}\log\cot\frac{\pi\tau}{4}\,d\tau.
 \]</span>
 Since \(\log\cot u=\log\frac1u+O(u^2)\) for \(0\lt u\le\frac\pi4\), the integral equals \(\int_0^\delta\log\frac{4}{\pi\tau}\,d\tau+O(\delta^3)=\delta\log\frac1\delta+O(\delta)\). \(\square\)</p>
-</details>
 </details>
 <details class="sec" open><summary><h3 id="appendix-complex-geometry">Appendix: Complex-geometric background</h3></summary>
 <p>This appendix collects the notation and the standard facts used in <a href="#from-the-torus-to-the-polydisc-to-omega">From the torus to the polydisc to \(\Omega\)</a>. Throughout, \(z_j=x_j+iy_j\) are the coordinates of \(\mathbb{C}^d\), and \(\mathbb{C}^d\) is oriented by \(dV=\prod_j dx_j\wedge dy_j\).</p>
