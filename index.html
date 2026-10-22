@@ -196,14 +196,15 @@ and define
 <span class="math">\[
 	K_{J,\varepsilon}:=\{x\in K\,\colon\,y_{J,\varepsilon}(x)\in\overline\Omega_x\}.
 \]</span>
-Each \(K_{J,\varepsilon}\) is closed, since \(\overline\Omega\) is closed and \(y_{J,\varepsilon}\) is continuous. If \(x\in K_{J,\varepsilon}\), then \(y_{J,\varepsilon}(x)\) is the vertex of \(\overline\Omega_x\) at which the inequalities in <a href="#eq-2">(2)</a> for \(j\in J\) are equalities, see Figure 2.
+Each \(K_{J,\varepsilon}\) is closed, since \(\overline\Omega\) is closed and \(y_{J,\varepsilon}\) is continuous. If \(x\in K_{J,\varepsilon}\), then \(y_{J,\varepsilon}(x)\) is the vertex of \(\overline\Omega_x\) at which the inequalities in <a href="#eq-2">(2)</a> for \(j\in J\) are equalities.
+The left panel of Figure 2 below illustrates these definitions. The dashed lines are the lines \(\langle b_j,y\rangle=\pm\lambda(\langle b_j,x\rangle)\), \(1\le j\le m\). The point drawn in the colour of \(J\) and marked \(\varepsilon\) is \(y_{J,\varepsilon}(x)\), the intersection of the lines \(\langle b_j,y\rangle=\varepsilon_j\lambda(\langle b_j,x\rangle)\), \(j\in J\); it is filled if \(x\in K_{J,\varepsilon}\), and hollow otherwise.
 </p>
 <p id="simplex-decomposition">For \(J\in \mathcal{J}\) and \(\varepsilon \in \{ -1,1 \}^{J}\), write \(\Delta_{J,\varepsilon}\) for the simplex
 <span class="math">\[
 	\Delta_{J,\varepsilon}:=\operatorname{conv} \left(  \{0\}\cup \{\varepsilon_{j}b_{j}\}_{j\in J}\right)\subset K^{\circ}.
-\]</span></p>
-<p>Figure 2 below shows \(\overline\Omega_x\) (left) and the union of the simplices \(\Delta_{J,\varepsilon}\) with \(x\in K_{J,\varepsilon}\) (right). For each \((J,\varepsilon)\) with \(x\in K_{J,\varepsilon}\), the vertex \(y_{J,\varepsilon}(x)\) of \(\overline\Omega_x\) and the simplex \(\Delta_{J,\varepsilon}\) are drawn in the same colour.</p>
-<details class="fig" open><summary><b>Figure 2: the simplices \(\Delta_{J,\varepsilon}\), \(x\in K_{J,\varepsilon}\)</b></summary>
+\]</span>
+The right panel of Figure 2 shows \(K^{\circ}\) and the simplices \(\Delta_{J,\varepsilon}\) with \(x\in K_{J,\varepsilon}\), each drawn in the colour of \(J\) and marked \(\varepsilon\). Clicking a point \(y_{J,\varepsilon}(x)\) in the left panel, or a simplex in the right panel, highlights the lines defining \(y_{J,\varepsilon}(x)\) and outlines \(\Delta_{J,\varepsilon}\) (dashed if \(x\notin K_{J,\varepsilon}\)); pressing anywhere else in the left panel moves \(x\).</p>
+<details class="fig" open><summary><b>Figure 2: the vertices \(y_{J,\varepsilon}(x)\) and the simplices \(\Delta_{J,\varepsilon}\)</b></summary>
 <div class="figure interactive" id="fig-3"></div>
 </details>
 <div class="callout callout-lemma" id="lemma-1"><div class="callout-title">Lemma 1</div><p>The sets
@@ -241,6 +242,10 @@ Since \(b_l\) is not proportional to \(b_j\) for any \(j\neq l\), at least two c
 \]</span>
 everywhere. By the implicit function theorem, both \(\{G=0,\ \nabla G\neq0\}\) and \(\{\partial G/\partial q_{j_1}=0\}\supseteq\{\nabla G=0\}\) are locally \(C^1\) hypersurfaces, so the level set \(\{G=0\}\) has measure zero. \(\square\)</p>
 </details>
+<p>Figure 3 shows the same objects for \(d=3\). For the cuboctahedron and the initial position of \(x\), the union of the simplices \(\Delta_{J,\varepsilon}\) with \(x\in K_{J,\varepsilon}\) is not convex.</p>
+<details class="fig" open><summary><b>Figure 3: the vertices \(y_{J,\varepsilon}(x)\) and the simplices \(\Delta_{J,\varepsilon}\) in dimension 3</b></summary>
+<div class="figure interactive" id="fig-3d"></div>
+</details>
 <p>For \(J\in\mathcal{J}\), the linear map \((x,h)\mapsto\big(B_Jx,(B_J^{\mathsf T})^{-1}h\big)\) from \(\mathbb{R}^d\times\mathbb{R}^d\) to \(\mathbb{R}^J\times\mathbb{R}^J\) preserves volume, and \((B_J^{\mathsf T})^{-1}b_j=e_j\) for \(j\in J\), where \((e_j)_{j\in J}\) is the standard basis of \(\mathbb{R}^J\). Since the simplex \(\operatorname{conv}\big(\{0\}\cup\{\varepsilon_je_j\}_{j\in J}\big)\) has volume \(1/d!\) for every \(\varepsilon\in\{-1,1\}^J\), it follows that
 <span id="eq-6"></span><span class="math">\[
 	\begin{aligned}
@@ -268,7 +273,7 @@ so that, by <a href="#lemma-0">Lemma 0</a>,
 <span id="eq-8"></span><span class="math">\[
 	F\big(\Phi(t,\varepsilon)\big)=t+i\varepsilon\lambda(t),\qquad t\in[-1,1],\ \varepsilon\in\{-1,1\}.\tag{8}
 \]</span>
-<details class="fig" open><summary><b>Figure 3: the map \(\Phi\)</b></summary>
+<details class="fig" open><summary><b>Figure 4: the map \(\Phi\)</b></summary>
 <div class="figure" id="fig-phi"></div>
 </details>
 <p>View \(\Phi\) as a map on \([-1,1]^J\times\{-1,1\}^J\) by applying it coordinatewise.
@@ -284,7 +289,7 @@ The map \(\Phi\) pushes forward the uniform probability measure on \([-1,1]^J\ti
 <span id="eq-10"></span><span class="math">\[
 	\sum_{\varepsilon\in\{-1,1\}^J}\operatorname{Vol}\big(B_J(K_{J,\varepsilon})\big)=4^d\mu_J(A_J).\tag{10}
 \]</span></p>
-<details class="fig" open><summary><b>Figure 4: from the torus to the cube to \(K\)</b></summary>
+<details class="fig" open><summary><b>Figure 5: from the torus to the cube to \(K\)</b></summary>
 <div class="figure interactive" id="fig-2"></div>
 </details>
 <p>By <a href="#eq-7">(7)</a> and <a href="#eq-10">(10)</a>,
@@ -615,7 +620,7 @@ Since \(\sum_ia_ih_i=v-u\), we have \(u-w=-\sum_ia_i\frac{1-s_i}2h_i\), and sinc
 	\|v-w\|+\|u-w\|\le\sum_ia_i\Big(\frac{1+s_i}2+\frac{1-s_i}2\Big)=\|v-u\|,
 \]</span>
 so \(w\in W\).</p>
-<details class="fig" open><summary><b>Figure 5: proof of <a href="#lemma-6-medians">Lemma 5</a></b></summary>
+<details class="fig" open><summary><b>Figure 6: proof of <a href="#lemma-6-medians">Lemma 5</a></b></summary>
 <div class="figure med-fig interactive" id="fig-4">
 <svg viewBox="0 0 560 400" role="img" aria-label="The cone of the l-infinity norm over the plane, the lifted points u-hat and v-hat on it, the path through 0 and the geodesic whose lowest point lies above the median w. Drag to rotate."></svg>
 <div class="med-ctl"><button type="button" data-act="new">new <i>u</i>, <i>v</i></button><button type="button" data-act="reset">reset</button><span>drag to rotate</span></div>
@@ -1387,11 +1392,15 @@ function css(name){
 // ---------- the box that sets the figure's width ----------
 const box=document.createElement('div'); box.className='mfig-box'; root.appendChild(box);
 box.style.maxWidth=DEFAULT_WIDTH+'px';
-const q=(id)=>root.querySelector('[data-id="'+id+'"]');
+// the d = 3 figure lives in its own container, further down the page
+const root3=document.getElementById('fig-3d')||document.createElement('div'); root3.classList.add('mfig-root');
+const box3=document.createElement('div'); box3.className='mfig-box'; root3.appendChild(box3);
+box3.style.maxWidth=DEFAULT_WIDTH+'px';
+const q=(id)=>root.querySelector('[data-id="'+id+'"]')||root3.querySelector('[data-id="'+id+'"]');
 function setupBox(){
   // keep clicks and drags inside the figure from reaching the Obsidian editor (Live Preview)
-  for (const ev of ['mousedown','pointerdown','touchstart']) root.addEventListener(ev,(e)=>e.stopPropagation());
-  new ResizeObserver(()=>box.classList.toggle('narrow', box.clientWidth<440)).observe(box);
+  for (const r of [root,root3]) for (const ev of ['mousedown','pointerdown','touchstart']) r.addEventListener(ev,(e)=>e.stopPropagation());
+  for (const b of [box,box3]) new ResizeObserver(()=>b.classList.toggle('narrow', b.clientWidth<440)).observe(b);
 }
 // redraw only when Obsidian switches between light and dark; stop watching once this block is gone
 function onTheme(fn){ let dark=isDark(), seen=false; const mo=new MutationObserver(()=>{ if (root.isConnected) seen=true; else if (seen){ mo.disconnect(); return; } const d=isDark(); if (d!==dark){ dark=d; fn(); } }); mo.observe(document.body,{attributes:true,attributeFilter:['class']}); }
@@ -1432,8 +1441,7 @@ styleDim.textContent=`
 .mfig-root .mfig-dim button[aria-pressed="true"] { background:var(--interactive-accent); color:var(--text-on-accent, #fff); border-color:var(--interactive-accent); }
 `;
 root.appendChild(styleDim);
-box.insertAdjacentHTML('beforeend',`<div class="mfig-dim" role="group" aria-description="dimension"><button type="button" data-id="dim2" aria-pressed="true">d = 2</button><button type="button" data-id="dim3" aria-pressed="false">d = 3</button></div>
-<div data-id="pane2"><div class="mfig-controls"><span>Body:</span>
+box.insertAdjacentHTML('beforeend',`<div data-id="pane2"><div class="mfig-controls"><span>Body:</span>
   <button type="button" data-body="square">square</button>
   <button type="button" data-body="parallelogram">random parallelogram</button>
   <button type="button" data-body="hexagon">hexagon (paper's example)</button>
@@ -1466,9 +1474,11 @@ box.insertAdjacentHTML('beforeend',`<div class="mfig-dim" role="group" aria-desc
 </div>
 <div class="mfig-two t3-views">
   <div class="t3-view"><canvas class="fig" data-id="cvL" aria-description="Primal view: the body K, the point x and the fiber of Omega-bar over x"></canvas><div class="t3-vlabel">$x$, $K$, $\\bar\\Omega_x$</div><div class="t3-vlabel r">primal</div><div class="t3-legend" data-id="legend"></div></div>
-  <div class="t3-view"><canvas class="fig" data-id="cvR" aria-description="Dual view: K polar with the feasible tetrahedra"></canvas><div class="t3-vlabel">$K^\\circ$, $\\Sigma_x$</div><div class="t3-vlabel r">dual</div></div>
+  <div class="t3-view"><canvas class="fig" data-id="cvR" aria-description="Dual view: K polar with the feasible tetrahedra"></canvas><div class="t3-vlabel">$K^\\circ$, $\\Delta_{J,\\varepsilon}$</div><div class="t3-vlabel r">dual</div></div>
 </div></div>`);
-setupBox(); mathify(box);
+// the d = 3 pane is a separate figure: move it into its own container
+box3.appendChild(q('pane3'));
+setupBox(); mathify(box); mathify(box3);
 
 // ---------- the lens half-height lambda(t): lambda'(t) = -(2/pi) artanh(sin(pi t/2)), lambda(1) = 0 ----------
 const NT=801, lamTab=new Float64Array(NT), SUBS=48;
@@ -1514,9 +1524,11 @@ function lam(t){ t=Math.abs(t); if (t>=1) return 0; const x=t*(NT-1), i=Math.flo
       if (color) t.style.fill=color; if (bold) t.style.fontWeight='600';
       for (const [s,it] of segs){ const sp=el('tspan',{},t); sp.textContent=s; if (it){ sp.style.fontStyle='italic'; sp.style.fontFamily='"Times New Roman", Times, serif'; sp.style.fontSize='1.2em'; } }
       return t; }
-    const vtag=(c)=>[[sgn(c.ei),0],['b',1],[sub(c.i+1)+', '+sgn(c.ej),0],['b',1],[sub(c.j+1),0]];
+    // the selected candidate (J,eps) = ({i,j},(ei,ej)): its two lines and its simplex are highlighted
+    let sel=null, hits=[], dualHits=[];
+    const sameC=(c,s)=>s&&c.i===s.i&&c.j===s.j&&c.ei===s.ei&&c.ej===s.ej;
     let A, Apolar;
-    function setBody(rows,name){ B=rows; bodyName=name; A=stripPoly(B.map(()=>1)).verts; Apolar=hull(B.concat(B.map(b=>[-b[0],-b[1]])));
+    function setBody(rows,name){ B=rows; bodyName=name; sel=null; A=stripPoly(B.map(()=>1)).verts; Apolar=hull(B.concat(B.map(b=>[-b[0],-b[1]])));
       S1=150/Math.max(...A.map(p=>Math.hypot(p[0],p[1]))); S2=150/Math.max(...Apolar.map(p=>Math.hypot(p[0],p[1])));
       setHTML(leg, pairs().map(([i,j],bi)=>'<span><i class="sw" style="background:var('+palette[bi%palette.length]+')"></i>$J=\\{'+(i+1)+','+(j+1)+'\\}$</span>').join(''));
       Xp=clampIn(Xp); }
@@ -1554,23 +1566,47 @@ function lam(t){ t=Math.abs(t); if (t>=1) return 0; const x=t*(NT-1), i=Math.flo
       g1.replaceChildren(); g2.replaceChildren();
       const w=B.map(b=>lam(dot(b,Xp)));
       const {cands,verts}=stripPoly(w);
+      if (!sel || !cands.some(c=>sameC(c,sel))){ const f=cands.find(c=>c.feas); sel=f?{i:f.i,j:f.j,ei:f.ei,ej:f.ej}:null; }
       if (verts.length>=3) el('path',{d:polyD(verts,PX1),fill:card,stroke:fg,'stroke-width':1.2},s1);
-      B.forEach((n,j)=>{ for (const e of [1,-1]){ const nn=Math.hypot(n[0],n[1]); const c=e*w[j]/nn/nn; const t=[-n[1],n[0]]; const p0=[n[0]*c,n[1]*c]; const p1=[p0[0]-t[0]*2,p0[1]-t[1]*2], p2=[p0[0]+t[0]*2,p0[1]+t[1]*2]; const a=PX1(p1), b=PX1(p2); el('line',{x1:a[0],y1:a[1],x2:b[0],y2:b[1],stroke:muted,'stroke-width':1,'stroke-dasharray':'2 4',opacity:0.7},s1); } });
-      for (const c of cands){ const q=PX1(c.Y); if (Math.abs(q[0]-180)>175||Math.abs(q[1]-180)>175) continue; const col=pal[c.bi%pal.length]; if (c.feas) el('circle',{cx:q[0],cy:q[1],r:5,fill:col,stroke:surf,'stroke-width':1.5},s1); else el('circle',{cx:q[0],cy:q[1],r:5,fill:surf,stroke:col,'stroke-width':2},s1);
-        const dir=Math.hypot(c.Y[0],c.Y[1])>1e-9?[c.Y[0]/Math.hypot(c.Y[0],c.Y[1]),c.Y[1]/Math.hypot(c.Y[0],c.Y[1])]:[1,0]; svgLabel(s1,q[0]+12*dir[0],q[1]-12*dir[1]+4,[[sgn(c.ei)+sgn(c.ej),0]],'svgmuted',dir[0]<-0.3?'end':(dir[0]>0.3?'start':'middle'),col); }
+      // the line <b_j,y> = e w_j, extended across the panel
+      const lineEnds=(j,e)=>{ const n=B[j], nn=Math.hypot(n[0],n[1]); const c=e*w[j]/nn/nn; const t=[-n[1],n[0]]; const p0=[n[0]*c,n[1]*c]; return [PX1([p0[0]-t[0]*2,p0[1]-t[1]*2]), PX1([p0[0]+t[0]*2,p0[1]+t[1]*2])]; };
+      B.forEach((n,j)=>{ for (const e of [1,-1]){ const [a,b]=lineEnds(j,e); el('line',{x1:a[0],y1:a[1],x2:b[0],y2:b[1],stroke:muted,'stroke-width':1,'stroke-dasharray':'2 4',opacity:0.7},s1); } });
+      const sc=cands.find(c=>sameC(c,sel));
+      if (sc){ const col=pal[sc.bi%pal.length]; for (const [j,e] of [[sc.i,sc.ei],[sc.j,sc.ej]]){ const [a,b]=lineEnds(j,e); el('line',{x1:a[0],y1:a[1],x2:b[0],y2:b[1],stroke:col,'stroke-width':1.5},s1); } }
+      hits=[];
+      for (const c of cands){ const q=PX1(c.Y); if (Math.abs(q[0]-180)>175||Math.abs(q[1]-180)>175) continue; hits.push({q,c}); const col=pal[c.bi%pal.length]; if (c.feas) el('circle',{cx:q[0],cy:q[1],r:5,fill:col,stroke:surf,'stroke-width':1.5},s1); else el('circle',{cx:q[0],cy:q[1],r:5,fill:surf,stroke:col,'stroke-width':2},s1);
+        const dir=Math.hypot(c.Y[0],c.Y[1])>1e-9?[c.Y[0]/Math.hypot(c.Y[0],c.Y[1]),c.Y[1]/Math.hypot(c.Y[0],c.Y[1])]:[1,0], anc=dir[0]<-0.3?'end':(dir[0]>0.3?'start':'middle');
+        if (c===sc) el('circle',{cx:q[0],cy:q[1],r:9,fill:'none',stroke:col,'stroke-width':1.5},s1);
+        svgLabel(s1,q[0]+12*dir[0],q[1]-12*dir[1]+4,[[sgn(c.ei)+sgn(c.ej),0]],'svgmuted',anc,col,c===sc); }
       const xq=PX1(Xp); el('circle',{cx:xq[0],cy:xq[1],r:7,fill:fg,stroke:surf,'stroke-width':2},s1); svgLabel(s1,xq[0]+10,xq[1]-8,[['x',1]]);
 
-      for (const c of cands){ if(!c.feas) continue; const tri=[[0,0],[c.ei*B[c.i][0],c.ei*B[c.i][1]],[c.ej*B[c.j][0],c.ej*B[c.j][1]]]; const col=pal[c.bi%pal.length];
+      const triOf=(c)=>[[0,0],[c.ei*B[c.i][0],c.ei*B[c.i][1]],[c.ej*B[c.j][0],c.ej*B[c.j][1]]];
+      dualHits=[];
+      for (const c of cands){ if(!c.feas) continue; const tri=triOf(c); const col=pal[c.bi%pal.length]; dualHits.push({t:tri.map(PX2),c});
         el('path',{d:polyD(tri,PX2),fill:tint[c.bi%pal.length],stroke:col,'stroke-width':1.2},s2);
-        const cen=PX2([(tri[1][0]+tri[2][0])/3,(tri[1][1]+tri[2][1])/3]); svgLabel(s2,cen[0],cen[1]+4,vtag(c),'svgmuted','middle',col); }
+        if (c===sc) continue;
+        const cen=PX2([(tri[1][0]+tri[2][0])/3,(tri[1][1]+tri[2][1])/3]); svgLabel(s2,cen[0],cen[1]+4,[[sgn(c.ei)+sgn(c.ej),0]],'svgmuted','middle',col); }
+      if (sc){ const tri=triOf(sc), col=pal[sc.bi%pal.length];
+        el('path',{d:polyD(tri,PX2),fill:'none',stroke:col,'stroke-width':2.5,'stroke-dasharray':sc.feas?'none':'6 4'},s2);
+        for (const v of tri){ const q=PX2(v); el('circle',{cx:q[0],cy:q[1],r:4,fill:col,stroke:surf,'stroke-width':1.5},s2); }
+        const cen=PX2([(tri[1][0]+tri[2][0])/3,(tri[1][1]+tri[2][1])/3]); svgLabel(s2,cen[0],cen[1]+4,[[sgn(sc.ei)+sgn(sc.ej),0]],'svgmuted','middle',col,true); }
     }
     function clampIn(p){ let m=0; for (const b of B) m=Math.max(m,Math.abs(dot(b,p))); return m>=0.995 ? [p[0]*0.995/m, p[1]*0.995/m] : p; }
     function fromEvent(ev){ const r=s1.getBoundingClientRect(); const x=(ev.clientX-r.left)*360/r.width, y=(ev.clientY-r.top)*360/r.height; return clampIn([(x-C.cx)/S1, (C.cy-y)/S1]); }
     let dragging=false, queued=false;
     const schedule=()=>{ if (queued) return; queued=true; requestAnimationFrame(()=>{ queued=false; build(); }); };
     const rebuild=()=>{ buildStatic(); build(); };
-    s1.addEventListener('pointerdown',(ev)=>{ ev.preventDefault(); dragging=true; s1.setPointerCapture(ev.pointerId); Xp=fromEvent(ev); schedule(); });
-    s1.addEventListener('pointermove',(ev)=>{ if(!dragging) return; ev.preventDefault(); Xp=fromEvent(ev); schedule(); });
+    // pressing on a candidate (left) or on a shaded simplex (right) selects it; pressing anywhere else on the left moves x
+    const svgPt=(svg,ev)=>{ const r=svg.getBoundingClientRect(); return [(ev.clientX-r.left)*360/r.width, (ev.clientY-r.top)*360/r.height]; };
+    const hitAt=(p)=>hits.find(h=>Math.hypot(h.q[0]-p[0],h.q[1]-p[1])<=10);
+    const inTri=(p,[a,b,c])=>{ const s=(u,v,w)=>(v[0]-u[0])*(w[1]-u[1])-(v[1]-u[1])*(w[0]-u[0]); const d1=s(a,b,p), d2=s(b,c,p), d3=s(c,a,p); return !((d1<0||d2<0||d3<0)&&(d1>0||d2>0||d3>0)); };
+    const dualAt=(p)=>dualHits.find(h=>inTri(p,h.t));
+    const select=(c)=>{ sel={i:c.i,j:c.j,ei:c.ei,ej:c.ej}; schedule(); };
+    s1.addEventListener('pointerdown',(ev)=>{ ev.preventDefault(); const h=hitAt(svgPt(s1,ev)); if (h){ select(h.c); return; }
+      dragging=true; s1.setPointerCapture(ev.pointerId); Xp=fromEvent(ev); schedule(); });
+    s1.addEventListener('pointermove',(ev)=>{ if(!dragging){ s1.style.cursor=hitAt(svgPt(s1,ev))?'pointer':'crosshair'; return; } ev.preventDefault(); Xp=fromEvent(ev); schedule(); });
+    s2.addEventListener('pointerdown',(ev)=>{ const h=dualAt(svgPt(s2,ev)); if (h){ ev.preventDefault(); select(h.c); } });
+    s2.addEventListener('pointermove',(ev)=>{ s2.style.cursor=dualAt(svgPt(s2,ev))?'pointer':'default'; });
     s1.addEventListener('pointerup',()=>{ dragging=false; }); s1.addEventListener('pointercancel',()=>{ dragging=false; });
     s1.style.touchAction='none'; s1.style.cursor='crosshair';
     root.querySelectorAll('button[data-body]').forEach(b=>b.addEventListener('click',()=>{ const n=b.getAttribute('data-body'); setBody(n==='random'?randomBody():(n==='parallelogram'?randomParallelogram():BODIES[n]), n); rebuild(); }));
@@ -1676,7 +1712,7 @@ const G = (function(){
 
 // ---------- d = 3: views and controls ----------
 (function(){
-  const PI=Math.PI, $=(id)=>q(id), figRoot=box;
+  const PI=Math.PI, $=(id)=>q(id), figRoot=box3;
   const {dot,scl,nrm,add}=G;
   const hh=0.5;
   const BODIES={
@@ -1893,14 +1929,6 @@ const G = (function(){
   setBody('cubocta'); $('sAz').value=92; $('sEl').value=30; $('sFr').value=0.9; setLegend(); update(); aimAtDent();
 })();
 
-// ---------- the dimension switch: both figures stay alive, only one is shown ----------
-(function(){
-  const DIM_KEY=FIG_KEY+'-dim'; const p2=q('pane2'), p3=q('pane3'), b2=q('dim2'), b3=q('dim3');
-  function show(d){ p2.style.display=d===2?'':'none'; p3.style.display=d===3?'':'none'; b2.setAttribute('aria-pressed',d===2?'true':'false'); b3.setAttribute('aria-pressed',d===3?'true':'false'); try { localStorage.setItem(DIM_KEY,String(d)); } catch(e) {} }
-  b2.addEventListener('click',()=>show(2)); b3.addEventListener('click',()=>show(3));
-  let d=2; try { if (localStorage.getItem(DIM_KEY)==='3') d=3; } catch(e) {}
-  show(d);
-})();
 })();
 
 }
