@@ -128,7 +128,7 @@ window.addEventListener('afterprint', () => { closedBeforePrint.forEach((d) => d
 <!-- Complex-analytic methods were used earlier by Nazarov<sup class="fn"><a href="#fn-nazarov" id="fnref-nazarov">2</a></sup> and by Berndtsson<sup class="fn"><a href="#fn-berndtsson-pw" id="fnref-berndtsson-pw">3</a></sup><sup class="fn">,</sup><sup class="fn"><a href="#fn-berndtsson-kup" id="fnref-berndtsson-kup">4</a></sup> to prove the Bourgain&ndash;Milman inequality. --></p>
 <p>See also <a href="https://chessapig.github.io/Mahler">Elliot Kienzle's page</a> for an explanation of the proof from a symplectic point of view.</p>
 <h3>Table of contents</h3>
-<nav class="toc"><ul><li><a href="#statement">Statement</a></li><li><a href="#complexification">Complexification: from \(K\) to \(\Omega\)</a></li><li><a href="#from-k-to-the-cube-to-the-torus">From \(K\) to the cube to the torus</a></li><li><a href="#from-the-torus-to-the-polydisc-to-omega">From the torus to the polydisc to \(\Omega\)</a></li><li><a href="#the-equality-case">The equality case</a></li><li><a href="#appendix-properties-of-the-function">Appendix: Properties of \(D\) and where they are used</a></li><li><a href="#appendix-complex-geometry">Appendix: Complex-geometric background</a></li><li><a href="#appendix-correspondence">Appendix: Correspondence with the original preprint</a></li></ul></nav>
+<nav class="toc"><ul><li><a href="#statement">Statement</a></li><li><a href="#complexification">Complexification: from \(K\) to \(\Omega\)</a></li><li><a href="#from-k-to-the-cube-to-the-torus">From \(K\) to the cube to the torus</a></li><li><a href="#from-the-torus-to-the-polydisc-to-omega">From the torus to the polydisc to \(\Omega\)</a></li><li><a href="#the-equality-case">The equality case</a></li><li><a href="#appendix-properties-of-the-function">Appendix: Properties of the domain \(D\) and where they are used</a></li><li><a href="#appendix-complex-geometry">Appendix: Complex-geometric background</a></li><li><a href="#appendix-correspondence">Appendix: Correspondence with the original preprint</a></li></ul></nav>
 <details class="sec" open><summary><h3 id="statement">Statement</h3></summary>
 <p>A <i>convex body</i> is a compact convex set \(K\subset\mathbb{R}^d\) with nonempty interior; it is <i>symmetric</i> if \(K=-K\). Recall that the polar body \(K^\circ\) of a convex body \(K\) containing the origin in its interior is defined by \[K^{\circ}:=\{y\in\mathbb{R}^d\colon\langle x,y\rangle\le1\ \ \forall\,x\in K\}.\]
 </p>
@@ -162,7 +162,7 @@ D:=\{ w\in\mathbb{C}\,\,\colon\,\,|\mathrm{Re}(w)|\lt 1,\,\,|\mathrm{Im}(w)|\lt\
 <details class="fig" open><summary><b>Figure 1: the domain \(D\)</b></summary>
 <div class="figure" id="fig-1"></div>
 </details>
-<p>Since \(\lambda\) is concave and bounded, \(D\) is a bounded convex domain, so the map \(F\) in <a href="#lemma-0">Lemma 0</a> exists and is unique by the Riemann mapping theorem, and extends to \(\overline{\mathbb D}\) by Carathéodory&rsquo;s theorem. <a href="#lemma-0">Lemma 0</a> is proved in <a href="#appendix-properties-of-the-function">Appendix: Properties of \(D\) and where they are used</a>, which also explains how the boundary behaviour of \(F\) determines \(D\), and lists where in the proof each property of \(D\) is used.</p>
+<p>Since \(\lambda\) is concave and bounded, \(D\) is a bounded convex domain, so the map \(F\) in <a href="#lemma-0">Lemma 0</a> exists and is unique by the Riemann mapping theorem, and extends to \(\overline{\mathbb D}\) by Carathéodory&rsquo;s theorem. <a href="#lemma-0">Lemma 0</a> is proved in <a href="#appendix-properties-of-the-function">Appendix: Properties of the domain \(D\) and where they are used</a>, which also explains how the boundary behaviour of \(F\) determines \(D\), and lists where in the proof each property of \(D\) is used.</p>
 <p>Until <a href="#the-equality-case">The equality case</a>, we assume that \(K\) is a polytope; the general case of <a href="#eq-1">(1)</a> follows by a standard approximation argument.
 Let \(b_1,\dots, b_{m}\) be nonzero, pairwise nonproportional vectors such that
 <span class="math">\[
@@ -733,34 +733,8 @@ This proves <a href="#eq-22">(22)</a>, since \(w\in W\). \(\square\)</p>
 </details>
 <p>By <a href="#lemma-6-medians">Lemma 5</a> and <a href="#theorem-7-lima-lima-1978-hansen-lima-hansen-lima-1981">Theorem 6</a>, if \(\operatorname{Vol}(K)\operatorname{Vol}(K^{\circ})=4^{d}/d!\), then \(K^{\circ}\), and hence \(K\), is a linear image of a Hanner polytope; conversely, induction on the dimension shows that every Hanner polytope has volume product \(4^{d}/d!\). \(\square\)</p>
 </details>
-<details class="sec" open><summary><h3 id="appendix-properties-of-the-function">Appendix: Properties of \(D\) and where they are used</h3></summary>
-<p id="d-properties-used"><b>Where the properties of \(D\) are used.</b> The domain \(D\) enters the proof only through the following properties. All of them hold by <a href="#lemma-0">Lemma 0</a>.</p>
-<div class="legend-wrap"><table class="legend wrap">
-<thead><tr><th>Property of \(D\)</th><th>Where it is used</th></tr></thead>
-<tbody>
-<tr><td>\(D\cap\mathbb{R}=(-1,1)\)</td><td>Definition of \(\Omega\): \(\Omega\cap\mathbb{R}^d=\operatorname{int}K\), and \(\mathrm{Re}\,z\in K\) for \(z\in\overline\Omega\), which is used in <a href="#eq-8">(8)</a>.</td></tr>
-<tr><td>\(D\) is symmetric about the real axis</td><td><a href="#eq-2">(2)</a>, and hence the definitions of \(y_{J,\varepsilon}\) and \(K_{J,\varepsilon}\) for both signs of \(\varepsilon_j\).</td></tr>
-<tr><td>\(D\) is convex (\(\lambda\) is concave)</td><td>\(\overline\Omega\) is cut out by the conditions \(\langle b_j,z\rangle\in\overline D\), which gives the equivalences <a href="#eq-2">(2)</a> and <a href="#eq-17">(17)</a>; the agreement of the two definitions of \(\Omega\) in <a href="#the-equality-case">The equality case</a>; <a href="#eq-24">(24)</a>.</td></tr>
-<tr><td>\(D\) is symmetric about the imaginary axis (\(\lambda\) is even)</td><td><a href="#eq-17">(17)</a>; \(\Delta_{J,\varepsilon}\subseteq\Sigma_x\) before <a href="#eq-20">(20)</a>; <a href="#eq-24">(24)</a> and the end of the proof of <a href="#lemma-6-medians">Lemma 5</a>.</td></tr>
-<tr><td>\(\lambda\gt0\) on \((-1,1)\)</td><td><a href="#lemma-1">Lemma 1</a>, case \(J=J'\).</td></tr>
-<tr><td>\(\lambda''\ne0\) on \((-1,1)\)</td><td><a href="#lemma-1">Lemma 1</a>, case \(J\ne J'\). See the remark below.</td></tr>
-<tr><td>\(\lambda\) is continuous, with maximum \(\lambda(0)\)</td><td><a href="#eq-21">(21)</a>, <a href="#lemma-3">Lemma 3</a>.</td></tr>
-<tr><td>\(F\colon\mathbb D\to D\) is a biholomorphism with \(F(0)=0\), extending to a homeomorphism \(\overline{\mathbb D}\to\overline D\)</td><td>\(A_J=\pi_J(\overline M)\); the verification of the hypotheses of <a href="#lemma-2">Lemma 2</a>.</td></tr>
-<tr><td>\(F\big(e^{i\varepsilon\pi(1-t)/2}\big)=t+i\varepsilon\lambda(t)\)</td><td><a href="#eq-7">(7)</a>&ndash;<a href="#eq-9">(9)</a>. This is the property that determines \(D\); see below.</td></tr>
-<tr><td>\(\lambda(1-\delta)=\frac2\pi\delta\log\frac1\delta+O(\delta)\)</td><td><a href="#eq-25">(25)</a>, in the proof of <a href="#lemma-6-medians">Lemma 5</a>.</td></tr>
-</tbody></table></div>
-<p>In particular, the argument up to <a href="#eq-6">(6)</a> works for any domain \(D=\{w\colon|\mathrm{Re}\,w|\lt1,\ |\mathrm{Im}\,w|\lt\lambda(\mathrm{Re}\,w)\}\) with \(\lambda\) concave, positive on \((-1,1)\), and \(\lambda''\neq0\) there. The specific choice of \(D\) matters only from <a href="#eq-7">(7)</a> on, and in the equality case.</p>
-<p><b>Remark on <a href="#lemma-1">Lemma 1</a>.</b> The condition \(\lambda''\ne0\) can be weakened to: \(\lambda\) is real-analytic on \((-1,1)\) and not affine. Indeed, the function \(G\) in the proof of <a href="#lemma-1">Lemma 1</a> is then real-analytic on the connected open set \(B_J(\operatorname{int}K)\). If \(G\) vanished identically, then so would its mixed partial derivative \(-\varepsilon'_lc_{j_1}c_{j_2}\lambda''\big(\sum_jc_jq_j\big)\), so \(\lambda''\) would vanish on an open interval, and hence on all of \((-1,1)\). Thus \(G\) does not vanish identically, and the zero set of such a function is null (see, e.g., B. S. Mityagin, <i>The zero set of a real analytic function</i>, <a href="https://arxiv.org/abs/1512.07276">arXiv:1512.07276</a>).</p>
-<p id="d-determined"><b>How \(D\) is determined.</b> The boundary correspondence used in <a href="#eq-7">(7)</a> says that
-<span class="math">\[
-	\mathrm{Re}\,F(e^{i\theta})=1-\frac{2|\theta|}{\pi},\qquad|\theta|\le\pi.
-\]</span>
-In other words, if \(\theta\) is uniformly distributed, then \(\mathrm{Re}\,F(e^{i\theta})\) is uniformly distributed on \([-1,1]\): the harmonic measure of \(D\) at \(0\), projected to the real axis, is the uniform probability measure on \([-1,1]\). This is exactly what makes <a href="#eq-9">(9)</a> an equality. It determines \(D\): since \(\mathrm{Re}\,F\) is harmonic in \(\mathbb D\) and continuous on \(\overline{\mathbb D}\), it is the Poisson integral of these boundary values, and together with \(F(0)=0\) this determines \(F\), and hence \(D=F(\mathbb D)\). Explicitly, the Fourier series
-<span class="math">\[
-	1-\frac{2|\theta|}{\pi}=\frac{8}{\pi^{2}}\sum_{j=0}^{\infty}\frac{\cos\big((2j+1)\theta\big)}{(2j+1)^{2}},\qquad|\theta|\le\pi,
-\]</span>
-is the real part of the boundary values of the function \(F\) defined below.</p>
-<p><b>Properties of \(F\).</b> Define an analytic function \(F\) on the unit disc \(\mathbb{D}\subset \mathbb{C}\) by
+<details class="sec" open><summary><h3 id="appendix-properties-of-the-function">Appendix: Properties of the domain \(D\) and where they are used</h3></summary>
+<p>Define an analytic function \(F\) on the unit disc \(\mathbb{D}\subset \mathbb{C}\) by
 <span class="math">\[
 	F(z):=\frac{8}{\pi^{2}}\sum\limits_{j=0}^{\infty} \frac{z^{2j+1}}{(2j+1)^{2}},\qquad z\in\mathbb{D}.
 \]</span></p>
@@ -792,6 +766,32 @@ Thus \(F\) maps the upper and the lower semicircle bijectively onto the upper an
 	\lambda(1-\delta)=\frac2\pi\int_0^{\delta}\log\cot\frac{\pi\tau}{4}\,d\tau.
 \]</span>
 Since \(\log\cot u=\log\frac1u+O(u^2)\) for \(0\lt u\le\frac\pi4\), the integral equals \(\int_0^\delta\log\frac{4}{\pi\tau}\,d\tau+O(\delta^3)=\delta\log\frac1\delta+O(\delta)\). \(\square\)</p>
+<p id="d-determined"><b>How \(D\) is determined.</b> The boundary correspondence used in <a href="#eq-7">(7)</a> says that
+<span class="math">\[
+	\mathrm{Re}\,F(e^{i\theta})=1-\frac{2|\theta|}{\pi},\qquad|\theta|\le\pi.
+\]</span>
+In other words, if \(\theta\) is uniformly distributed, then \(\mathrm{Re}\,F(e^{i\theta})\) is uniformly distributed on \([-1,1]\): the harmonic measure of \(D\) at \(0\), projected to the real axis, is the uniform probability measure on \([-1,1]\). This is exactly what makes <a href="#eq-9">(9)</a> an equality. It determines \(D\): since \(\mathrm{Re}\,F\) is harmonic in \(\mathbb D\) and continuous on \(\overline{\mathbb D}\), it is the Poisson integral of these boundary values, and together with \(F(0)=0\) this determines \(F\), and hence \(D=F(\mathbb D)\). Explicitly, the Fourier series
+<span class="math">\[
+	1-\frac{2|\theta|}{\pi}=\frac{8}{\pi^{2}}\sum_{j=0}^{\infty}\frac{\cos\big((2j+1)\theta\big)}{(2j+1)^{2}},\qquad|\theta|\le\pi,
+\]</span>
+is the real part of the boundary values of the function \(F\) defined above.</p>
+<p id="d-properties-used"><b>Where the properties of \(D\) are used.</b> The domain \(D\) enters the proof only through the following properties. All of them hold by <a href="#lemma-0">Lemma 0</a>.</p>
+<div class="legend-wrap"><table class="legend wrap">
+<thead><tr><th>Property of \(D\)</th><th>Where it is used</th></tr></thead>
+<tbody>
+<tr><td>\(D\cap\mathbb{R}=(-1,1)\)</td><td>Definition of \(\Omega\): \(\Omega\cap\mathbb{R}^d=\operatorname{int}K\), and \(\mathrm{Re}\,z\in K\) for \(z\in\overline\Omega\), which is used in <a href="#eq-8">(8)</a>.</td></tr>
+<tr><td>\(D\) is symmetric about the real axis</td><td><a href="#eq-2">(2)</a>, and hence the definitions of \(y_{J,\varepsilon}\) and \(K_{J,\varepsilon}\) for both signs of \(\varepsilon_j\).</td></tr>
+<tr><td>\(D\) is convex (\(\lambda\) is concave)</td><td>\(\overline\Omega\) is cut out by the conditions \(\langle b_j,z\rangle\in\overline D\), which gives the equivalences <a href="#eq-2">(2)</a> and <a href="#eq-17">(17)</a>; the agreement of the two definitions of \(\Omega\) in <a href="#the-equality-case">The equality case</a>; <a href="#eq-24">(24)</a>.</td></tr>
+<tr><td>\(D\) is symmetric about the imaginary axis (\(\lambda\) is even)</td><td><a href="#eq-17">(17)</a>; \(\Delta_{J,\varepsilon}\subseteq\Sigma_x\) before <a href="#eq-20">(20)</a>; <a href="#eq-24">(24)</a> and the end of the proof of <a href="#lemma-6-medians">Lemma 5</a>.</td></tr>
+<tr><td>\(\lambda\gt0\) on \((-1,1)\)</td><td><a href="#lemma-1">Lemma 1</a>, case \(J=J'\).</td></tr>
+<tr><td>\(\lambda''\ne0\) on \((-1,1)\)</td><td><a href="#lemma-1">Lemma 1</a>, case \(J\ne J'\). See the remark below.</td></tr>
+<tr><td>\(\lambda\) is continuous, with maximum \(\lambda(0)\)</td><td><a href="#eq-21">(21)</a>, <a href="#lemma-3">Lemma 3</a>.</td></tr>
+<tr><td>\(F\colon\mathbb D\to D\) is a biholomorphism with \(F(0)=0\), extending to a homeomorphism \(\overline{\mathbb D}\to\overline D\)</td><td>\(A_J=\pi_J(\overline M)\); the verification of the hypotheses of <a href="#lemma-2">Lemma 2</a>.</td></tr>
+<tr><td>\(F\big(e^{i\varepsilon\pi(1-t)/2}\big)=t+i\varepsilon\lambda(t)\)</td><td><a href="#eq-7">(7)</a>&ndash;<a href="#eq-9">(9)</a>. This is the property that determines \(D\); see above.</td></tr>
+<tr><td>\(\lambda(1-\delta)=\frac2\pi\delta\log\frac1\delta+O(\delta)\)</td><td><a href="#eq-25">(25)</a>, in the proof of <a href="#lemma-6-medians">Lemma 5</a>.</td></tr>
+</tbody></table></div>
+<p>In particular, the argument up to <a href="#eq-6">(6)</a> works for any domain \(D=\{w\colon|\mathrm{Re}\,w|\lt1,\ |\mathrm{Im}\,w|\lt\lambda(\mathrm{Re}\,w)\}\) with \(\lambda\) concave, positive on \((-1,1)\), and \(\lambda''\neq0\) there. The specific choice of \(D\) matters only from <a href="#eq-7">(7)</a> on, and in the equality case.</p>
+<p><b>Remark on <a href="#lemma-1">Lemma 1</a>.</b> The condition \(\lambda''\ne0\) can be weakened to: \(\lambda\) is real-analytic on \((-1,1)\) and not affine. Indeed, the function \(G\) in the proof of <a href="#lemma-1">Lemma 1</a> is then real-analytic on the connected open set \(B_J(\operatorname{int}K)\). If \(G\) vanished identically, then so would its mixed partial derivative \(-\varepsilon'_lc_{j_1}c_{j_2}\lambda''\big(\sum_jc_jq_j\big)\), so \(\lambda''\) would vanish on an open interval, and hence on all of \((-1,1)\). Thus \(G\) does not vanish identically, and the zero set of such a function is null (see, e.g., B. S. Mityagin, <i>The zero set of a real analytic function</i>, <a href="https://arxiv.org/abs/1512.07276">arXiv:1512.07276</a>).</p>
 </details>
 <details class="sec" open><summary><h3 id="appendix-complex-geometry">Appendix: Complex-geometric background</h3></summary>
 <p>This appendix collects the notation and the standard facts used in <a href="#from-the-torus-to-the-polydisc-to-omega">From the torus to the polydisc to \(\Omega\)</a>. Throughout, \(z_j=x_j+iy_j\) are the coordinates of \(\mathbb{C}^d\), and \(\mathbb{C}^d\) is oriented by \(dV=\prod_j dx_j\wedge dy_j\).</p>
