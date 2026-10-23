@@ -99,7 +99,7 @@ window.addEventListener('afterprint', () => { closedBeforePrint.forEach((d) => d
 <body>
 <h1>Notes on OpenAI's proof of the symmetric Mahler conjecture</h1>
 <h4>Rotem Assouline</h4>
-<p><i>Last updated: October 22, 2026</i></p>
+<p><i>Last updated: October 23, 2026</i></p>
 <p><button type="button" class="print-btn" onclick="window.print()">Print</button> <button type="button" class="print-btn" id="toggle-sections">Collapse all</button></p>
 <script>
 (function(){
@@ -138,43 +138,29 @@ window.addEventListener('afterprint', () => { closedBeforePrint.forEach((d) => d
 <p>For the definition of Hanner polytopes, see <a href="#the-equality-case">The equality case</a>.</p>
 </details>
 <details class="sec" open><summary><h3 id="complexification">Complexification: from \(K\) to \(\Omega\)</h3></summary>
-<p>Define \(\lambda:[-1,1]\to[0,\infty)\) by
-<span class="math">
-\[
-\lambda(t):=\frac{2}{\pi}\int_{|t|}^{1}\operatorname{arctanh}\left(\sin\frac{\pi s}{2}\right)ds,
-\]
-</span>
-and let
-<span class="math">\[
-D:=\{ w\in\mathbb{C}\,\,\colon\,\,|\mathrm{Re}(w)|\lt 1,\,\,|\mathrm{Im}(w)|\lt\lambda(\mathrm{Re}(w)) \}.
-\]</span></p>
-<div class="callout callout-lemma" id="lemma-0"><div class="callout-title">Lemma 0</div>
-<ol>
-<li>The function \(\lambda\) is continuous, even, positive on \((-1,1)\), vanishes at \(\pm1\), and satisfies \(\lambda''(t)=-\sec\frac{\pi t}{2}\lt0\) on \((-1,1)\).</li>
-<li>As \(\delta\searrow0\),
-<span class="math">\[
-\lambda(1-\delta)=\frac2\pi\,\delta\log\frac1\delta+O(\delta).
-\]</span></li>
-<li>The conformal map \(F\) of the unit disc \(\mathbb{D}\) onto \(D\) with \(F(0)=0\) and \(F'(0)\gt0\) extends to a homeomorphism of \(\overline{\mathbb D}\) onto \(\overline D\), and satisfies \(F\big(e^{i\varepsilon\pi(1-t)/2}\big)=t+i\varepsilon\lambda(t)\) for \(t\in[-1,1]\) and \(\varepsilon\in\{-1,1\}\).</li>
-</ol></div>
-<details class="fig" open><summary><b>Figure 1: the domain \(D\)</b></summary>
-<div class="figure" id="fig-1"></div>
-</details>
-<p>Since \(\lambda\) is concave and bounded, \(D\) is a bounded convex domain, so the map \(F\) in <a href="#lemma-0">Lemma 0</a> exists and is unique by the Riemann mapping theorem, and extends to \(\overline{\mathbb D}\) by Carathéodory&rsquo;s theorem. <a href="#lemma-0">Lemma 0</a> is proved in <a href="#appendix-properties-of-the-function">Appendix: Properties of the function \(F\)</a>.</p>
 <p>Until <a href="#the-equality-case">The equality case</a>, we assume that \(K\) is a polytope; the general case of <a href="#eq-1">(1)</a> follows by a standard approximation argument.
 Let \(b_1,\dots, b_{m}\) be nonzero, pairwise nonproportional vectors such that
 <span class="math">\[
 	K=\{ x \in \mathbb{R}^{d}\,\colon\,|\langle b_{j},x \rangle| \leq 1\quad\forall\, 1\leq j\leq m \}.
 \]</span>
-Then \(K^{\circ}=\operatorname{conv}\{\pm b_j\}\). Replacing the interval \([-1,1]\) by the domain \(D\), whose intersection with \(\mathbb{R}\) is \((-1,1)\), we define
+Then \(K^{\circ}=\operatorname{conv}\{\pm b_j\}\).</p>
+<p>The idea is to replace the interval \([-1,1]\) by a domain \(D\subset\mathbb{C}\) containing it. The specific domain is chosen only in <a href="#from-k-to-the-cube-to-the-torus">From \(K\) to the cube to the torus</a>; in this section we only assume that \(D\) is a bounded open set such that</p>
+<p id="D1" style="margin-left:1.5rem"><b>(D1)</b> \(D\) contains the segment \((-1,1)\) and is symmetric with respect to the real axis, that is, \(\bar w\in D\) for every \(w\in D\).</p>
+<p>For \(t\in[-1,1]\), the vertical slice \(\{s\in\mathbb{R}\colon t+is\in\overline D\}\) is compact, nonempty and symmetric, so we may define
+<span class="math">\[
+	\lambda(t):=\max\{\mathrm{Im}\,w\,\colon\,w\in\overline D,\ \mathrm{Re}\,w=t\},\qquad t\in[-1,1].
+\]</span>
+Then \(-\lambda(t)\le\mathrm{Im}\,w\le\lambda(t)\) for every \(w\in\overline D\) with \(\mathrm{Re}\,w=t\), and \(\lambda>0\) on \((-1,1)\), since \(D\) is open and contains \((-1,1)\). In words, the graph of \(\lambda\) over \((-1,1)\) is the upper boundary arc of \(D\). We assume further that</p>
+<p id="D2" style="margin-left:1.5rem"><b>(D2)</b> \(\lambda\) is real-analytic on \((-1,1)\) and is not affine; that is, the upper boundary arc of \(D\) over \((-1,1)\) is real-analytic and is not a line segment.</p>
+<p>We define
 <span class="math">\[
 	\Omega :=\{ z\in \mathbb{C}^{d}\,\,\colon\,\, \langle b_{j},z \rangle \in D \quad \forall\,1\leq j\leq m\}.
 \]</span>
-The set \(\Omega\) is convex and open, \(\Omega\cap\mathbb{R}^d=\operatorname{int}K\), and \(\mathrm{Re}\,z\in K\) for every \(z\in\overline\Omega\). 
-Since \(\lambda\) is even,
+If \(x\in K\), \(y\in\mathbb{R}^d\) and \(x+iy\in\overline\Omega\), then \(\langle b_j,x+iy\rangle\in\overline D\) for all \(j\) by continuity, so
 <span id="eq-2"></span><span class="math">\[
-	x+iy\in\overline\Omega\iff|\langle b_j,y\rangle|\le\lambda(\langle b_j,x\rangle)\quad\forall\,1\leq j\leq m.\tag{2}
-\]</span></p>
+	x+iy\in\overline\Omega\implies|\langle b_j,y\rangle|\le\lambda(\langle b_j,x\rangle)\quad\forall\,1\leq j\leq m.\tag{2}
+\]</span>
+For the domain \(D\) chosen later, which is convex, <a href="#eq-2">(2)</a> is an equivalence, but only the implication is used.</p>
 <p>For \(J\subseteq[m] := \{1,\dots,m\}\), define a linear map \(B_J:\mathbb{R}^d\to \mathbb{R}^{J}\) by
 <span class="math">\[
 	(B_{J}x)_{j}=\langle b_{j},x \rangle ,\qquad j\in J, \qquad x \in \mathbb{R}^d,
@@ -207,17 +193,17 @@ and define
 <span class="math">\[
 	K_{J,\varepsilon}:=\left\{x\in K\,\,\colon\,\,y_{J,\varepsilon}(x)\in\overline\Omega_x\right\}.
 \]</span>
-If \(x\in K_{J,\varepsilon}\), then \(y_{J,\varepsilon}(x)\) is the vertex of \(\overline\Omega_x\) at which the inequalities in <a href="#eq-2">(2)</a> for \(j\in J\) are equalities.
+If \(x\in K_{J,\varepsilon}\), then \(y_{J,\varepsilon}(x)\) is a point of \(\overline\Omega_x\) at which the inequalities in <a href="#eq-2">(2)</a> for \(j\in J\) are equalities. For the domain \(D\) chosen later, \(\overline\Omega_x\) is a polytope and \(y_{J,\varepsilon}(x)\) is one of its vertices.
 </p>
 <p>
-The left panel of Figure 2 below illustrates these definitions. The point \(x\) (in black) can be moved around inside the set \(K\). The set \(\overline\Omega_x\) is drawn in grey. The dashed lines are the lines \(\langle b_j,y\rangle=\pm\lambda(\langle b_j,x\rangle)\), \(1\le j\le m\). The colored points are \(y_{J,\varepsilon}(x)\) for various values of \(J\) (represented by different colors) and \(\varepsilon\) (represented by sign labels). Each point \(y_{J,\varepsilon}(x)\) is filled if \(x\in K_{J,\varepsilon}\) and hollow otherwise.
+The left panel of Figure 1 below illustrates these definitions, for the domain \(D\) of <a href="#lemma-0">Lemma 0</a>. The point \(x\) (in black) can be moved around inside the set \(K\). The set \(\overline\Omega_x\) is drawn in grey. The dashed lines are the lines \(\langle b_j,y\rangle=\pm\lambda(\langle b_j,x\rangle)\), \(1\le j\le m\). The colored points are \(y_{J,\varepsilon}(x)\) for various values of \(J\) (represented by different colors) and \(\varepsilon\) (represented by sign labels). Each point \(y_{J,\varepsilon}(x)\) is filled if \(x\in K_{J,\varepsilon}\) and hollow otherwise.
 </p>
 <p id="simplex-decomposition">For \(J\in \mathcal{J}\) and \(\varepsilon \in \{ -1,1 \}^{J}\), write \(\Delta_{J,\varepsilon}\) for the simplex
 <span class="math">\[
 	\Delta_{J,\varepsilon}:=\operatorname{conv} \left(  \{0\}\cup \{\varepsilon_{j}b_{j}\}_{j\in J}\right)\subset K^{\circ}.
 \]</span>
-The right panel of Figure 2 shows \(K^{\circ}\) and the simplices \(\Delta_{J,\varepsilon}\) with \(x\in K_{J,\varepsilon}\), each drawn in the colour of \(J\) and marked \(\varepsilon\). Clicking a point \(y_{J,\varepsilon}(x)\) in the left panel, or a simplex in the right panel, highlights the lines defining \(y_{J,\varepsilon}(x)\) and outlines \(\Delta_{J,\varepsilon}\) (dashed if \(x\notin K_{J,\varepsilon}\)).</p>
-<details class="fig" open><summary><b>Figure 2: the vertices \(y_{J,\varepsilon}(x)\) and the simplices \(\Delta_{J,\varepsilon}\)</b></summary>
+The right panel of Figure 1 shows \(K^{\circ}\) and the simplices \(\Delta_{J,\varepsilon}\) with \(x\in K_{J,\varepsilon}\), each drawn in the colour of \(J\) and marked \(\varepsilon\). Clicking a point \(y_{J,\varepsilon}(x)\) in the left panel, or a simplex in the right panel, highlights the lines defining \(y_{J,\varepsilon}(x)\) and outlines \(\Delta_{J,\varepsilon}\) (dashed if \(x\notin K_{J,\varepsilon}\)).</p>
+<details class="fig" open><summary><b>Figure 1: the vertices \(y_{J,\varepsilon}(x)\) and the simplices \(\Delta_{J,\varepsilon}\)</b></summary>
 <div class="figure interactive" id="fig-3"></div>
 </details>
 <div class="callout callout-lemma" id="lemma-1"><div class="callout-title">Lemma 1</div><p>The sets
@@ -237,7 +223,7 @@ By <a href="#eq-2">(2)</a> and the definition of \(\overline\Omega_x\), we have
 <span class="math">\[
 	\langle \xi,y'\rangle\le\sum_{j\in J}\alpha_j\lambda(\langle b_j,x\rangle)=\langle\xi,y\rangle, \qquad y' \in \overline\Omega_x,
 \]</span>
-with equality if and only if \(\langle b_j,y'\rangle=\varepsilon_j\lambda(\langle b_j,x\rangle)\) for all \(j\in J\), that is, if and only if \(y'=y\). So \(y\) is the unique maximizer of \(\langle\xi,\cdot\rangle\) on \(\overline\Omega_x\), that is, \(\xi\) lies in the interior of the normal cone of \(\overline\Omega_x\) at \(y\). Since the normal cones of \(\overline\Omega_x\) at distinct points have disjoint interiors,
+with equality if and only if \(\langle b_j,y'\rangle=\varepsilon_j\lambda(\langle b_j,x\rangle)\) for all \(j\in J\), that is, if and only if \(y'=y\). So \(y_{J,\varepsilon}(x)\) is the unique maximizer of \(\langle\xi,\cdot\rangle\) on \(\overline\Omega_x\). Since \(\xi\in\operatorname{int}\Delta_{J',\varepsilon'}\) as well, the same holds for \(y_{J',\varepsilon'}(x)\) if also \(x\in K_{J',\varepsilon'}\). Hence
 <span id="eq-4"></span><span class="math">\[
 	y_{J,\varepsilon}(x)=y_{J',\varepsilon'}(x)\tag{4}
 \]</span>
@@ -248,14 +234,14 @@ If \(J=J'\), then \(\varepsilon\ne\varepsilon'\), and since \(\lambda>0\) on \((
 <span class="math">\[
 	G(q):=\sum_{j\in J}c_j\varepsilon_j\lambda(q_j)-\varepsilon'_l\lambda\Big(\sum_{j\in J}c_jq_j\Big)=\langle b_l,y_{J,\varepsilon}(x)-y_{J',\varepsilon'}(x)\rangle=0.
 \]</span>
-Since \(b_l\) is not proportional to \(b_j\) for any \(j\neq l\), at least two coefficients \(c_{j_1},c_{j_2}\) are nonzero. Hence, by <a href="#lemma-0">Lemma 0</a>,
+For \(x\in\operatorname{int}K\), all the arguments \(q_j\) and \(\sum_{j\in J}c_jq_j=\langle b_l,x\rangle\) of \(\lambda\) lie in \((-1,1)\), so by <a href="#D2">(D2)</a>, \(G\) is real-analytic on the convex open set \(B_J(\operatorname{int}K)\). Since \(b_l\) is not proportional to \(b_j\) for any \(j\neq l\), at least two coefficients \(c_{j_1},c_{j_2}\) are nonzero. If \(G\) vanished identically, then so would
 <span class="math">\[
-	\frac{\partial^{2}G}{\partial q_{j_1}\,\partial q_{j_2}}=-\varepsilon'_l c_{j_1}c_{j_2}\lambda''\Big(\sum_{j\in J}c_jq_j\Big)\neq0
+	\frac{\partial^{2}G}{\partial q_{j_1}\,\partial q_{j_2}}=-\varepsilon'_l c_{j_1}c_{j_2}\lambda''\Big(\sum_{j\in J}c_jq_j\Big),
 \]</span>
-everywhere. By the implicit function theorem, both \(\{G=0,\ \nabla G\neq0\}\) and \(\{\partial G/\partial q_{j_1}=0\}\supseteq\{\nabla G=0\}\) are locally \(C^1\) hypersurfaces, so the level set \(\{G=0\}\) has measure zero. \(\square\)</p>
+so \(\lambda''\) would vanish on the open interval \(\{\langle b_l,x\rangle\colon x\in\operatorname{int}K\}\), and hence, being real-analytic, on all of \((-1,1)\), contradicting <a href="#D2">(D2)</a>. So \(G\) does not vanish identically, and since the zero set of a real-analytic function on a connected open set that does not vanish identically is null,<sup class="fn"><a href="#fn-mityagin" id="fnref-mityagin">2</a></sup> the level set \(\{G=0\}\) has measure zero. \(\square\)</p>
 </details>
-<p>Figure 3 shows the same objects for \(d=3\).</p>
-<details class="fig" open><summary><b>Figure 3: the vertices \(y_{J,\varepsilon}(x)\) and the simplices \(\Delta_{J,\varepsilon}\) in dimension 3</b></summary>
+<p>Figure 2 shows the same objects for \(d=3\).</p>
+<details class="fig" open><summary><b>Figure 2: the vertices \(y_{J,\varepsilon}(x)\) and the simplices \(\Delta_{J,\varepsilon}\) in dimension 3</b></summary>
 <div class="figure interactive" id="fig-3d"></div>
 </details>
 <p>For \(J\in\mathcal{J}\), the linear map \((x,h)\mapsto\big(B_Jx,(B_J^{\mathsf T})^{-1}h\big)\) from \(\mathbb{R}^d\times\mathbb{R}^d\) to \(\mathbb{R}^J\times\mathbb{R}^J\) preserves volume, and \((B_J^{\mathsf T})^{-1}b_j=e_j\) for \(j\in J\), where \((e_j)_{j\in J}\) is the standard basis of \(\mathbb{R}^J\). Since the simplex \(\operatorname{conv}\big(\{0\}\cup\{\varepsilon_je_j\}_{j\in J}\big)\) has volume \(1/d!\) for every \(\varepsilon\in\{-1,1\}^J\), it follows that
@@ -269,9 +255,37 @@ everywhere. By the implicit function theorem, both \(\{G=0,\ \nabla G\neq0\}\) a
 Since the sets \(K_{J,\varepsilon}\times\Delta_{J,\varepsilon}\) are contained in \(K\times K^{\circ}\) and have pairwise null intersections by <a href="#lemma-1">Lemma 1</a>, it follows that
 <span id="eq-6"></span><span class="math">\[
 	\operatorname{Vol}(K)\operatorname{Vol}(K^{\circ})\ge\frac{1}{d!}\sum_{J\in \mathcal{J}}\sum_{\varepsilon \in \{ -1,1 \}^{J}}\operatorname{Vol}\big(B_J(K_{J,\varepsilon})\big).\tag{6}
-\]</span></p>
+\]</span>
+So far, only <a href="#D1">(D1)</a> and <a href="#D2">(D2)</a> were used. Of course, <a href="#eq-6">(6)</a> is only useful if the right-hand side can be bounded from below, and this is where the choice of \(D\) comes in.</p>
 </details>
 <details class="sec" open><summary><h3 id="from-k-to-the-cube-to-the-torus">From \(K\) to the cube to the torus</h3></summary>
+<p>We now choose \(D\). Let \(F\) be a conformal map of the unit disc \(\mathbb{D}\) onto \(D\) with \(F(0)=0\), extending continuously to \(\overline{\mathbb D}\). The computation leading to <a href="#eq-9">(9)</a> below requires that
+<span class="math">\[
+	F\big(e^{i\varepsilon\pi(1-t)/2}\big)=t+i\varepsilon\lambda(t),\qquad t\in[-1,1],\ \varepsilon\in\{-1,1\},
+\]</span>
+that is, that \(F\) maps the circle onto \(\partial D\) with \(\mathrm{Re}\,F(e^{i\theta})=1-2|\theta|/\pi\) for \(|\theta|\le\pi\). In other words, if \(\theta\) is uniformly distributed, then \(\mathrm{Re}\,F(e^{i\theta})\) is uniformly distributed on \([-1,1]\): the harmonic measure of \(D\) at \(0\), projected to the real axis, is the uniform measure on \([-1,1]\). This determines \(D\): \(\mathrm{Re}\,F\) is the harmonic extension of its boundary values, so it is determined, hence so is \(F\), since \(F(0)=0\), and hence so is \(D=F(\mathbb D)\). Computing \(F\) (see <a href="#appendix-properties-of-the-function">Appendix: Properties of the function \(F\)</a>) leads to the following definitions.</p>
+<p>Define \(\lambda:[-1,1]\to[0,\infty)\) by
+<span class="math">\[
+\lambda(t):=\frac{2}{\pi}\int_{|t|}^{1}\operatorname{arctanh}\left(\sin\frac{\pi s}{2}\right)ds,
+\]</span>
+and let
+<span class="math">\[
+D:=\{ w\in\mathbb{C}\,\,\colon\,\,|\mathrm{Re}(w)|\lt 1,\,\,|\mathrm{Im}(w)|\lt\lambda(\mathrm{Re}(w)) \}.
+\]</span>
+Since \(\lambda\) is continuous and vanishes at \(\pm1\), the vertical slice of \(\overline D\) over \(t\in[-1,1]\) is \(t+i[-\lambda(t),\lambda(t)]\), so this \(\lambda\) is the function defined from \(D\) in <a href="#complexification">Complexification: from \(K\) to \(\Omega\)</a>, and the notation is consistent.</p>
+<div class="callout callout-lemma" id="lemma-0"><div class="callout-title">Lemma 0</div>
+<ol>
+<li>The function \(\lambda\) is continuous, even, positive on \((-1,1)\), vanishes at \(\pm1\), is real-analytic on \((-1,1)\), and satisfies \(\lambda''(t)=-\sec\frac{\pi t}{2}\lt0\) on \((-1,1)\).</li>
+<li>As \(\delta\searrow0\),
+<span class="math">\[
+\lambda(1-\delta)=\frac2\pi\,\delta\log\frac1\delta+O(\delta).
+\]</span></li>
+<li>The conformal map \(F\) of \(\mathbb{D}\) onto \(D\) with \(F(0)=0\) and \(F'(0)\gt0\) extends to a homeomorphism of \(\overline{\mathbb D}\) onto \(\overline D\), and satisfies \(F\big(e^{i\varepsilon\pi(1-t)/2}\big)=t+i\varepsilon\lambda(t)\) for \(t\in[-1,1]\) and \(\varepsilon\in\{-1,1\}\).</li>
+</ol></div>
+<details class="fig" open><summary><b>Figure 3: the domain \(D\)</b></summary>
+<div class="figure" id="fig-1"></div>
+</details>
+<p>Since \(\lambda\) is concave and bounded, \(D\) is a bounded convex domain, so the map \(F\) in <a href="#lemma-0">Lemma 0</a> exists and is unique by the Riemann mapping theorem, and extends to \(\overline{\mathbb D}\) by Carathéodory&rsquo;s theorem. <a href="#lemma-0">Lemma 0</a> is proved in <a href="#appendix-properties-of-the-function">Appendix: Properties of the function \(F\)</a>. By <a href="#lemma-0">Lemma 0</a>, \(D\) satisfies <a href="#D1">(D1)</a> and <a href="#D2">(D2)</a>, so the results of the previous section apply. Moreover, \(D\cap\mathbb{R}=(-1,1)\) and \(\mathrm{Re}\,w\in[-1,1]\) for \(w\in\overline D\), so the set \(\Omega\) is convex and open, \(\Omega\cap\mathbb{R}^d=\operatorname{int}K\), and \(\mathrm{Re}\,z\in K\) for every \(z\in\overline\Omega\).</p>
 <p>Here and below, we view \(F\) and \(F^{-1}\) as maps on \(\overline{\mathbb D}^m\) and \(\overline D^m\) respectively (and similarly on \(\overline{\mathbb D}^J\) and \(\overline D^J\)), by letting them act coordinatewise. For \(J\in\mathcal{J}\), let
 <span class="math">\[
 	A_J:=F^{-1}\big(B_J(\overline\Omega)\big)\subseteq\overline{\mathbb D}^J,
@@ -452,7 +466,7 @@ By <a href="#eq-16">(16)</a>, letting \(\eta\to 0\), we get
 <span class="math">\[
 	\int_{\Omega(s)}(dd^{c}|f|^{2})^{d}\geq s^{2d}(\pi k)^{d}.
 \]</span>
-Letting \(s\uparrow 1\) along regular values and using monotone convergence gives the claim.<sup class="fn"><a href="#fn-demailly" id="fnref-demailly">2</a></sup> \(\square\)</p>
+Letting \(s\uparrow 1\) along regular values and using monotone convergence gives the claim.<sup class="fn"><a href="#fn-demailly" id="fnref-demailly">3</a></sup> \(\square\)</p>
 </details>
 </details>
 <details class="sec" open><summary><h3 id="the-equality-case">The equality case</h3></summary>
@@ -725,9 +739,9 @@ so \(w\in W\).</p>
 \]</span>
 This proves <a href="#eq-22">(22)</a>, since \(w\in W\). \(\square\)</p>
 </details>
-<div class="callout callout-theorem" id="theorem-7-lima-lima-1978-hansen-lima-hansen-lima-1981"><div class="callout-title">Theorem 6 (Lima,<sup class="fn"><a href="#fn-lima-1978" id="fnref-lima-1978">3</a></sup> Hansen–Lima<sup class="fn"><a href="#fn-hansen-lima-1981" id="fnref-hansen-lima-1981">4</a></sup>)</div><p>Let \(\|\cdot\|\) be a norm on \(\mathbb{R}^{d}\). Suppose that every triple of points has a median in \((\mathbb{R}^{d},\|\cdot\|)\). Then the unit ball of \(\|\cdot\|\) is a linear image of a Hanner polytope.</p></div>
+<div class="callout callout-theorem" id="theorem-7-lima-lima-1978-hansen-lima-hansen-lima-1981"><div class="callout-title">Theorem 6 (Lima,<sup class="fn"><a href="#fn-lima-1978" id="fnref-lima-1978">4</a></sup> Hansen–Lima<sup class="fn"><a href="#fn-hansen-lima-1981" id="fnref-hansen-lima-1981">5</a></sup>)</div><p>Let \(\|\cdot\|\) be a norm on \(\mathbb{R}^{d}\). Suppose that every triple of points has a median in \((\mathbb{R}^{d},\|\cdot\|)\). Then the unit ball of \(\|\cdot\|\) is a linear image of a Hanner polytope.</p></div>
 <details class="proof"><summary>Proof.</summary>
-<p>A normed space has the <i>3.2 intersection property</i> if any three pairwise intersecting closed balls, of arbitrary radii, have a common point.<sup class="fn"><a href="#fn-hl-sec1" id="fnref-hl-sec1">5</a></sup> Let the closed balls of radii \(\rho_i\) centered at \(x_i\), \(i=1,2,3\), intersect pairwise. Let \(m\) be a median of the centers and \(r_i=\|m-x_i\|\), so \(r_i+r_j=\|x_i-x_j\|\le\rho_i+\rho_j\). If every \(r_i\le\rho_i\), then \(m\) is a common point. Otherwise say \(t:=r_1-\rho_1>0\), so \(r_j+t\le\rho_j\) for \(j=2,3\). The point \(z=m+\frac t{r_1}(x_1-m)\) has \(\|z-x_1\|=\rho_1\) and \(\|z-x_j\|\le t+r_j\le\rho_j\). Hence the space has the 3.2 intersection property, and the conclusion is Corollary 7.4 of Hansen–Lima.<sup class="fn"><a href="#fn-hl-cor74" id="fnref-hl-cor74">6</a></sup> \(\square\)</p>
+<p>A normed space has the <i>3.2 intersection property</i> if any three pairwise intersecting closed balls, of arbitrary radii, have a common point.<sup class="fn"><a href="#fn-hl-sec1" id="fnref-hl-sec1">6</a></sup> Let the closed balls of radii \(\rho_i\) centered at \(x_i\), \(i=1,2,3\), intersect pairwise. Let \(m\) be a median of the centers and \(r_i=\|m-x_i\|\), so \(r_i+r_j=\|x_i-x_j\|\le\rho_i+\rho_j\). If every \(r_i\le\rho_i\), then \(m\) is a common point. Otherwise say \(t:=r_1-\rho_1>0\), so \(r_j+t\le\rho_j\) for \(j=2,3\). The point \(z=m+\frac t{r_1}(x_1-m)\) has \(\|z-x_1\|=\rho_1\) and \(\|z-x_j\|\le t+r_j\le\rho_j\). Hence the space has the 3.2 intersection property, and the conclusion is Corollary 7.4 of Hansen–Lima.<sup class="fn"><a href="#fn-hl-cor74" id="fnref-hl-cor74">7</a></sup> \(\square\)</p>
 </details>
 <p>By <a href="#lemma-6-medians">Lemma 5</a> and <a href="#theorem-7-lima-lima-1978-hansen-lima-hansen-lima-1981">Theorem 6</a>, if \(\operatorname{Vol}(K)\operatorname{Vol}(K^{\circ})=4^{d}/d!\), then \(K^{\circ}\), and hence \(K\), is a linear image of a Hanner polytope; conversely, induction on the dimension shows that every Hanner polytope has volume product \(4^{d}/d!\). \(\square\)</p>
 </details>
@@ -740,7 +754,7 @@ This proves <a href="#eq-22">(22)</a>, since \(w\in W\). \(\square\)</p>
 <span class="math">\[
 	\lambda'(t)=-\frac{2}{\pi}\operatorname{arctanh}\Big(\sin\frac{\pi t}{2}\Big),
 \]</span>
-and this also holds at \(t=0\), because the right-hand side is continuous and vanishes there. Differentiating again,
+and this also holds at \(t=0\), because the right-hand side is continuous and vanishes there. Since \(\sin\frac{\pi t}{2}\in(-1,1)\) for \(t\in(-1,1)\), the right-hand side is real-analytic on \((-1,1)\), and hence so is \(\lambda\). Differentiating again,
 <span class="math">\[
 	\lambda''(t)=-\frac{2}{\pi}\cdot\frac{\frac{\pi}{2}\cos\frac{\pi t}{2}}{1-\sin^{2}\frac{\pi t}{2}}=-\sec\frac{\pi t}{2}\lt0,\qquad -1\lt t \lt 1,
 \]</span>
@@ -837,7 +851,7 @@ Here we used \(d\big(d^c|z|^2\wedge(dd^c|z|^2)^{d-1}\big)=(dd^c|z|^2)^d\), valid
 <tr><td>\(J\in\mathcal{J}\)</td><td>\(I\in\mathcal{B}\)</td><td>Sets of \(d\) independent rows.</td></tr>
 <tr><td>\(B_J\)</td><td>\(B_I\)</td><td>The determinant \(D_I=|\det B_I|\) does not appear here; see the change of variables before <a href="#eq-5">(5)</a>.</td></tr>
 <tr><td>\(\varepsilon\)</td><td>\(\epsilon\)</td><td>Sign vectors.</td></tr>
-<tr><td>\(\overline\Omega_x\)</td><td>\(L_X\)</td><td>[25]. The fiber of \(\overline\Omega\) over \(x\), described by <a href="#eq-2">(2)</a>.</td></tr>
+<tr><td>\(\overline\Omega_x\)</td><td>\(L_X\)</td><td>[25]. The fiber of \(\overline\Omega\) over \(x\), constrained by <a href="#eq-2">(2)</a>.</td></tr>
 <tr><td>\(x\in K_{J,\varepsilon}\)</td><td>\((I,\epsilon)\) feasible at \(X\)</td><td>\(y_{J,\varepsilon}(x)\) is the preprint's \(Y_{I,\epsilon}(X)\), and \((I,\epsilon)\) is called feasible when \(Y_{I,\epsilon}(X)\in L_X\).</td></tr>
 <tr><td>\(\Delta_{J,\varepsilon}\)</td><td>\(T_{I,\epsilon}\)</td><td>[26].</td></tr>
 <tr><td>\(\Sigma\), \(\Sigma_x\)</td><td>\(\Sigma_X\)</td><td>The preprint defines \(\Sigma_X\) as the union of feasible simplices [26] and works with \(\int_A|\Sigma_X|\,dX\); the set \(\Sigma\subseteq K\times K^{\circ}\) and its definition <a href="#eq-19">(19)</a>, used only in the equality case, are not in the preprint.</td></tr>
@@ -861,9 +875,10 @@ Here we used \(d\big(d^c|z|^2\wedge(dd^c|z|^2)^{d-1}\big)=(dd^c|z|^2)^d\), valid
 <thead><tr><th>This note</th><th>Preprint</th><th>Remarks</th></tr></thead>
 <tbody>
 <tr><td><a href="#theorem">Theorem</a>, <a href="#eq-1">(1)</a></td><td>Theorem 1.1, [1]</td><td>The equality case is Proposition 8.4 with Lemma 2.2.</td></tr>
+<tr><td><a href="#D1">(D1)</a>, <a href="#D2">(D2)</a></td><td>&mdash;</td><td>The preprint works with the specific lens throughout; (D1) and (D2) isolate what is used up to <a href="#eq-6">(6)</a>.</td></tr>
 <tr><td><a href="#lemma-0">Lemma 0</a></td><td>Lemmas 3.1, 3.2</td><td>Up to the rotation above; the endpoint asymptotics are Lemma 3.2, [14]. The proofs of Lemma 3.1 differ: here via \(zF'(z)=\frac{8}{\pi^2}\operatorname{arctanh}z\) and the argument principle, there via convexity of the curves \(F(re^{i\theta})\).</td></tr>
 <tr><td><a href="#eq-19">(19)</a></td><td>&mdash;</td><td>The preprint takes the union of feasible simplices as the definition of \(\Sigma_X\); for a polytope, the two definitions agree (not proved in this note; see the figure of the <a href="stretching-map.html">stretching map</a>).</td></tr>
-<tr><td><a href="#lemma-1">Lemma 1</a></td><td>Proof of Proposition 6.1, Lemma 5.2</td><td>The preprint shows that extra tight constraints have probability zero on the complex side (Lemma 5.2); here this is done directly in \(x\), using \(\lambda''\neq0\).</td></tr>
+<tr><td><a href="#lemma-1">Lemma 1</a></td><td>Proof of Proposition 6.1, Lemma 5.2</td><td>The preprint shows that extra tight constraints have probability zero on the complex side (Lemma 5.2); here this is done directly in \(x\), using only that \(\lambda\) is real-analytic and not affine.</td></tr>
 <tr><td><a href="#eq-5">(5)</a></td><td>[30]</td><td>Here integrated over \(x\).</td></tr>
 <tr><td><a href="#eq-8">(8)</a>, <a href="#eq-9">(9)</a></td><td>[29]</td><td></td></tr>
 <tr><td><a href="#lemma-1">Lemma 1</a>, <a href="#eq-5">(5)</a>, <a href="#eq-6">(6)</a>, <a href="#eq-9">(9)</a></td><td>Proposition 6.1, [27]</td><td>The preprint states the identity \(S=\frac{d!}{4^d}\int_A|\Sigma_X|\,dX\); here only the inequality <a href="#eq-6">(6)</a> is recorded, and combined with <a href="#eq-9">(9)</a> in the conclusion of the proof of <a href="#eq-1">(1)</a>.</td></tr>
@@ -880,7 +895,7 @@ Here we used \(d\big(d^c|z|^2\wedge(dd^c|z|^2)^{d-1}\big)=(dd^c|z|^2)^d\), valid
 <tr><td>&mdash;</td><td>Corollaries 1.2, 1.3</td><td>Functional and entropy&ndash;transport consequences; not covered in this note.</td></tr>
 </tbody></table></div>
 </details>
-<hr><section class="footnotes"><ol><li id="fn-fmz">M. Fradelizi, M. Meyer and A. Zvavitch, <i>Volume product</i>, survey, 2023. <a href="https://arxiv.org/abs/2301.06131">arXiv:2301.06131</a>. <a href="#fnref-fmz" class="fnback">↩</a></li><!-- <li id="fn-nazarov">F. Nazarov, <i>The H&ouml;rmander proof of the Bourgain&ndash;Milman theorem</i>, in: Geometric Aspects of Functional Analysis, Lecture Notes in Math. <b>2050</b>, Springer, 2012, 335&ndash;343. <a href="https://doi.org/10.1007/978-3-642-29849-3_20">doi:10.1007/978-3-642-29849-3_20</a>. <a href="#fnref-nazarov" class="fnback">↩</a></li><li id="fn-berndtsson-pw">B. Berndtsson, <i>Bergman kernels for Paley&ndash;Wiener spaces and Nazarov&rsquo;s proof of the Bourgain&ndash;Milman theorem</i>, Pure Appl. Math. Q. <b>18</b> (2022), no. 2, 395&ndash;409. <a href="https://arxiv.org/abs/2008.00837">arXiv:2008.00837</a>. <a href="#fnref-berndtsson-pw" class="fnback">↩</a></li><li id="fn-berndtsson-kup">B. Berndtsson, <i>Complex integrals and Kuperberg&rsquo;s proof of the Bourgain&ndash;Milman theorem</i>, Adv. Math. <b>388</b> (2021), 107927. <a href="https://doi.org/10.1016/j.aim.2021.107927">doi:10.1016/j.aim.2021.107927</a>, <a href="https://arxiv.org/abs/2008.00838">arXiv:2008.00838</a>. <a href="#fnref-berndtsson-kup" class="fnback">↩</a></li> --><li id="fn-demailly">The gluing via \(\widetilde{\max}(g,h)\) followed by Stokes on \(\Omega(s)\setminus r\overline{\mathbb B}_d\) is the proof of the first comparison theorem for Lelong numbers (J.-P. Demailly, "Complex Analytic and Differential Geometry", book manuscript, version of June 21, 2012, Ch. III, Th. 7.1, p. 166), which uses \(\max(\psi-c,\varphi)\) in the same role. The regularized maximum \(\widetilde{\max}\) is Lemma 5.18 in Ch. I of the same manuscript, p. 43. <a href="https://www-fourier.ujf-grenoble.fr/~demailly/manuscripts/agbook.pdf">https://www-fourier.ujf-grenoble.fr/~demailly/manuscripts/agbook.pdf</a>. <a href="#fnref-demailly" class="fnback">↩</a></li><li id="fn-lima-1978">Å. Lima, <i>Intersection properties of balls in spaces of compact operators</i>, Ann. Inst. Fourier (Grenoble) <b>28</b> (1978), no. 3, 35–65, Theorem 1.2, (ii)\(\Leftrightarrow\)(iii): the 3.2 intersection property is equivalent to the \(R_{3,2}\)-property of p. 38, which is the existence of a median for every triple \(0,x,y\). <a href="https://doi.org/10.5802/aif.700">doi:10.5802/aif.700</a>. <a href="#fnref-lima-1978" class="fnback">↩</a></li><li id="fn-hansen-lima-1981">A. B. Hansen and Å. Lima, <i>The structure of finite dimensional Banach spaces with the 3.2. intersection property</i>, Acta Math. <b>146</b> (1981), 1–23. <a href="https://doi.org/10.1007/BF02392457">doi:10.1007/BF02392457</a>. <a href="#fnref-hansen-lima-1981" class="fnback">↩</a></li><li id="fn-hl-sec1">Hansen–Lima, Section 1, p. 1: the \(n.k.\) intersection property is defined with closed balls of arbitrary radii. The median form of the 3.2 property is their Theorem 3.6, (1)\(\Leftrightarrow\)(4), pp. 5–6, attributed there to Lima. <a href="#fnref-hl-sec1" class="fnback">↩</a></li><li id="fn-hl-cor74">Hansen–Lima, Corollary 7.4, p. 16: every finite dimensional Banach space with the 3.2.I.P. can be obtained by forming \(l_1\)- and \(l_\infty\)-sums of the real line. Deduced from the main Theorem 7.3 by Proposition 4.4 and induction. <a href="#fnref-hl-cor74" class="fnback">↩</a></li></ol></section>
+<hr><section class="footnotes"><ol><li id="fn-fmz">M. Fradelizi, M. Meyer and A. Zvavitch, <i>Volume product</i>, survey, 2023. <a href="https://arxiv.org/abs/2301.06131">arXiv:2301.06131</a>. <a href="#fnref-fmz" class="fnback">↩</a></li><li id="fn-mityagin">See, e.g., B. S. Mityagin, <i>The zero set of a real analytic function</i>, Math. Notes <b>107</b> (2020), 529&ndash;530, <a href="https://arxiv.org/abs/1512.07276">arXiv:1512.07276</a>. It can also be proved by induction on the dimension using Fubini&rsquo;s theorem. <a href="#fnref-mityagin" class="fnback">↩</a></li><!-- <li id="fn-nazarov">F. Nazarov, <i>The H&ouml;rmander proof of the Bourgain&ndash;Milman theorem</i>, in: Geometric Aspects of Functional Analysis, Lecture Notes in Math. <b>2050</b>, Springer, 2012, 335&ndash;343. <a href="https://doi.org/10.1007/978-3-642-29849-3_20">doi:10.1007/978-3-642-29849-3_20</a>. <a href="#fnref-nazarov" class="fnback">↩</a></li><li id="fn-berndtsson-pw">B. Berndtsson, <i>Bergman kernels for Paley&ndash;Wiener spaces and Nazarov&rsquo;s proof of the Bourgain&ndash;Milman theorem</i>, Pure Appl. Math. Q. <b>18</b> (2022), no. 2, 395&ndash;409. <a href="https://arxiv.org/abs/2008.00837">arXiv:2008.00837</a>. <a href="#fnref-berndtsson-pw" class="fnback">↩</a></li><li id="fn-berndtsson-kup">B. Berndtsson, <i>Complex integrals and Kuperberg&rsquo;s proof of the Bourgain&ndash;Milman theorem</i>, Adv. Math. <b>388</b> (2021), 107927. <a href="https://doi.org/10.1016/j.aim.2021.107927">doi:10.1016/j.aim.2021.107927</a>, <a href="https://arxiv.org/abs/2008.00838">arXiv:2008.00838</a>. <a href="#fnref-berndtsson-kup" class="fnback">↩</a></li> --><li id="fn-demailly">The gluing via \(\widetilde{\max}(g,h)\) followed by Stokes on \(\Omega(s)\setminus r\overline{\mathbb B}_d\) is the proof of the first comparison theorem for Lelong numbers (J.-P. Demailly, "Complex Analytic and Differential Geometry", book manuscript, version of June 21, 2012, Ch. III, Th. 7.1, p. 166), which uses \(\max(\psi-c,\varphi)\) in the same role. The regularized maximum \(\widetilde{\max}\) is Lemma 5.18 in Ch. I of the same manuscript, p. 43. <a href="https://www-fourier.ujf-grenoble.fr/~demailly/manuscripts/agbook.pdf">https://www-fourier.ujf-grenoble.fr/~demailly/manuscripts/agbook.pdf</a>. <a href="#fnref-demailly" class="fnback">↩</a></li><li id="fn-lima-1978">Å. Lima, <i>Intersection properties of balls in spaces of compact operators</i>, Ann. Inst. Fourier (Grenoble) <b>28</b> (1978), no. 3, 35–65, Theorem 1.2, (ii)\(\Leftrightarrow\)(iii): the 3.2 intersection property is equivalent to the \(R_{3,2}\)-property of p. 38, which is the existence of a median for every triple \(0,x,y\). <a href="https://doi.org/10.5802/aif.700">doi:10.5802/aif.700</a>. <a href="#fnref-lima-1978" class="fnback">↩</a></li><li id="fn-hansen-lima-1981">A. B. Hansen and Å. Lima, <i>The structure of finite dimensional Banach spaces with the 3.2. intersection property</i>, Acta Math. <b>146</b> (1981), 1–23. <a href="https://doi.org/10.1007/BF02392457">doi:10.1007/BF02392457</a>. <a href="#fnref-hansen-lima-1981" class="fnback">↩</a></li><li id="fn-hl-sec1">Hansen–Lima, Section 1, p. 1: the \(n.k.\) intersection property is defined with closed balls of arbitrary radii. The median form of the 3.2 property is their Theorem 3.6, (1)\(\Leftrightarrow\)(4), pp. 5–6, attributed there to Lima. <a href="#fnref-hl-sec1" class="fnback">↩</a></li><li id="fn-hl-cor74">Hansen–Lima, Corollary 7.4, p. 16: every finite dimensional Banach space with the 3.2.I.P. can be obtained by forming \(l_1\)- and \(l_\infty\)-sums of the real line. Deduced from the main Theorem 7.3 by Proposition 4.4 and induction. <a href="#fnref-hl-cor74" class="fnback">↩</a></li></ol></section>
 <hr>
 <section class="footnotes" id="license"><h4>License and attribution</h4>
 <p>If you use material from this note, please cite it as: Rotem Assouline, <i>Notes on OpenAI's proof of the symmetric Mahler conjecture</i>, <a href="https://rotemassouline.github.io/symmetric-mahler/">https://rotemassouline.github.io/symmetric-mahler/</a>.</p>
