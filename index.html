@@ -22,10 +22,11 @@ body { max-width: 52rem; margin: 2.5rem auto; padding: 0 1.25rem; font: 19px/1.5
 h1 { font-size: 1.8rem; line-height: 1.2; margin-bottom: .25rem; }
 h3 { margin-top: 2.4rem; font-size: 1.5rem; line-height: 1.25; }
 p { margin: .8rem 0; }
-.math { display: block; overflow-x: auto; overflow-y: hidden; margin: .6rem 0;
-  /* scroll shadows: an equation too wide for the screen shows a soft shadow on the side that can be scrolled */
-  background: linear-gradient(to right, var(--math-bg) 40%, transparent) left / 1.5rem 100% no-repeat local,
-              linear-gradient(to left, var(--math-bg) 40%, transparent) right / 1.5rem 100% no-repeat local,
+.math { display: block; overflow-x: auto; overflow-y: hidden; margin: .6rem 0; }
+/* scroll shadows: an equation too wide for the screen (class set by fitMath) shows a soft shadow on the side that can be scrolled */
+.math.scrolls {
+  background: linear-gradient(to right, var(--math-bg) 50%, transparent) left / 2rem 100% no-repeat local,
+              linear-gradient(to left, var(--math-bg) 50%, transparent) right / 2rem 100% no-repeat local,
               radial-gradient(farthest-side at 0 50%, rgba(0,0,0,.18), transparent) left / .6rem 100% no-repeat scroll,
               radial-gradient(farthest-side at 100% 50%, rgba(0,0,0,.18), transparent) right / .6rem 100% no-repeat scroll; }
 .callout { --math-bg: var(--background-secondary); background: var(--background-secondary); padding: .6rem 1rem; margin: 1.2rem 0; border-radius: 4px; }
@@ -116,29 +117,16 @@ mjx-assistive-mml { max-width: 100%; }
   summary::-webkit-details-marker { display: none; }
   summary:has(+ .figure.interactive)::after { content: "(Interactive figure, omitted from the printed version.)"; display: block; font-style: italic; color: var(--text-muted); }
   #fig-1, #fig-phi { break-inside: avoid; }
-  .math { overflow: visible; background: none; }
+  .math, .math.scrolls { overflow: visible; background: none; }
   h3 { break-after: avoid; }
   details.sec > summary > h3::before { content: none; }
 }
 </style>
 <script>
-function keepRows(math) {
-  if (!math.display || !math.root) return;
-  let rows = false;
-  math.root.walkTree((node) => { if (node.isKind('mtable') && node.childNodes.length > 1) rows = true; });
-  // a huge maximal width turns off both the breaking and the squeezing of columns to the screen width
-  if (rows) math.root.attributes.set('maxwidth', '1000em');
-}
 window.MathJax = {
   tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']], tags: 'none', processEscapes: true,
          packages: {'[+]': ['ams', 'boldsymbol']} },
-  options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], ignoreHtmlClass: 'figure',
-    renderActions: {
-      // multi-row displays (aligned, cases) are not line-broken, which would scramble their columns; they scroll instead
-      keepRows: [25, (doc) => { for (const math of doc.math) keepRows(math); }, (math) => keepRows(math)]
-    } },
-  // MathJax 4 breaks long display equations to fit narrow screens; the TeX font keeps the look of MathJax 3
-  output: { font: 'mathjax-tex', displayOverflow: 'linebreak' },
+  options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], ignoreHtmlClass: 'figure' },
   chtml: { scale: 1 }
 };
 </script>
@@ -163,7 +151,7 @@ let closedBeforePrint = [];
 window.addEventListener('beforeprint', () => { closedBeforePrint = [...document.querySelectorAll('details:not([open])')]; closedBeforePrint.forEach((d) => d.open = true); });
 window.addEventListener('afterprint', () => { closedBeforePrint.forEach((d) => d.open = false); });
 </script>
-<script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 </head>
 <body>
 <h1>Notes on OpenAI's proof of the symmetric Mahler conjecture</h1>
@@ -2058,7 +2046,25 @@ const G = (function(){
 })();
 
 }
-window.MathJax.startup = { pageReady: function(){ return MathJax.startup.defaultPageReady().then(runFigures); } };
+// Display equations slightly too wide for the screen are shrunk to fit (to at most 75% of the normal size);
+// wider ones are shrunk to 75% and scroll horizontally. Equations are never broken across lines.
+function fitMath(scope){
+  for (const m of (scope || document).querySelectorAll('.math')){
+    const c = m.querySelector('mjx-container'); if (!c) continue;
+    c.style.fontSize = ''; m.classList.remove('scrolls');
+    if (!m.clientWidth) continue;
+    // re-measure a few times: equation numbers and spacing do not scale exactly with the font size
+    for (let f = 1, i = 0; i < 4 && f > 0.75 && m.scrollWidth > m.clientWidth + 1; i++){
+      f = Math.max(0.75, Math.floor(100 * f * m.clientWidth / m.scrollWidth) / 100);
+      c.style.fontSize = f * 100 + '%';
+    }
+    m.classList.toggle('scrolls', m.scrollWidth > m.clientWidth + 1);
+  }
+}
+let fitTimer;
+window.addEventListener('resize', () => { clearTimeout(fitTimer); fitTimer = setTimeout(() => fitMath(), 150); });
+document.addEventListener('toggle', (e) => { if (e.target.open) fitMath(e.target); }, true);
+window.MathJax.startup = { pageReady: function(){ return MathJax.startup.defaultPageReady().then(() => { fitMath(); runFigures(); }); } };
 setTimeout(runFigures, 6000); // offline fallback: figures without typeset labels
 </script>
 </body>
