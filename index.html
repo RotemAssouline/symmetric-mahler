@@ -2051,12 +2051,15 @@ const G = (function(){
 function fitMath(scope){
   for (const m of (scope || document).querySelectorAll('.math')){
     const c = m.querySelector('mjx-container'); if (!c) continue;
-    c.style.fontSize = ''; m.classList.remove('scrolls');
+    // MathJax sets its own font-size on the container (to match the text's x-height); scale relative to it
+    if (c.dataset.baseSize === undefined) c.dataset.baseSize = c.style.fontSize;
+    const base = parseFloat(c.dataset.baseSize) || 100;
+    c.style.fontSize = c.dataset.baseSize; m.classList.remove('scrolls');
     if (!m.clientWidth) continue;
     // re-measure a few times: equation numbers and spacing do not scale exactly with the font size
     for (let f = 1, i = 0; i < 4 && f > 0.75 && m.scrollWidth > m.clientWidth + 1; i++){
       f = Math.max(0.75, Math.floor(100 * f * m.clientWidth / m.scrollWidth) / 100);
-      c.style.fontSize = f * 100 + '%';
+      c.style.fontSize = base * f + '%';
     }
     m.classList.toggle('scrolls', m.scrollWidth > m.clientWidth + 1);
   }
