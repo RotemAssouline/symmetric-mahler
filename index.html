@@ -15,21 +15,14 @@
 <title>Notes on OpenAI's proof of the symmetric Mahler conjecture</title>
 <style>
 :root { --text-normal:#1f2328; --text-muted:#6b7280; --background-primary:#ffffff; --background-secondary:#f5f5f7;
-        --background-modifier-border:#d9dde3; --interactive-accent:#5b6bd5; --callout:#2a78d6;
-        --math-bg: var(--background-primary); }
+        --background-modifier-border:#d9dde3; --interactive-accent:#5b6bd5; --callout:#2a78d6; }
 html { font-size: 18px; background: var(--background-primary); color: var(--text-normal); }
 body { max-width: 52rem; margin: 2.5rem auto; padding: 0 1.25rem; font: 19px/1.55 Georgia, "Times New Roman", serif; }
 h1 { font-size: 1.8rem; line-height: 1.2; margin-bottom: .25rem; }
 h3 { margin-top: 2.4rem; font-size: 1.5rem; line-height: 1.25; }
 p { margin: .8rem 0; }
-.math { display: block; overflow-x: auto; overflow-y: hidden; margin: .6rem 0; }
-/* scroll shadows: an equation too wide for the screen (class set by fitMath) shows a soft shadow on the side that can be scrolled */
-.math.scrolls {
-  background: linear-gradient(to right, var(--math-bg) 50%, transparent) left / 2rem 100% no-repeat local,
-              linear-gradient(to left, var(--math-bg) 50%, transparent) right / 2rem 100% no-repeat local,
-              radial-gradient(farthest-side at 0 50%, rgba(0,0,0,.18), transparent) left / .6rem 100% no-repeat scroll,
-              radial-gradient(farthest-side at 100% 50%, rgba(0,0,0,.18), transparent) right / .6rem 100% no-repeat scroll; }
-.callout { --math-bg: var(--background-secondary); background: var(--background-secondary); padding: .6rem 1rem; margin: 1.2rem 0; border-radius: 4px; }
+.math { display: block; position: relative; overflow-x: auto; overflow-y: hidden; margin: .6rem 0; }
+.callout { background: var(--background-secondary); padding: .6rem 1rem; margin: 1.2rem 0; border-radius: 4px; }
 .callout-title { font-weight: bold; margin-bottom: .3rem; }
 .callout-definition { --callout: #1baf7a; }
 .callout-theorem { --callout: #eb6834; }
@@ -80,7 +73,8 @@ details.sec > summary > h3::before { content: "\25BE"; position: absolute; left:
 details.sec:not([open]) > summary > h3::before { content: "\25B8"; }
 .print-btn { font: .85rem system-ui, sans-serif; padding: .2rem .7rem; cursor: pointer; }
 .footnotes a { overflow-wrap: anywhere; }
-mjx-assistive-mml { max-width: 100%; }
+/* MathJax's hidden copy of each formula for screen readers must not widen the page */
+mjx-assistive-mml { max-width: 100%; overflow: hidden; }
 @media (max-width: 600px) {
   body { margin: 1.25rem auto; padding: 0 1rem; }
   h1 { font-size: 1.6rem; }
@@ -117,7 +111,7 @@ mjx-assistive-mml { max-width: 100%; }
   summary::-webkit-details-marker { display: none; }
   summary:has(+ .figure.interactive)::after { content: "(Interactive figure, omitted from the printed version.)"; display: block; font-style: italic; color: var(--text-muted); }
   #fig-1, #fig-phi { break-inside: avoid; }
-  .math, .math.scrolls { overflow: visible; background: none; }
+  .math { overflow: visible; }
   h3 { break-after: avoid; }
   details.sec > summary > h3::before { content: none; }
 }
@@ -2046,22 +2040,31 @@ const G = (function(){
 })();
 
 }
-// Display equations slightly too wide for the screen are shrunk to fit (to at most 75% of the normal size);
-// wider ones are shrunk to 75% and scroll horizontally. Equations are never broken across lines.
+// Formulas too wide for the screen are shrunk to fit, to at most 75% of the normal size; display equations
+// that are still too wide scroll horizontally. Formulas are never broken across lines.
+function shrink(c, fits){
+  // MathJax sets its own font-size on the container (to match the text's x-height); scale relative to it
+  if (c.dataset.baseSize === undefined) c.dataset.baseSize = c.style.fontSize;
+  const base = parseFloat(c.dataset.baseSize) || 100;
+  c.style.fontSize = c.dataset.baseSize;
+  // re-measure a few times: equation numbers and spacing do not scale exactly with the font size
+  for (let f = 1, i = 0, r; i < 4 && f > 0.75 && (r = fits()) < 1; i++){
+    f = Math.max(0.75, Math.floor(100 * f * r) / 100);
+    c.style.fontSize = base * f + '%';
+  }
+}
 function fitMath(scope){
-  for (const m of (scope || document).querySelectorAll('.math')){
-    const c = m.querySelector('mjx-container'); if (!c) continue;
-    // MathJax sets its own font-size on the container (to match the text's x-height); scale relative to it
-    if (c.dataset.baseSize === undefined) c.dataset.baseSize = c.style.fontSize;
-    const base = parseFloat(c.dataset.baseSize) || 100;
-    c.style.fontSize = c.dataset.baseSize; m.classList.remove('scrolls');
-    if (!m.clientWidth) continue;
-    // re-measure a few times: equation numbers and spacing do not scale exactly with the font size
-    for (let f = 1, i = 0; i < 4 && f > 0.75 && m.scrollWidth > m.clientWidth + 1; i++){
-      f = Math.max(0.75, Math.floor(100 * f * m.clientWidth / m.scrollWidth) / 100);
-      c.style.fontSize = base * f + '%';
-    }
-    m.classList.toggle('scrolls', m.scrollWidth > m.clientWidth + 1);
+  for (const c of (scope || document).querySelectorAll('mjx-container')){
+    if (c.closest('svg, .figure')) continue;
+    const m = c.closest('.math');
+    if (m){ if (m.clientWidth) shrink(c, () => m.clientWidth / m.scrollWidth); continue; }
+    // inline formula: compare with the width of the line
+    const blk = c.parentElement.closest('p, li, td, th, dd, summary, div');
+    if (!blk || !blk.clientWidth) continue;
+    const cs = getComputedStyle(blk), avail = blk.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+    // (measure the inner mjx-math: the container itself can be narrower than its content)
+    const inner = c.querySelector('mjx-math') || c;
+    if (avail > 0) shrink(c, () => avail / Math.max(inner.getBoundingClientRect().width, c.getBoundingClientRect().width));
   }
 }
 let fitTimer;
