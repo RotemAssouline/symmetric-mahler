@@ -147,7 +147,7 @@ window.addEventListener('afterprint', () => { closedBeforePrint.forEach((d) => d
 <!-- Complex-analytic methods were used earlier by Nazarov<sup class="fn"><a href="#fn-nazarov" id="fnref-nazarov">2</a></sup> and by Berndtsson<sup class="fn"><a href="#fn-berndtsson-pw" id="fnref-berndtsson-pw">3</a></sup><sup class="fn">,</sup><sup class="fn"><a href="#fn-berndtsson-kup" id="fnref-berndtsson-kup">4</a></sup> to prove the Bourgain&ndash;Milman inequality. --></p>
 <!-- <p>See also <a href="https://chessapig.github.io/Mahler">Elliot Kienzle's page</a> for an explanation of the proof from a symplectic point of view.</p> -->
 <h3>Table of contents</h3>
-<nav class="toc"><ul><li><a href="#statement">Statement</a></li><li><a href="#complexification">Complexification: from \(K\) to \(\Omega\)</a></li><li><a href="#from-k-to-the-cube-to-the-torus">From \(K\) to the cube to the torus</a></li><li><a href="#from-the-torus-to-the-polydisc-to-omega">From the torus to the polydisc to \(\Omega\)</a></li><li><a href="#the-equality-case">The equality case</a></li><li><a href="#appendix-properties-of-the-function">Appendix: Properties of the domain \(D\) and where they are used</a></li><li><a href="#appendix-complex-geometry">Appendix: Complex-geometric background</a></li><li><a href="#appendix-correspondence">Appendix: Correspondence with the original preprint</a></li></ul></nav>
+<nav class="toc"><ul><li><a href="#statement">Statement</a></li><li><a href="#complexification">Complexification: from \(K\) to \(\Omega\)</a></li><li><a href="#from-k-to-the-cube-to-the-torus">From \(K\) to the cube to the torus</a></li><li><a href="#from-the-torus-to-the-polydisc-to-omega">From the torus to the polydisc to \(\Omega\)</a></li><li><a href="#the-equality-case">The equality case</a></li><li><a href="#appendix-properties-of-the-function">Appendix: Properties of the domain \(D\)</a></li><li><a href="#appendix-complex-geometry">Appendix: Complex-geometric background</a></li><li><a href="#appendix-correspondence">Appendix: Correspondence with the original preprint</a></li></ul></nav>
 <details class="sec" open><summary><h3 id="statement">Statement</h3></summary>
 <p>A <i>convex body</i> is a compact convex set \(K\subset\mathbb{R}^d\) with nonempty interior; it is <i>symmetric</i> if \(K=-K\). Recall that the polar body \(K^\circ\) of a convex body \(K\) containing the origin in its interior is defined by \[K^{\circ}:=\{y\in\mathbb{R}^d\colon\langle x,y\rangle\le1\ \ \forall\,x\in K\}.\]
 </p>
@@ -181,7 +181,7 @@ D:=\{ w\in\mathbb{C}\,\,\colon\,\,|\mathrm{Re}(w)|\lt 1,\,\,|\mathrm{Im}(w)|\lt\
 <details class="fig" open><summary><b>Figure 1: the domain \(D\)</b></summary>
 <div class="figure" id="fig-1"></div>
 </details>
-<p>Since \(\lambda\) is concave and bounded, \(D\) is a bounded convex domain, so the map \(F\) in <a href="#lemma-0">Lemma 0</a> exists and is unique by the Riemann mapping theorem, and extends to \(\overline{\mathbb D}\) by Carathéodory&rsquo;s theorem. <a href="#lemma-0">Lemma 0</a> is proved in <a href="#appendix-properties-of-the-function">Appendix: Properties of the domain \(D\) and where they are used</a>, which also lists where in the proof each property of \(D\) is used.</p>
+<p>Since \(\lambda\) is concave and bounded, \(D\) is a bounded convex domain, so the map \(F\) in <a href="#lemma-0">Lemma 0</a> exists and is unique by the Riemann mapping theorem, and extends to \(\overline{\mathbb D}\) by Carathéodory&rsquo;s theorem. <a href="#lemma-0">Lemma 0</a> is proved in <a href="#appendix-properties-of-the-function">Appendix: Properties of the domain \(D\)</a>, which also lists where in the proof each property of \(D\) is used.</p>
 <p>Until <a href="#the-equality-case">The equality case</a>, we assume that \(K\) is a polytope; the general case of <a href="#eq-1">(1)</a> follows by a standard approximation argument.
 Let \(b_1,\dots, b_{m}\) be nonzero, pairwise nonproportional vectors such that
 <span class="math">\[
@@ -752,7 +752,7 @@ This proves <a href="#eq-22">(22)</a>, since \(w\in W\). \(\square\)</p>
 </details>
 <p>By <a href="#lemma-6-medians">Lemma 5</a> and <a href="#theorem-7-lima-lima-1978-hansen-lima-hansen-lima-1981">Theorem 6</a>, if \(\operatorname{Vol}(K)\operatorname{Vol}(K^{\circ})=4^{d}/d!\), then \(K^{\circ}\), and hence \(K\), is a linear image of a Hanner polytope; conversely, induction on the dimension shows that every Hanner polytope has volume product \(4^{d}/d!\). \(\square\)</p>
 </details>
-<details class="sec" open><summary><h3 id="appendix-properties-of-the-function">Appendix: Properties of the domain \(D\) and where they are used</h3></summary>
+<details class="sec" open><summary><h3 id="appendix-properties-of-the-function">Appendix: Properties of the domain \(D\)</h3></summary>
 <details class="proof" id="proof-of-lemma-0" open><summary>Proof of <a href="#lemma-0">Lemma 0</a>.</summary>
 <p>Define an analytic function \(F\) on the unit disc \(\mathbb{D}\subset \mathbb{C}\) by
 <span class="math">\[
