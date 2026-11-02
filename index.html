@@ -847,7 +847,7 @@ The matrix \(\big(\partial^2u/\partial z_j\partial\bar z_k\big)\) is the <i>comp
 <span id="eq-A2"></span><span class="math">\[
 (dd^cu)^d=d!\,\det\Big(\frac{\partial^2u}{\partial z_j\partial\bar z_k}\Big)\,dV.\tag{A2}
 \]</span>
-For \(u=|z|^2\) the matrix is the identity, which gives \((dd^c|z|^2)^d=d!\,dV\). In particular, if \(r\mathbb{B}_d\) is the ball of radius \(r\) in \(\mathbb{C}^d\), whose volume is \(\pi^dr^{2d}/d!\), then
+For \(u=|z|^2\) the matrix is the identity, which gives \((dd^c|z|^2)^d=d!\,dV\). In particular, let \(\mathbb{B}_d\) be the open Euclidean unit ball of \(\mathbb{C}^d\); since the ball \(r\mathbb{B}_d\) of radius \(r\) has volume \(\pi^dr^{2d}/d!\),
 <span id="eq-A3"></span><span class="math">\[
 \int_{r\mathbb{B}_d}(dd^c|z|^2)^d=(\pi r^2)^d.\tag{A3}
 \]</span></p>
@@ -859,7 +859,7 @@ Finally, recall that \(dV_J=\bigwedge_{j\in J}\frac i2dw_j\wedge d\bar w_j\) is 
 <span id="eq-A5"></span><span class="math">\[
 (dd^c|w|^2)^d=d!\sum_{J\in{[m]\choose d}}dV_J\qquad\text{on }\mathbb{C}^m.\tag{A5}
 \]</span>
-Combining <a href="#eq-A4">(A4)</a> and <a href="#eq-A5">(A5)</a> with \(\pi_J\circ f\) in place of \(\Psi\) gives \((dd^c|f|^2)^d=d!\sum_J|\det(Df)_J|^2\,dV\) for holomorphic \(f\colon U\to\mathbb{C}^m\), the Cauchy&ndash;Binet formula.</p>
+Combining <a href="#eq-A4">(A4)</a> and <a href="#eq-A5">(A5)</a> with \(\pi_J\circ f\) in place of \(\Psi\) gives \((dd^c|f|^2)^d=d!\sum_J|\det(Df)_J|^2\,dV\) for holomorphic \(f\colon U\to\mathbb{C}^m\), where \((Df)_J\) is the \(d\times d\) minor of the complex Jacobian \(Df\) with rows in \(J\); this is the Cauchy&ndash;Binet formula.</p>
 <p><b>Plurisubharmonic functions.</b> A smooth real function \(u\) on an open set of \(\mathbb{C}^d\) is <i>plurisubharmonic</i> (psh) if its complex Hessian is positive semidefinite at every point; equivalently, \(\sum u_{j\bar k}\xi_j\bar\xi_k\ge0\) for all \(\xi\in\mathbb{C}^d\), that is, the restriction of \(u\) to every complex line is subharmonic. Facts used:</p>
 <ol>
 <li>(Positivity.) If \(u\) is smooth and psh, then \(\det(u_{j\bar k})\ge0\), so \((dd^cu)^d\ge0\) by <a href="#eq-A2">(A2)</a>.</li>
@@ -875,7 +875,7 @@ by the Cauchy&ndash;Schwarz inequality. Also \(|f|^2\) is psh, since \(\sum_{j,k
 <span id="eq-A6"></span><span class="math">\[
 \int_{\Omega(s)}d\beta=\int_{\partial\Omega(s)}\beta.\tag{A6}
 \]</span>
-Let \(\mathbb{B}_d\) be the open Euclidean unit ball of \(\mathbb{C}^d\), and let \(r>0\) be such that \(r\overline{\mathbb{B}}_d\subset\Omega(s)\). The same holds on the region \(\Omega(s)\setminus r\overline{\mathbb{B}}_d\), whose oriented boundary is \(\partial\Omega(s)-\partial(r\mathbb{B}_d)\), where \(\partial(r\mathbb{B}_d)\) is oriented as the boundary of the ball.</p>
+Let \(r>0\) be such that \(r\overline{\mathbb{B}}_d\subset\Omega(s)\). The same holds on the region \(\Omega(s)\setminus r\overline{\mathbb{B}}_d\), whose oriented boundary is \(\partial\Omega(s)-\partial(r\mathbb{B}_d)\), where \(\partial(r\mathbb{B}_d)\) is oriented as the boundary of the ball.</p>
 <p>For a smooth positive function \(\varrho\), the restriction of \(d\varrho\) to a level set \(\{\varrho=\text{const}\}\) vanishes, so
 <span id="eq-A7"></span><span class="math">\[
 \big(d\log\varrho\wedge d^c\log\varrho\big)\big|_{\{\varrho=\text{const}\}}=0,\tag{A7}
@@ -885,7 +885,6 @@ which is why \(dd^c\log|f|^2\) and \(|f|^{-2}dd^c|f|^2\) agree on \(\partial\Ome
 \int_{\partial(r\mathbb{B}_d)}d^c|z|^2\wedge(dd^c|z|^2)^{d-1}=\int_{r\mathbb{B}_d}(dd^c|z|^2)^d=(\pi r^2)^d.\tag{A8}
 \]</span>
 Here we used \(d\big(d^c|z|^2\wedge(dd^c|z|^2)^{d-1}\big)=(dd^c|z|^2)^d\), valid because \(dd^c\) of anything is closed.</p>
-<p><b>Other notation.</b> \(\mathbb{B}_d\) denotes the open Euclidean unit ball of \(\mathbb{C}^d\); \(|\cdot|\) is the Hermitian norm; \(\overline{\Omega(s)}\) is the closure; \(g=O(1)\) means that \(g\) is bounded near the point in question; and \(Df\) is the complex Jacobian of a holomorphic map \(f\), with \((Df)_J\) its \(d\times d\) minor with rows in \(J\).</p>
 </details>
 <details class="sec" open><summary><h3 id="appendix-correspondence">Appendix: Correspondence with the original preprint</h3></summary>
 <p>The tables below match the notation and numbered statements of this note with those of the <a href="https://github.com/openai/math/blob/main/preprints/The-symmetric-Mahler-conjecture-and-its-equality-cases-September-22-2026/paper.pdf">original preprint</a> (version of September 22, 2026). Equation numbers of the preprint are written as [8], [26], etc., to distinguish them from equation numbers <a href="#eq-1">(1)</a>&ndash;<a href="#eq-29">(29)</a> of this note.</p>
