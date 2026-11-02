@@ -847,7 +847,7 @@ The matrix \(\big(\partial^2u/\partial z_j\partial\bar z_k\big)\) is the <i>comp
 <span id="eq-A2"></span><span class="math">\[
 (dd^cu)^d=d!\,\det\Big(\frac{\partial^2u}{\partial z_j\partial\bar z_k}\Big)\,dV.\tag{A2}
 \]</span>
-For \(u=|z|^2\) the matrix is the identity, which gives \((dd^c|z|^2)^d=d!\,dV\). In particular, if \(r\mathbb{B}_d\) is the ball of radius \(r\) in \(\mathbb{C}^d\), whose volume is \(\pi^dr^{2d}/d!\), then
+For \(u=|z|^2\) the matrix is the identity, which gives \((dd^c|z|^2)^d=d!\,dV\). In particular, let \(\mathbb{B}_d\) be the open Euclidean unit ball of \(\mathbb{C}^d\); since the ball \(r\mathbb{B}_d\) of radius \(r\) has volume \(\pi^dr^{2d}/d!\),
 <span id="eq-A3"></span><span class="math">\[
 \int_{r\mathbb{B}_d}(dd^c|z|^2)^d=(\pi r^2)^d.\tag{A3}
 \]</span></p>
@@ -859,23 +859,24 @@ Finally, recall that \(dV_J=\bigwedge_{j\in J}\frac i2dw_j\wedge d\bar w_j\) is 
 <span id="eq-A5"></span><span class="math">\[
 (dd^c|w|^2)^d=d!\sum_{J\in{[m]\choose d}}dV_J\qquad\text{on }\mathbb{C}^m.\tag{A5}
 \]</span>
-Combining <a href="#eq-A4">(A4)</a> and <a href="#eq-A5">(A5)</a> with \(\pi_J\circ f\) in place of \(\Psi\) gives \((dd^c|f|^2)^d=d!\sum_J|\det(Df)_J|^2\,dV\) for holomorphic \(f\colon U\to\mathbb{C}^m\), the Cauchy&ndash;Binet formula.</p>
+Combining <a href="#eq-A4">(A4)</a> and <a href="#eq-A5">(A5)</a> with \(\pi_J\circ f\) in place of \(\Psi\) gives \((dd^c|f|^2)^d=d!\sum_J|\det(Df)_J|^2\,dV\) for holomorphic \(f\colon U\to\mathbb{C}^m\), where \((Df)_J\) is the \(d\times d\) minor of the complex Jacobian \(Df\) with rows in \(J\); this is the Cauchy&ndash;Binet formula.</p>
 <p><b>Plurisubharmonic functions.</b> A smooth real function \(u\) on an open set of \(\mathbb{C}^d\) is <i>plurisubharmonic</i> (psh) if its complex Hessian is positive semidefinite at every point; equivalently, \(\sum u_{j\bar k}\xi_j\bar\xi_k\ge0\) for all \(\xi\in\mathbb{C}^d\), that is, the restriction of \(u\) to every complex line is subharmonic. Facts used:</p>
 <ol>
 <li>(Positivity.) If \(u\) is smooth and psh, then \(\det(u_{j\bar k})\ge0\), so \((dd^cu)^d\ge0\) by <a href="#eq-A2">(A2)</a>.</li>
-<li>(Holomorphic images.) If \(f\) is holomorphic and nonvanishing on an open set, then \(\log|f|^2\) is smooth and psh there: for a vector \(\xi\), writing \(a=Df\,\xi\), its Levi form is
+<li>(Holomorphic images.) If \(f\) is holomorphic and nonvanishing on an open set, then \(\log|f|^2\) is smooth and psh there: for a vector \(\xi\), writing \(a=Df\,\xi\),
 <span class="math">\[
-\frac{|f|^2|a|^2-|\langle a,f\rangle|^2}{|f|^4}\ \ge0
+\sum_{j,k}\frac{\partial^2\log|f|^2}{\partial z_j\partial\bar z_k}\,\xi_j\bar\xi_k=\frac{|f|^2|a|^2-|\langle a,f\rangle|^2}{|f|^4}\ \ge0
 \]</span>
-by the Cauchy&ndash;Schwarz inequality. Also \(|f|^2\) is psh (its Levi form is \(|a|^2\)), and \(c\log|z|^2+\text{const}\) is psh on \(\mathbb{C}^d\setminus\{0\}\) for \(c\ge0\), as the case \(f(z)=z\).</li>
+by the Cauchy&ndash;Schwarz inequality. Also \(|f|^2\) is psh, since \(\sum_{j,k}\frac{\partial^2|f|^2}{\partial z_j\partial\bar z_k}\,\xi_j\bar\xi_k=|a|^2\), and \(c\log|z|^2+\text{const}\) is psh on \(\mathbb{C}^d\setminus\{0\}\) for \(c\ge0\), as the case \(f(z)=z\).</li>
 <li>(Convex functions of psh functions.) If \(u_1,u_2\) are smooth and psh and \(\chi\colon\mathbb{R}^2\to\mathbb{R}\) is smooth, convex, and nondecreasing in each variable, then \(\chi(u_1,u_2)\) is smooth and psh. Indeed, by the chain rule its complex Hessian is \(\sum_a\chi_a\,\mathrm{Hess}_{\mathbb{C}}u_a+\sum_{a,b}\chi_{ab}\,\partial u_a\otimes\bar\partial u_b\), where \(\chi_a\ge0\) by monotonicity and \((\chi_{ab})\ge0\) by convexity.</li>
-<li>(Regularized maximum.) Besides being smooth, convex and nondecreasing in each variable, \(\widetilde{\max}\) is only required to satisfy \(\widetilde{\max}(x,y)=\max(x,y)\) when \(|x-y|\ge1\); so \(\widetilde{\max}(g,h)=g\) where \(g\ge h+1\), and \(=h\) where \(h\ge g+1\). Such a function is obtained by convolving \(\max\) with a smooth, nonnegative, radially symmetric function of integral \(1\) supported in the disc of radius \(1/2\): convexity and monotonicity are preserved, and if \(|x-y|\ge1\), then \(\max\) is affine on the disc of radius \(1/2\) about \((x,y)\), so its value at \((x,y)\) is unchanged. See also the footnote at the end of the proof of <a href="#lemma-2">Lemma 2</a>.</li>
+<li>(Regularized maximum.) There is a smooth function \(\widetilde{\max}\colon\mathbb{R}^2\to\mathbb{R}\), convex and nondecreasing in each variable, with \(\widetilde{\max}(x,y)=\max(x,y)\) whenever \(|x-y|\ge1\). Indeed, let \(\rho\) be a smooth, nonnegative, radially symmetric function on \(\mathbb{R}^2\) of integral \(1\) supported in the disc of radius \(1/2\), and set \(\widetilde{\max}=\max*\rho\). This is smooth, and it is convex and nondecreasing in each variable, being an average of translates of \(\max\), which has these properties. If \(|x-y|\ge1\), then for \((x',y')\) in the disc of radius \(1/2\) about \((x,y)\) we have \(|(x'-y')-(x-y)|\le\sqrt2/2<1\), so \(x'-y'\) has the same sign as \(x-y\) and \(\max\) is affine on that disc; since \(\rho\) is symmetric, averaging an affine function against it returns its value at the center, so \(\widetilde{\max}(x,y)=\max(x,y)\). Consequently, by item 3, if \(u_1,u_2\) are smooth and psh, then \(\widetilde{\max}(u_1,u_2)\) is smooth and psh, equals \(u_1\) where \(u_1\ge u_2+1\), and equals \(u_2\) where \(u_2\ge u_1+1\). This is used in the proof of <a href="#lemma-2">Lemma 2</a>; see also the footnote there.</li>
 </ol>
-<p><b>Stokes' theorem and regular values.</b> Let \(f\colon \Omega\to\mathbb{C}^m\) be smooth, and let \(s>0\). If \(s\) is a <i>regular value</i> of \(|f|\), meaning that \(d|f|\neq0\) at every point of \(\{|f|=s\}\), then \(\{|f|\le s\}\) is a manifold with boundary \(\partial\Omega(s)=\{|f|=s\}\), which is compact when \(\Omega(s)\) is relatively compact in \(\Omega\) and \(\{|f|\le s\}\) is closed in \(\Omega\). By Sard's theorem, almost every \(s\) is a regular value. Boundaries carry the orientation induced from \(\mathbb{C}^d\) (outward normal first), so for a smooth \((2d-1)\)-form \(\beta\) on a neighborhood of \(\overline{\Omega(s)}\),
+<p><b>Stokes' theorem and regular values.</b> Let \(\Omega\subseteq\mathbb{C}^d\) be open, let \(f\colon \Omega\to\mathbb{C}^m\) be smooth, let \(s>0\), and let \(\Omega(s):=\{z\in\Omega\colon|f(z)|\lt s\}\), as in <a href="#lemma-2">Lemma 2</a>. If \(s\) is a <i>regular value</i> of \(|f|\), meaning that \(d|f|\neq0\) at every point of \(\{|f|=s\}\), then \(\{|f|\le s\}\) is a manifold with boundary \(\partial\Omega(s)=\{|f|=s\}\), which is compact when \(\Omega(s)\) is relatively compact in \(\Omega\) and \(\{|f|\le s\}\) is closed in \(\Omega\). By Sard's theorem, almost every \(s\) is a regular value. Boundaries carry the orientation induced from \(\mathbb{C}^d\) (outward normal first), so for a smooth \((2d-1)\)-form \(\beta\) on a neighborhood of \(\overline{\Omega(s)}\),
 <span id="eq-A6"></span><span class="math">\[
 \int_{\Omega(s)}d\beta=\int_{\partial\Omega(s)}\beta.\tag{A6}
 \]</span>
-The same holds on the region \(\Omega(s)\setminus r\overline{\mathbb{B}}_d\) between two such boundaries, whose oriented boundary is \(\partial\Omega(s)\) minus \(\partial(r\mathbb{B}_d)\), where \(\partial(r\mathbb{B}_d)\) is oriented as the boundary of the ball. This is how <a href="#eq-A6">(A6)</a> is used to compare the two boundary integrals in the proof. Two further remarks about forms restricted to a hypersurface \(\{\varrho=\text{const}\}\): the restriction of \(d\varrho\) to the hypersurface vanishes, so
+Let \(r>0\) be such that \(r\overline{\mathbb{B}}_d\subset\Omega(s)\). The same holds on the region \(\Omega(s)\setminus r\overline{\mathbb{B}}_d\), whose oriented boundary is \(\partial\Omega(s)-\partial(r\mathbb{B}_d)\), where \(\partial(r\mathbb{B}_d)\) is oriented as the boundary of the ball.</p>
+<p>For a smooth positive function \(\varrho\), the restriction of \(d\varrho\) to a level set \(\{\varrho=\text{const}\}\) vanishes, so
 <span id="eq-A7"></span><span class="math">\[
 \big(d\log\varrho\wedge d^c\log\varrho\big)\big|_{\{\varrho=\text{const}\}}=0,\tag{A7}
 \]</span>
@@ -884,11 +885,10 @@ which is why \(dd^c\log|f|^2\) and \(|f|^{-2}dd^c|f|^2\) agree on \(\partial\Ome
 \int_{\partial(r\mathbb{B}_d)}d^c|z|^2\wedge(dd^c|z|^2)^{d-1}=\int_{r\mathbb{B}_d}(dd^c|z|^2)^d=(\pi r^2)^d.\tag{A8}
 \]</span>
 Here we used \(d\big(d^c|z|^2\wedge(dd^c|z|^2)^{d-1}\big)=(dd^c|z|^2)^d\), valid because \(dd^c\) of anything is closed.</p>
-<p><b>Other notation.</b> \(\mathbb{B}_d\) denotes the open Euclidean unit ball of \(\mathbb{C}^d\); \(|\cdot|\) is the Hermitian norm; \(\overline{\Omega(s)}\) is the closure; \(g=O(1)\) means that \(g\) is bounded near the point in question; and \(Df\) is the complex Jacobian of a holomorphic map \(f\), with \((Df)_J\) its \(d\times d\) minor with rows in \(J\).</p>
 </details>
 <details class="sec" open><summary><h3 id="appendix-correspondence">Appendix: Correspondence with the original preprint</h3></summary>
 <p>The tables below match the notation and numbered statements of this note with those of the <a href="https://github.com/openai/math/blob/main/preprints/The-symmetric-Mahler-conjecture-and-its-equality-cases-September-22-2026/paper.pdf">original preprint</a> (version of September 22, 2026). Equation numbers of the preprint are written as [8], [26], etc., to distinguish them from equation numbers <a href="#eq-1">(1)</a>&ndash;<a href="#eq-29">(29)</a> of this note.</p>
-<p>The main difference in conventions is that the preprint's lens is the domain \(D\) of this note rotated by a quarter turn: the preprint uses \(F_{\mathrm{pre}}(z)=\frac{8}{\pi^2}\sum_j\frac{(-1)^jz^{2j+1}}{(2j+1)^2}\), so that \(F(z)=-iF_{\mathrm{pre}}(iz)\) and \(D=-iD_{\mathrm{pre}}\). Accordingly, the preprint's lens is \(\{v+it\colon|t|\le1,\ |v|\le\lambda(t)\}\), and a point of \(\mathbb{C}^d\) is written there as \(Y+iX\) rather than \(x+iy\).</p>
+<p>The preprint's lens is the domain \(D\) of this note rotated by a quarter turn: the preprint uses \(F_{\mathrm{pre}}(z)=\frac{8}{\pi^2}\sum_j\frac{(-1)^jz^{2j+1}}{(2j+1)^2}\), so that \(F(z)=-iF_{\mathrm{pre}}(iz)\) and \(D=-iD_{\mathrm{pre}}\). Accordingly, the preprint's lens is \(\{v+it\colon|t|\le1,\ |v|\le\lambda(t)\}\), and a point of \(\mathbb{C}^d\) is written there as \(Y+iX\) rather than \(x+iy\).</p>
 <p><b>Notation</b></p>
 <div class="legend-wrap"><table class="legend">
 <thead><tr><th>This note</th><th>Preprint</th><th>Remarks</th></tr></thead>
