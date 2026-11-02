@@ -863,9 +863,9 @@ Combining <a href="#eq-A4">(A4)</a> and <a href="#eq-A5">(A5)</a> with \(\pi_J\c
 <p><b>Plurisubharmonic functions.</b> A smooth real function \(u\) on an open set of \(\mathbb{C}^d\) is <i>plurisubharmonic</i> (psh) if its complex Hessian is positive semidefinite at every point; equivalently, \(\sum u_{j\bar k}\xi_j\bar\xi_k\ge0\) for all \(\xi\in\mathbb{C}^d\), that is, the restriction of \(u\) to every complex line is subharmonic. Facts used:</p>
 <ol>
 <li>(Positivity.) If \(u\) is smooth and psh, then \(\det(u_{j\bar k})\ge0\), so \((dd^cu)^d\ge0\) by <a href="#eq-A2">(A2)</a>.</li>
-<li>(Holomorphic images.) If \(f\) is holomorphic and nonvanishing on an open set, then \(\log|f|^2\) is smooth and psh there: for a vector \(\xi\), writing \(a=Df\,\xi\), its Levi form is
+<li>(Holomorphic images.) If \(f\) is holomorphic and nonvanishing on an open set, then \(\log|f|^2\) is smooth and psh there: for a vector \(\xi\), writing \(a=Df\,\xi\),
 <span class="math">\[
-\frac{|f|^2|a|^2-|\langle a,f\rangle|^2}{|f|^4}\ \ge0
+\sum_{j,k}\frac{\partial^2\log|f|^2}{\partial z_j\partial\bar z_k}\,\xi_j\bar\xi_k=\frac{|f|^2|a|^2-|\langle a,f\rangle|^2}{|f|^4}\ \ge0
 \]</span>
 by the Cauchy&ndash;Schwarz inequality. Also \(|f|^2\) is psh (its Levi form is \(|a|^2\)), and \(c\log|z|^2+\text{const}\) is psh on \(\mathbb{C}^d\setminus\{0\}\) for \(c\ge0\), as the case \(f(z)=z\).</li>
 <li>(Convex functions of psh functions.) If \(u_1,u_2\) are smooth and psh and \(\chi\colon\mathbb{R}^2\to\mathbb{R}\) is smooth, convex, and nondecreasing in each variable, then \(\chi(u_1,u_2)\) is smooth and psh. Indeed, by the chain rule its complex Hessian is \(\sum_a\chi_a\,\mathrm{Hess}_{\mathbb{C}}u_a+\sum_{a,b}\chi_{ab}\,\partial u_a\otimes\bar\partial u_b\), where \(\chi_a\ge0\) by monotonicity and \((\chi_{ab})\ge0\) by convexity.</li>
