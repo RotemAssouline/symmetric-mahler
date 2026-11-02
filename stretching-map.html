@@ -77,6 +77,13 @@ table.legend td:first-child, table.legend td:nth-child(2) { white-space: nowrap;
   .math { overflow: visible; }
   h3 { break-after: avoid; }
 }
+/* touch screens: a figure only captures swipes after it has been tapped, so the page can still be scrolled over it */
+.fig-touch-hint { display: none; font-size: .8rem; color: var(--text-muted); margin: 0 0 .3rem; }
+@media (pointer: coarse) {
+  .fig-touch-hint { display: block; }
+  [data-touch-gate]:not(.fig-active) canvas, [data-touch-gate]:not(.fig-active) svg { touch-action: pan-x pan-y pinch-zoom !important; }
+  [data-touch-gate].fig-active { outline: 2px solid var(--interactive-accent); outline-offset: 4px; border-radius: 4px; }
+}
 </style>
 <script>
 window.MathJax = {
@@ -93,7 +100,7 @@ window.MathJax = {
 <p>This figure accompanies <a href="index.html">Notes on OpenAI's proof of the symmetric Mahler conjecture</a>, whose notation and <a href="index.html#license">license</a> apply. Let \(K\) be a polytope and \(x\in K\). Call \(h\in K^{\circ}\) <i>tight</i> at \(x+iy\), \(y\in \bar\Omega_x\), if \(\langle h,y\rangle=\lambda(\langle h,x\rangle)\), that is, if equality holds in <a href="index.html#eq-17">(17)</a>. Then the fiber \(\Sigma_x\) is the union of the simplices \(\Delta_{J,\varepsilon}\) with \(x\in K_{J,\varepsilon}\) (this is not proved in the note).</p>
 <p>The fiber \(\Sigma_x\) can also be seen as the image of a piecewise linear map. The polar of \(\bar\Omega_x\) is \(\bar\Omega_x^{\circ}=\operatorname{conv}\{v/\lambda(\langle v,x\rangle)\colon v\in\{\pm b_l\}\}\). A vertex \(y\) of \(\bar\Omega_x\) corresponds to the facet of \(\bar\Omega_x^{\circ}\) whose vertices are the points \(v/\lambda(\langle v,x\rangle)\) with \(v\) tight at \(x+iy\). For almost every \(x\), by the argument in the proof of <a href="index.html#lemma-1">Lemma 1</a>, exactly \(d\) vectors \(v\) are tight at each vertex \(y\): for \(x\in K_{J,\varepsilon}\) and \(y=y_{J,\varepsilon}(x)\) these are \(v=\varepsilon_jb_j\), \(j\in J\). Then the map that is linear on the cone over this facet and sends \(v/\lambda(\langle v,x\rangle)\) to \(v\) stretches the cone onto \(\Delta_{J,\varepsilon}\), and these maps agree on common faces of the cones. The figure shows the case \(d=2\).</p>
 <p><b>Figure: the stretching map from \(\bar\Omega_x^{\circ}\) to \(\Sigma_x\)</b></p>
-<div class="figure interactive" id="fig-5"></div>
+<div class="figure interactive" id="fig-5" data-touch-gate></div>
 <script>
 // shim for the figures' require('obsidian'): renderMath / finishRenderMath via MathJax
 window.require = function(name){
@@ -485,6 +492,34 @@ onTheme(()=>{ palette(); buildLegend(); render(); });
 }
 window.MathJax.startup = { pageReady: function(){ return MathJax.startup.defaultPageReady().then(runFigures); } };
 setTimeout(runFigures, 6000); // offline fallback: figures without typeset labels
+</script>
+<script>
+// Touch screens: figures ignore touches until tapped, so swiping over a figure scrolls the page.
+// Tapping a figure activates it (swipes then rotate/drag it); tapping anywhere outside deactivates it.
+(function(){
+  const figs=[...document.querySelectorAll('[data-touch-gate]')];
+  const surface=(t)=>t.closest&&t.closest('canvas, svg')&&!t.closest('button, input, select, a, label');
+  const IDLE='Tap the figure to interact with it.', ACTIVE='Interacting: tap outside the figure to scroll.';
+  let start=null;
+  for (const f of figs){
+    const hint=document.createElement('div'); hint.className='fig-touch-hint'; hint.textContent=IDLE; f.prepend(hint);
+    for (const type of ['pointerdown','pointermove','pointerup','touchstart','touchmove','mousedown']){
+      f.addEventListener(type,(e)=>{
+        if (f.classList.contains('fig-active')||!surface(e.target)) return;
+        const touch=e.pointerType==='touch'||type.startsWith('touch')||(type==='mousedown'&&start);
+        if (!touch) return;
+        if (type==='pointerdown') start={x:e.clientX,y:e.clientY,f};
+        if (type==='pointerup'&&start&&start.f===f&&Math.hypot(e.clientX-start.x,e.clientY-start.y)<10){
+          for (const g of figs) if (g!==f) deactivate(g);
+          f.classList.add('fig-active'); hint.textContent=ACTIVE; }
+        if (type==='pointerup') setTimeout(()=>{ start=null; },500);
+        e.stopPropagation();
+      },true);
+    }
+  }
+  function deactivate(f){ f.classList.remove('fig-active'); const h=f.querySelector(':scope > .fig-touch-hint'); if (h) h.textContent=IDLE; }
+  document.addEventListener('pointerdown',(e)=>{ for (const f of figs) if (f.classList.contains('fig-active')&&!f.contains(e.target)) deactivate(f); },true);
+})();
 </script>
 </body>
 </html>
