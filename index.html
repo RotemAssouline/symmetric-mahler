@@ -115,12 +115,18 @@ mjx-assistive-mml { max-width: 100%; overflow: hidden; }
   h3 { break-after: avoid; }
   details.sec > summary > h3::before { content: none; }
 }
-/* touch screens: a figure only captures swipes after it has been tapped, so the page can still be scrolled over it */
-.fig-touch-hint { display: none; font-size: .8rem; color: var(--text-muted); margin: 0 0 .3rem; }
+/* touch screens: an inactive figure is covered by a veil that lets swipes scroll the page; tapping the veil activates the figure */
+.fig-veil, .fig-done-layer { display: none; }
 @media (pointer: coarse) {
-  .fig-touch-hint { display: block; }
-  [data-touch-gate]:not(.fig-active) canvas, [data-touch-gate]:not(.fig-active) svg { touch-action: pan-x pan-y pinch-zoom !important; }
+  [data-touch-gate] { position: relative; margin-left: 8%; margin-right: 8%; }
+  [data-touch-gate]:not(.fig-active) > .fig-veil { display: block; position: absolute; inset: 0; z-index: 20; cursor: pointer;
+    background: color-mix(in srgb, var(--background-primary) 35%, transparent); border-radius: 4px; }
+  .fig-veil-label { position: sticky; top: 45vh; margin: 0 auto; width: max-content; max-width: 90%; text-align: center;
+    padding: .45rem .9rem; border-radius: 999px; background: var(--interactive-accent); color: #fff; font-size: .9rem; box-shadow: 0 2px 8px rgba(0,0,0,.25); }
   [data-touch-gate].fig-active { outline: 2px solid var(--interactive-accent); outline-offset: 4px; border-radius: 4px; }
+  [data-touch-gate].fig-active > .fig-done-layer { display: block; position: absolute; inset: 0; z-index: 20; pointer-events: none; }
+  .fig-done { position: sticky; top: .5rem; float: right; pointer-events: auto; margin: .25rem; padding: .3rem .8rem; border-radius: 999px;
+    border: none; background: var(--interactive-accent); color: #fff; font-size: .85rem; box-shadow: 0 2px 8px rgba(0,0,0,.25); }
 }
 </style>
 <script>
@@ -2081,30 +2087,20 @@ window.MathJax.startup = { pageReady: function(){ return MathJax.startup.default
 setTimeout(runFigures, 6000); // offline fallback: figures without typeset labels
 </script>
 <script>
-// Touch screens: figures ignore touches until tapped, so swiping over a figure scrolls the page.
-// Tapping a figure activates it (swipes then rotate/drag it); tapping anywhere outside deactivates it.
+// Touch screens: an inactive figure is covered by a veil (shown only for coarse pointers), so swipes over it scroll the page.
+// Tapping the veil activates the figure; "Done" or a tap outside the figure deactivates it.
 (function(){
   const figs=[...document.querySelectorAll('[data-touch-gate]')];
-  const surface=(t)=>t.closest&&t.closest('canvas, svg')&&!t.closest('button, input, select, a, label');
-  const IDLE='Tap the figure to interact with it.', ACTIVE='Interacting: tap outside the figure to scroll.';
-  let start=null;
+  const deactivate=(f)=>f.classList.remove('fig-active');
   for (const f of figs){
-    const hint=document.createElement('div'); hint.className='fig-touch-hint'; hint.textContent=IDLE; f.prepend(hint);
-    for (const type of ['pointerdown','pointermove','pointerup','touchstart','touchmove','mousedown']){
-      f.addEventListener(type,(e)=>{
-        if (f.classList.contains('fig-active')||!surface(e.target)) return;
-        const touch=e.pointerType==='touch'||type.startsWith('touch')||(type==='mousedown'&&start);
-        if (!touch) return;
-        if (type==='pointerdown') start={x:e.clientX,y:e.clientY,f};
-        if (type==='pointerup'&&start&&start.f===f&&Math.hypot(e.clientX-start.x,e.clientY-start.y)<10){
-          for (const g of figs) if (g!==f) deactivate(g);
-          f.classList.add('fig-active'); hint.textContent=ACTIVE; }
-        if (type==='pointerup') setTimeout(()=>{ start=null; },500);
-        e.stopPropagation();
-      },true);
-    }
+    const veil=document.createElement('div'); veil.className='fig-veil';
+    veil.innerHTML='<div class="fig-veil-label">Tap to interact with the figure</div>';
+    veil.addEventListener('click',()=>{ figs.forEach(deactivate); f.classList.add('fig-active'); });
+    const layer=document.createElement('div'); layer.className='fig-done-layer';
+    layer.innerHTML='<button type="button" class="fig-done">Done</button>';
+    layer.querySelector('button').addEventListener('click',()=>deactivate(f));
+    f.append(veil,layer);
   }
-  function deactivate(f){ f.classList.remove('fig-active'); const h=f.querySelector(':scope > .fig-touch-hint'); if (h) h.textContent=IDLE; }
   document.addEventListener('pointerdown',(e)=>{ for (const f of figs) if (f.classList.contains('fig-active')&&!f.contains(e.target)) deactivate(f); },true);
 })();
 </script>
