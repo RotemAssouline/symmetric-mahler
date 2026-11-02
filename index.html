@@ -144,8 +144,16 @@ mjx-assistive-mml { max-width: 100%; overflow: hidden; }
 .mob-fig .mob-dock .mfig-controls input[type=range] { width: 5rem; }
 .mob-legend { margin-top: .4rem; font-size: .9em; }
 .mob-legend > summary { cursor: pointer; color: var(--text-muted); }
-#fig-2.mob-fig .f3-three { grid-template-columns: 1fr 1fr !important; gap: .3rem; }
-#fig-2.mob-fig .f3-vlabel { font-size: .75em; left: .3rem; top: .2rem; }
+/* one large picture with the others as tappable thumbnails below it (mob-thumbs) or inset in its corner (mob-pip) */
+.mob-fig .mob-thumbs { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: .35rem; }
+.mob-fig .mob-thumbs > * { min-width: 0; }
+.mob-fig .mob-thumbs > .mob-main { grid-column: 1 / -1; order: -1; }
+.mob-fig .mob-thumbs > :not(.mob-main) .f3-vlabel { font-size: .6em; left: .2rem; top: .1rem; }
+.mob-fig .mob-pip { display: block !important; position: relative; }
+.mob-fig .mob-pip > :not(.mob-main) { position: absolute; right: .4rem; bottom: .4rem; width: 34%; z-index: 2; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,.3); }
+.mob-fig .mob-pip > :not(.mob-main) .t3-vlabel { font-size: .55em; left: .25rem; top: .1rem; }
+.mob-fig .mob-pip > :not(.mob-main) .t3-vlabel.r, .mob-fig .mob-pip > :not(.mob-main) .t3-legend { display: none; }
+.mob-fig .mob-dock { font-size: .9em; }
 </style>
 <script>
 window.MathJax = {
@@ -2147,25 +2155,45 @@ setTimeout(runFigures, 6000); // offline fallback: figures without typeset label
     new MutationObserver(sync).observe(host,{subtree:true,childList:true,attributes:true,attributeFilter:['aria-pressed']});
     sync(); return wrap;
   }
+  // one large picture, the others small; tapping a small picture swaps it with the large one
+  function mainAndThumbs(container, kind){
+    const items=[...container.children]; if (items.length<2) return;
+    container.classList.add(kind); items[0].classList.add('mob-main');
+    for (const it of items){ let st=null;
+      it.addEventListener('pointerdown',(e)=>{ st=[e.clientX,e.clientY]; },true);
+      it.addEventListener('pointerup',(e)=>{ if (st&&!it.classList.contains('mob-main')&&Math.hypot(e.clientX-st[0],e.clientY-st[1])<10){
+          items.forEach(o=>o.classList.toggle('mob-main',o===it)); } st=null; },true); }
+  }
+  // `initial`: the data-body of the body shown at first, for figures whose buttons do not mark the current one
+  const buttonsToSelect=(row,label,initial)=>{ const bh=document.createElement('span'); bh.style.display='contents';
+    const bs=[...row.querySelectorAll('button')]; bs.forEach(b=>bh.appendChild(b)); row.firstElementChild.after(bh);
+    const w=toSelect(bh,label); if (initial){ const i=bs.findIndex(b=>b.dataset.body===initial); if (i>=0){ w.firstChild.selectedIndex=i; } } };
+  // Figure 2 (d = 2)
+  const f2=document.getElementById('fig-3'), two=f2&&f2.querySelector('[data-id="pane2"] .mfig-two');
+  if (two){ f2.classList.add('mob-fig');
+    const row=f2.querySelector('[data-id="pane2"] .mfig-controls'); buttonsToSelect(row,'Body','hexagon');
+    const hint=row.querySelector('.k'); if (hint) hint.textContent='Drag x in the primal picture; tap the small picture to enlarge it.';
+    mainAndThumbs(two,'mob-thumbs'); }
   // Figure 3 (d = 3)
   const f3=document.getElementById('fig-3d');
   if (f3){ const views=f3.querySelector('.t3-views'), x=f3.querySelector('.t3-x');
     if (views&&x){ const pane=views.parentNode, body=x.previousElementSibling, extra=x.nextElementSibling;
       f3.classList.add('mob-fig');
-      const bh=document.createElement('span'); bh.style.display='contents'; [...body.querySelectorAll('button')].forEach(b=>bh.appendChild(b)); body.appendChild(bh);
-      toSelect(bh,'Body');
+      buttonsToSelect(body,'Body');
       const dock=document.createElement('div'); dock.className='mob-dock';
-      dock.append(body,x,extra); pane.appendChild(dock); } }
+      dock.append(body,x,extra); pane.appendChild(dock);
+      mainAndThumbs(views,'mob-pip'); } }
   // Figure 5
   const f5=document.getElementById('fig-2');
   if (f5){ f5.classList.add('mob-fig');
     const rows=f5.querySelectorAll('.mfig-controls');
-    if (rows[0]){ const bh=document.createElement('span'); bh.style.display='contents'; [...rows[0].querySelectorAll('button')].forEach(b=>bh.appendChild(b)); rows[0].appendChild(bh); toSelect(bh,'Body'); }
+    if (rows[0]) buttonsToSelect(rows[0],'Body');
     const jb=f5.querySelector('[data-id="jbtns"]'); if (jb) toSelect(jb,'Basis J');
     // the long legend goes below the pictures, folded
     const leg=f5.querySelector('[data-id="leg"]'), grid=f5.querySelector('.f3-three');
     if (leg&&grid){ const d=document.createElement('details'); d.className='mob-legend'; d.innerHTML='<summary>Legend</summary>'; grid.after(d); d.appendChild(leg); }
-    const hint=rows[1]&&rows[1].querySelector('.k'); if (hint) hint.textContent='Drag over K, the squares or the torus to follow a point through the pictures.'; }
+    const hint=rows[1]&&rows[1].querySelector('.k'); if (hint) hint.textContent='Drag over a picture to follow a point through the others; tap a small picture to enlarge it.';
+    if (grid) mainAndThumbs(grid,'mob-thumbs'); }
   }
 })();
 </script>
