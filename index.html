@@ -115,6 +115,13 @@ mjx-assistive-mml { max-width: 100%; overflow: hidden; }
   h3 { break-after: avoid; }
   details.sec > summary > h3::before { content: none; }
 }
+/* touch screens: a figure only captures swipes after it has been tapped, so the page can still be scrolled over it */
+.fig-touch-hint { display: none; font-size: .8rem; color: var(--text-muted); margin: 0 0 .3rem; }
+@media (pointer: coarse) {
+  .fig-touch-hint { display: block; }
+  [data-touch-gate]:not(.fig-active) canvas, [data-touch-gate]:not(.fig-active) svg { touch-action: pan-x pan-y pinch-zoom !important; }
+  [data-touch-gate].fig-active { outline: 2px solid var(--interactive-accent); outline-offset: 4px; border-radius: 4px; }
+}
 </style>
 <script>
 window.MathJax = {
@@ -269,7 +276,7 @@ The left panel of Figure 2 below illustrates these definitions. The point \(x\) 
 \]</span>
 The right panel of Figure 2 shows \(K^{\circ}\) and the simplices \(\Delta_{J,\varepsilon}\) with \(x\in K_{J,\varepsilon}\), each drawn in the colour of \(J\) and marked \(\varepsilon\). Clicking a point \(y_{J,\varepsilon}(x)\) in the left panel, or a simplex in the right panel, highlights the lines defining \(y_{J,\varepsilon}(x)\) and outlines \(\Delta_{J,\varepsilon}\) (dashed if \(x\notin K_{J,\varepsilon}\)).</p>
 <details class="fig" open><summary><b>Figure 2: the vertices \(y_{J,\varepsilon}(x)\) and the simplices \(\Delta_{J,\varepsilon}\)</b></summary>
-<div class="figure interactive" id="fig-3"></div>
+<div class="figure interactive" id="fig-3" data-touch-gate></div>
 </details>
 <div class="callout callout-lemma" id="lemma-1"><div class="callout-title">Lemma 1</div><p>The sets
 <span class="math">\[
@@ -307,7 +314,7 @@ everywhere. By the implicit function theorem, both \(\{G=0,\ \nabla G\neq0\}\) a
 </details>
 <p>Figure 3 shows the same objects for \(d=3\).</p>
 <details class="fig" open><summary><b>Figure 3: the vertices \(y_{J,\varepsilon}(x)\) and the simplices \(\Delta_{J,\varepsilon}\) in dimension 3</b></summary>
-<div class="figure interactive" id="fig-3d"></div>
+<div class="figure interactive" id="fig-3d" data-touch-gate></div>
 </details>
 <p>For \(J\in\mathcal{J}\), the linear map \((x,h)\mapsto\big(B_Jx,(B_J^{\mathsf T})^{-1}h\big)\) from \(\mathbb{R}^d\times\mathbb{R}^d\) to \(\mathbb{R}^J\times\mathbb{R}^J\) preserves volume, and \((B_J^{\mathsf T})^{-1}b_j=e_j\) for \(j\in J\), where \((e_j)_{j\in J}\) is the standard basis of \(\mathbb{R}^J\). Since the simplex \(\operatorname{conv}\big(\{0\}\cup\{\varepsilon_je_j\}_{j\in J}\big)\) has volume \(1/d!\) for every \(\varepsilon\in\{-1,1\}^J\), it follows that
 <span id="eq-5"></span><span class="math">\[
@@ -352,7 +359,7 @@ Let \(\mu_J\) be the Haar probability measure on the torus \((\partial\mathbb D)
 	\sum_{\varepsilon\in\{-1,1\}^J}\operatorname{Vol}\big(B_J(K_{J,\varepsilon})\big)=4^d\mu_J(A_J).\tag{9}
 \]</span></p>
 <details class="fig" open><summary><b>Figure 5: from \(K\) to the cube to the torus</b></summary>
-<div class="figure interactive" id="fig-2"></div>
+<div class="figure interactive" id="fig-2" data-touch-gate></div>
 </details>
 <p>By <a href="#eq-6">(6)</a> and <a href="#eq-9">(9)</a>,
 <span id="eq-10"></span><span class="math">\[
@@ -649,7 +656,7 @@ Let \(\hat v:=(v,\|v\|)\) and \(\hat u:=(u,\|u\|)\) be the lifts of \(v\) and \(
 	\|\hat v-\hat u\|_{\widehat K^{\circ}}=\max\big\{\|v-u\|,\,\big|\|v\|-\|u\|\big|\big\}=\|v-u\|,\qquad \|\hat v\|_{\widehat K^{\circ}}=\|v\|,\qquad \|\hat u\|_{\widehat K^{\circ}}=\|u\|.
 \]</span>
 <details class="fig" open><summary><b>Figure 6: proof of <a href="#lemma-6-medians">Lemma 5</a></b></summary>
-<div class="figure med-fig interactive" id="fig-4">
+<div class="figure med-fig interactive" id="fig-4" data-touch-gate>
 <svg viewBox="0 0 560 400" role="img" aria-label="The cone of the l-infinity norm over the plane, the lifted points u-hat and v-hat on it, the path through 0 and the geodesic whose lowest point lies above the median w. Drag to rotate."></svg>
 <div class="med-ctl"><button type="button" data-act="new">new <i>u</i>, <i>v</i></button><button type="button" data-act="reset">reset</button><span>drag to rotate</span></div>
 </div>
@@ -2072,6 +2079,34 @@ window.addEventListener('resize', () => { clearTimeout(fitTimer); fitTimer = set
 document.addEventListener('toggle', (e) => { if (e.target.open) fitMath(e.target); }, true);
 window.MathJax.startup = { pageReady: function(){ return MathJax.startup.defaultPageReady().then(() => { fitMath(); runFigures(); }); } };
 setTimeout(runFigures, 6000); // offline fallback: figures without typeset labels
+</script>
+<script>
+// Touch screens: figures ignore touches until tapped, so swiping over a figure scrolls the page.
+// Tapping a figure activates it (swipes then rotate/drag it); tapping anywhere outside deactivates it.
+(function(){
+  const figs=[...document.querySelectorAll('[data-touch-gate]')];
+  const surface=(t)=>t.closest&&t.closest('canvas, svg')&&!t.closest('button, input, select, a, label');
+  const IDLE='Tap the figure to interact with it.', ACTIVE='Interacting: tap outside the figure to scroll.';
+  let start=null;
+  for (const f of figs){
+    const hint=document.createElement('div'); hint.className='fig-touch-hint'; hint.textContent=IDLE; f.prepend(hint);
+    for (const type of ['pointerdown','pointermove','pointerup','touchstart','touchmove','mousedown']){
+      f.addEventListener(type,(e)=>{
+        if (f.classList.contains('fig-active')||!surface(e.target)) return;
+        const touch=e.pointerType==='touch'||type.startsWith('touch')||(type==='mousedown'&&start);
+        if (!touch) return;
+        if (type==='pointerdown') start={x:e.clientX,y:e.clientY,f};
+        if (type==='pointerup'&&start&&start.f===f&&Math.hypot(e.clientX-start.x,e.clientY-start.y)<10){
+          for (const g of figs) if (g!==f) deactivate(g);
+          f.classList.add('fig-active'); hint.textContent=ACTIVE; }
+        if (type==='pointerup') setTimeout(()=>{ start=null; },500);
+        e.stopPropagation();
+      },true);
+    }
+  }
+  function deactivate(f){ f.classList.remove('fig-active'); const h=f.querySelector(':scope > .fig-touch-hint'); if (h) h.textContent=IDLE; }
+  document.addEventListener('pointerdown',(e)=>{ for (const f of figs) if (f.classList.contains('fig-active')&&!f.contains(e.target)) deactivate(f); },true);
+})();
 </script>
 </body>
 </html>
