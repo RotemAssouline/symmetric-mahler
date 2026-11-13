@@ -189,7 +189,7 @@ window.addEventListener('afterprint', () => { closedBeforePrint.forEach((d) => d
 <body>
 <h1>Notes on OpenAI's proof of the symmetric Mahler conjecture</h1>
 <h4>Rotem Assouline</h4>
-<p><i>Last updated: November 2, 2026</i></p>
+<p><i>Last updated: November 13, 2026</i></p>
 <p><button type="button" class="print-btn" onclick="window.print()">Print</button> <button type="button" class="print-btn" id="toggle-sections">Collapse all</button></p>
 <script>
 (function(){
@@ -318,11 +318,13 @@ The right panel of Figure 2 shows \(K^{\circ}\) and the simplices \(\Delta_{J,\v
 \]</span>
 have pairwise null intersections.</p></div>
 <details class="proof"><summary>Proof.</summary>
-<p>Let \((J,\varepsilon)\neq(J',\varepsilon')\). Since two simplices with disjoint interiors intersect in a null set, we may assume that there is some \(\xi\in\operatorname{int}\Delta_{J,\varepsilon}\cap\operatorname{int}\Delta_{J',\varepsilon'}\), and then it suffices to show that \(K_{J,\varepsilon}\cap K_{J',\varepsilon'}\) is null. Let \(\alpha_{j}>0\) be such that \(\sum\limits_{j\in J}\alpha_{j}\lt 1\) and
+<p>Let \((J,\varepsilon)\neq(J',\varepsilon')\). Since two simplices with disjoint interiors intersect in a null set, we may assume that there is some \(\xi\in\operatorname{int}\Delta_{J,\varepsilon}\cap\operatorname{int}\Delta_{J',\varepsilon'}\), and then it suffices to show that \(K_{J,\varepsilon}\cap K_{J',\varepsilon'}\) is null. 
+Since \(\xi\in\operatorname{int}\Delta_{J,\varepsilon}\), we can write
 <span class="math">\[
-	\xi=\sum_{j\in J}\alpha_j\varepsilon_jb_j.
+	\xi=\sum_{j\in J}\alpha_j\varepsilon_jb_j
 \]</span>
-Let \(x\in\operatorname{int}K\cap K_{J,\varepsilon}\) and \(y:=y_{J,\varepsilon}(x)\).
+where \(\{\alpha_{j}\}_{j\in J}\) are positive numbers with \(\sum\limits_{j\in J}\alpha_{j}\lt 1\).
+Let \(x\in\operatorname{int}K\cap K_{J,\varepsilon}\) and set \(y:=y_{J,\varepsilon}(x)\).
 </p>
 <p>
 By <a href="#eq-2">(2)</a> and the definition of \(\overline\Omega_x\), we have
