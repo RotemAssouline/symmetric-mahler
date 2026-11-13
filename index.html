@@ -558,15 +558,16 @@ Letting \(s\uparrow 1\) along regular values and using monotone convergence give
 	\end{aligned}
 \]</span>
 Then \((A\oplus_1A')^{\circ}=A^{\circ}\oplus_\infty A'^{\circ}\) and \((A\oplus_\infty A')^{\circ}=A^{\circ}\oplus_1 A'^{\circ}\). <i>Hanner polytopes</i> form the smallest class of convex bodies that contains the segments \([-a,a]\subset\mathbb{R}\), \(a>0\), and is closed under \(\oplus_1\) and \(\oplus_\infty\).</p>
-<p>For a general symmetric convex body \(K\), since \(K=(K^{\circ})^{\circ}\) and \(K\) is symmetric,
+<p>Let \(K\) be a symmetric convex body. since \(K=(K^{\circ})^{\circ}\) and \(K\) is symmetric,
 <span class="math">\[
-	K=\{ x\in \mathbb{R}^{d}\,\,\colon\,\, \langle h,x \rangle \in [-1,1] \quad \forall\,h\in K^{\circ}\},
+	K=\{ x\in \mathbb{R}^{d}\,\,\colon\,\, \langle h,x \rangle \in [-1,1] \quad \forall\,h\in K^{\circ}\}.
 \]</span>
-and we define
+
+Define
 <span class="math">\[
 	\Omega :=\{ z\in \mathbb{C}^{d}\,\,\colon\,\, \langle h,z \rangle \in D \quad \forall\,h\in K^{\circ}\}.
 \]</span>
-For a polytope this agrees with the definition in <a href="#complexification">Complexification: from \(K\) to \(\Omega\)</a>, since \(K^{\circ}=\operatorname{conv}\{\pm b_j\}\) and \(\{h\in\mathbb{R}^d\colon\langle h,z\rangle\in D\}\) is convex and symmetric for each \(z\in\mathbb{C}^d\). The set \(\Omega\) is convex and open, \(\Omega\cap\mathbb{R}^d=\operatorname{int}K\), and \(\mathrm{Re}\,z\in K\) for every \(z\in\overline\Omega\). For \(x\in K\), let \(\overline\Omega_x\) be the fiber of \(\overline\Omega\) over \(x\), as before. For \(y\in\mathbb{R}^d\), since \(K^{\circ}\) is symmetric and \(\lambda\) is even,
+Note that when \(K\) is a polytope this agrees with the definition in <a href="#complexification">Complexification: from \(K\) to \(\Omega\)</a>, and that again the set \(\Omega\) is convex and open with \(\Omega\cap\mathbb{R}^d=\operatorname{int}K\), and \(\mathrm{Re}\,z\in K\) for every \(z\in\overline\Omega\). As before, for \(x\in K\), let \(\overline\Omega_x\) be the fiber of \(\overline\Omega\) over \(x\), and note that for \(y \in \mathbb{R}^d\),
 <span id="eq-16"></span><span class="math">\[
 	x+iy\in\overline\Omega\iff\langle h,y\rangle\le\lambda(\langle h,x\rangle)\quad\forall\,h\in K^{\circ}.\tag{16}
 \]</span></p>
