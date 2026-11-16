@@ -551,12 +551,10 @@ Letting \(s\uparrow 1\) along regular values and using monotone convergence give
 </details>
 </details>
 <details class="sec" open><summary><h3 id="the-equality-case">The equality case</h3></summary>
-<p>For a symmetric convex body \(A\), write \[\|x\|_A:=\min\{t\ge0\colon x\in tA\}\] for the norm with unit ball \(A\). For symmetric convex bodies \(A\subset\mathbb{R}^{k}\) and \(A'\subset\mathbb{R}^{l}\), define the symmetric convex bodies
+<p>For symmetric convex bodies \(A\subset\mathbb{R}^{k}\) and \(A'\subset\mathbb{R}^{l}\), define the symmetric convex bodies
 <span class="math">\[
-	\begin{aligned}
-	A\oplus_\infty A'&:=A\times A'=\{(x,x')\in\mathbb{R}^{k+l}\colon\max\{\|x\|_A,\|x'\|_{A'}\}\le1\},\\
-	A\oplus_1A'&:=\operatorname{conv}\big((A\times\{0\})\cup(\{0\}\times A')\big)=\{(x,x')\in\mathbb{R}^{k+l}\colon\|x\|_A+\|x'\|_{A'}\le1\}.
-	\end{aligned}
+	A\oplus_\infty A':=A\times A',\qquad
+	A\oplus_1A':=\operatorname{conv}\big((A\times\{0\})\cup(\{0\}\times A')\big)\qquad\text{in }\mathbb{R}^{k+l}.
 \]</span>
 Then \((A\oplus_1A')^{\circ}=A^{\circ}\oplus_\infty A'^{\circ}\) and \((A\oplus_\infty A')^{\circ}=A^{\circ}\oplus_1 A'^{\circ}\). <i>Hanner polytopes</i> form the smallest class of convex bodies that contains the segments \([-a,a]\subset\mathbb{R}\), \(a>0\), and is closed under \(\oplus_1\) and \(\oplus_\infty\).</p>
 
@@ -657,9 +655,16 @@ Finally, \(\limsup_jE_j\subseteq \Sigma\). Indeed, let \((x,\xi)\in E_j\) for in
 	\operatorname{Vol}_{2d}(\Sigma)\ge\operatorname{Vol}_{2d}\Big(\limsup_{j\to\infty}E_j\Big)\ge\frac{4^{d}}{d!},
 \]</span>
 which proves the inequality.</p>
-<p>Now assume \(\operatorname{Vol}(K)\operatorname{Vol}(K^{\circ})=4^{d}/d!\). Then \(\Sigma\subseteq K\times K^{\circ}\) and \(\operatorname{Vol}_{2d}(\Sigma)\ge\operatorname{Vol}_{2d}(K\times K^{\circ})\), so \((\operatorname{int} K\times\operatorname{int} K^{\circ})\setminus \Sigma\) is null. It is open by <a href="#eq-20">(20)</a> with \(K^{(j)}=K\), hence empty. So \(\Sigma_x\supseteq\operatorname{int} K^{\circ}\), and \(\Sigma_x\) is closed. For \(\xi\in\partial K^{\circ}\), write \(\xi=\sum\alpha_ih_i\) as in the definition <a href="#eq-18">(18)</a> of \(\Sigma_x\); the weights \(\alpha_i\) sum to \(1\) since \[1=\|\xi\|_{K^{\circ}}\le\sum\alpha_i\|h_i\|_{K^{\circ}}\le\sum\alpha_i\le1,\] so \(\xi\in\operatorname{conv}\{h_i\}\). \(\square\)</p>
+<p>Now assume \(\operatorname{Vol}(K)\operatorname{Vol}(K^{\circ})=4^{d}/d!\). Then \(\Sigma\subseteq K\times K^{\circ}\) and \(\operatorname{Vol}_{2d}(\Sigma)\ge\operatorname{Vol}_{2d}(K\times K^{\circ})\), so \((\operatorname{int} K\times\operatorname{int} K^{\circ})\setminus \Sigma\) is null. It is open by <a href="#eq-20">(20)</a> with \(K^{(j)}=K\), hence empty. So \(\Sigma_x\supseteq\operatorname{int} K^{\circ}\), and \(\Sigma_x\) is closed. For \(\xi\in\partial K^{\circ}\), write \(\xi=\sum\alpha_ih_i\) as in the definition <a href="#eq-18">(18)</a> of \(\Sigma_x\); the weights \(\alpha_i\) sum to \(1\), since otherwise \(\xi\in\big(\sum\alpha_i\big)K^{\circ}\subseteq\operatorname{int}K^{\circ}\). So \(\xi\in\operatorname{conv}\{h_i\}\). \(\square\)</p>
 </details>
-<p>Now let \(K\) satisfy \[\operatorname{Vol}(K)\operatorname{Vol}(K^{\circ})=4^{d}/d!,\]
+<p>For a symmetric convex body \(A\), write \[\|x\|_A:=\min\{t\ge0\colon x\in tA\}\] for the norm with unit ball \(A\). In these terms,
+<span class="math">\[
+	\begin{aligned}
+	A\oplus_\infty A'&=\{(x,x')\in\mathbb{R}^{k+l}\colon\max\{\|x\|_A,\|x'\|_{A'}\}\le1\},\\
+	A\oplus_1A'&=\{(x,x')\in\mathbb{R}^{k+l}\colon\|x\|_A+\|x'\|_{A'}\le1\}.
+	\end{aligned}
+\]</span>
+Now let \(K\) satisfy \[\operatorname{Vol}(K)\operatorname{Vol}(K^{\circ})=4^{d}/d!,\]
 and write
 \[\|\cdot\|=\|\cdot\|_{K^{\circ}}.\]
 
