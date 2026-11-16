@@ -1135,8 +1135,8 @@ function lam(t){ t=Math.abs(t); if (t>=1) return 0; const x=t*(NT-1), i=Math.flo
   function drawLens(){
     const svg=q('svgA'); svg.innerHTML='';
     box.classList.toggle('narrow',narrow);
-    svg.setAttribute('viewBox', narrow?'0 0 400 680':'0 0 720 380');
-    const L=narrow?{cx:200,cy:180,r:130}:{cx:170,cy:190,r:130}, R=narrow?{cx:200,cy:540,s:130}:{cx:540,cy:190,s:130};
+    svg.setAttribute('viewBox', narrow?'0 0 400 690':'0 0 720 380');
+    const L=narrow?{cx:200,cy:180,r:130}:{cx:170,cy:190,r:130}, R=narrow?{cx:200,cy:550,s:130}:{cx:540,cy:190,s:130};
     const muted=css('--muted'), fg=css('--fg'), rule=css('--rule'), s1=css('--s1'), s2=css('--s2');
     // left: unit circle
     el('circle',{cx:L.cx,cy:L.cy,r:L.r,fill:'none',stroke:fg,'stroke-width':1.5},svg);
@@ -1172,12 +1172,12 @@ function lam(t){ t=Math.abs(t); if (t>=1) return 0; const x=t*(NT-1), i=Math.flo
     const defs=el('defs',{},svg); const mk=el('marker',{id:'mfigArrLens',viewBox:'0 0 10 10',refX:'9',refY:'5',markerWidth:'6',markerHeight:'6',orient:'auto'},defs); el('path',{d:'M0 0 L10 5 L0 10 z',fill:fg},mk);
     el('line',{x1:X(t0),y1:Y(0),x2:X(t0),y2:Y(w0)+3,stroke:fg,'stroke-width':1.2,'marker-end':'url(#mfigArrLens)'},svg);
     texLabel(svg,X(t0)+6,Y(w0/2)+4,'\\lambda(t)','svgtext');
-    texLabel(svg,R.cx,R.cy-148,'D=F(\\mathbb{D})','svgtext','middle');
+    texLabel(svg,R.cx,R.cy-(narrow?122:148),'D=F(\\mathbb{D})','svgtext','middle');
     texLabel(svg,X(1)+5,R.cy+14,'1','svgmuted','start'); texLabel(svg,X(-1)-5,R.cy+14,'-1','svgmuted','end');
     // arrow between panels
     if (narrow){
-      el('line',{x1:L.cx,y1:L.cy+L.r+22,x2:L.cx,y2:R.cy-182,stroke:fg,'stroke-width':1.2,'marker-end':'url(#mfigArrLens)'},svg);
-      texLabel(svg,L.cx+12,(L.cy+L.r+22+R.cy-182)/2+7,'F','svgtext');
+      el('line',{x1:L.cx,y1:L.cy+L.r+18,x2:L.cx,y2:R.cy-155,stroke:fg,'stroke-width':1.2,'marker-end':'url(#mfigArrLens)'},svg);
+      texLabel(svg,L.cx+12,(L.cy+L.r+18+R.cy-155)/2+7,'F','svgtext');
     } else {
       el('line',{x1:L.cx+L.r+36,y1:L.cy,x2:X(-1)-22,y2:R.cy,stroke:fg,'stroke-width':1.2,'marker-end':'url(#mfigArrLens)'},svg);
       texLabel(svg,(L.cx+L.r+36+X(-1)-22)/2,L.cy-8,'F','svgtext','middle');
